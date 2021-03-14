@@ -210,7 +210,7 @@ return [
         ],
         'notifications' => [
             'connection' => 'redis',
-            'queue' => 'notifications',
+            'queue' => 'notification',
             'balance' => 'auto',
             'maxProcesses' => 2,
             'memory' => 128,

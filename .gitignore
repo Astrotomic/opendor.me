@@ -12,3 +12,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 phpunit.xml
+.php_cs.cache
