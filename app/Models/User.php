@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Http;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable, MustVerifyEmail, Notifiable, CachesAttributes;
+    use Authenticatable;
+    use Authorizable;
+    use MustVerifyEmail;
+    use Notifiable;
+    use CachesAttributes;
 
     protected $hidden = [
         'remember_token',

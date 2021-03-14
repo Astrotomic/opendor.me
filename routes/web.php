@@ -6,4 +6,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('auth')->name('auth.')->group(__DIR__.'/web/auth.php');
+Route::prefix('auth')->name('auth.')->group(__DIR__ . '/web/auth.php');

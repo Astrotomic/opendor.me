@@ -3,15 +3,13 @@
 namespace App\Eloquent;
 
 use App\Eloquent\Concerns\HasHashId;
-use BadMethodCallException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany as IlluminateBelongsToMany;
-use InvalidArgumentException;
 
 abstract class Model extends IlluminateModel
 {
-    use HasFactory, HasHashId;
+    use HasFactory;
+    use HasHashId;
 
     protected $guarded = [];
 

@@ -1,7 +1,5 @@
 <?php
 
-/** @routePrefix("api.") */
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
