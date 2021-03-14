@@ -6,10 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "ext-redis": "*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
+        "laravel/horizon": "^5.7",
         "vinkla/hashids": "^9.0"
     },
     "require-dev": {
@@ -54,6 +56,7 @@
             "@composer thanks --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi --no-interaction",
+            "@php artisan horizon:publish --ansi --no-interaction --quiet",
             "@php artisan config:clear --ansi --no-interaction --quiet",
             "@php artisan view:clear --ansi --no-interaction --quiet",
             "@php artisan cache:clear --ansi --no-interaction --quiet",
