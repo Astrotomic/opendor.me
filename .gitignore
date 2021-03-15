@@ -13,3 +13,5 @@ npm-debug.log
 yarn-error.log
 phpunit.xml
 .php_cs.cache
+_ide_helper.php
+.phpstorm.meta.php

@@ -10,10 +10,11 @@ class CreateUsersTable extends Migration
     public function up(): void
     {
         Schema::create(User::table(), static function (Blueprint $table): void {
-            $table->id();
-            $table->string('name');
+            $table->bigInteger('id')->unsigned()->primary();
+            $table->string('name')->unique()->index();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('github_access_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

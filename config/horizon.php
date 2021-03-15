@@ -217,6 +217,15 @@ return [
             'tries' => 1,
             'nice' => 0,
         ],
+        'github' => [
+            'connection' => 'redis',
+            'queue' => 'github',
+            'balance' => 'auto',
+            'maxProcesses' => 10,
+            'memory' => 128,
+            'tries' => 1,
+            'nice' => 0,
+        ],
     ],
 
     'environments' => [
@@ -230,7 +239,7 @@ return [
 
         'local' => [
             'supervisor-1' => [
-                'maxProcesses' => 3,
+                'maxProcesses' => 5,
             ],
         ],
     ],

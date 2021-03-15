@@ -19,17 +19,23 @@ class GithubController
     {
         $githubUser = $this->socialite()->user();
 
-        $user = User::query()->firstOrCreate(['github_id' => $githubUser->getId()], [
+        $data = [
             'email' => $githubUser->getEmail(),
-            'name' => $githubUser->getName(),
-            'github_refresh_token' => $githubUser->refreshToken,
-        ]);
+            'name' => $githubUser->getNickname(),
+            'github_access_token' => $githubUser->token,
+        ];
 
-        $user->setGitHubAccessToken($githubUser->token, $githubUser->expiresIn);
+        $user = User::updateOrCreate(['id' => $githubUser->getId()], $data);
 
         if ($user->wasRecentlyCreated) {
             event(new Registered($user));
         }
+
+        if (! $user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
+
+        dispatch(fn() => $user->syncOrganizations())->onQueue('github');
 
         Auth::login($user);
 
@@ -39,6 +45,7 @@ class GithubController
     public function redirect(): RedirectResponse
     {
         return $this->socialite()
+            ->scopes(['read:org'])
             ->redirectUrl(route('auth.github.callback'))
             ->redirect();
     }

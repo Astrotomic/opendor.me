@@ -72,7 +72,10 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "fix": "vendor/bin/duster fix",
+        "fix": [
+            "vendor/bin/duster phpcs fix",
+            "vendor/bin/duster tlint fix"
+        ],
         "ide": [
             "@php artisan ide-helper:eloquent --ansi --no-interaction --quiet",
             "@php artisan ide-helper:generate --ansi --no-interaction --quiet",
@@ -82,7 +85,10 @@
             "find ./app/Models/ -type f -exec sed -i -e 's/\\\\Illuminate\\\\Support\\\\Carbon/\\\\Carbon\\\\Carbon/g' {} \\;",
             "@composer fix --quiet"
         ],
-        "lint": "vendor/bin/duster lint",
+        "lint": [
+            "vendor/bin/duster phpcs",
+            "vendor/bin/duster tlint"
+        ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
         "thanks": "echo 'composer global require symfony/thanks'"
     }
