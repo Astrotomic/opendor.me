@@ -13,6 +13,11 @@ class CreateRepositoriesTable extends Migration
             $table->bigInteger('id')->unsigned()->primary();
             $table->string('name')->unique()->index();
             $table->numericMorphs('owner');
+            $table->text('description')->nullable();
+            $table->string('license');
+            $table->string('language');
+            $table->timestamp('blocked_at')->nullable();
+            $table->string('block_reason')->nullable();
             $table->timestamps();
         });
     }

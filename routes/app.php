@@ -3,12 +3,14 @@
 use App\Models\Repository;
 use Illuminate\Support\Facades\Route;
 
-Route::get('dashboard', function () {
-//    auth()->user()->syncOrganizations();
+Route::get('contributions', function () {
+    return view('app.contributions', [
+        'contributions' => auth()->user()->contributions->load('owner'),
+    ]);
+})->name('contributions');
 
-    $repository = Repository::fromName('Astrotomic/laravel-translatable');
+Route::post('repository', function (\Illuminate\Http\Request $request) {
+    Repository::fromName($request->input('name'));
 
-//    $repository->syncContributors();
-
-    return $repository->load('owner', 'contributors');
-})->name('dashboard');
+    return redirect()->back();
+})->name('repository.create');

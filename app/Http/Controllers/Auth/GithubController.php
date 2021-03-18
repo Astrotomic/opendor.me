@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\SyncUserOrganizations;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Contracts\User as SocialiteUser;
 use Laravel\Socialite\Two\GithubProvider;
-use Laravel\Socialite\Two\User as GithubUser;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +20,7 @@ class GithubController
         $data = [
             'email' => $githubUser->getEmail(),
             'name' => $githubUser->getNickname(),
+            'full_name' => $githubUser->getName(),
             'github_access_token' => $githubUser->token,
         ];
 
@@ -35,11 +34,11 @@ class GithubController
             $user->markEmailAsVerified();
         }
 
-        dispatch(fn() => $user->syncOrganizations())->onQueue('github');
+        SyncUserOrganizations::dispatch($user);
 
         Auth::login($user);
 
-        return redirect()->route('app.dashboard');
+        return redirect()->route('app.contributions');
     }
 
     public function redirect(): RedirectResponse

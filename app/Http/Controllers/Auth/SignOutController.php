@@ -16,6 +16,6 @@ class SignOutController
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('auth.signin.form');
+        return redirect()->route('home');
     }
 }

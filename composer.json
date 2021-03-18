@@ -8,12 +8,16 @@
         "php": "^8.0",
         "ext-redis": "*",
         "astrotomic/laravel-cachable-attributes": "^0.3",
+        "blade-ui-kit/blade-ui-kit": "^0.2.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
         "laravel/socialite": "^5.2",
+        "owenvoke/blade-fontawesome": "^1.6",
+        "spatie/guzzle-rate-limiter-middleware": "^2.0",
+        "spatie/laravel-enum": "^2.4",
         "vinkla/hashids": "^9.0"
     },
     "require-dev": {
@@ -64,7 +68,8 @@
             "@php artisan config:clear --ansi --no-interaction --quiet",
             "@php artisan view:clear --ansi --no-interaction --quiet",
             "@php artisan cache:clear --ansi --no-interaction --quiet",
-            "@php artisan route:clear --ansi --no-interaction --quiet"
+            "@php artisan route:clear --ansi --no-interaction --quiet",
+            "@php artisan blade-fontawesome:sync-pro --ansi --no-interaction --quiet"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

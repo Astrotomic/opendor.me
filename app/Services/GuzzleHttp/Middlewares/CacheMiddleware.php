@@ -57,7 +57,7 @@ class CacheMiddleware
         return static function (ResponseInterface $response) use ($request): ResponseInterface {
             if (
                 Str::upper($request->getMethod()) !== 'GET'
-                || !in_array($response->getStatusCode(), [200, 304])
+                || ! in_array($response->getStatusCode(), [200, 304])
             ) {
                 return $response;
             }

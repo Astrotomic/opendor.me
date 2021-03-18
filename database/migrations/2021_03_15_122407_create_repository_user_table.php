@@ -13,6 +13,7 @@ class CreateRepositoryUserTable extends Migration
         Schema::create('repository_user', static function (Blueprint $table): void {
             $table->foreignId('repository_id')->constrained(Repository::table());
             $table->foreignId('user_id')->constrained(User::table());
+            $table->unique(['repository_id', 'user_id']);
         });
     }
 

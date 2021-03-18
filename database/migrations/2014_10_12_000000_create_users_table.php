@@ -12,9 +12,12 @@ class CreateUsersTable extends Migration
         Schema::create(User::table(), static function (Blueprint $table): void {
             $table->bigInteger('id')->unsigned()->primary();
             $table->string('name')->unique()->index();
+            $table->string('full_name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('github_access_token')->nullable();
+            $table->timestamp('blocked_at')->nullable();
+            $table->string('block_reason')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

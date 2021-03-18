@@ -38,6 +38,12 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @mixin \Illuminate\Database\Eloquent\Builder
  * @property-read string $avatar_url
+ * @property string|null $full_name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
+ * @property-read string $github_url
+ * @property string|null $blocked_at
+ * @property string|null $block_reason
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract
 {
@@ -94,6 +100,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return "https://avatars.githubusercontent.com/u/{$this->id}";
     }
 
+    public function getGithubUrlAttribute(): string
+    {
+        return "https://github.com/{$this->name}";
+    }
+
     /**
      * @return string[]
      */
@@ -116,18 +127,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         );
     }
 
-    public function syncOrganizations(): array
-    {
-        $organizations = $this->github()->get('/user/orgs')->collect()
-            ->map(fn(array $org): Organization => Organization::fromGithub($org));
-
-        return $this->organizations()->sync($organizations->pluck('id'));
-    }
-
     public function github(): PendingRequest
     {
-        return Http::github()->withHeaders([
-            'Authorization' => "Bearer {$this->github_access_token}",
-        ]);
+        return Http::github()->withToken($this->github_access_token);
+    }
+
+    public function getIsBlockedAttribute(): bool
+    {
+        return $this->blocked_at !== null;
     }
 }

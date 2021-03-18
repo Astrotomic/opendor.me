@@ -12,6 +12,8 @@ class CreateOrganizationsTable extends Migration
         Schema::create(Organization::table(), static function (Blueprint $table): void {
             $table->bigInteger('id')->unsigned()->primary();
             $table->string('name')->unique()->index();
+            $table->timestamp('blocked_at')->nullable();
+            $table->string('block_reason')->nullable();
             $table->timestamps();
         });
     }

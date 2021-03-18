@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 
 return [
@@ -31,7 +32,7 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => CarbonInterval::fromString(env('SESSION_LIFETIME', '2h'))->totalMinutes,
 
     'expire_on_close' => false,
 
