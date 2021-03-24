@@ -38,7 +38,9 @@ class GithubController
 
         Auth::login($user);
 
-        return redirect()->route('app.contributions');
+        return redirect()->intended(
+            route('app.contributions')
+        );
     }
 
     public function redirect(): RedirectResponse
