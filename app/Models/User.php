@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Eloquent\Model;
+use App\Eloquent\Scopes\OrderByScope;
+use App\Enums\BlockReason;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Carbon\CarbonInterval;
@@ -42,8 +44,9 @@ use Throwable;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  * @property-read string $github_url
- * @property string|null $blocked_at
- * @property string|null $block_reason
+ * @property \Carbon\Carbon|null $blocked_at
+ * @property \App\Enums\BlockReason|null $block_reason
+ * @property-read bool $is_blocked
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract
 {
@@ -62,7 +65,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'blocked_at' => 'datetime',
+        'block_reason' => BlockReason::class . ':nullable',
     ];
+
+    protected static function booted(): void
+    {
+        self::addGlobalScope(new OrderByScope('name', 'asc'));
+    }
 
     public static function fromGithub(array $data): self
     {
