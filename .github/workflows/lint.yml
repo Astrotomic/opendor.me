@@ -14,7 +14,7 @@ jobs:
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
-      - run: vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run .
+      - run: vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run
 
   tlint:
     runs-on: ubuntu-latest
