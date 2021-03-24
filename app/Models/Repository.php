@@ -6,7 +6,6 @@ use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\Language;
 use App\Enums\License;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;

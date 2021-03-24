@@ -5,23 +5,14 @@ namespace App\Jobs;
 use App\Jobs\Concerns\RateLimited;
 use App\Models\Organization;
 use App\Models\Repository;
-use App\Models\User;
-use Carbon\Carbon;
-use Carbon\CarbonInterval;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\Job;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Throwable;
 
 class LoadOrganizationRepositories implements ShouldQueue
 {

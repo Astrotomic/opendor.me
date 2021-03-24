@@ -4,13 +4,10 @@ namespace App\Models;
 
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
-use GuzzleHttp\Exception\ClientException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
-use Throwable;
 
 /**
  * App\Models\Organization
