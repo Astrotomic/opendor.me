@@ -13,7 +13,7 @@ jobs:
           php-version: 8.0
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
-      - run: composer install --no-interaction
+      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run .
 
   tlint:
@@ -25,5 +25,5 @@ jobs:
           php-version: 8.0
           extensions: posix, dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
-      - run: composer install --no-interaction
+      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/tlint lint ./app --no-interaction -v
