@@ -68,7 +68,9 @@
             "@php artisan view:clear --ansi --no-interaction --quiet",
             "@php artisan cache:clear --ansi --no-interaction --quiet",
             "@php artisan route:clear --ansi --no-interaction --quiet",
-            "@php artisan blade-fontawesome:sync-pro --ansi --no-interaction --quiet"
+            "@php artisan event:clear --ansi --no-interaction --quiet",
+            "@php artisan icons:clear --ansi --no-interaction --quiet",
+            "@icons"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -79,6 +81,10 @@
         "fix": [
             "vendor/bin/duster phpcs fix",
             "vendor/bin/duster tlint fix"
+        ],
+        "icons": [
+            "@php artisan blade-fontawesome:sync-pro --ansi --no-interaction --quiet",
+            "@php artisan icons:cache --ansi --no-interaction --quiet"
         ],
         "ide": [
             "@php artisan ide-helper:eloquent --ansi --no-interaction --quiet",
