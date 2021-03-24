@@ -14,6 +14,6 @@ final class BlockReason extends Enum
 {
     protected static function labels(): Closure
     {
-        return fn(string $value): string => Str::of($value)->title();
+        return fn (string $value): string => Str::of($value)->title();
     }
 }

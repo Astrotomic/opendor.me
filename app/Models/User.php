@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
 use Throwable;
 
 /**
- * App\Models\User
+ * App\Models\User.
  *
  * @property int $id
  * @property string $name
@@ -35,10 +35,12 @@ use Throwable;
  * @property \Carbon\Carbon|null $updated_at
  * @property-read string[] $emails
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @mixin \Illuminate\Database\Eloquent\Builder
+ *
  * @property-read string $avatar_url
  * @property string|null $full_name
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
@@ -66,13 +68,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $casts = [
         'email_verified_at' => 'datetime',
         'blocked_at' => 'datetime',
-        'block_reason' => BlockReason::class . ':nullable',
+        'block_reason' => BlockReason::class.':nullable',
     ];
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
-    }
 
     public static function fromGithub(array $data): self
     {
@@ -83,6 +80,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 'email' => "{$data['id']}+{$data['login']}@users.noreply.github.com",
             ]
         );
+    }
+
+    protected static function booted(): void
+    {
+        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function repositories(): MorphMany
@@ -98,11 +100,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function contributions(): BelongsToMany
     {
         return $this->belongsToMany(Repository::class)->as('repository_user');
-    }
-
-    public function getAuthPassword(): ?string
-    {
-        return null;
     }
 
     public function getAvatarUrlAttribute(): string
@@ -128,7 +125,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                     return $this->github()->get('/user/emails')->collect()
                         ->filter->verified
                         ->pluck('email')
-                        ->map(fn(string $email): string => Str::lower($email))
+                        ->map(fn (string $email): string => Str::lower($email))
                         ->toArray();
                 } catch (Throwable $exception) {
                     return [$this->email];

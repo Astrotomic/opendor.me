@@ -14,7 +14,6 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
     {
         parent::boot();
 
-
         if (config('horizon.notifications.sms') !== null) {
             Horizon::routeSmsNotificationsTo(config('horizon.notifications.sms'));
         }

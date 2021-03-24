@@ -14,7 +14,7 @@ class Html extends Component
     public function __construct(?string $title = null)
     {
         $this->title = $title
-            ? Str::finish($title, ' | ' . config('app.name'))
+            ? Str::finish($title, ' | '.config('app.name'))
             : config('app.name');
 
         $this->lang = str_replace('_', '-', app()->getLocale());

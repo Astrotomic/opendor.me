@@ -68,7 +68,7 @@ class LoadOrganizationRepositories implements ShouldQueue
     public function tags(): array
     {
         return [
-            Str::snake(class_basename($this->organization)) . ':' . $this->organization->id,
+            Str::snake(class_basename($this->organization)).':'.$this->organization->id,
             $this->organization->name,
         ];
     }

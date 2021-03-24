@@ -1,0 +1,28 @@
+<?php
+
+$finder = \PhpCsFixer\Finder::create()
+    ->notPath('vendor')
+    ->notPath('bootstrap')
+    ->notPath('storage')
+    ->notName('*.blade.php')
+    ->notName('index.php')
+    ->notName('server.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true)
+    ->name('*.php')
+    ->in(__DIR__);
+
+return \PhpCsFixer\Config::create()
+    ->setRules(array_merge(require '.php_cs.laravel', [
+        '@PSR2' => true,
+        '@PSR12' => true,
+        'no_unused_imports' => true,
+        'phpdoc_to_comment' => false,
+        'phpdoc_order' => true,
+        'phpdoc_separation' => true,
+    ]))
+    ->setLineEnding("\n")
+    ->setIndent(str_repeat(' ', 4))
+    ->setUsingCache(false)
+    ->setRiskyAllowed(true)
+    ->setFinder($finder);

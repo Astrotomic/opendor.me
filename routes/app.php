@@ -9,7 +9,7 @@ Route::get('contributions', function () {
     ]);
 })->name('contributions');
 
-Route::post('repository', function (\Illuminate\Http\Request $request) {
+Route::post('repository', function (Illuminate\Http\Request $request) {
     Repository::fromName($request->input('name'));
 
     return redirect()->back();

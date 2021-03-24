@@ -15,12 +15,13 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 
 /**
- * App\Models\Repository
+ * App\Models\Repository.
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Repository query()
  * @mixin \Illuminate\Database\Eloquent\Builder
+ *
  * @property int $id
  * @property string $name
  * @property string $owner_type
@@ -45,23 +46,8 @@ class Repository extends Model
 
     protected $casts = [
         'license' => License::class,
-        'language' => Language::class . ':nullable',
+        'language' => Language::class.':nullable',
     ];
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
-    }
-
-    public function owner(): MorphTo
-    {
-        return $this->morphTo();
-    }
-
-    public function contributors(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class)->as('repository_user');
-    }
 
     public static function fromName(string $name, bool $force = false): ?self
     {
@@ -114,17 +100,19 @@ class Repository extends Model
         ]);
     }
 
-    public function github(): PendingRequest
+    protected static function booted(): void
     {
-        if ($this->owner instanceof User && $this->owner->github_access_token) {
-            return $this->owner->github();
-        }
+        self::addGlobalScope(new OrderByScope('name', 'asc'));
+    }
 
-        if ($this->owner instanceof Organization) {
-            return $this->owner->github();
-        }
+    public function owner(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
-        return Http::github();
+    public function contributors(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)->as('repository_user');
     }
 
     public function getVendorNameAttribute(): string
@@ -140,5 +128,18 @@ class Repository extends Model
     public function getGithubUrlAttribute(): string
     {
         return "https://github.com/{$this->name}";
+    }
+
+    public function github(): PendingRequest
+    {
+        if ($this->owner instanceof User && $this->owner->github_access_token) {
+            return $this->owner->github();
+        }
+
+        if ($this->owner instanceof Organization) {
+            return $this->owner->github();
+        }
+
+        return Http::github();
     }
 }

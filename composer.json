@@ -23,10 +23,11 @@
         "barryvdh/laravel-ide-helper": "^2.8",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^2.18",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
-        "tightenco/duster": "^0.2.1"
+        "tightenco/tlint": "^5.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -79,8 +80,7 @@
             "@php artisan key:generate --ansi"
         ],
         "fix": [
-            "vendor/bin/duster phpcs fix",
-            "vendor/bin/duster tlint fix"
+            "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist"
         ],
         "icons": [
             "@php artisan blade-fontawesome:sync-pro --ansi --no-interaction --quiet",
@@ -96,8 +96,8 @@
             "@composer fix --quiet"
         ],
         "lint": [
-            "vendor/bin/duster phpcs",
-            "vendor/bin/duster tlint"
+            "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run",
+            "vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
         "thanks": "echo 'composer global require symfony/thanks'"

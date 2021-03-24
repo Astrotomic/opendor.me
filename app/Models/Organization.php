@@ -10,17 +10,19 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
 /**
- * App\Models\Organization
+ * App\Models\Organization.
  *
  * @property int $id
  * @property string $name
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization query()
  * @mixin \Illuminate\Database\Eloquent\Builder
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  * @property-read string $avatar_url
@@ -31,6 +33,14 @@ use Illuminate\Support\Facades\Http;
 class Organization extends Model
 {
     public $incrementing = false;
+
+    public static function fromGithub(array $data): self
+    {
+        return static::updateOrCreate(
+            ['id' => $data['id']],
+            ['name' => $data['login']]
+        );
+    }
 
     protected static function booted(): void
     {
@@ -45,14 +55,6 @@ class Organization extends Model
     public function repositories(): MorphMany
     {
         return $this->morphMany(Repository::class, 'owner');
-    }
-
-    public static function fromGithub(array $data): self
-    {
-        return static::updateOrCreate(
-            ['id' => $data['id']],
-            ['name' => $data['login']]
-        );
     }
 
     public function getAvatarUrlAttribute(): string

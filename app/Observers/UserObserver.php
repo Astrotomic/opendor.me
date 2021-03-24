@@ -2,8 +2,6 @@
 
 namespace App\Observers;
 
-use App\Jobs\LoadOrganizationRepositories;
-use App\Models\Organization;
 use App\Models\User;
 
 class UserObserver

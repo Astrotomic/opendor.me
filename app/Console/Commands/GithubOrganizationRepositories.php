@@ -17,7 +17,7 @@ class GithubOrganizationRepositories extends Command
         Organization::query()
             ->when(
                 $this->argument('name'),
-                fn(Builder $query, string $name) => $query->where('name', $name)
+                fn (Builder $query, string $name) => $query->where('name', $name)
             )
             ->each(static function (Organization $organization): void {
                 LoadOrganizationRepositories::dispatch($organization);

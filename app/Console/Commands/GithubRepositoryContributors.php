@@ -19,7 +19,7 @@ class GithubRepositoryContributors extends Command
         Repository::query()
             ->when(
                 $this->argument('name'),
-                fn(Builder $query, string $name) => $query->where('name', $name)
+                fn (Builder $query, string $name) => $query->where('name', $name)
             )
             ->with('owner')
             ->get()

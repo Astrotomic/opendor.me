@@ -41,7 +41,7 @@ class SyncUserOrganizations implements ShouldQueue
 
         $this->user->organizations()->sync(
             $organizations
-                ->map(fn(array $org): Organization => Organization::fromGithub($org))
+                ->map(fn (array $org): Organization => Organization::fromGithub($org))
                 ->pluck('id')
         );
     }
@@ -49,7 +49,7 @@ class SyncUserOrganizations implements ShouldQueue
     public function tags(): array
     {
         return [
-            Str::snake(class_basename($this->user)) . ':' . $this->user->id,
+            Str::snake(class_basename($this->user)).':'.$this->user->id,
             $this->user->name,
         ];
     }
