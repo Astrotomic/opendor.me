@@ -17,8 +17,7 @@
         "laravel/socialite": "^5.2",
         "owenvoke/blade-fontawesome": "^1.6",
         "spatie/guzzle-rate-limiter-middleware": "^2.0",
-        "spatie/laravel-enum": "^2.4",
-        "vinkla/hashids": "^9.0"
+        "spatie/laravel-enum": "^2.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

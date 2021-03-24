@@ -2,14 +2,12 @@
 
 namespace App\Eloquent;
 
-use App\Eloquent\Concerns\HasHashId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
 
 abstract class Model extends IlluminateModel
 {
     use HasFactory;
-    use HasHashId;
 
     protected $guarded = [];
 
