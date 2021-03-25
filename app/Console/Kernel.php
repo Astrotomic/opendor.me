@@ -6,11 +6,13 @@ use App\Console\Commands\GithubOrganizationRepositories;
 use App\Console\Commands\GithubRepositoryContributors;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Laravel\Horizon\Console\SnapshotCommand;
 
 class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command(SnapshotCommand::class)->everyFiveMinutes();
         $schedule->command(GithubOrganizationRepositories::class)->daily();
         $schedule->command(GithubRepositoryContributors::class)->weekly();
     }
