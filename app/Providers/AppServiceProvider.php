@@ -24,10 +24,12 @@ class AppServiceProvider extends ServiceProvider
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withMiddleware(CacheMiddleware::make())
-                ->withMiddleware(RateLimiterMiddleware::perMinute(75))
+                ->withMiddleware(
+                    RateLimiterMiddleware::perMinute(User::whereNotNull('github_access_token')->count() * 60)
+                )
                 ->withOptions(['http_errors' => true])
                 ->withToken(
-                    User::whereNotNull('github_access_token')->first()->github_access_token
+                    User::whereNotNull('github_access_token')->inRandomOrder()->first()->github_access_token
                 );
         });
     }
