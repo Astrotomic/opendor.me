@@ -138,15 +138,15 @@
                         id="options-menu"
                         aria-haspopup="true"
                     >
-                        <div class="flex justify-between items-center space-x-3 w-full">
+                        <div class="flex justify-between items-center space-x-2 w-full">
                             <x-gh-avatar :model="$auth" class="w-10 h-10"/>
                             <div class="flex-1 min-w-0">
-                                <span class="text-sm font-medium text-gray-900 truncate">
+                                <p class="text-sm font-medium text-gray-900 truncate">
                                     {{ $auth->full_name ?? $auth->name }}
-                                </span>
-                                <span class="text-sm text-gray-500 truncate">
+                                </p>
+                                <p class="text-sm text-gray-500 truncate">
                                     {{ '@'.$auth->name }}
-                                </span>
+                                </p>
                             </div>
 
                             <x-logout :action="route('auth.signout')" class="block flex-shrink-0 p-3 -mr-2 text-gray-400 rounded hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500">
