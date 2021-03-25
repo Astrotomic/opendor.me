@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Jobs\Concerns\RateLimited;
-use App\Models\Organization;
 use App\Models\Repository;
 use App\Models\User;
 use Carbon\CarbonInterval;

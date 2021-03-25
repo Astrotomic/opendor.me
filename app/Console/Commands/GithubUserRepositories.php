@@ -2,9 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\LoadOrganizationRepositories;
 use App\Jobs\LoadUserRepositories;
-use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
