@@ -55,7 +55,7 @@ class Repository extends Model
 
     protected $casts = [
         'license' => License::class,
-        'language' => Language::class.':nullable',
+        'language' => Language::class,
     ];
 
     public static function fromName(string $name, bool $force = false): ?self
