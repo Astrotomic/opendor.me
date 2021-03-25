@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Jobs\Concerns\RateLimited;
 use App\Models\Organization;
 use App\Models\User;
+use Carbon\CarbonInterval;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,20 +14,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
 
-class SyncUserOrganizations implements ShouldQueue
+class SyncUserOrganizations extends Job
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
     use RateLimited;
-
-    public $deleteWhenMissingModels = true;
-    public $timeout = 120; // seconds
 
     public function __construct(protected User $user)
     {
         $this->queue = 'github';
+        $this->timeout = CarbonInterval::minutes(5)->totalSeconds;
     }
 
     public function handle(): void

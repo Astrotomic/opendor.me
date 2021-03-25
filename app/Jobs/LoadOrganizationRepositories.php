@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Jobs\Concerns\RateLimited;
 use App\Models\Organization;
 use App\Models\Repository;
+use Carbon\CarbonInterval;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,55 +15,36 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class LoadOrganizationRepositories implements ShouldQueue
+class LoadOrganizationRepositories extends Job
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
     use RateLimited;
-
-    public $deleteWhenMissingModels = true;
-    public $timeout = 600; // seconds
 
     public function __construct(protected Organization $organization)
     {
         $this->queue = 'github';
+        $this->timeout = CarbonInterval::minutes(15)->totalSeconds;
     }
 
     public function handle(): void
     {
         try {
-            $repositories = $this->loadRepositories();
+            $page = 1;
+            do {
+                $response = $this->organization->github()->get("/orgs/{$this->organization->name}/repos", [
+                    'type' => 'public',
+                    'per_page' => 100,
+                    'page' => $page,
+                ])->collect();
+
+                $response->each(fn (array $repository): ?Repository => Repository::fromGithub($repository));
+
+                $page++;
+            } while ($response->count() >= 100);
         } catch (ClientException $exception) {
             $this->rateLimit($exception);
 
             return;
         }
-
-        $repositories->each(function (array $repository): ?Repository {
-            return Repository::fromGithub($repository);
-        });
-    }
-
-    protected function loadRepositories(): Collection
-    {
-        $repositories = collect();
-
-        $page = 1;
-        do {
-            $response = $this->organization->github()->get("/orgs/{$this->organization->name}/repos", [
-                'type' => 'public',
-                'per_page' => 100,
-                'page' => $page,
-            ])->collect();
-
-            $repositories->push(...$response->all());
-
-            $page++;
-        } while ($response->count() >= 100);
-
-        return $repositories;
     }
 
     public function tags(): array

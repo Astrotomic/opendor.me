@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\CarbonInterval;
+
 return [
 
     /*
@@ -66,7 +68,7 @@ return [
             'driver' => 'redis',
             'connection' => 'default',
             'queue' => env('REDIS_QUEUE', 'default'),
-            'retry_after' => 90,
+            'retry_after' => CarbonInterval::hour()->addMinutes(5)->totalSeconds,
             'block_for' => null,
             'after_commit' => false,
         ],

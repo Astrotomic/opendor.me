@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\CarbonInterval;
 use Illuminate\Support\Str;
 
 return [
@@ -160,7 +161,7 @@ return [
     |
     */
 
-    'memory_limit' => 64,
+    'memory_limit' => 128,
 
     /*
     |--------------------------------------------------------------------------
@@ -222,9 +223,10 @@ return [
             'queue' => 'github',
             'balance' => 'auto',
             'maxProcesses' => 10,
-            'memory' => 128,
+            'memory' => 512,
             'tries' => 1,
             'nice' => 0,
+            'timeout' => CarbonInterval::hour()->totalSeconds,
         ],
     ],
 
