@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
-use App\Enums\BlockReason;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
@@ -16,32 +16,28 @@ use Laravel\Nova\Actions\Actionable;
  *
  * @property int $id
  * @property string $name
+ * @property \Carbon\Carbon|null $blocked_at
+ * @property \App\Enums\BlockReason|null $block_reason
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read string $avatar_url
+ * @property-read string $github_url
+ * @property-read bool $is_blocked
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization query()
  * @mixin \Illuminate\Database\Eloquent\Builder
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
- * @property-read string $avatar_url
- * @property-read string $github_url
- * @property string|null $blocked_at
- * @property string|null $block_reason
  */
 class Organization extends Model
 {
     use Actionable;
+    use Blockable;
 
     public $incrementing = false;
-
-    protected $casts = [
-        'blocked_at' => 'datetime',
-        'block_reason' => BlockReason::class.':nullable',
-    ];
 
     public static function fromGithub(array $data): self
     {
@@ -74,11 +70,6 @@ class Organization extends Model
     public function getGithubUrlAttribute(): string
     {
         return "https://github.com/{$this->name}";
-    }
-
-    public function getIsBlockedAttribute(): bool
-    {
-        return $this->blocked_at !== null;
     }
 
     public function github(): PendingRequest

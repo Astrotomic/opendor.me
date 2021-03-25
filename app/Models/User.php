@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
-use App\Enums\BlockReason;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Carbon\CarbonInterval;
@@ -28,28 +28,30 @@ use Throwable;
  *
  * @property int $id
  * @property string $name
+ * @property string|null $full_name
  * @property string $email
  * @property \Carbon\Carbon|null $email_verified_at
- * @property string $github_access_token
+ * @property string|null $github_access_token
+ * @property \Carbon\Carbon|null $blocked_at
+ * @property \App\Enums\BlockReason|null $block_reason
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read string $avatar_url
  * @property-read string[] $emails
+ * @property-read string $github_url
+ * @property-read bool $is_admin
+ * @property-read bool $is_blocked
+ * @property-read string $profile_url
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @mixin \Illuminate\Database\Eloquent\Builder
- *
- * @property-read string $avatar_url
- * @property string|null $full_name
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
- * @property-read string $github_url
- * @property \Carbon\Carbon|null $blocked_at
- * @property \App\Enums\BlockReason|null $block_reason
- * @property-read bool $is_blocked
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract
 {
@@ -59,6 +61,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use RoutesNotifications;
     use CachesAttributes;
     use Actionable;
+    use Blockable;
 
     public $incrementing = false;
 
@@ -69,8 +72,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'blocked_at' => 'datetime',
-        'block_reason' => BlockReason::class.':nullable',
     ];
 
     public static function fromGithub(array $data): self
@@ -141,11 +142,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->id === 6187884 // Gummibeer
             ?: $value
             ?? false;
-    }
-
-    public function getIsBlockedAttribute(): bool
-    {
-        return $this->blocked_at !== null;
     }
 
     public function getProfileUrlAttribute(): string

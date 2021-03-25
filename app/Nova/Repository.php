@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Enums\BlockReason;
+use App\Enums\BlockReason as BlockReasonEnum;
 use App\Enums\Language;
 use App\Enums\License;
 use App\Nova\Actions\AddRepository;
@@ -10,6 +10,7 @@ use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadContributors;
 use App\Nova\Actions\SetLicense;
 use App\Nova\Actions\UnblockEntity;
+use App\Nova\Filters\BlockReason;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -59,7 +60,7 @@ class Repository extends Resource
                 ->hideFromIndex(),
 
             Select::make('Block Reason', 'block_reason')
-                ->options(BlockReason::toArray())
+                ->options(BlockReasonEnum::toArray())
                 ->nullable()
                 ->hideFromIndex()
                 ->displayUsingLabels(),
@@ -78,7 +79,9 @@ class Repository extends Resource
 
     public function filters(Request $request): array
     {
-        return [];
+        return [
+            BlockReason::make(),
+        ];
     }
 
     public function lenses(Request $request): array

@@ -11,7 +11,7 @@ class RepositoryObserver
 {
     public function creating(Repository $repository): void
     {
-        if($repository->license->equals(License::NOASSERTION())) {
+        if ($repository->license->equals(License::NOASSERTION())) {
             $repository->blocked_at = now();
             $repository->block_reason = BlockReason::REVIEW();
         }

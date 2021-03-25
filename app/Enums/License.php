@@ -8,6 +8,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self MIT()
  * @method static self BSD_3_CLAUSE()
  * @method static self APACHE_20()
+ * @method static self GPL_20()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
@@ -18,6 +19,7 @@ final class License extends Enum
             'MIT' => 'MIT',
             'BSD_3_CLAUSE' => 'BSD-3-Clause',
             'APACHE_20' => 'Apache-2.0',
+            'GPL_20' => 'GPL-2.0',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -28,6 +30,7 @@ final class License extends Enum
             'MIT' => 'MIT',
             'BSD_3_CLAUSE' => 'BSD 3-Clause',
             'APACHE_20' => 'Apache 2.0',
+            'GPL_20' => 'GPL v2.0',
             'NOASSERTION' => 'Other',
         ];
     }

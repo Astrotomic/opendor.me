@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
-use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
-use BadMethodCallException;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;
@@ -26,18 +26,20 @@ use Throwable;
  * @property string $name
  * @property string $owner_type
  * @property int $owner_id
+ * @property string|null $description
+ * @property License $license
+ * @property Language $language
+ * @property \Carbon\Carbon|null $blocked_at
+ * @property \App\Enums\BlockReason|null $block_reason
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
+ * @property-read string $github_url
+ * @property-read bool $is_blocked
  * @property-read string $repository_name
  * @property-read string $vendor_name
- * @property-read \App\Models\User|\App\Models\Organization $owner
- * @property License $license
- * @property string|null $language
- * @property-read string $github_url
- * @property string $description
- * @property string|null $blocked_at
- * @property string|null $block_reason
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $owner
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newQuery()
@@ -47,14 +49,13 @@ use Throwable;
 class Repository extends Model
 {
     use Actionable;
+    use Blockable;
 
     public $incrementing = false;
 
     protected $casts = [
         'license' => License::class,
         'language' => Language::class.':nullable',
-        'blocked_at' => 'datetime',
-        'block_reason' => BlockReason::class.':nullable',
     ];
 
     public static function fromName(string $name, bool $force = false): ?self
@@ -88,6 +89,7 @@ class Repository extends Model
             || $data['license'] === null
         ) {
             report(json_encode($data));
+
             return null;
         }
 
@@ -108,7 +110,7 @@ class Repository extends Model
                 'language' => $data['language'],
                 'license' => $data['license']['spdx_id'],
             ]);
-        } catch(Throwable $ex) {
+        } catch (Throwable $ex) {
             report(json_encode($data));
             report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));
 
@@ -119,6 +121,7 @@ class Repository extends Model
     protected static function booted(): void
     {
         self::addGlobalScope(new OrderByScope('name', 'asc'));
+        self::addGlobalScope(fn (Builder $query) => $query->has('owner'));
     }
 
     public function owner(): MorphTo
@@ -144,11 +147,6 @@ class Repository extends Model
     public function getGithubUrlAttribute(): string
     {
         return "https://github.com/{$this->name}";
-    }
-
-    public function getIsBlockedAttribute(): bool
-    {
-        return $this->blocked_at !== null;
     }
 
     public function github(): PendingRequest

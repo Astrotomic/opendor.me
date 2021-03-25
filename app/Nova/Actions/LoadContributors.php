@@ -2,8 +2,6 @@
 
 namespace App\Nova\Actions;
 
-use App\Eloquent\Model;
-use App\Enums\License;
 use App\Jobs\LoadRepositoryContributors;
 use App\Models\Repository;
 use Illuminate\Bus\Queueable;
@@ -11,7 +9,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\ActionRequest;
 use Laravel\Nova\Http\Requests\NovaRequest;
 

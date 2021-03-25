@@ -2,7 +2,6 @@
 
 namespace App\Nova\Actions;
 
-use App\Eloquent\Model;
 use App\Enums\License;
 use App\Models\Repository;
 use Illuminate\Bus\Queueable;

@@ -2,10 +2,11 @@
 
 namespace App\Nova;
 
-use App\Enums\BlockReason;
+use App\Enums\BlockReason as BlockReasonEnum;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Fields\Avatar;
+use App\Nova\Filters\BlockReason;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -44,7 +45,7 @@ class Organization extends Resource
                 ->hideFromIndex(),
 
             Select::make('Block Reason', 'block_reason')
-                ->options(BlockReason::toArray())
+                ->options(BlockReasonEnum::toArray())
                 ->nullable()
                 ->hideFromIndex()
                 ->displayUsingLabels(),
@@ -62,7 +63,9 @@ class Organization extends Resource
 
     public function filters(Request $request): array
     {
-        return [];
+        return [
+            BlockReason::make(),
+        ];
     }
 
     public function lenses(Request $request): array

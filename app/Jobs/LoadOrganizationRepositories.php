@@ -7,12 +7,6 @@ use App\Models\Organization;
 use App\Models\Repository;
 use Carbon\CarbonInterval;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class LoadOrganizationRepositories extends Job
