@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\LoadUserRepositories;
 use App\Jobs\SyncUserOrganizations;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -35,6 +36,7 @@ class GithubController
         }
 
         SyncUserOrganizations::dispatch($user);
+        LoadUserRepositories::dispatch($user);
 
         Auth::login($user);
 
