@@ -14,13 +14,7 @@
                     <li class="inline-flex"><x-language :language="$repository->language"/></li>
                 </ul>
             </div>
-            <x-avatar
-                :search="$repository->owner->name"
-                provider="github"
-                :src="$repository->owner->avatar_url"
-                :alt="$repository->owner->name"
-                class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
-            />
+            <x-gh-avatar :model="$repository->owner" class="w-10 h-10"/>
         </div>
         <p class="text-sm text-gray-500 truncate">{{ $repository->description }}</p>
     </div>

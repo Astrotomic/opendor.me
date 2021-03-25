@@ -20,6 +20,7 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Laravel\Nova\Actions\Actionable;
 use Throwable;
 
 /**
@@ -57,6 +58,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use MustVerifyEmail;
     use RoutesNotifications;
     use CachesAttributes;
+    use Actionable;
 
     public $incrementing = false;
 
@@ -134,13 +136,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         );
     }
 
-    public function github(): PendingRequest
+    public function getIsAdminAttribute(?bool $value): bool
     {
-        return Http::github()->withToken($this->github_access_token);
+        return $this->id === 6187884 // Gummibeer
+            ?: $value
+            ?? false;
     }
 
     public function getIsBlockedAttribute(): bool
     {
         return $this->blocked_at !== null;
+    }
+
+    public function getProfileUrlAttribute(): string
+    {
+        return "https://opendor.me/@{$this->name}";
+    }
+
+    public function github(): PendingRequest
+    {
+        return Http::github()->withToken($this->github_access_token);
     }
 }

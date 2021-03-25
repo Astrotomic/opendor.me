@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
+use App\Enums\BlockReason;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
+use Laravel\Nova\Actions\Actionable;
 
 /**
  * App\Models\Organization.
@@ -32,7 +34,14 @@ use Illuminate\Support\Facades\Http;
  */
 class Organization extends Model
 {
+    use Actionable;
+
     public $incrementing = false;
+
+    protected $casts = [
+        'blocked_at' => 'datetime',
+        'block_reason' => BlockReason::class.':nullable',
+    ];
 
     public static function fromGithub(array $data): self
     {
@@ -65,6 +74,11 @@ class Organization extends Model
     public function getGithubUrlAttribute(): string
     {
         return "https://github.com/{$this->name}";
+    }
+
+    public function getIsBlockedAttribute(): bool
+    {
+        return $this->blocked_at !== null;
     }
 
     public function github(): PendingRequest

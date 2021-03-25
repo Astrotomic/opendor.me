@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('github_access_token')->nullable();
             $table->timestamp('blocked_at')->nullable();
             $table->string('block_reason')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

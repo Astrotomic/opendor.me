@@ -4,8 +4,11 @@ namespace App\Models;
 
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
+use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
+use BadMethodCallException;
+use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;
@@ -13,14 +16,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Laravel\Nova\Actions\Actionable;
+use Throwable;
 
 /**
  * App\Models\Repository.
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Repository newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Repository query()
- * @mixin \Illuminate\Database\Eloquent\Builder
  *
  * @property int $id
  * @property string $name
@@ -36,17 +36,25 @@ use InvalidArgumentException;
  * @property string|null $language
  * @property-read string $github_url
  * @property string $description
- * @property \Carbon\Carbon $pushed_at
  * @property string|null $blocked_at
  * @property string|null $block_reason
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Repository newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Repository query()
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Repository extends Model
 {
+    use Actionable;
+
     public $incrementing = false;
 
     protected $casts = [
         'license' => License::class,
         'language' => Language::class.':nullable',
+        'blocked_at' => 'datetime',
+        'block_reason' => BlockReason::class.':nullable',
     ];
 
     public static function fromName(string $name, bool $force = false): ?self
@@ -79,6 +87,7 @@ class Repository extends Model
             || $data['language'] === null
             || $data['license'] === null
         ) {
+            report(json_encode($data));
             return null;
         }
 
@@ -90,14 +99,21 @@ class Repository extends Model
             throw new InvalidArgumentException("Unknown repository owner type [{$data['owner']['type']}]");
         }
 
-        return $owner->repositories()->firstOrCreate([
-            'id' => $data['id'],
-        ], [
-            'name' => $data['full_name'],
-            'description' => $data['description'],
-            'language' => $data['language'],
-            'license' => $data['license']['spdx_id'],
-        ]);
+        try {
+            return $owner->repositories()->firstOrCreate([
+                'id' => $data['id'],
+            ], [
+                'name' => $data['full_name'],
+                'description' => $data['description'],
+                'language' => $data['language'],
+                'license' => $data['license']['spdx_id'],
+            ]);
+        } catch(Throwable $ex) {
+            report(json_encode($data));
+            report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));
+
+            return null;
+        }
     }
 
     protected static function booted(): void
@@ -128,6 +144,11 @@ class Repository extends Model
     public function getGithubUrlAttribute(): string
     {
         return "https://github.com/{$this->name}";
+    }
+
+    public function getIsBlockedAttribute(): bool
+    {
+        return $this->blocked_at !== null;
     }
 
     public function github(): PendingRequest

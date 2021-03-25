@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
+        "ext-intl": "*",
+        "ext-json": "*",
         "ext-redis": "*",
         "astrotomic/laravel-cachable-attributes": "^0.3",
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
@@ -14,6 +16,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
+        "laravel/nova": "^3.22",
         "laravel/socialite": "^5.2",
         "owenvoke/blade-fontawesome": "^1.6",
         "spatie/guzzle-rate-limiter-middleware": "^2.0",
@@ -55,6 +58,12 @@
             "Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
@@ -64,6 +73,7 @@
             "@composer thanks --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi --no-interaction",
+            "@php artisan nova:publish --ansi --no-interaction --quiet",
             "@php artisan horizon:publish --ansi --no-interaction --quiet",
             "@php artisan config:clear --ansi --no-interaction --quiet",
             "@php artisan view:clear --ansi --no-interaction --quiet",

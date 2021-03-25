@@ -139,13 +139,7 @@
                         aria-haspopup="true"
                     >
                         <div class="flex justify-between items-center space-x-3 w-full">
-                            <x-avatar
-                                :search="$auth->name"
-                                provider="github"
-                                :src="$auth->avatar_url"
-                                :alt="$auth->name"
-                                class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
-                            />
+                            <x-gh-avatar :model="$auth" class="w-10 h-10"/>
                             <div class="flex-1 min-w-0">
                                 <span class="text-sm font-medium text-gray-900 truncate">
                                     {{ $auth->full_name ?? $auth->name }}
@@ -168,7 +162,10 @@
 
                         <li>
                             <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
-                            <a href="{{ route('app.contributions') }}" class="flex justify-between items-center py-2 px-2 text-sm font-medium text-gray-900 bg-gray-200 rounded-md group">
+                            <a
+                                href="{{ route('app.contributions') }}"
+                                class="flex justify-between items-center py-2 px-2 text-sm font-medium text-gray-900 bg-gray-200 rounded-md group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
+                            >
                                 <span class="flex items-center">
                                 <x-fad-badge-check class="mr-3 w-6 h-6 text-gray-500"/>
                                 <span>Contributions</span>
@@ -190,19 +187,13 @@
                         <ul class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
                             @foreach($auth->organizations as $organization)
                                 <li class="flex justify-between items-center py-2 px-3 text-sm font-medium text-gray-700 rounded-md group">
-                                <span class="flex items-center">
-                                <x-avatar
-                                    :search="$organization->name"
-                                    provider="github"
-                                    :src="$organization->avatar_url"
-                                    :alt="$organization->name"
-                                    class="flex-shrink-0 mr-3 w-6 h-6 bg-gray-300 rounded-full"
-                                />
-                                <span class="truncate">{{ $organization->name }}</span>
-                                </span>
-                                <span class="inline-flex items-center p-1 text-xs font-medium text-gray-500">
-                                  {{ $organization->repositories_count }}
-                                </span>
+                                    <span class="flex items-center">
+                                        <x-gh-avatar :model="$organization" class="mr-3 w-6 h-6"/>
+                                        <span class="truncate">{{ $organization->name }}</span>
+                                    </span>
+                                    <span class="inline-flex items-center p-1 text-xs font-medium text-gray-500">
+                                      {{ $organization->repositories_count }}
+                                    </span>
                                 </li>
                             @endforeach
                         </ul>
@@ -244,13 +235,7 @@
                                 x-bind:aria-expanded="open"
                             >
                                 <span class="sr-only">Open user menu</span>
-                                <x-avatar
-                                    :search="$auth->name"
-                                    provider="github"
-                                    :src="$auth->avatar_url"
-                                    :alt="$auth->name"
-                                    class="flex-shrink-0 w-8 h-8 bg-gray-300 rounded-full"
-                                />
+                                <x-gh-avatar :model="$auth" class="w-8 h-8w-8 h-8"/>
                             </button>
                         </div>
 
@@ -304,13 +289,24 @@
                     </h1>
                 </div>
                 <div class="flex mt-4 sm:mt-0 sm:ml-4">
-                    <button type="button"
-                            class="inline-flex order-1 items-center py-2 px-4 ml-3 text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0">
-                        Share
-                    </button>
-                    <button type="button"
-                            class="inline-flex items-center py-2 px-4 text-sm font-medium text-white bg-purple-600 rounded-md border border-transparent shadow-sm order-0 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3">
-                        Create
+                    <button
+                        type="button"
+                        class="inline-flex order-1 items-center py-2 px-4 ml-3 text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0"
+                        x-data="{{ json_encode(['profile_url' => $auth->profile_url, 'copied' => false]) }}"
+                        @click.prevent="$clipboard(profile_url)
+                            .then(() => {
+                                copied = true;
+                                setTimeout(() => {
+                                    copied = false;
+                                    $el.blur();
+                                }, 1000);
+                            });"
+                    >
+                        <span class="w-4 h-4 mr-2">
+                            <x-far-share-alt class="w-full h-full" x-show="!copied"/>
+                            <x-far-check class="w-full h-full text-green-500" x-show="copied"/>
+                        </span>
+                        <span>Share</span>
                     </button>
                 </div>
             </header>
