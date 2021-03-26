@@ -20,8 +20,11 @@ trait RateLimited
                 Arr::first($exception->getResponse()->getHeader('X-RateLimit-Reset'))
             );
 
-            Log::info("Hit GitHub rate-limit for [{$exception->getRequest()->getUri()}]");
-            $this->release($reset->addMinute()->diffInSeconds());
+            $delay = $reset->addMinute()->diffInSeconds();
+
+            Log::info("Hit GitHub rate-limit for [{$exception->getRequest()->getUri()}] delay for {$delay}s");
+
+            $this->release($delay);
         }
     }
 }
