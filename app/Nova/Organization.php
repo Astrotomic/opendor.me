@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enums\BlockReason as BlockReasonEnum;
 use App\Nova\Actions\BlockEntity;
+use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
@@ -78,6 +79,7 @@ class Organization extends Resource
         return [
             BlockEntity::make(),
             UnblockEntity::make(),
+            LoadRepositories::make(),
         ];
     }
 }

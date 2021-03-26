@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enums\BlockReason as BlockReasonEnum;
 use App\Nova\Actions\BlockEntity;
+use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\SyncOrganizations;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Fields\Avatar;
@@ -96,6 +97,7 @@ class User extends Resource
             BlockEntity::make(),
             UnblockEntity::make(),
             SyncOrganizations::make(),
+            LoadRepositories::make(),
         ];
     }
 }
