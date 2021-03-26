@@ -74,6 +74,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'email_verified_at' => 'datetime',
     ];
 
+    public $cachableAttributes = [
+        'emails',
+    ];
+
     public static function fromGithub(array $data): self
     {
         return static::firstOrCreate(
@@ -122,7 +126,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->remember(
             'emails',
-            CarbonInterval::day()->totalSeconds,
+            CarbonInterval::week()->totalSeconds,
             function (): array {
                 try {
                     return $this->github()->get('/user/emails')->collect()
