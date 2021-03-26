@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\CarbonInterval;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 class SyncUserOrganizations extends Job
 {
@@ -21,6 +22,10 @@ class SyncUserOrganizations extends Job
 
     public function handle(): void
     {
+        if (! $this->user->hasGithubToken()) {
+            throw new InvalidArgumentException("The user [{$this->user->name}#{$this->user->id}] has no GitHub Access-Token.");
+        }
+
         try {
             $organizations = $this->user->github()->get('/user/orgs')->collect();
         } catch (ClientException $exception) {
