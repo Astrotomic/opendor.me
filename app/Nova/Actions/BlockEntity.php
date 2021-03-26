@@ -24,13 +24,7 @@ class BlockEntity extends Action
     {
         $this
             ->onlyOnDetail()
-            ->canSee(function (NovaRequest $request): bool {
-                if ($request instanceof ActionRequest) {
-                    return true;
-                }
-
-                return ! ($request->findModelQuery()->first()?->is_blocked ?? false);
-            })
+            ->canSee(fn (NovaRequest $request): bool => true)
             ->canRun(fn (ActionRequest $request, Model $model): bool => $request->user()->can('block', $model));
     }
 
