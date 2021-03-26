@@ -61,6 +61,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
     public function register(): void
     {
-        //
+        Nova::report(function ($exception) {
+            if (app()->bound('sentry')) {
+                app('sentry')->captureException($exception);
+            }
+        });
     }
 }
