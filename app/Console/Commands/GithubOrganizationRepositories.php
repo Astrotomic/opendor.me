@@ -15,6 +15,7 @@ class GithubOrganizationRepositories extends Command
     public function handle(): void
     {
         Organization::query()
+            ->whereHas('members', fn (Builder $query) => $query->whereNotNull('github_access_token'))
             ->when(
                 $this->argument('name'),
                 fn (Builder $query, string $name) => $query->where('name', $name)
