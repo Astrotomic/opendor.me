@@ -21,23 +21,12 @@ class UnblockEntity extends Action
     public function __construct()
     {
         $this
-            ->onlyOnDetail()
-            ->canSee(function (NovaRequest $request): bool {
-                if ($request instanceof ActionRequest) {
-                    return true;
-                }
-
-                return $request->findModelQuery()->first()?->is_blocked ?? false;
-            })
+            ->canSee(fn (NovaRequest $request): bool => true)
             ->canRun(fn (ActionRequest $request, Model $model): bool => $request->user()->can('unblock', $model));
     }
 
     public function handle(ActionFields $fields, Collection $models): bool | array
     {
-        if ($models->count() !== 1) {
-            return Action::danger('You can only unblock one entity at a time.');
-        }
-
         return $models->every(fn (Model $model): bool => $model->update([
             'blocked_at' => null,
             'block_reason' => null,

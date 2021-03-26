@@ -23,17 +23,12 @@ class BlockEntity extends Action
     public function __construct()
     {
         $this
-            ->onlyOnDetail()
             ->canSee(fn (NovaRequest $request): bool => true)
             ->canRun(fn (ActionRequest $request, Model $model): bool => $request->user()->can('block', $model));
     }
 
     public function handle(ActionFields $fields, Collection $models): bool | array
     {
-        if ($models->count() !== 1) {
-            return Action::danger('You can only block one entity at a time.');
-        }
-
         return $models->every(fn (Model $model): bool => $model->update([
             'blocked_at' => now(),
             'block_reason' => $fields->block_reason,
