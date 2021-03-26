@@ -23,7 +23,7 @@ class SyncUserOrganizations extends Job
     public function handle(): void
     {
         if (! $this->user->hasGithubToken()) {
-            throw new InvalidArgumentException("The user [{$this->user->name}#{$this->user->id}] has no GitHub Access-Token.");
+            throw new InvalidArgumentException("The user [{$this->user->name}] has no GitHub Access-Token.");
         }
 
         try {
