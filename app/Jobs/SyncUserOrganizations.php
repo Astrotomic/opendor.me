@@ -27,7 +27,7 @@ class SyncUserOrganizations extends Job
         }
 
         try {
-            $organizations = $this->user->github()->get('/user/orgs')->collect();
+            $organizations = $this->user->github()->get("/users/{$this->user->name}/orgs")->collect();
         } catch (ClientException $exception) {
             $this->rateLimit($exception);
 

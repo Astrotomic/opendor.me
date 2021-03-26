@@ -48,7 +48,6 @@ class GithubController
     public function redirect(): RedirectResponse
     {
         return $this->socialite()
-            ->scopes(['read:org'])
             ->redirectUrl(route('auth.github.callback'))
             ->redirect();
     }
