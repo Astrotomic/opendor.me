@@ -99,6 +99,12 @@ class Repository extends Model
             throw new InvalidArgumentException("Unknown repository owner type [{$data['owner']['type']}]");
         }
 
+        if ($owner instanceof User && $data['fork']) {
+            Log::debug("Ignored personal forked repository [{$data['full_name']}] to import.");
+
+            return null;
+        }
+
         try {
             return $owner->repositories()->firstOrCreate([
                 'id' => $data['id'],
