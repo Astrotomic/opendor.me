@@ -43,6 +43,7 @@ use Throwable;
  * @property-read bool $is_admin
  * @property-read bool $is_blocked
  * @property-read string $profile_url
+ * @property-read bool $is_superadmin
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
@@ -143,9 +144,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getIsAdminAttribute(?bool $value): bool
     {
-        return $this->id === 6187884 // Gummibeer
+        return $this->is_superadmin
             ?: $value
             ?? false;
+    }
+
+    public function getIsSuperadminAttribute(): bool
+    {
+        return $this->id === 6187884; // Gummibeer
     }
 
     public function getProfileUrlAttribute(): string

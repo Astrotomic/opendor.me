@@ -32,7 +32,7 @@ class RepositoryPolicy
 
     public function delete(User $auth, Repository $repository): bool
     {
-        return false;
+        return $auth->is_superadmin;
     }
 
     public function restore(User $auth, Repository $repository): bool
