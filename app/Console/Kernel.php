@@ -15,9 +15,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes();
 
-        $schedule->command(GithubOrganizationRepositories::class)->daily();
-        $schedule->command(GithubUserRepositories::class)->daily();
-        $schedule->command(GithubRepositoryContributors::class)->weekly();
+        $schedule->command(GithubOrganizationRepositories::class)->dailyAt('03:00');
+        $schedule->command(GithubUserRepositories::class)->dailyAt('03:00');
+        $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00');
     }
 
     protected function commands(): void
