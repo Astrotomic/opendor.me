@@ -82,8 +82,9 @@ class Repository extends Model
             || $data['license'] === null
         ) {
             Log::debug(
-                "Ignored repository [{$data['full_name']}] to import.",
-                Arr::only($data, ['id', 'full_name', 'private', 'archived', 'disabled', 'license', 'language'])
+                "Ignored repository [{$data['full_name']}] to import."
+                .PHP_EOL
+                .json_encode(Arr::only($data, ['id', 'full_name', 'private', 'archived', 'disabled', 'license', 'language']))
             );
 
             return null;
