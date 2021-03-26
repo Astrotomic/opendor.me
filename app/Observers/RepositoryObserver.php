@@ -30,4 +30,9 @@ class RepositoryObserver
             LoadRepositoryContributors::dispatch($repository);
         }
     }
+
+    public function deleting(Repository $repository): void
+    {
+        $repository->contributors()->detach();
+    }
 }
