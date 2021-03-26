@@ -15,6 +15,7 @@ class GithubUserRepositories extends Command
     public function handle(): void
     {
         User::query()
+            ->whereNotNull('github_access_token')
             ->when(
                 $this->argument('name'),
                 fn (Builder $query, string $name) => $query->where('name', $name)
