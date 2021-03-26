@@ -113,7 +113,7 @@ class Repository extends Model
                 'description' => $data['description'],
                 'language' => $data['language'] ?? Language::NOASSERTION(),
                 'license' => $data['license']['spdx_id'],
-                'block_reason' => $data['fork'] ? BlockReason::DUPLICATE() : null,
+                'block_reason' => $data['fork'] ? BlockReason::REVIEW() : null,
             ]);
         } catch (Throwable $ex) {
             report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));
