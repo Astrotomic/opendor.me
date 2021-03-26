@@ -16,6 +16,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self TYPESCRIPT()
  * @method static self HTML()
  * @method static self RUBY()
+ * @method static self NOASSERTION()
  */
 final class Language extends Enum
 {
@@ -29,5 +30,19 @@ final class Language extends Enum
             'BLADE' => 'red',
         default => 'gray',
         };
+    }
+
+    protected static function values(): array
+    {
+        return [
+            'NOASSERTION' => 'OTHER',
+        ];
+    }
+
+    protected static function labels(): array
+    {
+        return [
+            'NOASSERTION' => 'Other',
+        ];
     }
 }

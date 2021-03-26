@@ -29,7 +29,7 @@ class AddRepository extends Action
 
     public function handle(ActionFields $fields): array
     {
-        $repository = Repository::fromName($fields->name, true);
+        $repository = Repository::fromName($fields->name);
 
         if ($repository === null) {
             return Action::danger("Failed to add [{$fields->name}] repository.");

@@ -12,8 +12,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Laravel\Nova\Actions\Actionable;
@@ -58,7 +60,7 @@ class Repository extends Model
         'language' => Language::class,
     ];
 
-    public static function fromName(string $name, bool $force = false): ?self
+    public static function fromName(string $name): ?self
     {
         $repository = static::where(DB::raw('LOWER(name)'), Str::lower($name))->first();
 
@@ -68,27 +70,21 @@ class Repository extends Model
 
         $response = Http::github()->get("/repos/{$name}")->json();
 
-        return static::fromGithub($response, $force);
+        return static::fromGithub($response);
     }
 
-    public static function fromGithub(array $data, bool $force = false): ?self
+    public static function fromGithub(array $data): ?self
     {
         if (
-            (
-                $force === false
-                && (
-                    $data['private'] === true
-                    || $data['fork'] === true
-                    || $data['has_issues'] === false
-                    || $data['archived'] === true
-                    || $data['disabled'] === true
-                    || Http::github()->get("/repos/{$data['full_name']}/releases")->collect()->isEmpty()
-                )
-            )
-            || $data['language'] === null
+            $data['private'] === true
+            || $data['archived'] === true
+            || $data['disabled'] === true
             || $data['license'] === null
         ) {
-            report(json_encode($data));
+            Log::debug(
+                "Ignored repository [{$data['full_name']}] to import.",
+                Arr::only($data, ['id', 'full_name', 'private', 'archived', 'disabled', 'license', 'language'])
+            );
 
             return null;
         }
@@ -107,11 +103,10 @@ class Repository extends Model
             ], [
                 'name' => $data['full_name'],
                 'description' => $data['description'],
-                'language' => $data['language'],
+                'language' => $data['language'] ?? Language::NOASSERTION(),
                 'license' => $data['license']['spdx_id'],
             ]);
         } catch (Throwable $ex) {
-            report(json_encode($data));
             report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));
 
             return null;
