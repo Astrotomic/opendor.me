@@ -149,8 +149,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return "https://opendor.me/@{$this->name}";
     }
 
+    public function hasGithubToken(): bool
+    {
+        return $this->github_access_token !== null;
+    }
+
     public function github(): PendingRequest
     {
-        return Http::github()->withToken($this->github_access_token);
+        if ($this->hasGithubToken()) {
+            return Http::github()->withToken($this->github_access_token);
+        }
+
+        return Http::github();
     }
 }
