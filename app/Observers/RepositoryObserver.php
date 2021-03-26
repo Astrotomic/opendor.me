@@ -13,8 +13,11 @@ class RepositoryObserver
     public function creating(Repository $repository): void
     {
         if (
-            $repository->license->equals(License::NOASSERTION())
-            || $repository->language->equals(Language::NOASSERTION())
+            (
+                $repository->license->equals(License::NOASSERTION())
+                || $repository->language->equals(Language::NOASSERTION())
+            )
+            && $repository->block_reason === null
         ) {
             $repository->blocked_at = now();
             $repository->block_reason = BlockReason::REVIEW();

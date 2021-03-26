@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
+use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
 use Exception;
@@ -106,6 +107,7 @@ class Repository extends Model
                 'description' => $data['description'],
                 'language' => $data['language'] ?? Language::NOASSERTION(),
                 'license' => $data['license']['spdx_id'],
+                'block_reason' => $data['fork'] ? BlockReason::DUPLICATE() : null,
             ]);
         } catch (Throwable $ex) {
             report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));
