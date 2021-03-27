@@ -9,6 +9,8 @@ use App\Nova\Actions\SyncOrganizations;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
+use App\Nova\Metrics\EntitiesPerBlockReason;
+use App\Nova\Metrics\RegisteredUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inspheric\Fields\Url;
@@ -79,7 +81,10 @@ class User extends Resource
 
     public function cards(Request $request): array
     {
-        return [];
+        return [
+            RegisteredUsers::make(),
+            EntitiesPerBlockReason::make(\App\Models\User::class),
+        ];
     }
 
     public function filters(Request $request): array

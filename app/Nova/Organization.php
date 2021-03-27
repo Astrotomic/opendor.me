@@ -8,6 +8,7 @@ use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
+use App\Nova\Metrics\EntitiesPerBlockReason;
 use Illuminate\Http\Request;
 use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -61,7 +62,9 @@ class Organization extends Resource
 
     public function cards(Request $request): array
     {
-        return [];
+        return [
+            EntitiesPerBlockReason::make(\App\Models\Organization::class),
+        ];
     }
 
     public function filters(Request $request): array

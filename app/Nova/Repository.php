@@ -14,6 +14,9 @@ use App\Nova\Actions\UnblockEntity;
 use App\Nova\Filters\BlockReason;
 use App\Nova\Filters\Language;
 use App\Nova\Filters\License;
+use App\Nova\Metrics\EntitiesPerBlockReason;
+use App\Nova\Metrics\RepositoriesPerLanguage;
+use App\Nova\Metrics\RepositoriesPerLicense;
 use Illuminate\Http\Request;
 use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -77,7 +80,11 @@ class Repository extends Resource
 
     public function cards(Request $request): array
     {
-        return [];
+        return [
+            RepositoriesPerLicense::make(),
+            RepositoriesPerLanguage::make(),
+            EntitiesPerBlockReason::make(\App\Models\Repository::class),
+        ];
     }
 
     public function filters(Request $request): array
