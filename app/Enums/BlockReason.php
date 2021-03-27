@@ -13,11 +13,12 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self REVIEW()
  * @method static self SPAM()
  * @method static self UNRELEASED()
+ * @method static self NON_REUSABLE()
  */
 final class BlockReason extends Enum
 {
     protected static function labels(): Closure
     {
-        return fn (string $value): string => Str::of($value)->title();
+        return fn (string $value): string => Str::of($value)->replace('_', ' ')->title();
     }
 }
