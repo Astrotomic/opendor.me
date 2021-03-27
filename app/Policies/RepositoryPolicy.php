@@ -27,7 +27,7 @@ class RepositoryPolicy
 
     public function update(User $auth, Repository $repository): bool
     {
-        return false;
+        return $auth->is_superadmin;
     }
 
     public function delete(User $auth, Repository $repository): bool

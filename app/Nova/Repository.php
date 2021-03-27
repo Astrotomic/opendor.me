@@ -44,13 +44,11 @@ class Repository extends Resource
             Select::make('License')
                 ->options(License::toArray())
                 ->sortable()
-                ->readonly()
                 ->displayUsingLabels(),
 
             Select::make('Language')
                 ->options(Language::toArray())
                 ->sortable()
-                ->readonly(fn (NovaRequest $request) => $request->isResourceIndexRequest() || $request->findModelOrFail()->language !== null)
                 ->displayUsingLabels(),
 
             Boolean::make('Blocked', 'blocked_at')
@@ -59,12 +57,13 @@ class Repository extends Resource
                 ->onlyOnIndex(),
 
             DateTime::make('Blocked at', 'blocked_at')
-                ->readonly()
+                ->exceptOnForms()
                 ->hideFromIndex(),
 
             Select::make('Block Reason', 'block_reason')
                 ->options(BlockReasonEnum::toArray())
                 ->nullable()
+                ->exceptOnForms()
                 ->hideFromIndex()
                 ->displayUsingLabels(),
 
