@@ -163,6 +163,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return "https://opendor.me/@{$this->name}";
     }
 
+    public function getTwitterUrlAttribute(): ?string
+    {
+        return $this->twitter ? "https://twitter.com/{$this->twitter}" : null;
+    }
+
     public function hasGithubToken(): bool
     {
         return $this->github_access_token !== null;

@@ -21,10 +21,12 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
     abstract protected function run(): void;
 
-    public function handle(): ?bool
+    public function handle(): bool
     {
         try {
             $this->run();
+
+            return true;
         } catch (ClientException $exception) {
             $this->rateLimit($exception);
 

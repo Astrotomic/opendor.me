@@ -7,6 +7,7 @@ use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\SyncOrganizations;
 use App\Nova\Actions\UnblockEntity;
+use App\Nova\Actions\UpdateEntityDetails;
 use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
 use App\Nova\Metrics\EntitiesPerBlockReason;
@@ -43,10 +44,34 @@ class User extends Resource
                 ->alwaysClickable()
                 ->labelUsing(fn (string $url, \App\Models\User $user): string => $user->name),
 
+            Text::make('Full Name', 'full_name')
+                ->readonly()
+                ->hideFromIndex(),
+
+            Text::make('Description')
+                ->readonly()
+                ->hideFromIndex(),
+
             Text::make('Email')
                 ->sortable()
                 ->readonly()
                 ->displayUsing(fn (string $email) => Str::endsWith($email, '@users.noreply.github.com') ? null : $email),
+
+            Text::make('Location')
+                ->readonly()
+                ->hideFromIndex(),
+
+            Url::make('Twitter', 'twitter_url')
+                ->readonly()
+                ->hideFromIndex()
+                ->alwaysClickable()
+                ->labelUsing(fn (?string $url, \App\Models\User $user): string => '@'.$user->twitter),
+
+            Url::make('Website')
+                ->readonly()
+                ->alwaysClickable()
+                ->hideFromIndex()
+                ->domainLabel(),
 
             Boolean::make('Admin', 'is_admin')
                 ->sortable(),
@@ -63,11 +88,13 @@ class User extends Resource
 
             DateTime::make('Blocked at', 'blocked_at')
                 ->readonly()
+                ->exceptOnForms()
                 ->hideFromIndex(),
 
             Select::make('Block Reason', 'block_reason')
                 ->options(BlockReasonEnum::toArray())
                 ->nullable()
+                ->exceptOnForms()
                 ->hideFromIndex()
                 ->displayUsingLabels(),
 
@@ -106,6 +133,7 @@ class User extends Resource
             UnblockEntity::make(),
             SyncOrganizations::make(),
             LoadRepositories::make(),
+            UpdateEntityDetails::make(),
         ];
     }
 }

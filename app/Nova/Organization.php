@@ -6,6 +6,7 @@ use App\Enums\BlockReason as BlockReasonEnum;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\UnblockEntity;
+use App\Nova\Actions\UpdateEntityDetails;
 use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
 use App\Nova\Metrics\EntitiesPerBlockReason;
@@ -17,6 +18,7 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 
 class Organization extends Resource
 {
@@ -39,6 +41,34 @@ class Organization extends Resource
                 ->alwaysClickable()
                 ->labelUsing(fn (string $url, \App\Models\Organization $organization): string => $organization->name),
 
+            Text::make('Full Name', 'full_name')
+                ->readonly()
+                ->hideFromIndex(),
+
+            Text::make('Description')
+                ->readonly()
+                ->hideFromIndex(),
+
+            Text::make('Location')
+                ->readonly()
+                ->hideFromIndex(),
+
+            Url::make('Twitter', 'twitter_url')
+                ->readonly()
+                ->hideFromIndex()
+                ->alwaysClickable()
+                ->labelUsing(fn (?string $url, \App\Models\Organization $organization): string => '@'.$organization->twitter),
+
+            Url::make('Website')
+                ->readonly()
+                ->alwaysClickable()
+                ->hideFromIndex()
+                ->domainLabel(),
+
+            Boolean::make('Verified', 'is_verified')
+                ->readonly()
+                ->hideFromIndex(),
+
             Boolean::make('Blocked', 'blocked_at')
                 ->sortable()
                 ->readonly()
@@ -46,11 +76,13 @@ class Organization extends Resource
 
             DateTime::make('Blocked at', 'blocked_at')
                 ->readonly()
+                ->exceptOnForms()
                 ->hideFromIndex(),
 
             Select::make('Block Reason', 'block_reason')
                 ->options(BlockReasonEnum::toArray())
                 ->nullable()
+                ->exceptOnForms()
                 ->hideFromIndex()
                 ->displayUsingLabels(),
 
@@ -85,6 +117,7 @@ class Organization extends Resource
             BlockEntity::make(),
             UnblockEntity::make(),
             LoadRepositories::make(),
+            UpdateEntityDetails::make(),
         ];
     }
 }

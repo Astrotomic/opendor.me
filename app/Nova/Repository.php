@@ -11,6 +11,7 @@ use App\Nova\Actions\LoadContributors;
 use App\Nova\Actions\SetLanguage;
 use App\Nova\Actions\SetLicense;
 use App\Nova\Actions\UnblockEntity;
+use App\Nova\Actions\UpdateEntityDetails;
 use App\Nova\Filters\BlockReason;
 use App\Nova\Filters\Language;
 use App\Nova\Filters\License;
@@ -24,7 +25,9 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 
 class Repository extends Resource
 {
@@ -45,6 +48,10 @@ class Repository extends Resource
                 ->alwaysClickable()
                 ->labelUsing(fn (string $url, \App\Models\Repository $repository): string => $repository->name),
 
+            Text::make('Description')
+                ->readonly()
+                ->hideFromIndex(),
+
             Select::make('License')
                 ->options(LicenseEnum::toArray())
                 ->sortable()
@@ -54,6 +61,15 @@ class Repository extends Resource
                 ->options(LanguageEnum::toArray())
                 ->sortable()
                 ->displayUsingLabels(),
+
+            Url::make('Website')
+                ->readonly()
+                ->alwaysClickable()
+                ->hideFromIndex(),
+
+            Number::make('Stars', 'stargazers_count')
+                ->readonly()
+                ->hideFromIndex(),
 
             Boolean::make('Blocked', 'blocked_at')
                 ->sortable()
@@ -110,6 +126,7 @@ class Repository extends Resource
             SetLicense::make(),
             SetLanguage::make(),
             LoadContributors::make(),
+            UpdateEntityDetails::make(),
         ];
     }
 }

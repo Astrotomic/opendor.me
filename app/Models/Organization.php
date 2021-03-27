@@ -82,6 +82,11 @@ class Organization extends Model
         return "https://github.com/{$this->name}";
     }
 
+    public function getTwitterUrlAttribute(): ?string
+    {
+        return $this->twitter ? "https://twitter.com/{$this->twitter}" : null;
+    }
+
     public function github(): PendingRequest
     {
         return $this->members()
