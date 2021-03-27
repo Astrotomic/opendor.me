@@ -56,9 +56,6 @@ class LoadRepositoryContributors extends Job
     public function tags(): array
     {
         return [
-            Str::snake(class_basename($this->repository->owner)).':'.$this->repository->owner->id,
-            $this->repository->owner->name,
-
             Str::snake(class_basename($this->repository)).':'.$this->repository->id,
             $this->repository->name,
         ];

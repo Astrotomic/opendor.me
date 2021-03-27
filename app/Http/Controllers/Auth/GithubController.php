@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Jobs\LoadUserRepositories;
 use App\Jobs\SyncUserOrganizations;
+use App\Jobs\UpdateUserDetails;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ class GithubController
             $user->markEmailAsVerified();
         }
 
+        UpdateUserDetails::dispatch($user);
         SyncUserOrganizations::dispatch($user);
         LoadUserRepositories::dispatch($user);
 

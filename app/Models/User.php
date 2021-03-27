@@ -37,6 +37,10 @@ use Throwable;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $description
+ * @property string|null $location
+ * @property string|null $twitter
+ * @property string|null $website
  * @property-read string $avatar_url
  * @property-read string[] $emails
  * @property-read string $github_url

@@ -36,6 +36,8 @@ use Throwable;
  * @property \App\Enums\BlockReason|null $block_reason
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property int $stargazers_count
+ * @property string|null $website
  * @property-read string $github_url
  * @property-read bool $is_blocked
  * @property-read string $repository_name
@@ -59,6 +61,7 @@ class Repository extends Model
     protected $casts = [
         'license' => License::class,
         'language' => Language::class,
+        'stargazers_count' => 'int',
     ];
 
     public static function fromName(string $name): ?self
@@ -114,6 +117,8 @@ class Repository extends Model
                 'language' => $data['language'] ?? Language::NOASSERTION(),
                 'license' => $data['license']['spdx_id'],
                 'block_reason' => $data['fork'] ? BlockReason::REVIEW() : null,
+                'stargazers_count' => $data['stargazers_count'],
+                'website' => $data['homepage'],
             ]);
         } catch (Throwable $ex) {
             report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));

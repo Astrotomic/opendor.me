@@ -3,13 +3,12 @@
 namespace App\Jobs;
 
 use App\Jobs\Concerns\RateLimited;
-use App\Models\Organization;
 use App\Models\User;
 use Carbon\CarbonInterval;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Str;
 
-class SyncUserOrganizations extends Job
+class UpdateUserDetails extends Job
 {
     use RateLimited;
 
@@ -22,18 +21,20 @@ class SyncUserOrganizations extends Job
     public function handle(): void
     {
         try {
-            $organizations = $this->user->github()->get("/users/{$this->user->name}/orgs")->collect();
+            $data = $this->user->github()->get("/users/{$this->user->name}")->json();
         } catch (ClientException $exception) {
             $this->rateLimit($exception);
 
             return;
         }
 
-        $this->user->organizations()->sync(
-            $organizations
-                ->map(fn (array $org): Organization => Organization::fromGithub($org))
-                ->pluck('id')
-        );
+        $this->user->update([
+            'full_name' => $data['name'],
+            'description' => $data['bio'],
+            'twitter' => $data['twitter_username'],
+            'website' => $data['blog'],
+            'location' => $data['location'],
+        ]);
     }
 
     public function tags(): array

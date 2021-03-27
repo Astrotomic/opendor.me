@@ -20,6 +20,12 @@ use Laravel\Nova\Actions\Actionable;
  * @property \App\Enums\BlockReason|null $block_reason
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property string|null $full_name
+ * @property bool|null $is_verified
+ * @property string|null $description
+ * @property string|null $location
+ * @property string|null $twitter
+ * @property string|null $website
  * @property-read string $avatar_url
  * @property-read string $github_url
  * @property-read bool $is_blocked
@@ -38,6 +44,10 @@ class Organization extends Model
     use Blockable;
 
     public $incrementing = false;
+
+    protected $casts = [
+        'is_verified' => 'bool',
+    ];
 
     public static function fromGithub(array $data): self
     {
