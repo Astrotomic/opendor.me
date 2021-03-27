@@ -69,4 +69,9 @@ class RepositoryPolicy
     {
         return $auth->is_admin;
     }
+
+    public function language(User $auth, Repository $repository): bool
+    {
+        return $auth->is_admin;
+    }
 }

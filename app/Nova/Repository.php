@@ -8,6 +8,7 @@ use App\Enums\License;
 use App\Nova\Actions\AddRepository;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadContributors;
+use App\Nova\Actions\SetLanguage;
 use App\Nova\Actions\SetLicense;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Filters\BlockReason;
@@ -98,6 +99,7 @@ class Repository extends Resource
             BlockEntity::make(),
             UnblockEntity::make(),
             SetLicense::make(),
+            SetLanguage::make(),
             LoadContributors::make(),
         ];
     }

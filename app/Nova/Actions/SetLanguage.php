@@ -2,7 +2,7 @@
 
 namespace App\Nova\Actions;
 
-use App\Enums\License;
+use App\Enums\Language;
 use App\Models\Repository;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -13,12 +13,12 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\ActionRequest;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SetLicense extends Action
+class SetLanguage extends Action
 {
     use InteractsWithQueue;
     use Queueable;
 
-    public $name = 'Set License';
+    public $name = 'Set Language';
 
     public function __construct()
     {
@@ -29,23 +29,23 @@ class SetLicense extends Action
                     return true;
                 }
 
-                return $request->findModelQuery()->first()?->license->equals(License::NOASSERTION()) ?? false;
+                return $request->findModelQuery()->first()?->language->equals(Language::NOASSERTION()) ?? false;
             })
-            ->canRun(fn (ActionRequest $request, Repository $repository): bool => $request->user()->can('license', $repository));
+            ->canRun(fn (ActionRequest $request, Repository $repository): bool => $request->user()->can('language', $repository));
     }
 
     public function handle(ActionFields $fields, Collection $models): bool | array
     {
         return $models->every(fn (Repository $repository): bool => $repository->update([
-            'license' => $fields->license,
+            'language' => $fields->language,
         ]));
     }
 
     public function fields(): array
     {
         return [
-            Select::make('License')
-                ->options(License::toArray())
+            Select::make('Language')
+                ->options(Language::toArray())
                 ->displayUsingLabels(),
         ];
     }
