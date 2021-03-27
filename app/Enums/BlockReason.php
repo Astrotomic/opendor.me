@@ -7,12 +7,12 @@ use Illuminate\Support\Str;
 use Spatie\Enum\Laravel\Enum;
 
 /**
- * @method static self SPAM()
- * @method static self INAPPROPRIATE()
  * @method static self DUPLICATE()
  * @method static self FORK()
- * @method static self UNRELEASED()
+ * @method static self INAPPROPRIATE()
  * @method static self REVIEW()
+ * @method static self SPAM()
+ * @method static self UNRELEASED()
  */
 final class BlockReason extends Enum
 {
