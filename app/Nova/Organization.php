@@ -9,13 +9,13 @@ use App\Nova\Actions\UnblockEntity;
 use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
 use Illuminate\Http\Request;
+use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
 
 class Organization extends Resource
 {
@@ -32,9 +32,11 @@ class Organization extends Resource
 
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Url::make('Name', 'github_url')
                 ->sortable()
-                ->readonly(),
+                ->readonly()
+                ->alwaysClickable()
+                ->labelUsing(fn (string $url, \App\Models\Organization $organization): string => $organization->name),
 
             Boolean::make('Blocked', 'blocked_at')
                 ->sortable()

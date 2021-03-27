@@ -12,13 +12,13 @@ use App\Nova\Actions\SetLicense;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Filters\BlockReason;
 use Illuminate\Http\Request;
+use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Repository extends Resource
@@ -34,9 +34,11 @@ class Repository extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Url::make('Name', 'github_url')
                 ->sortable()
-                ->readonly(),
+                ->readonly()
+                ->alwaysClickable()
+                ->labelUsing(fn (string $url, \App\Models\Repository $repository): string => $repository->name),
 
             Select::make('License')
                 ->options(License::toArray())

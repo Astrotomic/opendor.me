@@ -11,6 +11,7 @@ use App\Nova\Fields\Avatar;
 use App\Nova\Filters\BlockReason;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -34,9 +35,11 @@ class User extends Resource
 
             ID::make()->sortable(),
 
-            Text::make('Name')
+            Url::make('Name', 'github_url')
                 ->sortable()
-                ->readonly(),
+                ->readonly()
+                ->alwaysClickable()
+                ->labelUsing(fn (string $url, \App\Models\User $user): string => $user->name),
 
             Text::make('Email')
                 ->sortable()
