@@ -24,7 +24,8 @@ class EntitiesPerBlockReason extends Partition
             $request,
             $this->model::query()
                 ->withoutGlobalScopes()
-                ->withCasts(['block_reason' => 'string']),
+                ->withCasts(['block_reason' => 'string'])
+                ->orderBy('block_reason'),
             'block_reason'
         )
             ->label(function (?string $value) {
