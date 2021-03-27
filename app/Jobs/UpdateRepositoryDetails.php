@@ -4,31 +4,20 @@ namespace App\Jobs;
 
 use App\Enums\Language;
 use App\Enums\License;
-use App\Jobs\Concerns\RateLimited;
 use App\Models\Repository;
 use Carbon\CarbonInterval;
-use GuzzleHttp\Exception\ClientException;
-use Illuminate\Support\Str;
 
-class UpdateRepositoryDetails extends Job
+class UpdateRepositoryDetails extends GithubJob
 {
-    use RateLimited;
-
     public function __construct(protected Repository $repository)
     {
-        $this->queue = 'github';
+        parent::__construct();
         $this->timeout = CarbonInterval::minutes(5)->totalSeconds;
     }
 
-    public function handle(): void
+    public function run(): void
     {
-        try {
-            $data = $this->repository->github()->get("/repos/{$this->repository->name}")->json();
-        } catch (ClientException $exception) {
-            $this->rateLimit($exception);
-
-            return;
-        }
+        $data = $this->repository->github()->get("/repos/{$this->repository->name}")->json();
 
         $this->repository->fill([
             'description' => $data['description'],
@@ -45,13 +34,5 @@ class UpdateRepositoryDetails extends Job
         }
 
         $this->repository->save();
-    }
-
-    public function tags(): array
-    {
-        return [
-            Str::snake(class_basename($this->repository)).':'.$this->repository->id,
-            $this->repository->name,
-        ];
     }
 }

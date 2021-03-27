@@ -3,11 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Services\GuzzleHttp\Middlewares\CacheMiddleware;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
-use Spatie\GuzzleRateLimiterMiddleware\RateLimiterMiddleware;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,10 +21,6 @@ class AppServiceProvider extends ServiceProvider
                 ->baseUrl('https://api.github.com')
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
-                ->withMiddleware(CacheMiddleware::make())
-                ->withMiddleware(
-                    RateLimiterMiddleware::perMinute(User::whereNotNull('github_access_token')->count() * 60)
-                )
                 ->withOptions(['http_errors' => true])
                 ->withToken(
                     User::whereNotNull('github_access_token')->inRandomOrder()->first()->github_access_token

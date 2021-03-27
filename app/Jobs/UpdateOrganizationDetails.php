@@ -2,31 +2,20 @@
 
 namespace App\Jobs;
 
-use App\Jobs\Concerns\RateLimited;
 use App\Models\Organization;
 use Carbon\CarbonInterval;
-use GuzzleHttp\Exception\ClientException;
-use Illuminate\Support\Str;
 
-class UpdateOrganizationDetails extends Job
+class UpdateOrganizationDetails extends GithubJob
 {
-    use RateLimited;
-
     public function __construct(protected Organization $organization)
     {
-        $this->queue = 'github';
+        parent::__construct();
         $this->timeout = CarbonInterval::minutes(5)->totalSeconds;
     }
 
-    public function handle(): void
+    public function run(): void
     {
-        try {
-            $data = $this->organization->github()->get("/orgs/{$this->organization->name}")->json();
-        } catch (ClientException $exception) {
-            $this->rateLimit($exception);
-
-            return;
-        }
+        $data = $this->organization->github()->get("/orgs/{$this->organization->name}")->json();
 
         $this->organization->update([
             'full_name' => $data['name'],
@@ -36,13 +25,5 @@ class UpdateOrganizationDetails extends Job
             'website' => $data['blog'],
             'location' => $data['location'],
         ]);
-    }
-
-    public function tags(): array
-    {
-        return [
-            Str::snake(class_basename($this->organization)).':'.$this->organization->id,
-            $this->organization->name,
-        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use DateTimeInterface;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,8 +18,15 @@ abstract class Job implements ShouldQueue
 
     public bool $deleteWhenMissingModels = true;
     public ?int $timeout = null;
+    public ?int $tries = null;
+    public ?int $maxExceptions = null;
 
-    abstract public function handle(): void;
+    abstract public function handle(): ?bool;
 
     abstract public function tags(): array;
+
+    public function retryUntil(): ?DateTimeInterface
+    {
+        return null;
+    }
 }

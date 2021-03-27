@@ -21,7 +21,6 @@
         "laravel/socialite": "^5.2",
         "owenvoke/blade-fontawesome": "^1.6",
         "sentry/sentry-laravel": "^2.4",
-        "spatie/guzzle-rate-limiter-middleware": "^2.0",
         "spatie/laravel-enum": "^2.4"
     },
     "require-dev": {
