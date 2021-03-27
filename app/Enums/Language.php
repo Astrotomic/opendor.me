@@ -16,6 +16,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self TYPESCRIPT()
  * @method static self HTML()
  * @method static self RUBY()
+ * @method static self MARKDOWN()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -28,7 +29,7 @@ final class Language extends Enum
             'VUE' => 'green',
             'CSS' => 'blue',
             'BLADE' => 'red',
-        default => 'gray',
+            default => 'gray',
         };
     }
 

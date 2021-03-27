@@ -3,8 +3,8 @@
 namespace App\Nova;
 
 use App\Enums\BlockReason as BlockReasonEnum;
-use App\Enums\Language;
-use App\Enums\License;
+use App\Enums\Language as LanguageEnum;
+use App\Enums\License as LicenseEnum;
 use App\Nova\Actions\AddRepository;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadContributors;
@@ -12,6 +12,8 @@ use App\Nova\Actions\SetLanguage;
 use App\Nova\Actions\SetLicense;
 use App\Nova\Actions\UnblockEntity;
 use App\Nova\Filters\BlockReason;
+use App\Nova\Filters\Language;
+use App\Nova\Filters\License;
 use Illuminate\Http\Request;
 use Inspheric\Fields\Url;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -20,7 +22,6 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Repository extends Resource
 {
@@ -42,12 +43,12 @@ class Repository extends Resource
                 ->labelUsing(fn (string $url, \App\Models\Repository $repository): string => $repository->name),
 
             Select::make('License')
-                ->options(License::toArray())
+                ->options(LicenseEnum::toArray())
                 ->sortable()
                 ->displayUsingLabels(),
 
             Select::make('Language')
-                ->options(Language::toArray())
+                ->options(LanguageEnum::toArray())
                 ->sortable()
                 ->displayUsingLabels(),
 
@@ -83,6 +84,8 @@ class Repository extends Resource
     {
         return [
             BlockReason::make(),
+            License::make(),
+            Language::make(),
         ];
     }
 
