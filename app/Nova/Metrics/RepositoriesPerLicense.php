@@ -17,7 +17,8 @@ class RepositoriesPerLicense extends Partition
             $request,
             Repository::query()
                 ->withoutGlobalScope(OrderByScope::class)
-                ->withCasts(['license' => 'string']),
+                ->withCasts(['license' => 'string'])
+                ->orderBy('license'),
             'license'
         )
             ->label(function (string $value) {

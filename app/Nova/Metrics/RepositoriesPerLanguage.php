@@ -17,7 +17,8 @@ class RepositoriesPerLanguage extends Partition
             $request,
             Repository::query()
                 ->withoutGlobalScope(OrderByScope::class)
-                ->withCasts(['language' => 'string']),
+                ->withCasts(['language' => 'string'])
+                ->orderBy('language'),
             'language'
         )
             ->label(function (string $value) {
