@@ -19,8 +19,11 @@ class RepositoryObserver
             )
             && $repository->block_reason === null
         ) {
-            $repository->blocked_at = now();
             $repository->block_reason = BlockReason::REVIEW();
+        }
+
+        if ($repository->block_reason !== null) {
+            $repository->blocked_at = now();
         }
     }
 
