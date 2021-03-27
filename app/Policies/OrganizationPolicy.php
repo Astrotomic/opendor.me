@@ -59,4 +59,9 @@ class OrganizationPolicy
     {
         return $auth->is_admin;
     }
+
+    public function details(User $auth, Organization $organization): bool
+    {
+        return $auth->is_admin;
+    }
 }

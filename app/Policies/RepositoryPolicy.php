@@ -74,4 +74,9 @@ class RepositoryPolicy
     {
         return $auth->is_admin;
     }
+
+    public function details(User $auth, Repository $repository): bool
+    {
+        return $auth->is_admin;
+    }
 }

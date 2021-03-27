@@ -28,10 +28,10 @@ class UpdateEntityDetails extends Action
     {
         $this
             ->canSee(fn (NovaRequest $request): bool => true)
-            ->canRun(fn (ActionRequest $request, Model $model): bool => $request->user()->can('block', $model));
+            ->canRun(fn (ActionRequest $request, Model $model): bool => $request->user()->can('details', $model));
     }
 
-    public function handle(ActionFields $fields, Collection $models): bool | array
+    public function handle(ActionFields $fields, Collection $models): bool
     {
         return $models->every(function (Model $model): void {
             if ($model instanceof User) {

@@ -63,4 +63,9 @@ class UserPolicy
     {
         return $auth->is_admin;
     }
+
+    public function details(User $auth, User $user): bool
+    {
+        return $auth->is_admin;
+    }
 }
