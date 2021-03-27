@@ -31,9 +31,9 @@ class UpdateEntityDetails extends Action
             ->canRun(fn (ActionRequest $request, Model $model): bool => $request->user()->can('details', $model));
     }
 
-    public function handle(ActionFields $fields, Collection $models): bool
+    public function handle(ActionFields $fields, Collection $models): void
     {
-        return $models->every(function (Model $model): void {
+        $models->each(function (Model $model): void {
             if ($model instanceof User) {
                 UpdateUserDetails::dispatch($model);
             } elseif ($model instanceof Organization) {
