@@ -17,6 +17,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self HTML()
  * @method static self RUBY()
  * @method static self MARKDOWN()
+ * @method static self GO()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -29,6 +30,8 @@ final class Language extends Enum
             'VUE' => 'green',
             'CSS' => 'blue',
             'BLADE' => 'red',
+            'HTML' => 'red',
+            'GO' => 'blue',
             default => 'gray',
         };
     }
@@ -43,6 +46,15 @@ final class Language extends Enum
     protected static function labels(): array
     {
         return [
+            'PHP' => 'PHP',
+            'JAVASCRIPT' => 'JavaScript',
+            'TYPESCRIPT' => 'Typescript',
+            'BLADE' => 'Blade',
+            'PYTHON' => 'Python',
+            'GO' => 'Go',
+            'RUBY' => 'Ruby',
+            'MARKDOWN' => 'Markdown',
+            'SHELL' => 'Shell',
             'NOASSERTION' => 'Other',
         ];
     }
