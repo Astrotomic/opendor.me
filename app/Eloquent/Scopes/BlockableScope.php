@@ -15,12 +15,12 @@ final class BlockableScope implements Scope
 
     public function extend(Builder $builder): void
     {
-        $builder->macro('withBlocked', function (Builder $builder, bool $withBlocked = true): Builder {
-            if (! $withBlocked) {
-                return $builder->withoutBlocked();
-            }
-
+        $builder->macro('withBlocked', function (Builder $builder): Builder {
             return $builder->withoutGlobalScope($this);
+        });
+
+        $builder->macro('onlyBlocked', function (Builder $builder): Builder {
+            return $builder->withoutGlobalScope($this)->whereNotNull('blocked_at');
         });
     }
 }

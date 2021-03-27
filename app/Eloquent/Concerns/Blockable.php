@@ -10,6 +10,7 @@ use App\Enums\BlockReason;
  * @property \App\Enums\BlockReason|null $block_reason
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withBlocked()
+ * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder onlyBlocked()
  * @mixin \Illuminate\Database\Eloquent\Model
  */
 trait Blockable

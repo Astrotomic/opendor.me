@@ -6,7 +6,6 @@ use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\Language;
 use App\Models\Repository;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Metrics\Partition;
 use Laravel\Nova\Metrics\PartitionResult;
 
 class RepositoriesPerLanguage extends Partition

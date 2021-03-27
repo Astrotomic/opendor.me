@@ -5,7 +5,6 @@ namespace App\Nova\Metrics;
 use App\Enums\BlockReason;
 use Illuminate\Support\Str;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Metrics\Partition;
 use Laravel\Nova\Metrics\PartitionResult;
 
 class EntitiesPerBlockReason extends Partition
@@ -16,6 +15,8 @@ class EntitiesPerBlockReason extends Partition
     public function __construct(protected string $model)
     {
         parent::__construct(null);
+
+        $this->refreshWhenActionRuns();
     }
 
     public function calculate(NovaRequest $request): PartitionResult
@@ -24,6 +25,7 @@ class EntitiesPerBlockReason extends Partition
             $request,
             $this->model::query()
                 ->withoutGlobalScopes()
+                ->onlyBlocked()
                 ->withCasts(['block_reason' => 'string'])
                 ->orderBy('block_reason'),
             'block_reason'
