@@ -11,7 +11,7 @@
                     {{ $user->full_name ?? $user->name }}
                 </h1>
                 <x-profile.aside :model="$user"/>
-                <ul class="flex space-x-2">
+                <ul class="flex space-x-2 flex-wrap">
                     @foreach($languages->unique() as $language)
                         <li><x-repository.language :language="$language" class="shadow"/></li>
                     @endforeach
