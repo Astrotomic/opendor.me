@@ -28,8 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(GithubOrganizationDetails::class)->weekly();
         $schedule->command(GithubRepositoryDetails::class)->weekly();
 
-        $schedule->command(SyncCommand::class)->dailyAt('01:00');
-        $schedule->command(CleanLogCommand::class)->dailyAt('02:00');
+        $schedule->command(CleanLogCommand::class)->dailyAt('01:00');
     }
 
     protected function commands(): void
