@@ -28,26 +28,5 @@ class AppServiceProvider extends ServiceProvider
                     User::whereNotNull('github_access_token')->inRandomOrder()->first()->github_access_token
                 );
         });
-
-        Collection::macro('humanImplode', function (string $glue = ', ', string $lastGlue = ' and '): string {
-            /** @var \Illuminate\Support\Collection $items */
-            $items = clone $this;
-
-            if ($items->isEmpty()) {
-                return '';
-            }
-
-            if ($items->count() === 1) {
-                return $items->first();
-            }
-
-            $lastItem = $items->pop();
-
-            return implode($glue, $items->all()).$lastGlue.$lastItem;
-        });
-
-        Str::macro('humanImplode', function (iterable $pieces, string $glue = ', ', string $lastGlue = ' and '): string {
-            return collect($pieces)->humanImplode($glue, $lastGlue);
-        });
     }
 }
