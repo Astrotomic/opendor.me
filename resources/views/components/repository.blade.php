@@ -3,7 +3,7 @@
 @props(['repository', 'user' => null])
 
 <div {{ $attributes->merge(['class' => 'bg-white rounded-lg divide-y divide-gray-200 shadow flex flex-col']) }}>
-    <div class="flex-grow p-6 space-y-2 w-full">
+    <div class="flex-grow px-6 py-4 space-y-2 w-full">
         <div class="flex justify-between items-center space-x-6 w-full">
             <div class="flex-1 truncate">
                 <h3 class="space-x-1 text-base truncate">
@@ -13,6 +13,7 @@
                 <ul class="flex mt-1 space-x-2">
                     <li class="inline-flex"><x-repository.license :license="$repository->license"/></li>
                     <li class="inline-flex"><x-repository.language :language="$repository->language"/></li>
+                    <li class="inline-flex"><x-repository.stars :stars="$repository->stargazers_count"/></li>
                 </ul>
             </div>
             <x-gh-avatar :model="$repository->owner" class="w-10 h-10"/>
