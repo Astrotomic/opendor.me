@@ -8,11 +8,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn () => 'home')->name('home');
 
 Route::get('@{user:name}', static function (User $user) {
-    $user->load(['contributions.owner', 'organizations']);
+    $contributions = $user->contributions()->with('owner')->cursor();
 
     return view('web.profile', [
         'user' => $user,
         'organizations' => $user->organizations->filter(fn (Organization $organization) => $organization->repositories()->exists()),
-        'languages' => $user->contributions->pluck('language')->reject(Language::NOASSERTION()),
+        'languages' => $contributions->pluck('language')->reject(Language::NOASSERTION()),
+        'contributions' => $contributions->groupBy('vendor_name')->sortBy(fn (\Illuminate\Support\Collection $repositories, string $owner): string => \Illuminate\Support\Str::lower($owner)),
     ]);
 })->name('profile');

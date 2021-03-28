@@ -16,14 +16,7 @@ class App extends Component
     {
         $this->pageTitle = $pageTitle;
         $this->title = $title ?? $pageTitle;
-        $this->auth = tap(
-            auth()->user()
-                ->loadCount('contributions')
-                ->load('organizations'),
-            static function (User $user): void {
-                $user->organizations->loadCount('repositories');
-            }
-        );
+        $this->auth = auth()->user();
     }
 
     public function render(): View

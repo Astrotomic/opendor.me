@@ -12,7 +12,6 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Laravel\Horizon\Console\SnapshotCommand;
 use Spatie\ScheduleMonitor\Commands\CleanLogCommand;
-use Spatie\ScheduleMonitor\Commands\SyncCommand;
 
 class Kernel extends ConsoleKernel
 {

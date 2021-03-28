@@ -6,7 +6,6 @@ use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
-use Astrotomic\CachableAttributes\CachesAttributes;
 use Carbon\CarbonInterval;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -64,7 +63,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authorizable;
     use MustVerifyEmail;
     use RoutesNotifications;
-    use CachesAttributes;
     use Actionable;
     use Blockable;
 

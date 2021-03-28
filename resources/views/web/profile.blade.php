@@ -19,7 +19,7 @@
             </div>
         </div>
         <p class="text-gray-700">
-            <span class="font-medium text-gray-900">{{ $user->full_name ?? $user->name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions->count() }}</span> different repositories across <span class="font-medium text-gray-900">{{ $user->contributions->pluck('owner')->unique()->count() }}</span> unique vendors.
+            <span class="font-medium text-gray-900">{{ $user->full_name ?? $user->name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions_count }}</span> different repositories across <span class="font-medium text-gray-900">{{ $contributions->count() }}</span> unique vendors.
             <br/>
             These repositories have {!! $languages->unique()->map(fn(\App\Enums\Language $l) => '<span class="font-medium text-gray-900">'.$l->label.'</span>')->join(', ', ' and ') !!} as their primary {{ \Illuminate\Support\Str::plural('language', $languages->unique()->count()) }} - most contributions were made to repositories using <span class="font-medium text-gray-900">{{ $languages->groupBy(fn(\App\Enums\Language $l) => $l->label)->map(fn(\Illuminate\Support\Collection $repos) => $repos->count())->sortDesc()->keys()->first() }}</span> as primary language.
             @if($user->repositories()->exists())
@@ -34,7 +34,7 @@
     </div>
 
     <section class="px-4 mx-auto mt-8 space-y-8 max-w-3xl sm:mt-12 lg:mt-16 sm:px-6 lg:px-8 lg:max-w-7xl sm:space-y-12 lg:space-y-16">
-        @foreach($user->contributions->groupBy('owner.name')->sortBy(fn($repositories, string $owner) => \Illuminate\Support\Str::lower($owner)) as $repositories)
+        @foreach($contributions as $repositories)
             @php($owner = $repositories->first()->owner)
             <div>
                 <div class="flex items-center mb-6 space-x-5">
