@@ -109,7 +109,7 @@ class Repository extends Model
         }
 
         try {
-            return $owner->repositories()->firstOrCreate([
+            return $owner->repositories()->withBlocked()->firstOrCreate([
                 'id' => $data['id'],
             ], [
                 'name' => $data['full_name'],

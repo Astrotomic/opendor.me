@@ -51,7 +51,7 @@ class Organization extends Model
 
     public static function fromGithub(array $data): self
     {
-        return static::updateOrCreate(
+        return static::query()->withBlocked()->firstOrCreate(
             ['id' => $data['id']],
             ['name' => $data['login']]
         );

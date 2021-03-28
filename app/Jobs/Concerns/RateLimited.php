@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 trait RateLimited
 {
-    public function rateLimit(ClientException $exception): void
+    public function rateLimit(ClientException $exception): bool
     {
         if (
             $exception->hasResponse()
@@ -25,6 +25,10 @@ trait RateLimited
             Log::info("Hit GitHub rate-limit for [{$exception->getRequest()->getUri()}] delay {$delay->diffForHumans(['parts' => 3, 'join' => true])}");
 
             $this->release($delay->diffInSeconds());
+
+            return true;
         }
+
+        return false;
     }
 }

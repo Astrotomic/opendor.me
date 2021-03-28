@@ -85,7 +85,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public static function fromGithub(array $data): self
     {
-        return static::firstOrCreate(
+        return static::query()->withBlocked()->firstOrCreate(
             ['id' => $data['id']],
             [
                 'name' => $data['login'],

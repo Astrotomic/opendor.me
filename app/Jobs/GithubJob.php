@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\BlockReason;
 use App\Jobs\Concerns\RateLimited;
 use Carbon\CarbonInterval;
 use DateTimeInterface;
@@ -28,9 +29,37 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
             return true;
         } catch (ClientException $exception) {
-            $this->rateLimit($exception);
+            if ($this->rateLimit($exception)) {
+                return false;
+            }
 
-            return false;
+            if (
+                $exception->hasResponse()
+                && $exception->getResponse()->getStatusCode() === 404
+            ) {
+                if (property_exists($this, 'user')) {
+                    $this->user->update([
+                        'block_reason' => BlockReason::DELETED(),
+                        'blocked_at' => now(),
+                    ]);
+                }
+
+                if (property_exists($this, 'repository')) {
+                    $this->repository->update([
+                        'block_reason' => BlockReason::DELETED(),
+                        'blocked_at' => now(),
+                    ]);
+                }
+
+                if (property_exists($this, 'organization')) {
+                    $this->organization->update([
+                        'block_reason' => BlockReason::DELETED(),
+                        'blocked_at' => now(),
+                    ]);
+                }
+            }
+
+            throw $exception;
         }
     }
 
