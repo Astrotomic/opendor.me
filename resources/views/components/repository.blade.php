@@ -10,8 +10,8 @@
                     <span class="font-medium text-gray-900">{{ $repository->repository_name }}</span>
                 </h3>
                 <ul class="flex space-x-2 mt-1">
-                    <li class="inline-flex"><x-license :license="$repository->license"/></li>
-                    <li class="inline-flex"><x-language :language="$repository->language"/></li>
+                    <li class="inline-flex"><x-repository.license :license="$repository->license"/></li>
+                    <li class="inline-flex"><x-repository.language :language="$repository->language"/></li>
                 </ul>
             </div>
             <x-gh-avatar :model="$repository->owner" class="w-10 h-10"/>

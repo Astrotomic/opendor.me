@@ -160,7 +160,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getProfileUrlAttribute(): string
     {
-        return "https://opendor.me/@{$this->name}";
+        return route('profile', ['user' => $this]);
     }
 
     public function getTwitterUrlAttribute(): ?string
