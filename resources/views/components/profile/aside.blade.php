@@ -20,7 +20,7 @@
         <li>
             <a href="{{ $model->website }}" class="flex items-center group">
                 <x-fas-globe class="inline-block mr-1 w-4 h-4 group-hover:text-gray-900"/>
-                <span class="text-sm font-medium text-gray-900 group-hover:text-indigo-500">{{ parse_url($model->website, PHP_URL_HOST) }}</span>
+                <span class="text-sm font-medium text-gray-900 group-hover:text-indigo-500">{{ \Illuminate\Support\Str::domain($model->website) }}</span>
             </a>
         </li>
         @endif

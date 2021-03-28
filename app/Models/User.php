@@ -168,6 +168,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->twitter ? "https://twitter.com/{$this->twitter}" : null;
     }
 
+    public function getWebsiteAttribute(?string $url): ?string
+    {
+        if (empty($url)) {
+            return null;
+        }
+
+        if (Str::startsWith($url, ['http://', 'https://'])) {
+            return $url;
+        }
+
+        return Str::start($url, 'https://');
+    }
+
     public function hasGithubToken(): bool
     {
         return $this->github_access_token !== null;

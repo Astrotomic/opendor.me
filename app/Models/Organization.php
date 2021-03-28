@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Laravel\Nova\Actions\Actionable;
 
 /**
@@ -85,6 +86,19 @@ class Organization extends Model
     public function getTwitterUrlAttribute(): ?string
     {
         return $this->twitter ? "https://twitter.com/{$this->twitter}" : null;
+    }
+
+    public function getWebsiteAttribute(?string $url): ?string
+    {
+        if (empty($url)) {
+            return null;
+        }
+
+        if (Str::startsWith($url, ['http://', 'https://'])) {
+            return $url;
+        }
+
+        return Str::start($url, 'https://');
     }
 
     public function github(): PendingRequest

@@ -158,6 +158,19 @@ class Repository extends Model
         return "https://github.com/{$this->name}";
     }
 
+    public function getWebsiteAttribute(?string $url): ?string
+    {
+        if (empty($url)) {
+            return null;
+        }
+
+        if (Str::startsWith($url, ['http://', 'https://'])) {
+            return $url;
+        }
+
+        return Str::start($url, 'https://');
+    }
+
     public function github(): PendingRequest
     {
         if ($this->owner instanceof User && $this->owner->github_access_token) {

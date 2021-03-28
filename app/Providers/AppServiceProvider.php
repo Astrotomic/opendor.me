@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -27,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
                 ->withToken(
                     User::whereNotNull('github_access_token')->inRandomOrder()->first()->github_access_token
                 );
+        });
+
+        Str::macro('domain', function (string $value): string {
+            $value = parse_url($value, PHP_URL_HOST) ?: $value;
+
+            return preg_replace('`^(www\d?|m)\.`', '', $value);
         });
     }
 }
