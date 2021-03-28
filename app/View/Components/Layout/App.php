@@ -21,7 +21,7 @@ class App extends Component
                 ->loadCount('contributions')
                 ->load('organizations'),
             static function (User $user): void {
-                $user->organizations->each->loadCount('repositories');
+                $user->organizations->loadCount('repositories');
             }
         );
     }
