@@ -57,6 +57,8 @@ abstract class GithubJob extends Job implements ShouldBeUnique
                         'blocked_at' => now(),
                     ]);
                 }
+
+                $this->delete();
             }
 
             throw $exception;
