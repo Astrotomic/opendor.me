@@ -18,6 +18,8 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self SHELL()
  * @method static self TYPESCRIPT()
  * @method static self VUE()
+ * @method static self DOCKERFILE()
+ * @method static self C_SHARP()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -39,6 +41,7 @@ final class Language extends Enum
     protected static function values(): array
     {
         return [
+            'C_SHARP' => 'C#',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -56,6 +59,8 @@ final class Language extends Enum
             'SHELL' => 'Shell',
             'TYPESCRIPT' => 'Typescript',
             'VUE' => 'Vue.js',
+            'DOCKERFILE' => 'Dockerfile',
+            'C_SHARP' => 'C#',
             'NOASSERTION' => 'Other',
         ];
     }
