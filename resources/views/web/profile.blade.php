@@ -28,7 +28,7 @@
             @endif
             @if($organizations->isNotEmpty())
             <br/>
-            In addition, they are also a member of {!! $organizations->map(fn(\App\Models\Organization $organization) => '<span class="font-medium text-gray-900">'.($organization->full_name ?? $organization->name).'</span>')->humanImplode() !!} organizations, and have contributed to open-source repositories for each.
+            In addition, they are also a member of {!! $organizations->map(fn(\App\Models\Organization $organization) => '<span class="font-medium text-gray-900">'.($organization->full_name ?? $organization->name).'</span>')->humanImplode() !!} {{ \Illuminate\Support\Str::plural('organization', $organizations->count()) }}, and have contributed to their open-source repositories.
             @endif
         </p>
     </div>
@@ -54,7 +54,7 @@
 
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 col-span-full">
                     @foreach($repositories as $repository)
-                        <x-repository :repository="$repository"/>
+                        <x-repository :repository="$repository" :user="$user"/>
                     @endforeach
                 </div>
             </div>
