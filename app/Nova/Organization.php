@@ -23,6 +23,7 @@ use Laravel\Nova\Fields\Text;
 class Organization extends Resource
 {
     public static $model = \App\Models\Organization::class;
+    public static $group = 'GitHub';
     public static $title = 'name';
     public static $search = [
         'id', 'name',

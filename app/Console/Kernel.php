@@ -11,6 +11,8 @@ use App\Console\Commands\GithubUserRepositories;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Laravel\Horizon\Console\SnapshotCommand;
+use Spatie\ScheduleMonitor\Commands\CleanLogCommand;
+use Spatie\ScheduleMonitor\Commands\SyncCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,6 +27,9 @@ class Kernel extends ConsoleKernel
         $schedule->command(GithubUserDetails::class)->weekly();
         $schedule->command(GithubOrganizationDetails::class)->weekly();
         $schedule->command(GithubRepositoryDetails::class)->weekly();
+
+        $schedule->command(SyncCommand::class)->dailyAt('01:00');
+        $schedule->command(CleanLogCommand::class)->dailyAt('02:00');
     }
 
     protected function commands(): void

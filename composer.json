@@ -11,6 +11,7 @@
         "ext-redis": "*",
         "astrotomic/laravel-cachable-attributes": "^0.3",
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
+        "dragonmantank/cron-expression": "^3.0.2",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -19,9 +20,12 @@
         "laravel/horizon": "^5.7",
         "laravel/nova": "^3.22",
         "laravel/socialite": "^5.2",
+        "lorisleiva/cron-translator": "^0.1.1",
+        "nesbot/carbon": "^2.46",
         "owenvoke/blade-fontawesome": "^1.6",
         "sentry/sentry-laravel": "^2.4",
-        "spatie/laravel-enum": "^2.4"
+        "spatie/laravel-enum": "^2.4",
+        "spatie/laravel-schedule-monitor": "^2.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8",

@@ -9,6 +9,11 @@ use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
+    public static $perPageOptions = [25, 50, 100];
+    public static $perPageViaRelationship = 10;
+    public static $pollingInterval = 30;
+    public static $showPollingToggle = true;
+
     /**
      * Build an "index" query for the given resource.
      *

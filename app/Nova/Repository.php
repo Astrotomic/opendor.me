@@ -32,6 +32,7 @@ use Laravel\Nova\Fields\Text;
 class Repository extends Resource
 {
     public static $model = \App\Models\Repository::class;
+    public static $group = 'GitHub';
     public static $title = 'name';
     public static $search = [
         'id', 'name', 'license', 'language',
