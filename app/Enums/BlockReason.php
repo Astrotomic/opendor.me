@@ -15,6 +15,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self UNRELEASED()
  * @method static self NON_REUSABLE()
  * @method static self DELETED()
+ * @method static self DOTFILES()
  */
 final class BlockReason extends Enum
 {

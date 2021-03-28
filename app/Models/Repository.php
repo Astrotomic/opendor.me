@@ -84,6 +84,8 @@ class Repository extends Model
             || $data['archived'] === true
             || $data['disabled'] === true
             || $data['license'] === null
+            || $data['name'] === '.github'
+            || $data['name'] === $data['owner']['login']
         ) {
             Log::debug(
                 "Ignored repository [{$data['full_name']}] to import."
@@ -108,6 +110,14 @@ class Repository extends Model
             return null;
         }
 
+        if ($data['fork']) {
+            $blockReason = BlockReason::FORK();
+        } elseif (in_array($data['name'], ['dotfiles', '.dotfiles'])) {
+            $blockReason = BlockReason::DOTFILES();
+        } elseif (Str::startsWith($data['name'], '.')) {
+            $blockReason = BlockReason::REVIEW();
+        }
+
         try {
             return $owner->repositories()->withBlocked()->firstOrCreate([
                 'id' => $data['id'],
@@ -116,7 +126,7 @@ class Repository extends Model
                 'description' => $data['description'],
                 'language' => $data['language'] ?? Language::NOASSERTION(),
                 'license' => $data['license']['spdx_id'],
-                'block_reason' => $data['fork'] ? BlockReason::REVIEW() : null,
+                'block_reason' => $blockReason ?? null,
                 'stargazers_count' => $data['stargazers_count'],
                 'website' => $data['homepage'],
             ]);
