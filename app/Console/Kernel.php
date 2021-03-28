@@ -24,9 +24,9 @@ class Kernel extends ConsoleKernel
         $schedule->command(GithubUserRepositories::class)->dailyAt('03:00');
         $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00');
 
-        $schedule->command(GithubUserDetails::class)->weekly();
-        $schedule->command(GithubOrganizationDetails::class)->weekly();
-        $schedule->command(GithubRepositoryDetails::class)->weekly();
+        $schedule->command(GithubUserDetails::class)->dailyAt('12:00');
+        $schedule->command(GithubOrganizationDetails::class)->dailyAt('12:00');
+        $schedule->command(GithubRepositoryDetails::class)->dailyAt('12:00');
 
         $schedule->command(CleanLogCommand::class)->dailyAt('01:00');
     }
