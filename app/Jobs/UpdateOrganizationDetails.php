@@ -18,12 +18,12 @@ class UpdateOrganizationDetails extends GithubJob
         $data = $this->organization->github()->get("/orgs/{$this->organization->name}")->json();
 
         $this->organization->update([
-            'full_name' => $data['name'],
+            'full_name' => $data['name'] ?? null,
             'is_verified' => $data['is_verified'],
             'description' => $data['description'],
-            'twitter' => $data['twitter_username'],
-            'website' => $data['blog'],
-            'location' => $data['location'],
+            'twitter' => $data['twitter_username'] ?? null,
+            'website' => $data['blog'] ?? null,
+            'location' => $data['location'] ?? null,
         ]);
     }
 }
