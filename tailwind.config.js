@@ -253,7 +253,7 @@ module.exports = {
               "qml": "#44a51c",
               "qt-script": "#00b841",
               "quake": "#882233",
-              "r": "#198CE7",
+              // "r": "#198CE7", // conflict with `border-r`
               "racket": "#3c5caa",
               "ragel": "#9d5200",
               "raku": "#0000fb",
