@@ -3,7 +3,6 @@
 namespace App\Nova;
 
 use App\Eloquent\Scopes\BlockableScope;
-use Illuminate\Database\Eloquent\Builder;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
 
@@ -22,7 +21,7 @@ abstract class Resource extends NovaResource
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function indexQuery(NovaRequest $request, $query): Builder
+    public static function indexQuery(NovaRequest $request, $query)
     {
         return $query->withoutGlobalScope(BlockableScope::class);
     }
