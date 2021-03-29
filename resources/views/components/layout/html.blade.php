@@ -6,13 +6,12 @@
 
     <title>{{ $title }}</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css"/>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     {{ $head ?? null }}
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>
     {{ $slot }}
-    <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/alpine-clipboard@1.x.x/dist/alpine-clipboard.js"></script>
 </body>
 </html>
