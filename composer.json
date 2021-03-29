@@ -20,12 +20,12 @@
         "laravel/horizon": "^5.7",
         "laravel/nova": "^3.22",
         "laravel/socialite": "^5.2",
-        "lorisleiva/cron-translator": "^0.1.1",
+        "lorisleiva/cron-translator": "^0.2.0",
         "nesbot/carbon": "^2.46",
         "owenvoke/blade-fontawesome": "^1.6",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-enum": "^2.4",
-        "spatie/laravel-schedule-monitor": "^2.2"
+        "spatie/laravel-schedule-monitor": "^2.2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

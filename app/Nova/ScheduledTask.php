@@ -34,7 +34,7 @@ class ScheduledTask extends Resource
 
             Text::make('Cron Expression')
                 ->resolveUsing(function (string $cron): string {
-                    $readable = CronTranslator::translate($cron);
+                    $readable = CronTranslator::translate($cron, 'en', true);
 
                     $next = Carbon::instance((new CronExpression($cron))->getNextRunDate());
 
