@@ -30,6 +30,7 @@ use Laravel\Nova\Actions\Actionable;
  * @property-read string $avatar_url
  * @property-read string $github_url
  * @property-read bool $is_blocked
+ * @property-read string|null $twitter_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories

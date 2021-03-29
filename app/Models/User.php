@@ -47,6 +47,7 @@ use Throwable;
  * @property-read bool $is_blocked
  * @property-read string $profile_url
  * @property-read bool $is_superadmin
+ * @property-read string|null $twitter_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
