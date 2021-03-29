@@ -5,7 +5,7 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => 'home')->name('home');
+Route::get('/', fn () => view('web.home'))->name('home');
 
 Route::get('@{user:name}', static function (User $user) {
     $contributions = $user->contributions()->with('owner')->cursor();

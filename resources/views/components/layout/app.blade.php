@@ -69,7 +69,7 @@
                                 Organizations
                             </h3>
                             <ul class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
-                                @foreach($auth->organizations as $organization)
+                                @foreach(auth()->user()->organizations as $organization)
                                     <li class="flex justify-between items-center py-2 px-3 text-sm font-medium text-gray-700 rounded-md group">
                                     <span class="flex items-center">
                                         <x-gh-avatar :model="$organization" class="mr-3 w-6 h-6"/>
@@ -110,16 +110,16 @@
                         aria-haspopup="true"
                     >
                         <div class="flex justify-between items-center space-x-2 w-full">
-                            <x-gh-avatar :model="$auth" class="w-10 h-10"/>
+                            <x-gh-avatar :model="auth()->user()" class="w-10 h-10"/>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate">
-                                    {{ $auth->full_name ?? $auth->name }}
+                                    {{ auth()->user()->full_name ?? auth()->user()->name }}
                                 </p>
                                 <a
-                                    href="{{ route('profile', $auth) }}"
+                                    href="{{ route('profile', auth()->user()) }}"
                                     class="block text-sm text-gray-500 truncate hover:text-gray-700"
                                 >
-                                    {{ '@'.$auth->name }}
+                                    {{ '@'.auth()->user()->name }}
                                 </a>
                             </div>
 
@@ -146,7 +146,7 @@
                                 <span>Contributions</span>
                                 </span>
                                 <span class="inline-flex items-center p-1 text-xs font-medium text-gray-500">
-                                  {{ $auth->contributions_count }}
+                                  {{ auth()->user()->contributions_count }}
                                 </span>
                             </a>
                         </li>
@@ -160,7 +160,7 @@
                         </h3>
 
                         <ul class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
-                            @foreach($auth->organizations as $organization)
+                            @foreach(auth()->user()->organizations as $organization)
                                 <li class="flex justify-between items-center py-2 px-3 text-sm font-medium text-gray-700 rounded-md group">
                                     <span class="flex items-center">
                                         <x-gh-avatar :model="$organization" class="mr-3 w-6 h-6"/>
@@ -192,62 +192,7 @@
                 <div class="flex flex-1">
                 </div>
                 <div class="flex items-center">
-                    <!-- Profile dropdown -->
-                    <div x-data="{ open: false }" @keydown.escape.stop="open = false" @click.away="open = false"
-                         class="relative ml-3">
-                        <div>
-                            <button
-                                type="button"
-                                class="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
-                                id="user-menu"
-                                @click="open = !open"
-                                aria-haspopup="true"
-                                x-bind:aria-expanded="open"
-                            >
-                                <span class="sr-only">Open user menu</span>
-                                <x-gh-avatar :model="$auth" class="w-8 h-8 rounded-full"/>
-                            </button>
-                        </div>
-
-                        <div
-                            x-show="open"
-                            class="absolute right-0 mt-2 w-48 bg-white rounded-md divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 shadow-lg origin-top-right focus:outline-none"
-                            role="menu"
-                            aria-orientation="vertical"
-                            aria-labelledby="user-menu"
-                            style="display: none;"
-                        >
-                            <div class="py-1" role="none">
-                                <a
-                                    href="{{ route('profile', $auth) }}"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                    role="menuitem"
-                                >View profile</a>
-                            </div>
-                            <div class="py-1" role="none">
-                                @if($auth->is_admin)
-                                    <a
-                                        href="{{ url(config('nova.path')) }}"
-                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                        role="menuitem"
-                                    >Nova</a>
-                                @endif
-                                @if($auth->is_superadmin)
-                                <a
-                                    href="{{ url(config('horizon.path')) }}"
-                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                    role="menuitem"
-                                >Horizon</a>
-                                @endif
-                            </div>
-                            <div class="py-1" role="none">
-                                <x-logout :action="route('auth.signout')" class="block py-2 px-4 w-full text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                                    Logout
-                                </x-logout>
-                            </div>
-                        </div>
-
-                    </div>
+                    <x-user-dropdown/>
                 </div>
             </div>
         </div>
@@ -265,7 +210,7 @@
                     <button
                         type="button"
                         class="inline-flex order-1 items-center py-2 px-4 text-sm font-medium text-gray-700 bg-white rounded-md border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0"
-                        x-data="{{ json_encode(['profile_url' => $auth->profile_url, 'copied' => false]) }}"
+                        x-data="{{ json_encode(['profile_url' => auth()->user()->profile_url, 'copied' => false]) }}"
                         @click.prevent="$clipboard(profile_url)
                             .then(() => {
                                 copied = true;
