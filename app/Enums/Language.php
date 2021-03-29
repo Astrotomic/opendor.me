@@ -21,6 +21,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self DOCKERFILE()
  * @method static self C_SHARP()
  * @method static self JAVA()
+ * @method static self COFFEESCRIPT()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -61,6 +62,7 @@ final class Language extends Enum
             'TYPESCRIPT' => 'Typescript',
             'VUE' => 'Vue.js',
             'DOCKERFILE' => 'Dockerfile',
+            'COFFEESCRIPT' => 'CoffeeScript',
             'JAVA' => 'Java',
             'C_SHARP' => 'C#',
             'NOASSERTION' => 'Other',
