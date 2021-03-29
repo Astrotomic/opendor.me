@@ -13,7 +13,7 @@ Route::get('@{user:name}', static function (User $user) {
     return view('web.profile', [
         'user' => $user,
         'organizations' => $user->organizations->filter(fn (Organization $organization) => $organization->repositories()->exists()),
-        'languages' => $contributions->pluck('language')->reject(Language::NOASSERTION()),
+        'languages' => $contributions->pluck('language')->reject(Language::NOASSERTION())->unique()->collect(),
         'contributions' => $contributions->groupBy('vendor_name')->sortBy(fn (\Illuminate\Support\Collection $repositories, string $owner): string => \Illuminate\Support\Str::lower($owner)),
     ]);
 })->name('profile');
