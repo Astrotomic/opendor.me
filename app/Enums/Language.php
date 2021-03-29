@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use Illuminate\Support\Str;
 use Spatie\Enum\Laravel\Enum;
 
 /**
@@ -28,16 +29,7 @@ final class Language extends Enum
 {
     public function color(): string
     {
-        return match($this->value) {
-            'BLADE' => 'red',
-            'CSS' => 'blue',
-            'GO' => 'blue',
-            'HTML' => 'red',
-            'JAVASCRIPT' => 'yellow',
-            'PHP' => 'indigo',
-            'VUE' => 'green',
-            default => 'gray',
-        };
+        return $this->equals(static::NOASSERTION()) ? 'gray-300' : Str::slug($this->value);
     }
 
     protected static function values(): array
