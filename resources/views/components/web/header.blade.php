@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white shadow">
+<nav x-data="{ open: false }" class="sticky top-0 z-10 bg-white shadow">
     <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex relative justify-between h-16">
             <div class="flex absolute inset-y-0 left-0 items-center sm:hidden">

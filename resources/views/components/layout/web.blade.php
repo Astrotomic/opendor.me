@@ -4,7 +4,7 @@
 >
     <x-web.header/>
 
-    <main class="py-10">
+    <main {{ $attributes }}>
         {{ $slot }}
     </main>
 </x-layout.html>

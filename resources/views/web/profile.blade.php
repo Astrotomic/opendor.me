@@ -1,4 +1,4 @@
-<x-layout.web :page-title="$user->name">
+<x-layout.web :page-title="$user->name" class="py-10">
     <div class="px-4 mx-auto max-w-3xl sm:px-6 flex flex-col space-y-3 lg:max-w-7xl lg:px-8">
         <div class="flex items-center space-x-5">
             <div class="flex-shrink-0">
