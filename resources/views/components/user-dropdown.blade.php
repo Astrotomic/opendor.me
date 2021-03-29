@@ -2,7 +2,7 @@
 <div x-data="{ open: false }" @click.away="open = false" class="relative ml-3">
     <button
         type="button"
-        class="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 overflow-hidden"
+        class="flex overflow-hidden items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
         id="user-menu"
         @click="open = !open"
         aria-haspopup="true"
@@ -30,7 +30,7 @@
                 href="{{ route('profile', auth()->user()) }}"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
-            >View profile</a>
+            >View Profile</a>
         </li>
         <li class="py-1" role="none">
             @if(auth()->user()->is_admin)
