@@ -14,6 +14,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self GPL_20()
  * @method static self GPL_30()
  * @method static self MIT()
+ * @method static self CC0_10()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
@@ -30,6 +31,7 @@ final class License extends Enum
             'GPL_20' => 'GPL-2.0',
             'GPL_30' => 'GPL-3.0',
             'MIT' => 'MIT',
+            'CC0_10' => 'CC0-1.0',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -46,6 +48,7 @@ final class License extends Enum
             'GPL_20' => 'GPL 2.0',
             'GPL_30' => 'GPL 3.0',
             'MIT' => 'MIT',
+            'CC0_10' => 'CC0 1.0',
             'NOASSERTION' => 'Other',
         ];
     }
