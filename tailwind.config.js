@@ -24,6 +24,8 @@ module.exports = {
               'bg-c',
               'bg-java',
               'bg-coffeescript',
+              'bg-elixir',
+              'bg-powershell',
               'bg-gray-300',
           ],
       },

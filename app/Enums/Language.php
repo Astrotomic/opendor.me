@@ -23,13 +23,16 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self C_SHARP()
  * @method static self JAVA()
  * @method static self COFFEESCRIPT()
+ * @method static self SMARTY()
+ * @method static self ELIXIR()
+ * @method static self POWERSHELL()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
 {
     public function color(): string
     {
-        return $this->equals(static::NOASSERTION()) ? 'gray-300' : Str::slug($this->value);
+        return $this->equals(static::NOASSERTION(), static::SMARTY()) ? 'gray-300' : Str::slug($this->value);
     }
 
     protected static function values(): array
@@ -56,6 +59,9 @@ final class Language extends Enum
             'DOCKERFILE' => 'Dockerfile',
             'COFFEESCRIPT' => 'CoffeeScript',
             'JAVA' => 'Java',
+            'ELIXIR' => 'Elixir',
+            'SMARTY' => 'Smarty',
+            'POWERSHELL' => 'PowerShell',
             'C_SHARP' => 'C#',
             'NOASSERTION' => 'Other',
         ];
