@@ -16,3 +16,4 @@ phpunit.xml
 _ide_helper.php
 .phpstorm.meta.php
 package-lock.json
+auth.json
