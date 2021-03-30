@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Repository;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class LoadRepositoryContributors extends GithubJob
 {
@@ -26,7 +27,18 @@ class LoadRepositoryContributors extends GithubJob
                 if ($contributor['type'] === 'User') {
                     return User::fromGithub($contributor);
                 } elseif ($contributor['type'] === 'Anonymous') {
-                    return User::cursor()->first(fn (User $user): bool => in_array($contributor['email'], $user->emails));
+                    if (Str::endsWith($contributor['email'], '@users.noreply.github.com')) {
+                        $parts = Str::of($contributor['email'])
+                            ->beforeLast('@users.noreply.github.com')
+                            ->explode('+', 2);
+
+                        $user = User::orWhere([
+                            'id' => is_numeric($parts[0]) ? $parts[0] : null,
+                            'name' => $parts[1] ?? $parts[0],
+                        ])->first();
+                    }
+
+                    return $user ?? User::cursor()->first(fn (User $user): bool => in_array($contributor['email'], $user->emails));
                 }
 
                 return null;
