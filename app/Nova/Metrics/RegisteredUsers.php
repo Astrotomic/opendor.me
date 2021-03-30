@@ -11,7 +11,7 @@ class RegisteredUsers extends Value
 {
     public function calculate(NovaRequest $request): ValueResult
     {
-        return $this->count($request, User::query()->whereNotNull('github_access_token'));
+        return $this->count($request, User::query()->whereIsRegistered());
     }
 
     public function ranges(): array

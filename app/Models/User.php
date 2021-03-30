@@ -12,6 +12,7 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -56,6 +57,8 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static Builder|User whereHasGithubAccessToken()
+ * @method static Builder|User whereIsRegistered()
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract
@@ -194,5 +197,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
 
         return Http::github();
+    }
+
+    public function scopeWhereHasGithubAccessToken(Builder $query): void
+    {
+        $query->whereNotNull('github_access_token');
+    }
+
+    public function scopeWhereIsRegistered(Builder $query): void
+    {
+        $query->whereHasGithubAccessToken();
     }
 }

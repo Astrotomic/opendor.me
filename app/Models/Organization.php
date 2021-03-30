@@ -105,7 +105,7 @@ class Organization extends Model
     public function github(): PendingRequest
     {
         return $this->members()
-                ->whereNotNull('github_access_token')
+                ->whereIsRegistered()
                 ->inRandomOrder()
                 ->first()
                 ?->github() ?? Http::github();

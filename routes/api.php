@@ -10,6 +10,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('user/autocomplete', static function () {
     return response()->json(
-        User::get()->map(fn (User $user): array => $user->only('id', 'name', 'full_name'))
+        User::whereIsRegistered()->get()->map(fn (User $user): array => $user->only('id', 'name', 'full_name'))
     );
 })->name('user.autocomplete');

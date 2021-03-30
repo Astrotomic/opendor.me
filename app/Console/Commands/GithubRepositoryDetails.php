@@ -27,7 +27,7 @@ class GithubRepositoryDetails extends Command
                 return $repository->owner instanceof User && $repository->owner->github_access_token === null;
             })
             ->reject(function (Repository $repository): bool {
-                return $repository->owner instanceof Organization && $repository->owner->members()->whereNotNull('github_access_token')->doesntExist();
+                return $repository->owner instanceof Organization && $repository->owner->members()->whereIsRegistered()->doesntExist();
             })
             ->each(static function (Repository $repository): void {
                 UpdateRepositoryDetails::dispatch($repository);

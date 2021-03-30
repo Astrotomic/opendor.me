@@ -138,7 +138,7 @@
                 </div>
                 <div class="lg:col-span-2">
                     <ul class="grid gap-8 sm:grid-cols-2">
-                        @foreach(\App\Models\User::whereNotNull('github_access_token')->inRandomOrder()->take(6)->get() as $contributor)
+                        @foreach(\App\Models\User::whereIsRegistered()->inRandomOrder()->take(6)->get() as $contributor)
                         <li class="@if($loop->iteration >= 5) hidden md:block @endif">
                             <div class="flex items-center space-x-4 lg:space-x-6">
                                 <x-gh-avatar :model="$contributor" class="w-16 h-16 rounded-full lg:w-20 lg:h-20"/>

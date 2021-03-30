@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withOptions(['http_errors' => true])
                 ->withToken(
-                    User::whereNotNull('github_access_token')->inRandomOrder()->first()->github_access_token
+                    User::whereIsRegistered()->inRandomOrder()->first()->github_access_token
                 );
         });
 
