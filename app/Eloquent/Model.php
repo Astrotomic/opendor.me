@@ -20,7 +20,7 @@ abstract class Model extends IlluminateModel
         return (new static())->getTable();
     }
 
-    public function delete(): ?bool
+    public function delete()
     {
         return $this->getConnection()->transaction(fn (): ?bool => parent::delete());
     }

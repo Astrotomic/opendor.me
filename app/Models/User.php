@@ -110,7 +110,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function contributions(): BelongsToMany
     {
-        return $this->belongsToMany(Repository::class)->as('repository_user');
+        return $this->belongsToMany(Repository::class)
+            ->using(RepositoryUserPivot::class)
+            ->as('repository_user');
     }
 
     public function getAvatarUrlAttribute(): string

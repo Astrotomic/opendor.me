@@ -7,11 +7,12 @@
     <title>{{ $title }}</title>
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
-    <script src="{{ mix('js/app.js') }}" defer></script>
 
     {{ $head ?? null }}
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>
-    {{ $slot }}
+{{ $slot }}
+<script src="{{ mix('js/app.js') }}"></script>
+@stack('javascript')
 </body>
 </html>

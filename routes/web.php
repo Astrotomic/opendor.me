@@ -1,13 +1,19 @@
 <?php
 
 use App\Enums\Language;
+use App\Models\FAQ;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\View\View;
 
-Route::get('/', fn () => view('web.home'))->name('home');
+Route::get('/', static function (): View {
+    return view('web.home', [
+        'faqs' => FAQ::ordered()->get(),
+    ]);
+})->name('home');
 
-Route::get('@{user:name}', static function (User $user) {
+Route::get('@{user:name}', static function (User $user): View {
     $contributions = $user->contributions()->with('owner')->cursor();
 
     return view('web.profile', [

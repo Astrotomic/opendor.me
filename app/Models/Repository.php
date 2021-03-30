@@ -150,7 +150,9 @@ class Repository extends Model
 
     public function contributors(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->as('repository_user');
+        return $this->belongsToMany(User::class)
+            ->using(RepositoryUserPivot::class)
+            ->as('repository_user');
     }
 
     public function getVendorNameAttribute(): string
