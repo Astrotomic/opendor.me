@@ -26,6 +26,7 @@ module.exports = {
               'bg-coffeescript',
               'bg-elixir',
               'bg-powershell',
+              'bg-yaml',
               'bg-gray-300',
           ],
       },
