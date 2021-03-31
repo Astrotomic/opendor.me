@@ -9,6 +9,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self AGPL_30()
  * @method static self BSD_2_CLAUSE()
  * @method static self BSD_3_CLAUSE()
+ * @method static self CC_BY_40()
  * @method static self CC_BY_SA_30()
  * @method static self CC_BY_SA_40()
  * @method static self CC_BY_NC_SA_30()
@@ -27,6 +28,7 @@ final class License extends Enum
             'AGPL_30' => 'AGPL-3.0',
             'BSD_2_CLAUSE' => 'BSD-2-Clause',
             'BSD_3_CLAUSE' => 'BSD-3-Clause',
+            'CC_BY_40' => 'CC-BY-4.0',
             'CC_BY_SA_30' => 'CC-BY-SA-3.0',
             'CC_BY_SA_40' => 'CC-BY-SA-4.0',
             'CC_BY_NC_SA_30' => 'CC-BY-NC-SA-3.0',
@@ -45,6 +47,7 @@ final class License extends Enum
             'AGPL_30' => 'AGPL 3.0',
             'BSD_2_CLAUSE' => 'BSD 2-Clause',
             'BSD_3_CLAUSE' => 'BSD 3-Clause',
+            'CC_BY_40' => 'CC-BY-4.0',
             'CC_BY_SA_30' => 'CC-BY-SA-3.0',
             'CC_BY_SA_40' => 'CC-BY-SA-4.0',
             'CC_BY_NC_SA_30' => 'CC-BY-NC-SA-3.0',
