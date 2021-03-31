@@ -26,6 +26,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self SMARTY()
  * @method static self ELIXIR()
  * @method static self POWERSHELL()
+ * @method static self YAML()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
