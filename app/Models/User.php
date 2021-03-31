@@ -57,8 +57,10 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static Builder|User whereHasGithubAccessToken()
- * @method static Builder|User whereIsRegistered()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereHasGithubAccessToken()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereIsRegistered()
+ * @method static \Illuminate\Database\Eloquent\Builder|User byEmail(string $email)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract
@@ -219,18 +221,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $query->whereHasGithubAccessToken();
     }
 
+    public function scopeWhereEmail(Builder $query, string $email): void
+    {
+        $query->where('email', 'ILIKE', $email);
+    }
+
     public function scopeByEmail(Builder $query, string $email): void
     {
         $email = Str::of($email);
 
         $query
-            ->where('email', 'ILIKE', $email)
-            ->when($email->endsWith('@users.noreply.github.com'), function (Builder $q) use ($email): void {
+            ->whereEmail($email)
+            ->when($email->endsWith('@users.noreply.github.com'), static function (Builder $query) use ($email): void {
                 $parts = $email
                     ->beforeLast('@users.noreply.github.com')
                     ->explode('+', 2);
 
-                $q->orWhere(array_filter([
+                $query->orWhere(array_filter([
                     'id' => is_numeric($parts[0]) ? $parts[0] : null,
                     'name' => $parts[1] ?? $parts[0],
                 ]));
