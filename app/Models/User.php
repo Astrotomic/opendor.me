@@ -133,18 +133,28 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function getEmailsAttribute(): array
     {
+        $default = array_unique([
+            $this->email,
+            "{$this->id}+{$this->name}@users.noreply.github.com",
+        ]);
+
+        if (! $this->hasGithubToken()) {
+            return $default;
+        }
+
         return $this->remember(
             'emails',
             CarbonInterval::week()->totalSeconds,
-            function (): array {
+            function () use ($default): array {
                 try {
                     return $this->github()->get('/user/emails')->collect()
                         ->filter->verified
                         ->pluck('email')
-                        ->map(fn (string $email): string => Str::lower($email))
+                        ->concat($default)
+                        ->unique()
                         ->toArray();
                 } catch (Throwable $exception) {
-                    return [$this->email];
+                    return $default;
                 }
             }
         );
@@ -207,5 +217,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function scopeWhereIsRegistered(Builder $query): void
     {
         $query->whereHasGithubAccessToken();
+    }
+
+    public function scopeByEmail(Builder $query, string $email): void
+    {
+        $email = Str::of($email);
+
+        $query
+            ->where('email', 'ILIKE', $email)
+            ->when($email->endsWith('@users.noreply.github.com'), function (Builder $q) use ($email): void {
+                $parts = $email
+                    ->beforeLast('@users.noreply.github.com')
+                    ->explode('+', 2);
+
+                $q->orWhere(array_filter([
+                    'id' => is_numeric($parts[0]) ? $parts[0] : null,
+                    'name' => $parts[1] ?? $parts[0],
+                ]));
+            });
     }
 }

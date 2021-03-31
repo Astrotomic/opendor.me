@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Repository;
 use App\Models\User;
-use Illuminate\Support\Str;
 
 class LoadRepositoryContributors extends GithubJob
 {
@@ -15,6 +14,8 @@ class LoadRepositoryContributors extends GithubJob
 
     public function run(): void
     {
+        $users = User::all();
+
         $page = 1;
         do {
             $response = $this->repository->github()->get("/repos/{$this->repository->name}/contributors", [
@@ -23,22 +24,13 @@ class LoadRepositoryContributors extends GithubJob
                     'page' => $page,
                 ])->collect();
 
-            $contributors = $response->map(function (array $contributor): ?User {
+            $contributors = $response->map(function (array $contributor) use ($users): ?User {
                 if ($contributor['type'] === 'User') {
                     return User::fromGithub($contributor);
                 } elseif ($contributor['type'] === 'Anonymous') {
-                    if (Str::endsWith($contributor['email'], '@users.noreply.github.com')) {
-                        $parts = Str::of($contributor['email'])
-                            ->beforeLast('@users.noreply.github.com')
-                            ->explode('+', 2);
+                    $user = User::byEmail($contributor['email'])->first();
 
-                        $user = User::orWhere([
-                            'id' => is_numeric($parts[0]) ? $parts[0] : null,
-                            'name' => $parts[1] ?? $parts[0],
-                        ])->first();
-                    }
-
-                    return $user ?? User::cursor()->first(fn (User $user): bool => in_array($contributor['email'], $user->emails));
+                    return $user ?? $users->first(fn (User $user): bool => in_array($contributor['email'], $user->emails));
                 }
 
                 return null;
