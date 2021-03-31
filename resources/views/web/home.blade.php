@@ -64,7 +64,7 @@
                     Repositories
                 </h2>
                 <p class="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus sed.
+                    Let our contributors work speak for itself. Checkout some of the repositories our contributors have provided contributions to.
                 </p>
             </div>
             <div class="grid grid-cols-1 gap-6 mx-auto mt-12 max-w-lg lg:grid-cols-3 lg:max-w-none">
