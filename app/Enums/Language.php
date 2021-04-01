@@ -27,6 +27,8 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self ELIXIR()
  * @method static self POWERSHELL()
  * @method static self YAML()
+ * @method static self PERL()
+ * @method static self OBJECTIVE_C()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -40,6 +42,7 @@ final class Language extends Enum
     {
         return [
             'C_SHARP' => 'C#',
+            'OBJECTIVE_C' => 'Objective-C',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -63,6 +66,8 @@ final class Language extends Enum
             'ELIXIR' => 'Elixir',
             'SMARTY' => 'Smarty',
             'POWERSHELL' => 'PowerShell',
+            'PERL' => 'Perl',
+            'OBJECTIVE_C' => 'Objective-C',
             'C_SHARP' => 'C#',
             'NOASSERTION' => 'Other',
         ];

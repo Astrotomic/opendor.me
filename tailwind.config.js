@@ -27,6 +27,8 @@ module.exports = {
               'bg-elixir',
               'bg-powershell',
               'bg-yaml',
+              'bg-perl',
+              'bg-objective-c',
               'bg-gray-300',
           ],
       },
