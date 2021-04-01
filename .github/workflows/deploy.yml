@@ -44,11 +44,11 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: '🚀 Deployment finished for ${{ github.sha }}'
+          args: '🚀 Deployment finished for `${{ github.sha }}`'
 
       - uses: Ilshidur/action-discord@master
         if: ${{ failure() }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: '💣️ Deployment failed for ${{ github.sha }}'
+          args: '💣️ Deployment failed for `${{ github.sha }}`'
