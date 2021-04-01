@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-//        Gate::before(static function (User $user): ?bool {
-//            return $user->is_superadmin ? true : null;
-//        });
+        Gate::before(static function (User $user): ?bool {
+            return $user->is_superadmin ? true : null;
+        });
     }
 }
