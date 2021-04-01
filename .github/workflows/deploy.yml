@@ -10,7 +10,7 @@ jobs:
       url: https://opendor.me
 
     steps:
-      - uses: appleboy/ssh-action@master
+      - uses: appleboy/ssh-action@0.1.4
         env:
           SSH_ROOT: ${{ secrets.SSH_ROOT }}
         with:
@@ -35,7 +35,20 @@ jobs:
             php artisan schedule-monitor:sync
             php artisan horizon:terminate
 
-      - uses: srt32/uptime@master
+      - uses: srt32/uptime@0.2.1
         with:
          url-to-hit: "https://opendor.me"
          expected-statuses: "200"
+
+      - uses: Ilshidur/action-discord@0.3.0
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: '🚀 Deployment finished for ${{ github.sha }}'
+
+      - uses: Ilshidur/action-discord@0.3.0
+        if: ${{ failure() }}
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: '💣️ Deployment failed for ${{ github.sha }}'
