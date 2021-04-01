@@ -1,0 +1,41 @@
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://opendor.me
+
+    steps:
+      - uses: appleboy/ssh-action@master
+        env:
+          SSH_ROOT: ${{ secrets.SSH_ROOT }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script_stop: true
+          envs: "SSH_ROOT"
+          script: |
+            cd $SSH_ROOT
+            git pull origin main
+            yarn install
+            yarn production
+            composer update --no-interaction --prefer-dist --optimize-autoloader --no-dev
+            sudo -S service php8.0-fpm reload
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan event:cache
+            php artisan migrate --force
+            php artisan schedule-monitor:sync
+            php artisan horizon:terminate
+
+      - uses: srt32/uptime@master
+        with:
+         url-to-hit: "https://opendor.me"
+         expected-statuses: "200"
