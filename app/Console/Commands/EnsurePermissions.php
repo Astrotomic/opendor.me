@@ -25,7 +25,8 @@ class EnsurePermissions extends Command
             $role = Role::findOrCreate("{$entity}.manager");
 
             $role->givePermissionTo(
-                Permission::findOrCreate("{$entity}.*")
+                Permission::findOrCreate("{$entity}.*"),
+                Permission::findOrCreate('viewNova')
             );
         }
 
