@@ -32,6 +32,7 @@ jobs:
             php artisan view:cache
             php artisan event:cache
             php artisan migrate --force
+            php artisan permission:ensure
             php artisan schedule-monitor:sync
             php artisan horizon:terminate
 

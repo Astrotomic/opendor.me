@@ -12,12 +12,12 @@ class OrganizationPolicy
 
     public function viewAny(User $auth): bool
     {
-        return true;
+        return $auth->isAllowedTo('viewAny', Organization::class);
     }
 
     public function view(User $auth, Organization $organization): bool
     {
-        return true;
+        return $auth->isAllowedTo('view', $organization);
     }
 
     public function create(User $auth): bool
@@ -27,7 +27,7 @@ class OrganizationPolicy
 
     public function update(User $auth, Organization $organization): bool
     {
-        return false;
+        return $auth->isAllowedTo('update', $organization);
     }
 
     public function delete(User $auth, Organization $organization): bool
@@ -52,16 +52,16 @@ class OrganizationPolicy
 
     public function block(User $auth, Organization $organization): bool
     {
-        return $auth->is_admin;
+        return $auth->isAllowedTo('block', $organization);
     }
 
     public function unblock(User $auth, Organization $organization): bool
     {
-        return $auth->is_admin;
+        return $auth->isAllowedTo('unblock', $organization);
     }
 
     public function details(User $auth, Organization $organization): bool
     {
-        return $auth->is_admin;
+        return $auth->isAllowedTo('details', $organization);
     }
 }

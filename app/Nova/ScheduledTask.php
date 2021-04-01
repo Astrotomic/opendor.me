@@ -72,6 +72,16 @@ class ScheduledTask extends Resource
         ];
     }
 
+    public static function authorizedToViewAny(Request $request): bool
+    {
+        return $request->user()->can('viewHorizon');
+    }
+
+    public function authorizedToView(Request $request): bool
+    {
+        return $request->user()->can('viewHorizon');
+    }
+
     public static function authorizedToCreate(Request $request): bool
     {
         return false;

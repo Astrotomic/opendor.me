@@ -22,6 +22,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Vyuldashev\NovaPermission\RoleBooleanGroup;
 
 class User extends Resource
 {
@@ -74,9 +75,6 @@ class User extends Resource
                 ->hideFromIndex()
                 ->domainLabel(),
 
-            Boolean::make('Admin', 'is_admin')
-                ->sortable(),
-
             Boolean::make('GitHub', 'github_access_token')
                 ->sortable()
                 ->readonly()
@@ -104,6 +102,8 @@ class User extends Resource
             MorphMany::make('Repositories', null, Repository::class),
 
             BelongsToMany::make('Contributions', null, Repository::class),
+
+            RoleBooleanGroup::make('Roles'),
         ];
     }
 

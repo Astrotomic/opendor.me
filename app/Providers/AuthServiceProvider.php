@@ -2,13 +2,16 @@
 
 namespace App\Providers;
 
+use App\Models\FAQ;
 use App\Models\Organization;
 use App\Models\Repository;
 use App\Models\User;
+use App\Policies\FaqPolicy;
 use App\Policies\OrganizationPolicy;
 use App\Policies\RepositoryPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,10 +19,15 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         Organization::class => OrganizationPolicy::class,
         Repository::class => RepositoryPolicy::class,
+        FAQ::class => FaqPolicy::class,
     ];
 
     public function boot(): void
     {
         $this->registerPolicies();
+
+//        Gate::before(static function (User $user): ?bool {
+//            return $user->is_superadmin ? true : null;
+//        });
     }
 }

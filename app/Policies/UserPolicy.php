@@ -11,12 +11,12 @@ class UserPolicy
 
     public function viewAny(User $auth): bool
     {
-        return true;
+        return $auth->isAllowedTo('viewAny', User::class);
     }
 
     public function view(User $auth, User $user): bool
     {
-        return true;
+        return $auth->isAllowedTo('view', $user);
     }
 
     public function create(User $auth): bool
@@ -26,7 +26,7 @@ class UserPolicy
 
     public function update(User $auth, User $user): bool
     {
-        return false;
+        return $auth->isAllowedTo('update', $user);
     }
 
     public function delete(User $auth, User $user): bool
@@ -56,16 +56,16 @@ class UserPolicy
 
     public function block(User $auth, User $user): bool
     {
-        return $auth->is_admin;
+        return $auth->isAllowedTo('block', $user);
     }
 
     public function unblock(User $auth, User $user): bool
     {
-        return $auth->is_admin;
+        return $auth->isAllowedTo('unblock', $user);
     }
 
     public function details(User $auth, User $user): bool
     {
-        return $auth->is_admin;
+        return $auth->isAllowedTo('details', $user);
     }
 }

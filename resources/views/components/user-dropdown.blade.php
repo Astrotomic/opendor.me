@@ -33,20 +33,20 @@
             >View Profile</a>
         </li>
         <li class="py-1" role="none">
-            @if(auth()->user()->is_admin)
+            @can('viewNova')
                 <a
                     href="{{ url(config('nova.path')) }}"
                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                     role="menuitem"
                 >Nova</a>
-            @endif
-            @if(auth()->user()->is_superadmin)
+            @endcan
+            @can('viewHorizon')
                 <a
                     href="{{ url(config('horizon.path')) }}"
                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                     role="menuitem"
                 >Horizon</a>
-            @endif
+                @endcan
         </li>
         <li class="py-1" role="none">
             <x-logout :action="route('auth.signout')" class="block py-2 px-4 w-full text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">

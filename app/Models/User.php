@@ -21,6 +21,7 @@ use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Nova\Actions\Actionable;
+use Spatie\Permission\Traits\HasRoles;
 use Throwable;
 
 /**
@@ -44,7 +45,6 @@ use Throwable;
  * @property-read string $avatar_url
  * @property-read string[] $emails
  * @property-read string $github_url
- * @property-read bool $is_admin
  * @property-read bool $is_blocked
  * @property-read string $profile_url
  * @property-read bool $is_superadmin
@@ -71,6 +71,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use RoutesNotifications;
     use Actionable;
     use Blockable;
+    use HasRoles;
 
     public $incrementing = false;
 
@@ -162,13 +163,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         );
     }
 
-    public function getIsAdminAttribute(?bool $value): bool
-    {
-        return $this->is_superadmin
-            ?: $value
-            ?? false;
-    }
-
     public function getIsSuperadminAttribute(): bool
     {
         return $this->id === 6187884; // Gummibeer
@@ -242,5 +236,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                     'name' => $parts[1] ?? $parts[0],
                 ]));
             });
+    }
+
+    /**
+     * @param string $ability
+     * @param \Illuminate\Database\Eloquent\Model|string|null $entity
+     *
+     * @return bool
+     */
+    public function isAllowedTo(string $ability, $entity = null): bool
+    {
+        if ($entity === null) {
+            return $this->can($ability);
+        }
+
+        return $this->can(implode('.', array_filter([
+            Str::of(is_string($entity) ? $entity : get_class($entity))->classBasename()->slug('_')->pluralStudly(),
+            $ability,
+            $entity instanceof Model ? $entity->getKey() : null,
+        ])));
     }
 }

@@ -26,8 +26,10 @@
         "owenvoke/blade-fontawesome": "^1.6",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-enum": "^2.4",
+        "spatie/laravel-permission": "^4.0",
         "spatie/laravel-schedule-monitor": "^2.2.1",
-        "stillat/numeral.php": "^2.0"
+        "stillat/numeral.php": "^2.0",
+        "vyuldashev/nova-permission": "^2.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
