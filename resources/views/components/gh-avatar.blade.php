@@ -6,5 +6,5 @@
     :src="$model->avatar_url"
     :alt="$model->name"
     loading="lazy"
-    {{ $attributes->merge(['class' => 'flex-shrink-0 rounded-md']) }}
+    {{ $attributes->merge(['class' => 'flex-shrink-0 rounded-md bg-white']) }}
 />

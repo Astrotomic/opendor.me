@@ -40,7 +40,7 @@
                 <div class="flex items-center mb-6 space-x-5">
                     <div class="flex-shrink-0">
                         <div class="relative">
-                            <x-gh-avatar :model="$owner" class="w-20 h-20 bg-white shadow"/>
+                            <x-gh-avatar :model="$owner" class="w-20 h-20 shadow"/>
                         </div>
                     </div>
                     <div class="space-y-1">
