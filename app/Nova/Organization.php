@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enums\BlockReason as BlockReasonEnum;
+use App\Models\Organization as OrganizationModel;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\UnblockEntity;
@@ -22,7 +23,7 @@ use Laravel\Nova\Fields\Text;
 
 class Organization extends Resource
 {
-    public static $model = \App\Models\Organization::class;
+    public static $model = OrganizationModel::class;
     public static $group = 'GitHub';
     public static $title = 'name';
     public static $search = [
@@ -40,7 +41,7 @@ class Organization extends Resource
                 ->sortable()
                 ->readonly()
                 ->alwaysClickable()
-                ->labelUsing(fn (string $url, \App\Models\Organization $organization): string => $organization->name),
+                ->labelUsing(fn (string $url, OrganizationModel $organization): string => $organization->name),
 
             Text::make('Full Name', 'full_name')
                 ->readonly()
@@ -58,7 +59,7 @@ class Organization extends Resource
                 ->readonly()
                 ->hideFromIndex()
                 ->alwaysClickable()
-                ->labelUsing(fn (?string $url, \App\Models\Organization $organization): string => '@'.$organization->twitter),
+                ->labelUsing(fn (?string $url, OrganizationModel $organization): string => '@'.$organization->twitter),
 
             Url::make('Website')
                 ->readonly()
@@ -96,7 +97,7 @@ class Organization extends Resource
     public function cards(Request $request): array
     {
         return [
-            EntitiesPerBlockReason::make(\App\Models\Organization::class),
+            EntitiesPerBlockReason::make(OrganizationModel::class),
         ];
     }
 

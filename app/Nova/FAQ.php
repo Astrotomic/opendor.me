@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Models\FAQ as FaqModel;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
@@ -12,7 +13,7 @@ class FAQ extends Resource
 {
     use HasSortableRows;
 
-    public static $model = \App\Models\FAQ::class;
+    public static $model = FaqModel::class;
     public static $group = 'Content';
     public static $title = 'question';
     public static $search = [

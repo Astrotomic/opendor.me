@@ -28,7 +28,7 @@ class FAQ extends Model implements Sortable
 
     protected $table = 'faqs';
 
-    public array $sortable = [
+    protected array $sortable = [
         'order_column_name' => 'priority',
         'sort_when_creating' => true,
     ];

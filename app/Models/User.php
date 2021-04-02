@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
@@ -15,7 +16,6 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
@@ -121,6 +121,39 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ->as('repository_user');
     }
 
+    public function scopeWhereHasGithubAccessToken(Builder $query): void
+    {
+        $query->whereNotNull('github_access_token');
+    }
+
+    public function scopeWhereIsRegistered(Builder $query): void
+    {
+        $query->whereHasGithubAccessToken();
+    }
+
+    public function scopeWhereEmail(Builder $query, string $email): void
+    {
+        $query->where('email', 'ILIKE', $email);
+    }
+
+    public function scopeByEmail(Builder $query, string $email): void
+    {
+        $email = Str::of($email);
+
+        $query
+            ->whereEmail($email)
+            ->when($email->endsWith('@users.noreply.github.com'), static function (Builder $query) use ($email): void {
+                $parts = $email
+                    ->beforeLast('@users.noreply.github.com')
+                    ->explode('+', 2);
+
+                $query->orWhere(array_filter([
+                    'id' => is_numeric($parts[0]) ? $parts[0] : null,
+                    'name' => $parts[1] ?? $parts[0],
+                ]));
+            });
+    }
+
     public function getAvatarUrlAttribute(): string
     {
         return "https://avatars.githubusercontent.com/u/{$this->id}";
@@ -203,57 +236,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
 
         return Http::github();
-    }
-
-    public function scopeWhereHasGithubAccessToken(Builder $query): void
-    {
-        $query->whereNotNull('github_access_token');
-    }
-
-    public function scopeWhereIsRegistered(Builder $query): void
-    {
-        $query->whereHasGithubAccessToken();
-    }
-
-    public function scopeWhereEmail(Builder $query, string $email): void
-    {
-        $query->where('email', 'ILIKE', $email);
-    }
-
-    public function scopeByEmail(Builder $query, string $email): void
-    {
-        $email = Str::of($email);
-
-        $query
-            ->whereEmail($email)
-            ->when($email->endsWith('@users.noreply.github.com'), static function (Builder $query) use ($email): void {
-                $parts = $email
-                    ->beforeLast('@users.noreply.github.com')
-                    ->explode('+', 2);
-
-                $query->orWhere(array_filter([
-                    'id' => is_numeric($parts[0]) ? $parts[0] : null,
-                    'name' => $parts[1] ?? $parts[0],
-                ]));
-            });
-    }
-
-    /**
-     * @param string $ability
-     * @param \Illuminate\Database\Eloquent\Model|string|null $entity
-     *
-     * @return bool
-     */
-    public function isAllowedTo(string $ability, $entity = null): bool
-    {
-        if ($entity === null) {
-            return $this->can($ability);
-        }
-
-        return $this->can(implode('.', array_filter([
-            Str::of(is_string($entity) ? $entity : get_class($entity))->classBasename()->slug('_')->pluralStudly(),
-            $ability,
-            $entity instanceof Model ? $entity->getKey() : null,
-        ])));
     }
 }

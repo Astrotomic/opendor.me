@@ -33,11 +33,6 @@ use Spatie\Enum\Laravel\Enum;
  */
 final class Language extends Enum
 {
-    public function color(): string
-    {
-        return $this->equals(static::NOASSERTION(), static::SMARTY()) ? 'gray-300' : Str::slug($this->value);
-    }
-
     protected static function values(): array
     {
         return [
@@ -71,5 +66,10 @@ final class Language extends Enum
             'C_SHARP' => 'C#',
             'NOASSERTION' => 'Other',
         ];
+    }
+
+    public function color(): string
+    {
+        return $this->equals(static::NOASSERTION(), static::SMARTY()) ? 'gray-300' : Str::slug($this->value);
     }
 }

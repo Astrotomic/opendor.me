@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Enums\BlockReason as BlockReasonEnum;
 use App\Enums\Language as LanguageEnum;
 use App\Enums\License as LicenseEnum;
+use App\Models\Repository as RepositoryModel;
 use App\Nova\Actions\AddRepository;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadContributors;
@@ -31,7 +32,7 @@ use Laravel\Nova\Fields\Text;
 
 class Repository extends Resource
 {
-    public static $model = \App\Models\Repository::class;
+    public static $model = RepositoryModel::class;
     public static $group = 'GitHub';
     public static $title = 'name';
     public static $search = [
@@ -47,7 +48,7 @@ class Repository extends Resource
                 ->sortable()
                 ->readonly()
                 ->alwaysClickable()
-                ->labelUsing(fn (string $url, \App\Models\Repository $repository): string => $repository->name),
+                ->labelUsing(fn (string $url, RepositoryModel $repository): string => $repository->name),
 
             Text::make('Description')
                 ->readonly()
@@ -100,7 +101,7 @@ class Repository extends Resource
         return [
             RepositoriesPerLicense::make(),
             RepositoriesPerLanguage::make(),
-            EntitiesPerBlockReason::make(\App\Models\Repository::class),
+            EntitiesPerBlockReason::make(RepositoryModel::class),
         ];
     }
 

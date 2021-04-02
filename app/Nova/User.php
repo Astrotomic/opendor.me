@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Enums\BlockReason as BlockReasonEnum;
+use App\Models\User as UserModel;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\SyncOrganizations;
@@ -26,7 +27,7 @@ use Vyuldashev\NovaPermission\RoleBooleanGroup;
 
 class User extends Resource
 {
-    public static $model = \App\Models\User::class;
+    public static $model = UserModel::class;
     public static $group = 'GitHub';
     public static $title = 'name';
     public static $search = [
@@ -44,7 +45,7 @@ class User extends Resource
                 ->sortable()
                 ->readonly()
                 ->alwaysClickable()
-                ->labelUsing(fn (string $url, \App\Models\User $user): string => $user->name),
+                ->labelUsing(fn (string $url, UserModel $user): string => $user->name),
 
             Text::make('Full Name', 'full_name')
                 ->readonly()
@@ -67,7 +68,7 @@ class User extends Resource
                 ->readonly()
                 ->hideFromIndex()
                 ->alwaysClickable()
-                ->labelUsing(fn (?string $url, \App\Models\User $user): string => '@'.$user->twitter),
+                ->labelUsing(fn (?string $url, UserModel $user): string => '@'.$user->twitter),
 
             Url::make('Website')
                 ->readonly()
@@ -111,7 +112,7 @@ class User extends Resource
     {
         return [
             RegisteredUsers::make(),
-            EntitiesPerBlockReason::make(\App\Models\User::class),
+            EntitiesPerBlockReason::make(UserModel::class),
         ];
     }
 

@@ -19,6 +19,31 @@ class ScheduledTask extends Resource
     public static $searchable = false;
     public static $polling = true;
 
+    public static function authorizedToViewAny(Request $request): bool
+    {
+        return $request->user()->can('viewHorizon');
+    }
+
+    public static function authorizedToCreate(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToView(Request $request): bool
+    {
+        return $request->user()->can('viewHorizon');
+    }
+
+    public function authorizedToDelete(Request $request): bool
+    {
+        return false;
+    }
+
+    public function authorizedToUpdate(Request $request): bool
+    {
+        return false;
+    }
+
     public function fields(Request $request): array
     {
         return [
@@ -70,30 +95,5 @@ class ScheduledTask extends Resource
                 ->sortable()
                 ->textAlign('right'),
         ];
-    }
-
-    public static function authorizedToViewAny(Request $request): bool
-    {
-        return $request->user()->can('viewHorizon');
-    }
-
-    public function authorizedToView(Request $request): bool
-    {
-        return $request->user()->can('viewHorizon');
-    }
-
-    public static function authorizedToCreate(Request $request): bool
-    {
-        return false;
-    }
-
-    public function authorizedToDelete(Request $request): bool
-    {
-        return false;
-    }
-
-    public function authorizedToUpdate(Request $request): bool
-    {
-        return false;
     }
 }

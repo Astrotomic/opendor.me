@@ -20,8 +20,6 @@ abstract class GithubJob extends Job implements ShouldBeUnique
         $this->timeout = CarbonInterval::hour()->totalSeconds;
     }
 
-    abstract protected function run(): void;
-
     public function handle(): bool
     {
         try {
@@ -108,4 +106,6 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
         return $tags;
     }
+
+    abstract protected function run(): void;
 }
