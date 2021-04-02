@@ -1,9 +1,40 @@
 on:
   push:
-    branches: [main]
+  pull_request:
 
 jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ github.head_ref }}"
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: dom, curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, intl
+          coverage: none
+      - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
+      - run: vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run
+
+  tlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: dom, curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, intl
+          coverage: none
+      - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
+      - run: vendor/bin/tlint lint ./app --no-interaction -v
+
   deploy:
+    if: github.event_name == 'push' && false
+    needs:
+      - phpcs
+      - tlint
     runs-on: ubuntu-latest
     environment:
       name: production
@@ -39,8 +70,8 @@ jobs:
 
       - uses: srt32/uptime@master
         with:
-         url-to-hit: "https://opendor.me"
-         expected-statuses: "200"
+          url-to-hit: "https://opendor.me"
+          expected-statuses: "200"
 
       - uses: Ilshidur/action-discord@master
         env:
@@ -54,3 +85,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: '💣️ Deployment failed for `${{ github.sha }}`'
+
