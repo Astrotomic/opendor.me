@@ -6,7 +6,6 @@ jobs:
   phpcs:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ github.head_ref }}"
       - uses: actions/checkout@v2
       - uses: shivammathur/setup-php@v2
         with:
@@ -31,7 +30,7 @@ jobs:
       - run: vendor/bin/tlint lint ./app --no-interaction -v
 
   deploy:
-    if: github.event_name == 'push' && false
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     needs:
       - phpcs
       - tlint
@@ -39,7 +38,6 @@ jobs:
     environment:
       name: production
       url: https://opendor.me
-
     steps:
       - uses: appleboy/ssh-action@master
         env:
@@ -67,18 +65,15 @@ jobs:
             php artisan permission:ensure
             php artisan schedule-monitor:sync
             php artisan horizon:terminate
-
       - uses: srt32/uptime@master
         with:
           url-to-hit: "https://opendor.me"
           expected-statuses: "200"
-
       - uses: Ilshidur/action-discord@master
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: '🚀 Deployment finished for `${{ github.sha }}`'
-
       - uses: Ilshidur/action-discord@master
         if: ${{ failure() }}
         env:
