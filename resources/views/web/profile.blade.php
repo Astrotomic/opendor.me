@@ -1,5 +1,5 @@
 <x-layout.web :page-title="$user->name" class="py-10">
-    <div class="px-4 mx-auto max-w-3xl sm:px-6 flex flex-col space-y-3 lg:max-w-7xl lg:px-8">
+    <div class="flex flex-col px-4 mx-auto space-y-3 max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="flex items-center space-x-5">
             <div class="flex-shrink-0">
                 <div class="relative">
@@ -11,7 +11,7 @@
                     {{ $user->full_name ?? $user->name }}
                 </h1>
                 <x-profile.aside :model="$user"/>
-                <ul class="flex space-x-2 flex-wrap">
+                <ul class="flex flex-wrap space-x-2">
                     @foreach($languages->unique() as $language)
                         <li><x-repository.language :language="$language" class="shadow"/></li>
                     @endforeach
@@ -36,8 +36,8 @@
     <section class="px-4 mx-auto mt-8 space-y-8 max-w-3xl sm:mt-12 lg:mt-16 sm:px-6 lg:px-8 lg:max-w-7xl sm:space-y-12 lg:space-y-16">
         @foreach($contributions as $repositories)
             @php($owner = $repositories->first()->owner)
-            <div>
-                <div class="flex items-center mb-6 space-x-5">
+            <div class="space-y-6" x-data="{{ json_encode(['showAll' => false, 'count' => $repositories->count()]) }}">
+                <div class="flex items-center space-x-5">
                     <div class="flex-shrink-0">
                         <div class="relative">
                             <x-gh-avatar :model="$owner" class="w-20 h-20 shadow"/>
@@ -52,11 +52,31 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 col-span-full">
-                    @foreach($repositories as $repository)
+                <div class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach($repositories->take(6) as $repository)
                         <x-repository :repository="$repository" :user="$user"/>
                     @endforeach
                 </div>
+
+                @if($repositories->count() > 6)
+                    <button
+                        type="button"
+                        @click="showAll = !showAll"
+                        class="block mx-auto items-center px-2.5 py-1.5 border border-gray-300 shadow text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow"
+                        x-text="(showAll ? 'hide additional repositories' : `show all ${count} repositories`)"
+                    ></button>
+
+                    <div
+                        class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                        x-cloak
+                        x-show="showAll"
+                        :aria-hidden="!showAll"
+                    >
+                        @foreach($repositories->slice(6) as $repository)
+                            <x-repository :repository="$repository" :user="$user"/>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         @endforeach
     </section>
