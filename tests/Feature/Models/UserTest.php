@@ -55,7 +55,7 @@ final class UserTest extends TestCase
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de']);
+            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
 
         $user = User::byEmail('dev@gummibeer.de')->first();
         UserAssertions::assertUser($user);
@@ -67,7 +67,7 @@ final class UserTest extends TestCase
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de']);
+            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
 
         $user = User::byEmail('6187884+Gummibeer@users.noreply.github.com')->first();
         UserAssertions::assertUser($user);
@@ -79,7 +79,7 @@ final class UserTest extends TestCase
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de']);
+            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
 
         $user = User::byEmail('Gummibeer@users.noreply.github.com')->first();
         UserAssertions::assertUser($user);
@@ -91,7 +91,7 @@ final class UserTest extends TestCase
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de']);
+            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
 
         $user = User::byEmail('6187884@users.noreply.github.com')->first();
         UserAssertions::assertUser($user);
