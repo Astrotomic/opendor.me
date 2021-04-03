@@ -15,7 +15,7 @@ Route::get('/', static function (): View {
 })->name('home');
 
 Route::get('@{user:name}', static function (User $user): View {
-    abort_unless($user->hasGithubToken(), Response::HTTP_NOT_FOUND);
+    abort_unless($user->isRegistered(), Response::HTTP_NOT_FOUND);
     abort_if($user->isBlocked(), Response::HTTP_NOT_FOUND);
 
     $contributions = $user->contributions()->with('owner')->cursor();

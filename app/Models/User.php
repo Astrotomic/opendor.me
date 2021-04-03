@@ -233,6 +233,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->github_access_token !== null;
     }
 
+    public function isRegistered(): bool
+    {
+        return $this->hasGithubToken() && $this->hasVerifiedEmail();
+    }
+
     public function github(): PendingRequest
     {
         if ($this->hasGithubToken()) {

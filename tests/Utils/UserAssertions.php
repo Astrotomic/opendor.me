@@ -24,17 +24,15 @@ trait UserAssertions
         self::assertEmail($actual);
         self::assertGithubUrl($actual);
         self::assertAvatarUrl($actual);
-        self::assertGithubAccessToken($actual);
+        self::assertTwitter($actual);
+        self::assertEmails($actual);
 
+        NullableTypeAssertions::assertIsNullableString($actual->github_access_token);
         NullableTypeAssertions::assertIsNullableString($actual->full_name);
         NullableTypeAssertions::assertIsNullableString($actual->description);
         NullableTypeAssertions::assertIsNullableString($actual->location);
 
-        self::assertTwitter($actual);
-
         BlockableAssertions::assertBlockable($actual);
-
-        self::assertEmails($actual);
     }
 
     public static function assertEmail(User $actual): void
@@ -87,11 +85,5 @@ trait UserAssertions
         foreach ($actual->emails as $email) {
             EmailAssertions::assertValidLoose($email);
         }
-    }
-
-    public static function assertGithubAccessToken(User $actual): void
-    {
-        NullableTypeAssertions::assertIsNullableString($actual->github_access_token);
-        PHPUnit::assertIsBool($actual->hasGithubToken());
     }
 }

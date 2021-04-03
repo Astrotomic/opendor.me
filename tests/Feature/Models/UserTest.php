@@ -18,7 +18,7 @@ final class UserTest extends TestCase
         UserAssertions::assertUser($user);
         $this->assertSame('Gummibeer', $user->name);
         $this->assertSame('6187884+Gummibeer@users.noreply.github.com', $user->email);
-        $this->assertFalse($user->hasGithubToken());
+        $this->assertFalse($user->isRegistered());
     }
 
     public function test_it_finds_user_from_github(): void
