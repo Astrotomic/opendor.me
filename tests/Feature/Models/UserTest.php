@@ -4,6 +4,7 @@ namespace Tests\Feature\Models;
 
 use App\Enums\BlockReason;
 use App\Models\User;
+use Astrotomic\PhpunitAssertions\Laravel\ModelAssertions;
 use Spatie\Enum\Phpunit\EnumAssertions;
 use Tests\Feature\TestCase;
 use Tests\Utils\UserAssertions;
@@ -23,10 +24,11 @@ final class UserTest extends TestCase
     public function test_it_finds_user_from_github(): void
     {
         $user1 = User::fromGithub($this->fixture('users/Gummibeer'));
-        UserAssertions::assertUser($user1);
-
         $user2 = User::fromGithub($this->fixture('users/Gummibeer'));
+
+        UserAssertions::assertUser($user1);
         UserAssertions::assertUser($user2);
+        ModelAssertions::assertSame($user1, $user2);
 
         $this->assertSame('Gummibeer', $user1->name);
         $this->assertSame('Gummibeer', $user2->name);
@@ -35,14 +37,16 @@ final class UserTest extends TestCase
     public function test_it_finds_blocked_user_from_github(): void
     {
         $user1 = User::fromGithub($this->fixture('users/Gummibeer'));
-        UserAssertions::assertUser($user1);
         $user1->update([
             'block_reason' => BlockReason::SPAM(),
             'blocked_at' => now(),
         ]);
 
         $user2 = User::fromGithub($this->fixture('users/Gummibeer'));
+
+        UserAssertions::assertUser($user1);
         UserAssertions::assertUser($user2);
+        ModelAssertions::assertSame($user1, $user2);
 
         $this->assertSame('Gummibeer', $user1->name);
         $this->assertSame('Gummibeer', $user2->name);
