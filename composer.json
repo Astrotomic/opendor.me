@@ -32,8 +32,10 @@
         "vyuldashev/nova-permission": "^2.11"
     },
     "require-dev": {
+        "astrotomic/phpunit-assertions": "^0.3.0",
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.8",
+        "egulias/email-validator": "^2.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^2.18",
@@ -120,6 +122,8 @@
             "vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
+        "test": "@php vendor/bin/phpunit",
+        "test-coverage": "@php vendor/bin/phpunit --coverage-html=.coverage",
         "thanks": "echo 'composer global require symfony/thanks'"
     }
 }

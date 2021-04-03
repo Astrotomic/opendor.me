@@ -18,3 +18,4 @@ _ide_helper.php
 package-lock.json
 auth.json
 .npmrc
+/.coverage/
