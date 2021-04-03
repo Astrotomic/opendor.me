@@ -65,7 +65,7 @@ jobs:
           coverage: xdebug
       - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
-      - run: vendor/bin/phpunit --coverage-html=.coverage
+      - run: vendor/bin/phpunit --coverage-html=.coverage --coverage-text
       - uses: actions/upload-artifact@v2
         with:
           name: Coverage
