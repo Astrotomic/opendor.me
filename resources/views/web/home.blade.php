@@ -15,7 +15,7 @@
     <div class="relative pt-6 pb-16 sm:pb-24 lg:pb-32">
         <main class="px-4 mx-auto mt-16 max-w-7xl sm:mt-24 sm:px-6 lg:mt-32">
             <div class="lg:flex lg:justify-between">
-                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left pr-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left lg:pr-8">
                     <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl text-gray-900">
                       We <span class="text-indigo-600">open doors</span> for open-source contributors
                     </h1>
