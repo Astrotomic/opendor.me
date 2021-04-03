@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Closure;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +26,16 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        PendingRequest::macro('when', function ($condition, Closure $callback): PendingRequest {
+            /** @var \Illuminate\Http\Client\PendingRequest $this */
+            $condition = value($condition);
+            if ($condition) {
+                $callback($this, $condition);
+            }
+
+            return $this;
+        });
+
         Http::macro('github', function (): PendingRequest {
             /** @var \Illuminate\Http\Client\Factory $this */
             return $this
@@ -32,8 +43,9 @@ class AppServiceProvider extends ServiceProvider
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withOptions(['http_errors' => true])
-                ->withToken(
-                    User::whereIsRegistered()->inRandomOrder()->first()->github_access_token
+                ->when(
+                    User::whereIsRegistered()->inRandomOrder()->first()?->github_access_token,
+                    fn (PendingRequest $request, $token) => $request->withToken($token)
                 );
         });
 
