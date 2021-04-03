@@ -39,7 +39,6 @@ use Throwable;
  * @property int $stargazers_count
  * @property string|null $website
  * @property-read string $github_url
- * @property-read bool $is_blocked
  * @property-read string $repository_name
  * @property-read string $vendor_name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions

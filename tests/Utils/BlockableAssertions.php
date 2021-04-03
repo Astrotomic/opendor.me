@@ -18,7 +18,7 @@ trait BlockableAssertions
         PHPUnit::assertIsObject($actual);
         PHPUnit::assertArrayHasKey(Blockable::class, class_uses_recursive($actual));
 
-        if ($actual->block_reason !== null) {
+        if ($actual->isBlocked()) {
             EnumAssertions::assertIsEnum($actual->block_reason);
             PHPUnit::assertInstanceOf(BlockReason::class, $actual->block_reason);
 

@@ -6,6 +6,7 @@ use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
 Route::get('/', static function (): View {
     return view('web.home', [
@@ -14,6 +15,9 @@ Route::get('/', static function (): View {
 })->name('home');
 
 Route::get('@{user:name}', static function (User $user): View {
+    abort_unless($user->hasGithubToken(), Response::HTTP_NOT_FOUND);
+    abort_if($user->isBlocked(), Response::HTTP_NOT_FOUND);
+
     $contributions = $user->contributions()->with('owner')->cursor();
 
     return view('web.profile', [

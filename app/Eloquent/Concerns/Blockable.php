@@ -31,7 +31,7 @@ trait Blockable
         }
     }
 
-    public function getIsBlockedAttribute(): bool
+    public function isBlocked(): bool
     {
         return $this->blocked_at !== null;
     }

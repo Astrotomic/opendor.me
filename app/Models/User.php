@@ -45,7 +45,6 @@ use Throwable;
  * @property-read string $avatar_url
  * @property-read string[] $emails
  * @property-read string $github_url
- * @property-read bool $is_blocked
  * @property-read string $profile_url
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
