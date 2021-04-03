@@ -13,10 +13,7 @@
 
                 {{-- Logo --}}
                 <div class="flex flex-shrink-0 items-center">
-                    <a href="{{ url('/') }}" class="w-auto h-8 flex items-center group">
-                        <x-fad-door-open class="w-8 h-8 text-indigo-500 group-hover:text-indigo-700"/>
-                        <span class="hidden lg:block ml-3 text-lg font-medium group-hover:text-indigo-500">{{ config('app.name') }}</span>
-                    </a>
+                    <x-logo/>
                 </div>
 
                 {{-- desktop menu --}}

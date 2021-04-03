@@ -49,9 +49,7 @@
                     </button>
                 </div>
                 <div class="flex flex-shrink-0 items-center px-4">
-                    <img class="w-auto h-8"
-                         src="https://tailwindui.com/img/logos/workflow-logo-purple-500-mark-gray-700-text.svg"
-                         alt="Workflow">
+                    <x-logo/>
                 </div>
                 <div class="overflow-y-auto flex-1 mt-5 h-0">
                     <nav class="px-2">
@@ -95,9 +93,7 @@
     <div class="hidden lg:flex lg:flex-shrink-0">
         <div class="flex flex-col pt-5 pb-4 w-64 bg-gray-100 border-r border-gray-200">
             <div class="flex flex-shrink-0 items-center px-6">
-                <img class="w-auto h-8"
-                     src="https://tailwindui.com/img/logos/workflow-logo-purple-500-mark-gray-700-text.svg"
-                     alt="Workflow">
+                <x-logo/>
             </div>
 
             <div class="flex overflow-y-auto flex-col flex-1 h-0">

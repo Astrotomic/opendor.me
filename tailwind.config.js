@@ -346,6 +346,14 @@ module.exports = {
               "zephir": "#118f9e",
               "zig": "#ec915c",
               "zil": "#dc75e5",
+          },
+          fontFamily: {
+              logo: [
+                  'Raleway',
+                  'ui-sans-serif',
+                  'system-ui',
+                  'sans-serif',
+              ],
           }
       },
   },
