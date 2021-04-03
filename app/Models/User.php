@@ -81,6 +81,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     protected $casts = [
+        'id' => 'int',
         'email_verified_at' => 'datetime',
     ];
 

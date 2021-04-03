@@ -59,6 +59,7 @@ class Repository extends Model
     public $incrementing = false;
 
     protected $casts = [
+        'id' => 'int',
         'license' => License::class,
         'language' => Language::class,
         'stargazers_count' => 'int',
