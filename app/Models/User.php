@@ -73,6 +73,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Blockable;
     use HasRoles;
 
+    protected const SUPERADMIN_IDS = [
+        6187884, // Gummibeer
+    ];
+
     public $incrementing = false;
 
     protected $hidden = [
@@ -199,7 +203,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getIsSuperadminAttribute(): bool
     {
-        return $this->id === 6187884; // Gummibeer
+        return in_array($this->id, self::SUPERADMIN_IDS, true);
     }
 
     public function getProfileUrlAttribute(): string

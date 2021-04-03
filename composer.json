@@ -24,6 +24,7 @@
         "nesbot/carbon": "^2.46",
         "optimistdigital/nova-sortable": "^2.2",
         "owenvoke/blade-fontawesome": "^1.6",
+        "povils/phpmnd": "^2.4",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-enum": "^2.4",
         "spatie/laravel-permission": "^4.0",
@@ -118,6 +119,7 @@
             "@composer fix --quiet"
         ],
         "lint": [
+            "vendor/bin/phpmnd ./app",
             "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run",
             "vendor/bin/tlint lint ./app --no-interaction -v"
         ],

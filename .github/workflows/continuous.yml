@@ -29,6 +29,19 @@ jobs:
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/tlint lint ./app --no-interaction -v
 
+  phpmnd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: dom, curl, mbstring, zip, pcntl, intl
+          coverage: none
+      - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
+      - run: vendor/bin/phpmnd ./app --no-interaction
+
   phpunit:
     runs-on: ubuntu-latest
     env:
@@ -81,6 +94,7 @@ jobs:
     needs:
       - phpcs
       - tlint
+      - phpmnd
       - phpunit
     runs-on: ubuntu-latest
     environment:

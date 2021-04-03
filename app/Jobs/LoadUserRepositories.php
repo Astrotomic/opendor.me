@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Repository;
 use App\Models\User;
 use Carbon\CarbonInterval;
+use Illuminate\Support\Collection;
 
 class LoadUserRepositories extends GithubJob
 {
@@ -16,17 +17,16 @@ class LoadUserRepositories extends GithubJob
 
     public function run(): void
     {
-        $page = 1;
-        do {
+        $this->paginated(function (int $page, int $perPage): Collection {
             $response = $this->user->github()->get("/users/{$this->user->name}/repos", [
-                    'type' => 'public',
-                    'per_page' => 100,
-                    'page' => $page,
-                ])->collect();
+                'type' => 'public',
+                'per_page' => $perPage,
+                'page' => $page,
+            ])->collect();
 
             $response->each(fn (array $repository): ?Repository => Repository::fromGithub($repository));
 
-            $page++;
-        } while ($response->count() >= 100);
+            return $response;
+        });
     }
 }

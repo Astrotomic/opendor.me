@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Repository;
 use App\Models\User;
+use Illuminate\Support\Collection;
 
 class LoadRepositoryContributors extends GithubJob
 {
@@ -16,15 +17,14 @@ class LoadRepositoryContributors extends GithubJob
     {
         $users = User::all();
 
-        $page = 1;
-        do {
+        $this->paginated(function (int $page, int $perPage) use ($users): Collection {
             $response = $this->repository->github()->get("/repos/{$this->repository->name}/contributors", [
-                    'anon' => true,
-                    'per_page' => 100,
-                    'page' => $page,
-                ])->collect();
+                'anon' => true,
+                'per_page' => $perPage,
+                'page' => $page,
+            ])->collect();
 
-            $contributors = $response->map(function (array $contributor) use ($users): ?User {
+            $contributors = $response->map(static function (array $contributor) use ($users): ?User {
                 if ($contributor['type'] === 'User') {
                     return User::fromGithub($contributor);
                 } elseif ($contributor['type'] === 'Anonymous') {
@@ -40,7 +40,7 @@ class LoadRepositoryContributors extends GithubJob
                 $contributors->pluck('id')
             );
 
-            $page++;
-        } while ($response->count() >= 100);
+            return $response;
+        });
     }
 }

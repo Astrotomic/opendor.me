@@ -5,10 +5,12 @@ namespace App\Jobs;
 use App\Enums\BlockReason;
 use App\Jobs\Concerns\RateLimited;
 use Carbon\CarbonInterval;
+use Closure;
 use DateTimeInterface;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class GithubJob extends Job implements ShouldBeUnique
 {
@@ -33,7 +35,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
             if (
                 $exception->hasResponse()
-                && $exception->getResponse()->getStatusCode() === 404
+                && $exception->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND
             ) {
                 if (property_exists($this, 'user')) {
                     $this->user->update([
@@ -108,4 +110,18 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     }
 
     abstract protected function run(): void;
+
+    /**
+     * @param \Closure $callback
+     * @param int $perPage
+     */
+    protected function paginated(Closure $callback, int $perPage = 100): void
+    {
+        $page = 1;
+        do {
+            $response = $callback($page, $perPage);
+
+            $page++;
+        } while ($response->count() >= $perPage);
+    }
 }

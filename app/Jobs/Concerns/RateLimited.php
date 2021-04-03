@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
 trait RateLimited
 {
@@ -13,7 +14,7 @@ trait RateLimited
     {
         if (
             $exception->hasResponse()
-            && $exception->getResponse()->getStatusCode() === 403
+            && $exception->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN
             && $exception->getResponse()->hasHeader('X-RateLimit-Reset')
         ) {
             $reset = Carbon::createFromTimestampUTC(
