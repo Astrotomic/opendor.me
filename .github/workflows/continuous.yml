@@ -56,7 +56,7 @@ jobs:
       DB_DATABASE: postgres
     services:
       postgres:
-        image: postgres:12-alpine
+        image: postgres:13-alpine
         ports:
           - 5432:5432
         env:
