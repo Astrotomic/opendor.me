@@ -15,7 +15,7 @@
     <div class="relative pt-6 pb-16 sm:pb-24 lg:pb-32">
         <main class="px-4 mx-auto mt-16 max-w-7xl sm:mt-24 sm:px-6 lg:mt-32">
             <div class="lg:flex lg:justify-between">
-                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left lg:pr-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left lg:pr-12">
                     <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl text-gray-900">
                       We <span class="text-indigo-600">open doors</span> for open-source contributors
                     </h1>
@@ -39,7 +39,7 @@
                         <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
                         <rect x="118" width="404" height="784" fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
                     </svg>
-                    <div class="overflow-hidden relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                    <div class="overflow-hidden relative mx-auto w-full rounded-lg shadow-lg">
                         <img
                             class="w-full"
                             src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=1350&q=80"
