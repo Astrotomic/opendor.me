@@ -13,8 +13,10 @@
 
                 {{-- Logo --}}
                 <div class="flex flex-shrink-0 items-center">
-                    <img class="block w-auto h-8 lg:hidden" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-                    <img class="hidden w-auto h-8 lg:block" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
+                    <a href="{{ url('/') }}" class="w-auto h-8 flex items-center group">
+                        <x-fad-door-open class="w-8 h-8 text-indigo-500 group-hover:text-indigo-700"/>
+                        <span class="hidden lg:block ml-3 text-lg font-medium group-hover:text-indigo-500">{{ config('app.name') }}</span>
+                    </a>
                 </div>
 
                 {{-- desktop menu --}}
@@ -51,7 +53,7 @@
             <a
                 href="{{ route('home') }}"
                 class="
-                    block py-2 pr-4 pl-3 text-base font-medium text-indigo-700 bg-indigo-50 border-l-4 border-indigo-500
+                    block py-2 pr-4 pl-3 text-base font-medium border-l-4
                     @if(request()->is(route('home', [], false)))
                         bg-indigo-50 border-indigo-500 text-indigo-700
                     @else
