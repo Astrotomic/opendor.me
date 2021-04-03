@@ -10,7 +10,7 @@
 
     {{ $head ?? null }}
 </head>
-<body {{ $attributes->merge(['class' => 'antialiased']) }}>
+<body {{ $attributes->merge(['class' => 'antialiased flex flex-col']) }}>
 {{ $slot }}
 <script src="{{ mix('js/app.js') }}"></script>
 @stack('javascript')

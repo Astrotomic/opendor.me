@@ -30,6 +30,8 @@
                         ">Home</a>
                 </div>
             </div>
+
+            @if(request()->route() !== null)
             <div class="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 @if(auth()->guest())
                 <div class="flex-shrink-0">
@@ -41,6 +43,7 @@
                 @endif
                 <x-user-dropdown/>
             </div>
+            @endif
         </div>
     </div>
 
