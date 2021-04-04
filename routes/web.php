@@ -3,10 +3,12 @@
 use App\Enums\Language;
 use App\Models\Organization;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
 use Spatie\Sitemap\Sitemap;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
 
 Route::get('/', static function (): View {
     return view('web.home');
@@ -22,7 +24,7 @@ Route::get('@{user:name}', static function (User $user): View {
         'user' => $user,
         'organizations' => $user->organizations->filter(fn (Organization $organization) => $organization->repositories()->exists()),
         'languages' => $contributions->pluck('language')->reject(Language::NOASSERTION())->unique()->collect(),
-        'contributions' => $contributions->groupBy('vendor_name')->sortBy(fn (\Illuminate\Support\Collection $repositories, string $owner): string => \Illuminate\Support\Str::lower($owner)),
+        'contributions' => $contributions->groupBy('vendor_name')->sortBy(fn (Collection $repositories, string $owner): string => Str::lower($owner)),
     ]);
 })->name('profile');
 
@@ -32,8 +34,8 @@ Route::get('robots.txt', static function (): Response {
         'Allow: /',
         'Disallow: /auth/',
         'Disallow: /app/',
-        'Disallow: /'.config('nova.path').'/',
-        'Disallow: /'.config('horizon.path').'/',
+        'Disallow: '.Str::of(config('nova.path'))->start('/')->finish('/'),
+        'Disallow: '.Str::of(config('horizon.path'))->start('/')->finish('/'),
         '',
         'Sitemap: '.route('sitemap.xml'),
     ]), 200, ['Content-Type' => 'text/plain']);
