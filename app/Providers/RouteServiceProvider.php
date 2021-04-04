@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\RobotsTxtController;
+use App\Http\Controllers\SitemapXmlController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -27,13 +29,16 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('web')
                 ->group(base_path('routes/auth.php'));
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-
             Route::prefix('app')
                 ->name('app.')
                 ->middleware(['web', 'auth'])
                 ->group(base_path('routes/app.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+
+            Route::get('robots.txt', RobotsTxtController::class)->name('robots.txt');
+            Route::get('sitemap.xml', SitemapXmlController::class)->name('sitemap.xml');
         });
     }
 

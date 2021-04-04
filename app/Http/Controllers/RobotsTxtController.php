@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
+
+class RobotsTxtController
+{
+    public function __invoke(): Response
+    {
+        return response(implode(PHP_EOL, [
+            'User-Agent: *',
+            'Allow: /',
+            'Disallow: /auth/',
+            'Disallow: /app/',
+            'Disallow: '.Str::of(config('nova.path'))->start('/')->finish('/'),
+            'Disallow: '.Str::of(config('horizon.path'))->start('/')->finish('/'),
+            '',
+            'Sitemap: '.route('sitemap.xml'),
+        ]), 200, ['Content-Type' => 'text/plain']);
+    }
+}
