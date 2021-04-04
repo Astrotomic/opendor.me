@@ -1,7 +1,7 @@
 <x-layout.web>
 
 <div class="relative bg-white">
-    <div class="overflow-hidden hidden lg:block lg:absolute lg:inset-0" aria-hidden="true">
+    <div class="hidden overflow-hidden lg:block lg:absolute lg:inset-0" aria-hidden="true">
         <svg class="absolute top-0 left-1/2 transform translate-x-64 -translate-y-8" width="640" height="784" fill="none" viewBox="0 0 640 784">
             <defs>
                 <pattern id="9ebea6f4-a1f5-4d96-8c4e-4c2abf658047" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -12,11 +12,11 @@
             <rect x="118" width="404" height="784" fill="url(#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047)" />
         </svg>
     </div>
-    <div class="relative pt-6 pb-16 sm:pb-24 lg:pb-32">
+    <div class="overflow-x-hidden relative pt-6 pb-16 sm:pb-24 lg:pb-32">
         <main class="px-4 mx-auto mt-16 max-w-7xl sm:mt-24 sm:px-6 lg:mt-32">
             <div class="lg:flex lg:justify-between">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left lg:pr-12">
-                    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl text-gray-900">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
                       We <span class="text-indigo-600">open doors</span> for open-source contributors
                     </h1>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
