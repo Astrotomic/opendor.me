@@ -28,6 +28,8 @@ class GithubController
 
         $user = User::updateOrCreate(['id' => $githubUser->getId()], $data);
 
+        abort_if($user->isBlocked(), Response::HTTP_FORBIDDEN);
+
         if ($user->wasRecentlyCreated) {
             event(new Registered($user));
         }
