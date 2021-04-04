@@ -132,7 +132,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function scopeWhereIsRegistered(Builder $query): void
     {
-        $query->whereHasGithubAccessToken();
+        $query->whereHasGithubAccessToken()->whereNotNull('email_verified_at');
     }
 
     public function scopeWhereEmail(Builder $query, string $email): void
