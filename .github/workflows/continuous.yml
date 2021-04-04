@@ -184,7 +184,7 @@ jobs:
     steps:
       - uses: jakejarvis/lighthouse-action@master
         with:
-          entryPoint: "https://opendor.me"
+          url: "https://opendor.me"
       - uses: actions/upload-artifact@master
         with:
           name: Lighthouse
