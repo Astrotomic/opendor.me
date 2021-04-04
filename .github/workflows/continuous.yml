@@ -198,3 +198,15 @@ jobs:
     steps:
       - run: yarn global add alex
       - run: curl -s https://opendor.me | $(yarn global bin)/alex --html --stdin
+
+  zap-baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    continue-on-error: true
+    needs:
+      - http-status
+      - mixed-content
+    steps:
+      - uses: zaproxy/action-baseline@v0.4.0
+        with:
+          target: https://opendor.me
