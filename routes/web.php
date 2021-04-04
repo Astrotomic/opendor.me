@@ -15,7 +15,7 @@ Route::get('/', static function (): View {
 })->name('home');
 
 Route::get('@{user:name}', static function (User $user): View {
-    if (! auth()->user()?->is_superadmin) {
+    if (! (auth()->check() && auth()->user()->is_superadmin)) {
         abort_unless($user->isRegistered(), Response::HTTP_NOT_FOUND);
         abort_if($user->isBlocked(), Response::HTTP_NOT_FOUND);
     }
