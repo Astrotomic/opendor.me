@@ -46,8 +46,8 @@
                             path="photo-1573497491208-6b1acb260507"
                             class="relative z-10 w-full rounded-lg shadow-lg"
                             alt="Two people during interview process"
-                            width="1350"
-                            height="900"
+                            width="768"
+                            height="512"
                             :params="['fit' => 'crop', 'rot' => 357]"
                         />
                     </div>
