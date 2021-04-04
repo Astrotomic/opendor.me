@@ -31,10 +31,10 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::prefix('app')
                 ->name('app.')
-                ->middleware(['web', 'auth'])
+                ->middleware(['web', 'auth', 'policies'])
                 ->group(base_path('routes/app.php'));
 
-            Route::middleware('web')
+            Route::middleware(['web', 'policies'])
                 ->group(base_path('routes/web.php'));
 
             Route::get('robots.txt', RobotsTxtController::class)->name('robots.txt');
