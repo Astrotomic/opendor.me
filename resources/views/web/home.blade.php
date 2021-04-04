@@ -31,7 +31,7 @@
                             <x-web.home.user-autocomplete class="mt-3"/>
                         </div>
                     </div>
-                    <div class="relative mt-12 sm:max-w-lg sm:mx-auto lg:mt-0 xl:max-w-none lg:mx-0 lg:flex lg:flex-shrink lg:items-center">
+                    <div class="hidden relative mt-12 sm:max-w-lg sm:mx-auto lg:mt-0 xl:max-w-none lg:mx-0 lg:flex lg:flex-shrink lg:items-center">
                         <svg class="absolute top-0 left-1/2 transform origin-top scale-75 -translate-x-1/2 -translate-y-8 sm:scale-100 lg:hidden" width="640" height="784" fill="none" viewBox="0 0 640 784" aria-hidden="true">
                             <defs>
                                 <pattern id="4f4f415c-a0e9-44c2-9601-6ded5a34a13e" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
