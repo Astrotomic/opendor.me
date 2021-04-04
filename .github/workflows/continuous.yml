@@ -148,6 +148,11 @@ jobs:
     needs:
       - deploy
     steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: dom, curl, zip
+          coverage: none
       - run: composer global require spatie/http-status-check
       - run: $(composer global config bin-dir --absolute)/http-status-check scan https://opendor.me --dont-crawl-external-links --concurrency=5
 
@@ -156,5 +161,10 @@ jobs:
     needs:
       - deploy
     steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4
+          extensions: dom, curl, zip
+          coverage: none
       - run: composer global require spatie/mixed-content-scanner-cli
       - run: $(composer global config bin-dir --absolute)/mixed-content-scanner scan https://opendor.me --verify-ssl
