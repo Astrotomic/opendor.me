@@ -10,6 +10,7 @@
         "ext-json": "*",
         "ext-redis": "*",
         "astrotomic/laravel-cachable-attributes": "^0.3",
+        "astrotomic/laravel-imgix": "^0.2.0",
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
         "dragonmantank/cron-expression": "^3.0.2",
         "fideloper/proxy": "^4.4",
