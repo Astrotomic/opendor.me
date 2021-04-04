@@ -54,7 +54,7 @@
 
 @once
 @push('javascript')
-<script type="application/javascript">
+<script nonce="{{ csp_nonce() }}">
     window.components.homeUserAutocomplete = function () {
         return {
             fuse: null,
