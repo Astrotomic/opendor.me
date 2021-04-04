@@ -214,6 +214,9 @@ jobs:
   sitemap:
     runs-on: ubuntu-latest
     timeout-minutes: 1
+    needs:
+      - http-status
+      - mixed-content
     steps:
       - uses: atymic/sitemap-ping-action@master
         with:
