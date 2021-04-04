@@ -8,7 +8,10 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
-    {{ $head ?? null }}
+    <link rel="sitemap" type="application/xml" href="{{ route('sitemap.xml') }}"/>
+    <link rel="canonical" href="{{ request()->url() }}"/>
+
+    @stack('head')
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased flex flex-col']) }}>
 {{ $slot }}

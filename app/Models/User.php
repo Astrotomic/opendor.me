@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Nova\Actions\Actionable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
+use Spatie\Sitemap\Tags\Url;
 use Throwable;
 
 /**
@@ -62,7 +64,7 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
@@ -245,5 +247,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
 
         return Http::github();
+    }
+
+    public function toSitemapTag(): Url
+    {
+        return Url::create($this->profile_url)
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
     }
 }

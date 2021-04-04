@@ -201,7 +201,7 @@ jobs:
 
   zap-baseline:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 5
     continue-on-error: true
     needs:
       - http-status
@@ -210,3 +210,11 @@ jobs:
       - uses: zaproxy/action-baseline@v0.4.0
         with:
           target: https://opendor.me
+
+  sitemap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - uses: atymic/sitemap-ping-action@master
+        with:
+          sitemap-url: https://opendor.me/sitemap.xml
