@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\Language;
-use App\Models\FAQ;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +8,7 @@ use Illuminate\Contracts\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
 Route::get('/', static function (): View {
-    return view('web.home', [
-        'faqs' => FAQ::ordered()->get(),
-    ]);
+    return view('web.home');
 })->name('home');
 
 Route::get('@{user:name}', static function (User $user): View {
