@@ -197,4 +197,4 @@ jobs:
       - deploy
     steps:
       - run: yarn global add alex
-      - run: curl -s https://opendor.me | alex --html --stdin
+      - run: curl -s https://opendor.me | $(yarn global bin)/alex --html --stdin
