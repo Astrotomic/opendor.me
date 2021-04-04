@@ -149,7 +149,7 @@ jobs:
       - deploy
     steps:
       - run: composer global require spatie/http-status-check
-      - run: http-status-check scan https://opendor.me --dont-crawl-external-links --concurrency=5
+      - run: $(composer global config bin-dir --absolute)/http-status-check scan https://opendor.me --dont-crawl-external-links --concurrency=5
 
   mixed-content:
     runs-on: ubuntu-latest
@@ -157,4 +157,4 @@ jobs:
       - deploy
     steps:
       - run: composer global require spatie/mixed-content-scanner-cli
-      - run: mixed-content-scanner scan https://opendor.me --verify-ssl
+      - run: $(composer global config bin-dir --absolute)/mixed-content-scanner scan https://opendor.me --verify-ssl
