@@ -178,6 +178,8 @@ jobs:
 
   lighthouse:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
+    continue-on-error: true
     needs:
       - deploy
     steps:
