@@ -175,3 +175,14 @@ jobs:
           coverage: none
       - run: composer global require spatie/mixed-content-scanner-cli
       - run: $(composer global config bin-dir --absolute)/mixed-content-scanner scan https://opendor.me --verify-ssl
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    needs:
+      - deploy
+    steps:
+      - uses: treosh/lighthouse-ci-action@v7
+        with:
+          urls: |
+            https://opendor.me
+          uploadArtifacts: true
