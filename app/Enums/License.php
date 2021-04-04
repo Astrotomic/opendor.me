@@ -38,6 +38,7 @@ final class License extends Enum
             'MIT' => 'MIT',
             'LGPL_21' => 'LGPL-2.1',
             'CC0_10' => 'CC0-1.0',
+            'MPL_20' => 'MPL-2.0',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -58,6 +59,7 @@ final class License extends Enum
             'MIT' => 'MIT',
             'CC0_10' => 'CC0 1.0',
             'LGPL_21' => 'LGPL 2.1',
+            'MPL_20' => 'MPL 2.0',
             'NOASSERTION' => 'Other',
         ];
     }
