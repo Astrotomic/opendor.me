@@ -188,3 +188,13 @@ jobs:
           urls: |
             https://opendor.me
           uploadArtifacts: true
+
+  alex:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    continue-on-error: true
+    needs:
+      - deploy
+    steps:
+      - run: yarn global add alex
+      - run: curl -s https://opendor.me | alex --html --stdin
