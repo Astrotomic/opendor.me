@@ -30,10 +30,10 @@ Route::get('robots.txt', static function (): Response {
     return response(implode(PHP_EOL, [
         'User-Agent: *',
         'Allow: /',
-        'Disallow: /auth',
-        'Disallow: /app',
-        'Disallow: /'.config('nova.path'),
-        'Disallow: /'.config('horizon.path'),
+        'Disallow: /auth/',
+        'Disallow: /app/',
+        'Disallow: /'.config('nova.path').'/',
+        'Disallow: /'.config('horizon.path').'/',
         '',
         'Sitemap: '.route('sitemap.xml'),
     ]), 200, ['Content-Type' => 'text/plain']);
