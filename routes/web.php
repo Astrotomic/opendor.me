@@ -10,9 +10,7 @@ use Spatie\Sitemap\Sitemap;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Str;
 
-Route::get('/', static function (): View {
-    return view('web.home');
-})->name('home');
+Route::view('/', 'web.home')->name('home');
 
 Route::get('@{user:name}', static function (User $user): View {
     if (! (auth()->check() && auth()->user()->is_superadmin)) {
