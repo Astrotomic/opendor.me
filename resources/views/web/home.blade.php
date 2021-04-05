@@ -14,7 +14,7 @@
             </svg>
         </div>
 
-        <main class="overflow-x-hidden relative py-16 px-4 mx-auto max-w-7xl lg:pt-24 lg:pb-48 sm:py-24 sm:px-6">
+        <main class="overflow-x-hidden relative pt-16 pb-40 px-4 mx-auto max-w-7xl lg:pt-24 lg:pb-48 sm:px-6">
             <div class="lg:flex lg:justify-between">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left lg:mr-12 lg:flex-grow">
                     <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
