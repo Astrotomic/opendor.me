@@ -33,8 +33,8 @@
         </button>
     </div>
     <div class="relative">
-        <ul class="absolute top-2 z-10 py-1 w-full bg-white rounded-md border border-gray-300 divide-y divide-gray-200 shadow-lg sm:w-auto" x-show="hits.length > 0 && isFocused" x-cloak>
-            <template x-for="hit in hits.slice(0, 5)" :key="hit.item.name" hidden>
+        <ul class="absolute top-1.5 z-10 py-1 w-full bg-white rounded-md border border-gray-300 divide-y divide-gray-200 shadow-lg sm:w-auto" x-show="hits.length > 0 && isFocused" x-cloak>
+            <template x-for="hit in hits.slice(0, 3)" :key="hit.item.name" hidden>
                 <li>
                     <a :href="profileUrl(hit.item)" class="flex items-center py-2 px-6 space-x-4 hover:bg-gray-100 group">
                         <img
