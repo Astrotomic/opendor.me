@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://avatars.githubusercontent.com"/>
+    <link rel="dns-prefetch" href="https://images.unsplash.com"/>
 
     <title>{{ $title }}</title>
 
