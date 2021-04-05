@@ -1,6 +1,6 @@
 <x-layout.html
     :title="$title"
-    class="min-h-screen bg-gray-100"
+    class="flex flex-col min-h-screen bg-gray-100"
 >
     <x-web.header/>
 

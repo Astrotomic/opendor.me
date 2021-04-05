@@ -16,7 +16,7 @@
 
     @stack('head')
 </head>
-<body {{ $attributes->merge(['class' => 'antialiased flex flex-col']) }}>
+<body {{ $attributes->merge(['class' => 'antialiased']) }}>
 {{ $slot }}
 <script src="{{ mix('js/app.js') }}"></script>
 @stack('javascript')
