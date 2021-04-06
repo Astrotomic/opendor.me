@@ -6,6 +6,7 @@ use App\Models\FAQ as FaqModel;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Markdown;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
@@ -28,7 +29,9 @@ class FAQ extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make()->sortable(),
+            ID::make(),
+
+            Number::make('Priority')->sortable(),
 
             Text::make('Question'),
 

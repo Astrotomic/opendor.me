@@ -26,8 +26,8 @@
         "nesbot/carbon": "^2.46",
         "optimistdigital/nova-sortable": "^2.2",
         "owenvoke/blade-fontawesome": "^1.6",
-        "povils/phpmnd": "^2.4",
         "sentry/sentry-laravel": "^2.4",
+        "spatie/eloquent-sortable": "^3.0",
         "spatie/laravel-csp": "^2.6",
         "spatie/laravel-enum": "^2.4",
         "spatie/laravel-permission": "^4.0",
@@ -47,6 +47,7 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
+        "povils/phpmnd": "^2.4",
         "tightenco/tlint": "^5.0"
     },
     "config": {
