@@ -45,20 +45,6 @@ jobs:
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/phpmnd ./app --no-interaction
 
-  enlightn:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.0
-          extensions: dom, curl, mbstring, zip, pcntl, intl
-          coverage: none
-      - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
-      - run: php artisan enlightn --details --ci --no-interaction
-
   phpunit:
     runs-on: ubuntu-latest
     timeout-minutes: 5

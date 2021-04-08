@@ -111,6 +111,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
+        "enlightn": "@php artisan enlightn --details --ci",
         "fix": [
             "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist"
         ],
