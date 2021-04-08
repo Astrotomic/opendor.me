@@ -109,7 +109,7 @@
                             <x-gh-avatar :model="auth()->user()" class="w-10 h-10"/>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate">
-                                    {{ auth()->user()->full_name ?? auth()->user()->name }}
+                                    {{ auth()->user()->display_name }}
                                 </p>
                                 <a
                                     href="{{ auth()->user()->profile_url }}"

@@ -50,10 +50,13 @@ use Throwable;
  * @property-read string $profile_url
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
+ * @property-read string $display_name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -62,13 +65,9 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereIsRegistered()
  * @method static \Illuminate\Database\Eloquent\Builder|User byEmail(string $email)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
+ * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @mixin \Illuminate\Database\Eloquent\Builder
- *
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
- *
- * @method static Builder|User permission($permissions)
- * @method static Builder|User role($roles, $guard = null)
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
 {
@@ -234,6 +233,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
 
         return Str::start($url, 'https://');
+    }
+
+    public function getDisplayNameAttribute(): string
+    {
+        return $this->full_name ?? Str::title($this->name);
     }
 
     public function hasGithubToken(): bool

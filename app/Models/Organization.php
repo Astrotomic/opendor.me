@@ -33,6 +33,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $avatar_url
  * @property-read string $github_url
  * @property-read string|null $twitter_url
+ * @property-read string $display_name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
@@ -108,6 +109,11 @@ class Organization extends Model implements Sitemapable
         }
 
         return Str::start($url, 'https://');
+    }
+
+    public function getDisplayNameAttribute(): string
+    {
+        return $this->full_name ?? Str::title($this->name);
     }
 
     public function github(): PendingRequest

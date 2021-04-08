@@ -8,7 +8,7 @@
             </div>
             <div class="space-y-1">
                 <h1 class="text-2xl font-bold text-gray-900">
-                    {{ $organization->full_name ?? $organization->name }}
+                    {{ $organization->display_name }}
                     <x-profile.verified :model="$organization"/>
                 </h1>
                 <x-profile.aside :model="$organization"/>
@@ -31,7 +31,7 @@
                 <div class="flex items-center py-4 px-6 space-x-6 bg-white rounded-lg shadow">
                     <x-gh-avatar :model="$member" class="w-12 h-12"/>
                     <div class="space-y-1">
-                        <strong class="block text-lg font-medium leading-tight text-gray-900 truncate">{{ $member->full_name ?? $member->name }}</strong>
+                        <strong class="block text-lg font-medium leading-tight text-gray-900 truncate">{{ $member->display_name }}</strong>
                         <a href="{{ $member->profile_url }}" class="block font-normal leading-tight text-gray-500 hover:text-gray-700 truncate">{{ '@'.$member->name }}</a>
                     </div>
                 </div>

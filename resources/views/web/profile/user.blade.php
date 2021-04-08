@@ -8,7 +8,7 @@
             </div>
             <div class="space-y-1">
                 <h1 class="text-2xl font-bold text-gray-900">
-                    {{ $user->full_name ?? $user->name }}
+                    {{ $user->display_name }}
                 </h1>
                 <x-profile.aside :model="$user"/>
                 <ul class="flex flex-wrap space-x-2">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <p class="text-gray-700">
-            <span class="font-medium text-gray-900">{{ $user->full_name ?? $user->name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions_count }}</span> different repositories across <span class="font-medium text-gray-900">{{ $contributions->count() }}</span> unique vendors.
+            <span class="font-medium text-gray-900">{{ $user->display_name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions_count }}</span> different repositories across <span class="font-medium text-gray-900">{{ $contributions->count() }}</span> unique vendors.
             <br/>
             These repositories have {!! $languages->map(fn(\App\Enums\Language $l) => '<span class="font-medium text-gray-900">'.$l->label.'</span>')->join(', ', ' and ') !!} as their primary {{ \Illuminate\Support\Str::plural('language', $languages->count()) }} - most contributions were made to repositories using <span class="font-medium text-gray-900">{{ $languages->groupBy(fn(\App\Enums\Language $l) => $l->label)->map(fn(\Illuminate\Support\Collection $repos) => $repos->count())->sortDesc()->keys()->first() }}</span> as primary language.
             @if($user->repositories()->exists())
@@ -28,7 +28,7 @@
             @endif
             @if($organizations->isNotEmpty())
             <br/>
-            In addition, they are also a member of {!! $organizations->map(fn(\App\Models\Organization $organization) => '<span class="font-medium text-gray-900">'.($organization->full_name ?? $organization->name).'</span>')->join(', ', ' and ') !!} {{ \Illuminate\Support\Str::plural('organization', $organizations->count()) }}, and have contributed to their open-source repositories.
+            In addition, they are also a member of {!! $organizations->map(fn(\App\Models\Organization $organization) => '<span class="font-medium text-gray-900">'.($organization->display_name).'</span>')->join(', ', ' and ') !!} {{ \Illuminate\Support\Str::plural('organization', $organizations->count()) }}, and have contributed to their open-source repositories.
             @endif
         </p>
     </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="space-y-1">
                         <h2 class="flex items-center text-2xl font-bold text-gray-900">
-                            {{ $owner->full_name ?? $owner->name }}
+                            {{ $owner->display_name }}
                             <x-profile.verified :model="$owner"/>
                         </h2>
                         <x-profile.aside :model="$owner"/>
