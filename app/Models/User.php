@@ -162,7 +162,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getAvatarUrlAttribute(): string
     {
-        return "https://avatars.githubusercontent.com/u/{$this->id}";
+        return "https://avatars.githubusercontent.com/u/{$this->id}?s=192";
     }
 
     public function getGithubUrlAttribute(): string
