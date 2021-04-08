@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Stillat\Numeral\Languages\LanguageManager;
-use Stillat\Numeral\Numeral;
 use League\Flysystem\Filesystem;
 use Spatie\Dropbox\Client as Dropbox;
 use Spatie\FlysystemDropbox\DropboxAdapter;
+use Stillat\Numeral\Languages\LanguageManager;
+use Stillat\Numeral\Numeral;
 
 class AppServiceProvider extends ServiceProvider
 {
