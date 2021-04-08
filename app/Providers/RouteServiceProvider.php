@@ -19,6 +19,9 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function (): void {
+            Route::get('robots.txt', RobotsTxtController::class)->name('robots.txt');
+            Route::get('sitemap.xml', SitemapXmlController::class)->name('sitemap.xml');
+
             Route::prefix('api')
                 ->name('api.')
                 ->middleware('api')
@@ -36,9 +39,6 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware(['web', 'policies'])
                 ->group(base_path('routes/web.php'));
-
-            Route::get('robots.txt', RobotsTxtController::class)->name('robots.txt');
-            Route::get('sitemap.xml', SitemapXmlController::class)->name('sitemap.xml');
         });
     }
 

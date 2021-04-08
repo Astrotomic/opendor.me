@@ -12,7 +12,7 @@
                 </h1>
                 <x-profile.aside :model="$user"/>
                 <ul class="flex flex-wrap space-x-2">
-                    @foreach($languages->unique() as $language)
+                    @foreach($languages as $language)
                         <li><x-repository.language :language="$language" class="shadow"/></li>
                     @endforeach
                 </ul>
@@ -21,7 +21,7 @@
         <p class="text-gray-700">
             <span class="font-medium text-gray-900">{{ $user->full_name ?? $user->name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions_count }}</span> different repositories across <span class="font-medium text-gray-900">{{ $contributions->count() }}</span> unique vendors.
             <br/>
-            These repositories have {!! $languages->unique()->map(fn(\App\Enums\Language $l) => '<span class="font-medium text-gray-900">'.$l->label.'</span>')->join(', ', ' and ') !!} as their primary {{ \Illuminate\Support\Str::plural('language', $languages->unique()->count()) }} - most contributions were made to repositories using <span class="font-medium text-gray-900">{{ $languages->groupBy(fn(\App\Enums\Language $l) => $l->label)->map(fn(\Illuminate\Support\Collection $repos) => $repos->count())->sortDesc()->keys()->first() }}</span> as primary language.
+            These repositories have {!! $languages->map(fn(\App\Enums\Language $l) => '<span class="font-medium text-gray-900">'.$l->label.'</span>')->join(', ', ' and ') !!} as their primary {{ \Illuminate\Support\Str::plural('language', $languages->count()) }} - most contributions were made to repositories using <span class="font-medium text-gray-900">{{ $languages->groupBy(fn(\App\Enums\Language $l) => $l->label)->map(fn(\Illuminate\Support\Collection $repos) => $repos->count())->sortDesc()->keys()->first() }}</span> as primary language.
             @if($user->repositories()->exists())
             <br/>
             They publish open-source repositories using their own <span class="font-medium text-gray-900">{{ $user->name }}</span> nickname.
@@ -62,7 +62,7 @@
                     <button
                         type="button"
                         @click="showAll = !showAll"
-                        class="block mx-auto items-center px-2.5 py-1.5 border border-gray-300 shadow text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow"
+                        class="block mx-auto items-center px-2.5 py-1.5 border border-gray-300 shadow text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 shadow"
                         x-text="(showAll ? 'hide additional repositories' : `show all ${count} repositories`)"
                     ></button>
 

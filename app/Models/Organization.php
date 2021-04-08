@@ -11,6 +11,8 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Nova\Actions\Actionable;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 
 /**
  * App\Models\Organization.
@@ -27,6 +29,7 @@ use Laravel\Nova\Actions\Actionable;
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
+ * @property-read string $profile_url
  * @property-read string $avatar_url
  * @property-read string $github_url
  * @property-read string|null $twitter_url
@@ -39,7 +42,7 @@ use Laravel\Nova\Actions\Actionable;
  * @method static \Illuminate\Database\Eloquent\Builder|Organization query()
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Organization extends Model
+class Organization extends Model implements Sitemapable
 {
     use Actionable;
     use Blockable;
@@ -72,6 +75,11 @@ class Organization extends Model
     public function repositories(): MorphMany
     {
         return $this->morphMany(Repository::class, 'owner');
+    }
+
+    public function getProfileUrlAttribute(): string
+    {
+        return route('profile.organization', ['organization' => $this]);
     }
 
     public function getAvatarUrlAttribute(): string
@@ -109,5 +117,11 @@ class Organization extends Model
                 ->inRandomOrder()
                 ->first()
                 ?->github() ?? Http::github();
+    }
+
+    public function toSitemapTag(): Url
+    {
+        return Url::create($this->profile_url)
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
     }
 }

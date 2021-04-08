@@ -18,7 +18,7 @@
                                 <div class="font-medium">
                                     <h3 class="text-xl truncate">{{ $contributor->full_name ?? $contributor->name }}</h3>
                                     <a
-                                        href="{{ route('profile', $contributor) }}"
+                                        href="{{ $contributor->profile_url }}"
                                         class="block text-gray-500 truncate hover:text-gray-700"
                                     >
                                         {{ '@'.$contributor->name }}

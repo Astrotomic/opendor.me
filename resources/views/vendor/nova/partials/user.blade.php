@@ -15,7 +15,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('profile', auth()->user()) }}" class="block no-underline text-90 hover:bg-30 p-3">
+            <a href="{{ auth()->user()->profile_url }}" class="block no-underline text-90 hover:bg-30 p-3">
                 {{ __('View Profile') }}
             </a>
         </li>

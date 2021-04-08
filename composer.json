@@ -129,6 +129,7 @@
             "vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
+        "route:list": "@php artisan route:list --columns=method,uri,name --except-path=nova,horizon,_debugbar --sort=name",
         "test": "@php vendor/bin/phpunit",
         "test-coverage": "@php vendor/bin/phpunit --coverage-html=.coverage",
         "thanks": "echo 'composer global require symfony/thanks'"

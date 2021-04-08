@@ -27,7 +27,7 @@
                 role="menuitem"
             >View Contributions</a>
             <a
-                href="{{ route('profile', auth()->user()) }}"
+                href="{{ auth()->user()->profile_url }}"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
             >View Profile</a>

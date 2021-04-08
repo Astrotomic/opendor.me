@@ -43,7 +43,7 @@ use Throwable;
  * @property-read string $vendor_name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $owner
+ * @property-read \App\Models\User|\App\Models\Organization $owner
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newQuery()

@@ -112,7 +112,7 @@
                                     {{ auth()->user()->full_name ?? auth()->user()->name }}
                                 </p>
                                 <a
-                                    href="{{ route('profile', auth()->user()) }}"
+                                    href="{{ auth()->user()->profile_url }}"
                                     class="block text-sm text-gray-500 truncate hover:text-gray-700"
                                 >
                                     {{ '@'.auth()->user()->name }}

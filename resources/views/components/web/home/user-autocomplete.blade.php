@@ -81,7 +81,7 @@
                 this.hits = this.fuse.search(this.$refs.name.value);
             },
             profileUrl(data) {
-                return '{{ route('profile', '%name%') }}'.replace('%name%', data.name)
+                return '{{ route('profile.user', '%name%') }}'.replace('%name%', data.name)
             },
             avatarUrl(data) {
                 return 'https://avatars.githubusercontent.com/u/%id%'.replace('%id%', data.id)

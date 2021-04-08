@@ -63,6 +63,12 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User byEmail(string $email)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
  * @mixin \Illuminate\Database\Eloquent\Builder
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
+ *
+ * @method static Builder|User permission($permissions)
+ * @method static Builder|User role($roles, $guard = null)
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
 {
@@ -209,7 +215,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getProfileUrlAttribute(): string
     {
-        return route('profile', ['user' => $this]);
+        return route('profile.user', ['user' => $this]);
     }
 
     public function getTwitterUrlAttribute(): ?string

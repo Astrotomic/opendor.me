@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\User;
 use Spatie\Sitemap\Sitemap;
 
@@ -11,6 +12,7 @@ class SitemapXmlController
     {
         return Sitemap::create()
             ->add(route('home'))
-            ->add(User::whereIsRegistered()->get());
+            ->add(User::whereIsRegistered()->get())
+            ->add(Organization::all());
     }
 }

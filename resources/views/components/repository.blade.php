@@ -7,7 +7,7 @@
         <div class="flex justify-between items-center space-x-6 w-full">
             <div class="flex-1 truncate">
                 <h3 class="space-x-1 text-base truncate">
-                    <span class="font-normal text-gray-500">{{ $repository->vendor_name }}</span>
+                    <a href="{{ $repository->owner->profile_url }}" class="font-normal text-gray-500 hover:text-gray-700">{{ $repository->vendor_name }}</a>
                     <span class="font-medium text-gray-900">{{ $repository->repository_name }}</span>
                 </h3>
                 <ul class="flex mt-1 space-x-2">
@@ -16,7 +16,6 @@
                     <li class="inline-flex"><x-repository.stars :stars="$repository->stargazers_count"/></li>
                 </ul>
             </div>
-            <x-gh-avatar :model="$repository->owner" class="w-10 h-10"/>
         </div>
         <p class="text-sm text-gray-500 truncate">{{ $repository->description }}</p>
     </div>

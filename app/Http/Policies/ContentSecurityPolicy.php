@@ -2,9 +2,11 @@
 
 namespace App\Http\Policies;
 
+use Illuminate\Http\Request;
 use Spatie\Csp\Directive;
 use Spatie\Csp\Keyword;
 use Spatie\Csp\Policies\Policy;
+use Symfony\Component\HttpFoundation\Response;
 
 class ContentSecurityPolicy extends Policy
 {
@@ -31,5 +33,14 @@ class ContentSecurityPolicy extends Policy
             ->addDirective(Directive::STYLE, Keyword::UNSAFE_INLINE)
             ->addDirective(Directive::FONT, Keyword::SELF)
             ->addNonceForDirective(Directive::SCRIPT);
+    }
+
+    public function shouldBeApplied(Request $request, Response $response): bool
+    {
+        if (app()->environment('local') && config('debugbar.enabled')) {
+            return false;
+        }
+
+        return config('csp.enabled') && empty($response->exception);
     }
 }
