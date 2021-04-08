@@ -9,7 +9,7 @@
                     <x-fal-times class="block w-6 h-6" x-show="open" x-cloak/>
                 </button>
             </div>
-            <div class="flex flex-1 justify-center items-center sm:items-stretch sm:justify-start">
+            <div class="flex flex-1 justify-center items-center h-full sm:items-stretch sm:justify-start">
 
                 {{-- Logo --}}
                 <div class="flex flex-shrink-0 items-center">
