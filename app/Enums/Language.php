@@ -31,6 +31,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self PERL()
  * @method static self OBJECTIVE_C()
  * @method static self LUA()
+ * @method static self SWIFT()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -66,6 +67,7 @@ final class Language extends Enum
             'POWERSHELL' => 'PowerShell',
             'PERL' => 'Perl',
             'LUA' => 'Lua',
+            'SWIFT' => 'Swift',
             'OBJECTIVE_C' => 'Objective-C',
             'C_SHARP' => 'C#',
             'C_PLUSPLUS' => 'C++',
