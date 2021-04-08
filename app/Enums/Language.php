@@ -32,6 +32,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self OBJECTIVE_C()
  * @method static self LUA()
  * @method static self SWIFT()
+ * @method static self XML()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -68,6 +69,7 @@ final class Language extends Enum
             'PERL' => 'Perl',
             'LUA' => 'Lua',
             'SWIFT' => 'Swift',
+            'XML' => 'XML',
             'OBJECTIVE_C' => 'Objective-C',
             'C_SHARP' => 'C#',
             'C_PLUSPLUS' => 'C++',
@@ -77,6 +79,10 @@ final class Language extends Enum
 
     public function color(): string
     {
-        return $this->equals(static::NOASSERTION(), static::SMARTY()) ? 'gray-300' : Str::slug($this->value);
+        return $this->equals(
+            static::NOASSERTION(),
+            static::SMARTY(),
+            static::XML(),
+        ) ? 'gray-300' : Str::slug($this->value);
     }
 }
