@@ -1,3 +1,7 @@
+@push('head')
+    <meta name="description" content="We open doors for open-source contributors and make open-source visible and understandable for everyone and show recruiters the open-source work of a potential candidate."/>
+@endpush
+
 <x-layout.web>
 
     {{--  hero section  --}}
