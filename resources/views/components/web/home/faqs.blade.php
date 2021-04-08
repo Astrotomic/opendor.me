@@ -1,5 +1,5 @@
 <div class="bg-white">
-    <div class="py-16 px-4 mx-auto max-w-7xl divide-y-2 divide-gray-200 sm:py-24 sm:px-6 lg:px-8">
+    <div class="py-8 px-4 mx-auto max-w-7xl divide-y-2 divide-gray-200 sm:py-16 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-extrabold text-gray-900">
             Frequently Asked Questions
         </h2>
