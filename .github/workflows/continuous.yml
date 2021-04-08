@@ -118,6 +118,7 @@ jobs:
           envs: "SSH_ROOT"
           script: |
             cd $SSH_ROOT
+            php artisan backup:run
             git pull origin main
             yarn install
             yarn production
