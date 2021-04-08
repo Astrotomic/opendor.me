@@ -11,23 +11,35 @@ use App\Console\Commands\GithubUserRepositories;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Laravel\Horizon\Console\SnapshotCommand;
+use Spatie\Backup\Commands\BackupCommand;
+use Spatie\Backup\Commands\CleanupCommand;
+use Spatie\Backup\Commands\MonitorCommand;
 use Spatie\ScheduleMonitor\Commands\CleanLogCommand;
 
 class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(SnapshotCommand::class)->everyFiveMinutes();
-
+        // github:*:repositories
         $schedule->command(GithubOrganizationRepositories::class)->dailyAt('03:00');
         $schedule->command(GithubUserRepositories::class)->dailyAt('03:00');
-        $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00');
-
+        // github:*:details
         $schedule->command(GithubUserDetails::class)->dailyAt('12:00');
         $schedule->command(GithubOrganizationDetails::class)->dailyAt('12:00');
         $schedule->command(GithubRepositoryDetails::class)->dailyAt('12:00');
+        // github:repository:contributors
+        $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00');
 
+        // laravel/horizon
+        $schedule->command(SnapshotCommand::class)->everyFiveMinutes();
+
+        // spatie/laravel-schedule-monitor
         $schedule->command(CleanLogCommand::class)->dailyAt('01:00');
+
+        // spatie/laravel-backup
+        $schedule->command(BackupCommand::class)->twiceDaily(1, 13);
+        $schedule->command(CleanupCommand::class)->dailyAt('09:00');
+        $schedule->command(MonitorCommand::class)->dailyAt('10:00');
     }
 
     protected function commands(): void
