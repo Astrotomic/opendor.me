@@ -87,12 +87,6 @@ class Repository extends Model
             || $data['name'] === '.github'
             || $data['name'] === $data['owner']['login']
         ) {
-            Log::debug(
-                "Ignored repository [{$data['full_name']}] to import."
-                .PHP_EOL
-                .json_encode(Arr::only($data, ['id', 'full_name', 'private', 'archived', 'disabled', 'license', 'language']))
-            );
-
             return null;
         }
 
@@ -105,8 +99,6 @@ class Repository extends Model
         }
 
         if ($owner instanceof User && $data['fork']) {
-            Log::debug("Ignored personal forked repository [{$data['full_name']}] to import.");
-
             return null;
         }
 
