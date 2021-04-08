@@ -40,6 +40,7 @@
     </section>
     @endif
 
+    @if($repositories->isNotEmpty())
     <section class="px-4 mx-auto mt-8 max-w-3xl sm:mt-12 lg:mt-16 sm:px-6 lg:px-8 lg:max-w-7xl">
         <h2 class="flex items-center mb-4 text-2xl font-bold text-gray-900">
             Repositories
@@ -50,4 +51,5 @@
             @endforeach
         </div>
     </section>
+    @endif
 </x-layout.web>
