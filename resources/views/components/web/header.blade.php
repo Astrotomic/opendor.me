@@ -3,7 +3,7 @@
         <div class="flex relative justify-between h-16">
             <div class="flex absolute inset-y-0 left-0 items-center sm:hidden">
                 {{-- Mobile menu toggle --}}
-                <button type="button" class="inline-flex justify-center items-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
+                <button type="button" class="inline-flex justify-center items-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-500" aria-controls="mobile-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
                     <span class="sr-only">Toggle main menu</span>
                     <x-fal-bars class="block w-6 h-6" x-show="!open" x-cloak/>
                     <x-fal-times class="block w-6 h-6" x-show="open" x-cloak/>
@@ -23,7 +23,7 @@
                         class="
                             inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2
                             @if(request()->is(route('home', [], false)))
-                                border-indigo-500 text-gray-900
+                                border-brand-500 text-gray-900
                             @else
                                 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
                             @endif
@@ -35,7 +35,7 @@
             <div class="flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 @if(auth()->guest())
                 <div class="flex-shrink-0">
-                    <a href="{{ route('auth.github.redirect') }}" class="inline-flex relative items-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 rounded-md border border-transparent shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <a href="{{ route('auth.github.redirect') }}" class="inline-flex relative items-center py-2 px-4 text-sm font-medium text-white bg-brand-600 rounded-md border border-transparent shadow-sm hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
                         <x-fas-sign-in class="mr-2 w-4 h-4"/>
                         Sign-In
                     </a>
@@ -55,7 +55,7 @@
                 class="
                     block py-2 pr-4 pl-3 text-base font-medium border-l-4
                     @if(request()->is(route('home', [], false)))
-                        bg-indigo-50 border-indigo-500 text-indigo-700
+                        bg-brand-50 border-brand-500 text-brand-700
                     @else
                         border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
                     @endif

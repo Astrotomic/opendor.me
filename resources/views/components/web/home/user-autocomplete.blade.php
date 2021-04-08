@@ -16,7 +16,7 @@
                 type="search"
                 name="name"
                 id="github-username"
-                class="block py-2 py-3 px-3 pl-10 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:flex-1 focus:outline-none"
+                class="block py-2 py-3 px-3 pl-10 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:flex-1 focus:outline-none"
                 placeholder="Enter an username"
                 autocomplete="off"
                 x-ref="name"
@@ -27,7 +27,7 @@
         </div>
         <button
             type="submit"
-            class="py-3 px-6 mt-3 w-full text-base font-medium text-white bg-gray-800 rounded-md border border-transparent shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
+            class="py-3 px-6 mt-3 w-full text-base font-medium text-white bg-gray-800 rounded-md border border-transparent shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
         >
             Search
         </button>
@@ -43,7 +43,7 @@
                             loading="lazy"
                             class="flex-shrink-0 w-6 h-6 rounded-md"
                         />
-                        <span class="font-medium text-gray-900 group-hover:text-indigo-500" x-text="hit.item.full_name || hit.item.name"></span>
+                        <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.item.full_name || hit.item.name"></span>
                         <span class="hidden text-sm text-gray-500 sm:block" x-text="'@'+hit.item.name"></span>
                     </a>
                 </li>

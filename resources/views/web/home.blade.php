@@ -18,7 +18,7 @@
             <div class="lg:flex lg:justify-between">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:mx-0 lg:text-left lg:mr-12 lg:flex-grow">
                     <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
-                      We <span class="text-indigo-600">open doors</span> for open-source contributors
+                      We <span class="text-brand-500">open doors</span> for open-source contributors
                     </h1>
                     <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                         We make open-source visible and understandable for everyone and show recruiters the open-source work of a potential candidate.

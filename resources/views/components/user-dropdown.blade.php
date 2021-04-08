@@ -2,7 +2,7 @@
 <div x-data="{ open: false }" @click.away="open = false" class="relative ml-3">
     <button
         type="button"
-        class="flex overflow-hidden items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+        class="flex overflow-hidden items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500"
         id="user-menu"
         @click="open = !open"
         aria-haspopup="true"

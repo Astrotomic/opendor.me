@@ -14,7 +14,7 @@
 
         <div class="flex justify-center mt-12">
             <div class="inline-flex rounded-md shadow">
-                <a href="{{ url('/') }}" class="inline-flex justify-center items-center py-3 px-5 space-x-2 text-base font-medium text-white bg-indigo-600 rounded-md border border-transparent hover:bg-indigo-700">
+                <a href="{{ url('/') }}" class="inline-flex justify-center items-center py-3 px-5 space-x-2 text-base font-medium text-white bg-brand-600 rounded-md border border-transparent hover:bg-brand-700">
                     <x-far-home class="w-4 h-4 text-gray-100"/>
                     <span>back home</span>
                 </a>

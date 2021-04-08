@@ -20,7 +20,7 @@
                             <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
                                 Contributors
                             </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+                            <dd class="order-1 text-5xl font-extrabold text-brand-500">
                                 <x-numeral>{{ $contributorsCount }}</x-numeral>
                             </dd>
                         </div>
@@ -28,7 +28,7 @@
                             <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
                                 Repositories
                             </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+                            <dd class="order-1 text-5xl font-extrabold text-brand-500">
                                 <x-numeral>{{ $repositoriesCount }}</x-numeral>
                             </dd>
                         </div>
@@ -36,7 +36,7 @@
                             <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
                                 Contributions
                             </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+                            <dd class="order-1 text-5xl font-extrabold text-brand-500">
                                 <x-numeral>{{ $contributionsCount }}</x-numeral>
                             </dd>
                         </div>

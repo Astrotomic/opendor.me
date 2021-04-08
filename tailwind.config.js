@@ -38,6 +38,18 @@ module.exports = {
   theme: {
       extend: {
           colors: {
+              brand: {
+                  '50':  '#fdfcfb',
+                  '100': '#fcefef',
+                  '200': '#f9c8e0',
+                  '300': '#f19ac1',
+                  '400': '#f16a9f',
+                  '500': '#ff4297',
+                  '600': '#d62e62',
+                  '700': '#b22347',
+                  '800': '#86192e',
+                  '900': '#551018',
+              },
               "1c-enterprise": "#814CCC",
               "abap": "#E8274B",
               "abap-cds": "#555e25",
