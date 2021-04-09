@@ -17,28 +17,28 @@
                 <div class="mx-auto max-w-4xl">
                     <dl class="bg-white rounded-lg shadow-lg sm:grid sm:grid-cols-3">
                         <div class="flex flex-col p-6 text-center border-b border-gray-100 sm:border-0 sm:border-r">
-                            <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
-                                Contributors
-                            </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-brand-500">
+                            <dd class="text-5xl font-extrabold text-brand-500">
                                 <x-numeral>{{ $contributorsCount }}</x-numeral>
                             </dd>
+                            <dt class="mt-2 text-lg font-medium leading-6 text-gray-500">
+                                Contributors
+                            </dt>
                         </div>
                         <div class="flex flex-col p-6 text-center border-t border-b border-gray-100 sm:border-0 sm:border-l sm:border-r">
-                            <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
-                                Repositories
-                            </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-brand-500">
+                            <dd class="text-5xl font-extrabold text-brand-500">
                                 <x-numeral>{{ $repositoriesCount }}</x-numeral>
                             </dd>
+                            <dt class="mt-2 text-lg font-medium leading-6 text-gray-500">
+                                Repositories
+                            </dt>
                         </div>
                         <div class="flex flex-col p-6 text-center border-t border-gray-100 sm:border-0 sm:border-l">
-                            <dt class="order-2 mt-2 text-lg font-medium leading-6 text-gray-500">
-                                Contributions
-                            </dt>
-                            <dd class="order-1 text-5xl font-extrabold text-brand-500">
+                            <dd class="text-5xl font-extrabold text-brand-500">
                                 <x-numeral>{{ $contributionsCount }}</x-numeral>
                             </dd>
+                            <dt class="mt-2 text-lg font-medium leading-6 text-gray-500">
+                                Contributions
+                            </dt>
                         </div>
                     </dl>
                 </div>
