@@ -99,7 +99,6 @@ jobs:
       - phpcs
       - tlint
       - phpmnd
-      - enlightn
       - phpunit
     runs-on: ubuntu-latest
     timeout-minutes: 2
