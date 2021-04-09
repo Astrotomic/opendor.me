@@ -30,12 +30,8 @@
     <script nonce="{{ csp_nonce() }}">
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('{{ mix('serviceworker.js') }}')
-                .then(function(registration) {
-                    console.log('Registration successful, scope is:', registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('Service worker registration failed, error:', error);
-                });
+                .then(console.log)
+                .catch(console.error);
         }
     </script>
 </head>

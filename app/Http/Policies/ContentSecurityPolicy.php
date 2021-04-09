@@ -29,6 +29,7 @@ class ContentSecurityPolicy extends Policy
             ->addDirective(Directive::IMG, 'https://images.unsplash.com')
             ->addDirective(Directive::SCRIPT, Keyword::SELF)
             ->addDirective(Directive::SCRIPT, Keyword::UNSAFE_EVAL)
+            ->addDirective(Directive::SCRIPT, 'https://plausible.io/js/plausible.js')
             ->addDirective(Directive::STYLE, Keyword::SELF)
             ->addDirective(Directive::STYLE, Keyword::UNSAFE_INLINE)
             ->addDirective(Directive::FONT, Keyword::SELF)
