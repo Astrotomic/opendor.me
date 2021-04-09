@@ -26,6 +26,18 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
     @stack('head')
+
+    <script nonce="{{ csp_nonce() }}">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{{ mix('serviceworker.js') }}')
+                .then(function(registration) {
+                    console.log('Registration successful, scope is:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service worker registration failed, error:', error);
+                });
+        }
+    </script>
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>
 {{ $slot }}

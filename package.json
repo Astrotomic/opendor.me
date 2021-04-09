@@ -19,6 +19,10 @@
         "alpinejs": "^2.8.2",
         "fuse.js": "^6.4.6",
         "tailwindcss": "^2.0.4",
-        "typeface-raleway": "^1.1.13"
+        "typeface-raleway": "^1.1.13",
+        "workbox-cacheable-response": "^6.1.2",
+        "workbox-expiration": "^6.1.2",
+        "workbox-routing": "^6.1.2",
+        "workbox-strategies": "^6.1.2"
     }
 }
