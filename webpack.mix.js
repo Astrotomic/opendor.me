@@ -6,4 +6,5 @@ mix
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
     ])
+    .copyDirectory('resources/images', 'public/images')
     .version();
