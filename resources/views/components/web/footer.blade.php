@@ -6,10 +6,10 @@
             </h2>
             <div class="grid grid-cols-2 gap-8 justify-center py-4 mt-6 md:grid-cols-3 lg:grid-cols-4">
                 <a href="https://pingping.io" class="flex justify-center py-6 px-4">
-                    <img class="h-12" src="{{ asset('images/sponsors/pingping.svg') }}" alt="PingPing">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/pingping.svg') }}" alt="PingPing">
                 </a>
                 <a href="https://plausible.io" class="flex justify-center py-6 px-4">
-                    <img class="h-12" src="{{ asset('images/sponsors/plausible.png') }}" alt="Plausible">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/plausible.png') }}" alt="Plausible">
                 </a>
             </div>
         </div>
