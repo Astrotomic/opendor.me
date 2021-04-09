@@ -16,5 +16,12 @@
     "theme_color": "#ff4297",
     "background_color": "#ffffff",
     "start_url": "https://opendor.me",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "categories": [
+        "social",
+        "devtools"
+    ],
+    "lang": "en",
+    "dir": "ltr",
 }
