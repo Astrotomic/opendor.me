@@ -7,3 +7,7 @@
 [x-cloak] {
     display: none !important;
 }
+
+::selection {
+    @apply bg-pink-500 text-white;
+}
