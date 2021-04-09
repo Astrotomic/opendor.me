@@ -1,3 +1,11 @@
 *
 !.gitignore
 !index.php
+!android-*.png
+!apple-touch-*.png
+!favicon-*.png
+!favicon.ico
+!browserconfig.xml
+!mstile-*.png
+!safari-pinned-tab.svg
+!site.webmanifest

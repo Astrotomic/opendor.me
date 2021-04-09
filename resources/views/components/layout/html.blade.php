@@ -9,6 +9,17 @@
 
     <title>{{ $title }}</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#ff4297">
+    <meta name="apple-mobile-web-app-title" content="opendor.me">
+    <meta name="application-name" content="opendor.me">
+    <meta name="msapplication-TileColor" content="#ff4297">
+    <meta name="msapplication-TileImage" content="{{ asset('mstile-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+
     <link rel="sitemap" type="application/xml" href="{{ route('sitemap.xml') }}"/>
     <link rel="canonical" href="{{ rtrim(request()->url(), '/') }}"/>
 
