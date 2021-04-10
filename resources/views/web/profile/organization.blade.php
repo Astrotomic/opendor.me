@@ -28,20 +28,7 @@
         </h2>
         <div class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach($members as $member)
-                <div class="flex items-center p-4 space-x-4 bg-white rounded-lg shadow">
-                    <x-gh-avatar :model="$member" class="w-12 h-12"/>
-                    <div class="space-y-1">
-                        <strong class="block text-lg font-medium leading-tight text-gray-900 truncate">
-                            {{ $member->display_name }}
-                        </strong>
-                        <a
-                            href="{{ $member->profile_url }}"
-                            class="block font-normal leading-tight text-gray-500 hover:text-gray-700 truncate"
-                        >
-                            {{ '@'.$member->name }}
-                        </a>
-                    </div>
-                </div>
+                <x-card.user :model="$member"/>
             @endforeach
         </div>
     </section>
@@ -54,7 +41,7 @@
         </h2>
         <div class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($repositories as $repository)
-                <x-repository :repository="$repository"/>
+                <x-card.repository :repository="$repository"/>
             @endforeach
         </div>
     </section>

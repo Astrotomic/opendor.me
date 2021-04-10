@@ -54,7 +54,7 @@
 
                 <div class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($repositories->take(6) as $repository)
-                        <x-repository :repository="$repository" :user="$user"/>
+                        <x-card.repository :repository="$repository" :user="$user"/>
                     @endforeach
                 </div>
 
@@ -73,7 +73,7 @@
                         :aria-hidden="!showAll"
                     >
                         @foreach($repositories->slice(6) as $repository)
-                            <x-repository :repository="$repository" :user="$user"/>
+                            <x-card.repository :repository="$repository" :user="$user"/>
                         @endforeach
                     </div>
                 @endif

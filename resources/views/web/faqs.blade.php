@@ -1,6 +1,5 @@
-<x-layout.web>
+<x-layout.web page-title="Frequently Asked Questions">
 
-    {{--  FAQs  --}}
-    <x-web.home.faqs/>
+    <x-web.faqs/>
 
 </x-layout.web>

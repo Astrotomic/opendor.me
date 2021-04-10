@@ -8,6 +8,8 @@ Route::view('/', 'web.home')->name('home');
 
 Route::view('/faqs', 'web.faqs')->name('faqs');
 
+Route::view('/sponsors', 'web.sponsors')->name('sponsors');
+
 // has to be the last route group as the organization is "catch-all"
 Route::name('profile.')->group(static function (): void {
     Route::get('/@{user:name}', ShowUserProfileController::class)->name('user');

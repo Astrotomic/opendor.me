@@ -13,7 +13,7 @@
         </div>
         <div class="grid grid-cols-1 gap-6 mx-auto mt-12 max-w-lg lg:grid-cols-3 lg:max-w-none">
             @foreach($repositories() as $repository)
-                <x-repository :repository="$repository"/>
+                <x-card.repository :repository="$repository"/>
             @endforeach
         </div>
     </div>

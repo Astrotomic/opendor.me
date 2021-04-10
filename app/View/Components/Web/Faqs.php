@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Web\Home;
+namespace App\View\Components\Web;
 
 use App\Models\FAQ;
 use Illuminate\Contracts\View\View;
@@ -16,7 +16,7 @@ class Faqs extends Component
 
     public function render(): View
     {
-        return view('components.web.home.faqs');
+        return view('components.web.faqs');
     }
 
     public function faqs(): Collection

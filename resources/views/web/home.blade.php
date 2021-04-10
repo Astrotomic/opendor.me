@@ -73,6 +73,6 @@
     <x-web.home.random-organizations limit="6"/>
 
     {{--  FAQs  --}}
-    <x-web.home.faqs limit="2"/>
+    <x-web.faqs limit="2"/>
 
 </x-layout.web>

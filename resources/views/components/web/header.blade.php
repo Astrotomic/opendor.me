@@ -27,7 +27,8 @@
                             @else
                                 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
                             @endif
-                        ">Home</a>
+                        "
+                    >Home</a>
 
                     <a
                         href="{{ route('faqs') }}"
@@ -38,7 +39,20 @@
                             @else
                                 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
                             @endif
-                        ">FAQs</a>
+                        "
+                    >FAQs</a>
+
+                    <a
+                        href="{{ route('sponsors') }}"
+                        class="
+                            inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2
+                            @if(request()->is(trim(route('sponsors', [], false), '/')))
+                                border-brand-500 text-gray-900
+                            @else
+                                border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
+                            @endif
+                        "
+                    >Sponsors</a>
                 </div>
             </div>
 
@@ -82,6 +96,30 @@
                     @endif
                 "
             >FAQs</a>
+
+            <a
+                href="{{ route('faqs') }}"
+                class="
+                    block py-2 pr-4 pl-3 text-base font-medium border-l-4
+                    @if(request()->is(trim(route('faqs', [], false), '/')))
+                        bg-brand-50 border-brand-500 text-brand-700
+                    @else
+                        border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+                    @endif
+                "
+            >FAQs</a>
+
+            <a
+                href="{{ route('sponsors') }}"
+                class="
+                    block py-2 pr-4 pl-3 text-base font-medium border-l-4
+                    @if(request()->is(trim(route('sponsors', [], false), '/')))
+                        bg-brand-50 border-brand-500 text-brand-700
+                    @else
+                        border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+                    @endif
+                "
+            >Sponsors</a>
         </div>
     </div>
 </nav>
