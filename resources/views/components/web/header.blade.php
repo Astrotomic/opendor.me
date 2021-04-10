@@ -98,18 +98,6 @@
             >FAQs</a>
 
             <a
-                href="{{ route('faqs') }}"
-                class="
-                    block py-2 pr-4 pl-3 text-base font-medium border-l-4
-                    @if(request()->is(trim(route('faqs', [], false), '/')))
-                        bg-brand-50 border-brand-500 text-brand-700
-                    @else
-                        border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
-                    @endif
-                "
-            >FAQs</a>
-
-            <a
                 href="{{ route('sponsors') }}"
                 class="
                     block py-2 pr-4 pl-3 text-base font-medium border-l-4
