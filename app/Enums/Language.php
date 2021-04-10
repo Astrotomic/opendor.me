@@ -35,6 +35,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self XML()
  * @method static self KOTLIN()
  * @method static self VIM_SCRIPT()
+ * @method static self VIM_L()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -46,6 +47,7 @@ final class Language extends Enum
             'C_PLUSPLUS' => 'C++',
             'OBJECTIVE_C' => 'Objective-C',
             'VIM_SCRIPT' => 'Vim script',
+            'VIM_L' => 'VimL',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -78,16 +80,19 @@ final class Language extends Enum
             'C_SHARP' => 'C#',
             'C_PLUSPLUS' => 'C++',
             'VIM_SCRIPT' => 'Vim script',
+            'VIM_L' => 'VimL',
             'NOASSERTION' => 'Other',
         ];
     }
 
     public function color(): string
     {
-        return $this->equals(
-            static::NOASSERTION(),
-            static::SMARTY(),
-            static::XML(),
-        ) ? 'gray-300' : Str::slug($this->value);
+        return Str::slug(match ($this->value) {
+            static::NOASSERTION()->value => 'gray-300',
+            static::SMARTY()->value => 'gray-300',
+            static::XML()->value => 'gray-300',
+            static::VIM_L()->value => static::VIM_SCRIPT()->value,
+            default => $this->value,
+        });
     }
 }
