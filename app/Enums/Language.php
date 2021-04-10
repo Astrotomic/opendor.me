@@ -33,6 +33,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self LUA()
  * @method static self SWIFT()
  * @method static self XML()
+ * @method static self KOTLIN()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -69,6 +70,7 @@ final class Language extends Enum
             'PERL' => 'Perl',
             'LUA' => 'Lua',
             'SWIFT' => 'Swift',
+            'KOTLIN' => 'Kotlin',
             'XML' => 'XML',
             'OBJECTIVE_C' => 'Objective-C',
             'C_SHARP' => 'C#',

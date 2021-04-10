@@ -30,6 +30,7 @@ module.exports = {
               'bg-yaml',
               'bg-perl',
               'bg-lua',
+              'bg-kotlin',
               'bg-objective-c',
               'bg-gray-300',
           ],
