@@ -34,6 +34,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self SWIFT()
  * @method static self XML()
  * @method static self KOTLIN()
+ * @method static self VIM_SCRIPT()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -44,6 +45,7 @@ final class Language extends Enum
             'C_SHARP' => 'C#',
             'C_PLUSPLUS' => 'C++',
             'OBJECTIVE_C' => 'Objective-C',
+            'VIM_SCRIPT' => 'Vim script',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -75,6 +77,7 @@ final class Language extends Enum
             'OBJECTIVE_C' => 'Objective-C',
             'C_SHARP' => 'C#',
             'C_PLUSPLUS' => 'C++',
+            'VIM_SCRIPT' => 'Vim script',
             'NOASSERTION' => 'Other',
         ];
     }
