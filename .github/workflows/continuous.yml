@@ -119,7 +119,7 @@ jobs:
           script: |
             cd $SSH_ROOT
             php artisan backup:run
-            rm bootstrap/cache/config.php
+            rm -f bootstrap/cache/config.php
             php artisan optimize:clear
             git pull origin main
             yarn install
