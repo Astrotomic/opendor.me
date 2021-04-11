@@ -37,6 +37,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self VIM_SCRIPT()
  * @method static self VIM_L()
  * @method static self VISUAL_BASIC()
+ * @method static self HCL()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -94,6 +95,7 @@ final class Language extends Enum
             static::NOASSERTION()->value => 'gray-300',
             static::SMARTY()->value => 'gray-300',
             static::XML()->value => 'gray-300',
+            static::HCL()->value => 'gray-300',
             static::VIM_L()->value => static::VIM_SCRIPT()->value,
             static::VISUAL_BASIC()->value => 'visual-basic-net',
             default => $this->value,
