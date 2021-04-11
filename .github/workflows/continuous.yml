@@ -119,6 +119,7 @@ jobs:
           script: |
             cd $SSH_ROOT
             php artisan backup:run
+            php artisan config:clear
             git pull origin main
             yarn install
             yarn production
