@@ -1,3 +1,11 @@
+@push('javascript')
+@env('production')
+<script nonce="{{ csp_nonce() }}">
+    window.plausible("404", { props: { path: document.location.pathname } })
+</script>
+@endenv
+@endpush
+
 <x-layout.web class="flex flex-col flex-grow justify-center bg-white">
 
     <div class="py-12 px-4 mx-auto max-w-7xl text-center sm:px-6 lg:py-16 lg:px-8">
