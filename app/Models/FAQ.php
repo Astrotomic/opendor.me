@@ -30,14 +30,15 @@ class FAQ extends Model implements Sortable
     use Orbital;
     use HasSlug;
 
-    protected $table = 'faqs';
     public $incrementing = false;
+    public $timestamps = false;
+
+    protected $table = 'faqs';
     protected $keyType = 'string';
     protected $primaryKey = 'slug';
-    public $timestamps = false;
     protected $guarded = [];
 
-    protected array $sortable = [
+    protected $sortable = [
         'order_column_name' => 'priority',
         'sort_when_creating' => false,
     ];
