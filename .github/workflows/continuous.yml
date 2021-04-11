@@ -119,16 +119,13 @@ jobs:
           script: |
             cd $SSH_ROOT
             php artisan backup:run
-            php artisan config:clear
+            php artisan optimize:clear
             git pull origin main
             yarn install
             yarn production
             composer update --no-interaction --prefer-dist --optimize-autoloader --no-dev
             sudo -S service php8.0-fpm reload
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            php artisan event:cache
+            php artisan optimize
             php artisan migrate --force
             php artisan permission:cache-reset
             php artisan permission:ensure
