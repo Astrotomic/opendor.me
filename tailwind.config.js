@@ -31,6 +31,7 @@ module.exports = {
               'bg-perl',
               'bg-lua',
               'bg-kotlin',
+              'bg-visual-basic-net',
               'bg-vim-script',
               'bg-objective-c',
               'bg-gray-300',

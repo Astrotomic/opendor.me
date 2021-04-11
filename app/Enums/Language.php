@@ -36,6 +36,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self KOTLIN()
  * @method static self VIM_SCRIPT()
  * @method static self VIM_L()
+ * @method static self VISUAL_BASIC()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -48,6 +49,7 @@ final class Language extends Enum
             'OBJECTIVE_C' => 'Objective-C',
             'VIM_SCRIPT' => 'Vim script',
             'VIM_L' => 'VimL',
+            'VISUAL_BASIC' => 'Visual Basic',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -81,6 +83,7 @@ final class Language extends Enum
             'C_PLUSPLUS' => 'C++',
             'VIM_SCRIPT' => 'Vim script',
             'VIM_L' => 'VimL',
+            'VISUAL_BASIC' => 'Visual Basic',
             'NOASSERTION' => 'Other',
         ];
     }
@@ -92,6 +95,7 @@ final class Language extends Enum
             static::SMARTY()->value => 'gray-300',
             static::XML()->value => 'gray-300',
             static::VIM_L()->value => static::VIM_SCRIPT()->value,
+            static::VISUAL_BASIC()->value => 'visual-basic-net',
             default => $this->value,
         });
     }
