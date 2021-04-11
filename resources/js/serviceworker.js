@@ -27,6 +27,9 @@ registerRoute(
         if (request.destination === 'image' && url.pathname.startsWith('/images/sponsors/')) {
             return true;
         }
+        if (url.pathname === '/api/user/autocomplete') {
+            return true;
+        }
 
         if (
             request.destination === 'document'

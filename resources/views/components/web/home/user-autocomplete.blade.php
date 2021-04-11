@@ -43,7 +43,7 @@
                             loading="lazy"
                             class="flex-shrink-0 w-6 h-6 rounded-md"
                         />
-                        <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.item.full_name || hit.item.name"></span>
+                        <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.item.display_name"></span>
                         <span class="hidden text-sm text-gray-500 sm:block" x-text="'@'+hit.item.name"></span>
                     </a>
                 </li>
@@ -64,8 +64,11 @@
                 this.$fuse(
                     fetch('{{ route('api.user.autocomplete') }}').then(r => r.json()),
                     {
-                        keys: ['name', 'full_name'],
+                        keys: ['name', 'display_name'],
                         minMatchCharLength: 3,
+                        threshold: 0.5,
+                        includeScore: true,
+                        ignoreLocation: true,
                     }).then(f => this.fuse = f)
             },
             search() {
