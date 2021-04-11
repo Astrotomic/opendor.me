@@ -28,7 +28,7 @@
                 </a>
             </div>
             <div class="inline-flex ml-3">
-                <a href="https://github.com/Astrotomic/opendor.me/issues/new" class="inline-flex justify-center items-center py-3 px-5 space-x-2 text-base font-medium text-gray-700 bg-gray-100 rounded-md border border-transparent hover:bg-gray-200">
+                <a href="https://github.com/Astrotomic/opendor.me/issues/new?labels=bug&template=bug-report.md" class="inline-flex justify-center items-center py-3 px-5 space-x-2 text-base font-medium text-gray-700 bg-gray-100 rounded-md border border-transparent hover:bg-gray-200">
                     <x-far-bug class="w-4 h-4 text-gray-500"/>
                     <span>report bug</span>
                 </a>
