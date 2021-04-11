@@ -18,6 +18,12 @@
                 </ul>
             </div>
         </div>
+        <div class="flex text-gray-500">
+            <x-far-exclamation-circle class="inline-block w-3 h-3 mr-1.5 mt-1 text-red-500"/>
+            <p class="flex-grow text-sm">
+                It can be that this profile is not complete. What you see is only the data we've already indexed.
+            </p>
+        </div>
         <p class="text-gray-700">
             <span class="font-medium text-gray-900">{{ $user->display_name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions_count }}</span> different repositories across <span class="font-medium text-gray-900">{{ $contributions->count() }}</span> unique vendors.
             <br/>

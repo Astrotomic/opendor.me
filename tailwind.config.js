@@ -283,7 +283,7 @@ module.exports = {
               "reason": "#ff5847",
               "rebol": "#358a5b",
               "record-jar": "#0673ba",
-              "red": "#f50000",
+              // "red": "#f50000", // conflict with `text-red-500`
               "renpy": "#ff7f7f",
               "rescript": "#ed5051",
               "ring": "#2D54CB",
