@@ -13,18 +13,15 @@
                 <ul class="grid gap-8 sm:grid-cols-2">
                     @foreach($contributors() as $contributor)
                         <li class="@if($loop->iteration >= 5) hidden md:block @endif">
-                            <div class="flex items-center space-x-4 lg:space-x-6">
+                            <a href="{{ $contributor->profile_url }}" class="flex items-center space-x-4 lg:space-x-6 group">
                                 <x-gh-avatar :model="$contributor" class="w-16 h-16 rounded-full lg:w-20 lg:h-20"/>
                                 <div class="font-medium">
-                                    <h3 class="text-xl truncate">{{ $contributor->display_name }}</h3>
-                                    <a
-                                        href="{{ $contributor->profile_url }}"
-                                        class="block text-gray-500 truncate hover:text-gray-700"
-                                    >
+                                    <h3 class="text-xl truncate group-hover:text-brand-500">{{ $contributor->display_name }}</h3>
+                                    <span class="block text-gray-500 truncate group-hover:text-gray-700">
                                         {{ '@'.$contributor->name }}
-                                    </a>
+                                    </span>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                     @endforeach
                 </ul>

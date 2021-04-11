@@ -16,7 +16,9 @@
                     <li class="inline-flex"><x-repository.stars :stars="$repository->stargazers_count"/></li>
                 </ul>
             </div>
-            <x-gh-avatar :model="$repository->owner" class="w-10 h-10"/>
+            <a href="{{ $repository->owner->profile_url }}" class="block">
+                <x-gh-avatar :model="$repository->owner" class="w-10 h-10"/>
+            </a>
         </div>
         <p class="text-sm text-gray-500 truncate">{{ $repository->description }}</p>
     </div>
