@@ -47,7 +47,7 @@ use Throwable;
  * @property-read string $avatar_url
  * @property-read string[] $emails
  * @property-read string $github_url
- * @property-read string $profile_url
+ * @property-read string|null $profile_url
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
  * @property-read string $display_name
@@ -212,8 +212,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return in_array($this->id, self::SUPERADMIN_IDS, true);
     }
 
-    public function getProfileUrlAttribute(): string
+    public function getProfileUrlAttribute(): ?string
     {
+        if (! $this->isRegistered()) {
+            return null;
+        }
+
         return route('profile.user', ['user' => $this]);
     }
 
