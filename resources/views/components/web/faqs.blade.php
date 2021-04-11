@@ -11,7 +11,7 @@
                             {{ $faq->question }}
                         </dt>
                         <dd class="mt-2 text-base text-gray-500">
-                            {!! \Illuminate\Support\Str::markdown($faq->answer) !!}
+                            {!! \Illuminate\Support\Str::markdown($faq->content) !!}
                         </dd>
                     </div>
                 @endforeach

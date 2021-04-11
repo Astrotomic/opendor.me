@@ -4,7 +4,7 @@ namespace App\Nova;
 
 use App\Models\FAQ as FaqModel;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
@@ -18,7 +18,7 @@ class FAQ extends Resource
     public static $group = 'Content';
     public static $title = 'question';
     public static $search = [
-        'id', 'question', 'answer',
+        'question', 'content',
     ];
 
     public static function label(): string
@@ -29,14 +29,19 @@ class FAQ extends Resource
     public function fields(Request $request): array
     {
         return [
-            ID::make(),
+            Boolean::make('Draft', 'is_draft'),
 
-            Number::make('Priority')->sortable(),
+            Number::make('Priority')->sortable()->textAlign('right'),
 
             Text::make('Question'),
 
-            Markdown::make('Answer')->alwaysShow(),
+            Markdown::make('Answer', 'content')->alwaysShow(),
         ];
+    }
+
+    protected function shouldAddActionsField($request): bool
+    {
+        return false;
     }
 
     public function cards(Request $request): array

@@ -22,6 +22,7 @@ class Faqs extends Component
     public function faqs(): Collection
     {
         return FAQ::ordered()
+            ->where('is_draft', false)
             ->when($this->limit, fn (Builder $q) => $q->limit($this->limit))
             ->get();
     }

@@ -27,6 +27,7 @@
         "nesbot/carbon": "^2.46",
         "optimistdigital/nova-sortable": "^2.2",
         "owenvoke/blade-fontawesome": "^1.6",
+        "ryangjchandler/orbit": "^0.7.4",
         "sentry/sentry-laravel": "^2.4",
         "spatie/eloquent-sortable": "^3.0",
         "spatie/flysystem-dropbox": "^1.0",
@@ -36,6 +37,7 @@
         "spatie/laravel-permission": "^4.0",
         "spatie/laravel-schedule-monitor": "^2.2.1",
         "spatie/laravel-sitemap": "^6.0",
+        "spatie/laravel-sluggable": "^3.0",
         "spatie/nova-backup-tool": "^4.1",
         "stillat/numeral.php": "^2.0",
         "vyuldashev/nova-permission": "^2.11"

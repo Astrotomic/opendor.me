@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\FAQ;
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Actions\ActionEvent;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -16,6 +18,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot(): void
     {
         parent::boot();
+
+        ActionEvent::saving(function (ActionEvent $actionEvent) {
+            if ($actionEvent->actionable_type === FAQ::class) {
+                return false;
+            }
+        });
     }
 
     protected function routes(): void
