@@ -39,6 +39,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self VISUAL_BASIC()
  * @method static self HCL()
  * @method static self C()
+ * @method static self PUPPET()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -86,6 +87,7 @@ final class Language extends Enum
             'VIM_SCRIPT' => 'Vim script',
             'VIM_L' => 'VimL',
             'VISUAL_BASIC' => 'Visual Basic',
+            'PUPPET' => 'Puppet',
             'NOASSERTION' => 'Other',
         ];
     }
