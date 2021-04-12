@@ -20,6 +20,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self MIT()
  * @method static self MPL_20()
  * @method static self WTFPL()
+ * @method static self ISC()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
