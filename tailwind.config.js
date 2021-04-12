@@ -9,6 +9,7 @@ module.exports = {
           safelist: [
               'bg-swift',
               'bg-blade',
+              'bg-c',
               'bg-css',
               'bg-go',
               'bg-html',

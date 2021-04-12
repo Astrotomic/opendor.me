@@ -38,6 +38,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self VIM_L()
  * @method static self VISUAL_BASIC()
  * @method static self HCL()
+ * @method static self C()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
