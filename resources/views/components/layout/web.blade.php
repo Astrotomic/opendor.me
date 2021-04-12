@@ -1,4 +1,18 @@
 @push('head')
+<script nonce="{{ csp_nonce() }}">
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('{{ asset('serviceworker.js') }}')
+            .then(function (registration) {
+                console.log(registration);
+
+                registration.update()
+                    .then(console.log)
+                    .catch(console.error);
+            })
+            .catch(console.error);
+    }
+</script>
+
 @env('production')
     <script async defer data-domain="{{ parse_url(url('/'), PHP_URL_HOST) }}" src="https://plausible.io/js/plausible.js"></script>
     <script nonce="{{ csp_nonce() }}">

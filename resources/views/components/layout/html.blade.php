@@ -27,14 +27,6 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
     @stack('head')
-
-    <script nonce="{{ csp_nonce() }}">
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('{{ mix('serviceworker.js') }}')
-                .then(console.log)
-                .catch(console.error);
-        }
-    </script>
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>
 {{ $slot }}
