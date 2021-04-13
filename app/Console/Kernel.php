@@ -21,20 +21,20 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // github:*:repositories
-        $schedule->command(GithubOrganizationRepositories::class)->dailyAt('03:00');
-        $schedule->command(GithubUserRepositories::class)->dailyAt('03:00');
+        $schedule->command(GithubOrganizationRepositories::class)->dailyAt('03:00')->onOneServer();
+        $schedule->command(GithubUserRepositories::class)->dailyAt('03:00')->onOneServer();
         // github:*:details
-        $schedule->command(GithubUserDetails::class)->dailyAt('12:00');
-        $schedule->command(GithubOrganizationDetails::class)->dailyAt('12:00');
-        $schedule->command(GithubRepositoryDetails::class)->dailyAt('12:00');
+        $schedule->command(GithubUserDetails::class)->dailyAt('12:00')->onOneServer();
+        $schedule->command(GithubOrganizationDetails::class)->dailyAt('12:00')->onOneServer();
+        $schedule->command(GithubRepositoryDetails::class)->dailyAt('12:00')->onOneServer();
         // github:repository:contributors
-        $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00');
+        $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00')->onOneServer();
 
         // laravel/horizon
-        $schedule->command(SnapshotCommand::class)->everyFiveMinutes();
+        $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');
 
         // spatie/laravel-schedule-monitor
-        $schedule->command(CleanLogCommand::class)->dailyAt('01:00');
+        $schedule->command(CleanLogCommand::class)->dailyAt('01:00')->onOneServer();
 
         // spatie/laravel-backup
         $schedule->command(BackupCommand::class)->twiceDaily(1, 13);
