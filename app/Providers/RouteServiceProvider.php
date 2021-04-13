@@ -4,7 +4,10 @@ namespace App\Providers;
 
 use App\Http\Controllers\RobotsTxtController;
 use App\Http\Controllers\SitemapXmlController;
+use App\Models\Organization;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -16,6 +19,23 @@ class RouteServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Route::bind('profile', function (string $name): User | Organization {
+            $user = User::where('name', $name)->first();
+            if ($user) {
+                return $user;
+            }
+
+            $organization = Organization::where('name', $name)->first();
+            if ($organization) {
+                return $organization;
+            }
+
+            throw (new ModelNotFoundException())->setModel(
+                User::class.'|'.Organization::class,
+                $name
+            );
+        });
+
         $this->configureRateLimiting();
 
         $this->routes(function (): void {

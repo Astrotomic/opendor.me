@@ -6,13 +6,27 @@ use App\Enums\Language;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
-class ShowUserProfileController
+class ProfileController
 {
-    public function __invoke(User $user): View
+    public function __invoke(User | Organization $profile): View
+    {
+        if ($profile instanceof User) {
+            return $this->user($profile);
+        }
+
+        if ($profile instanceof Organization) {
+            return $this->organization($profile);
+        }
+
+        throw new ModelNotFoundException();
+    }
+
+    protected function user(User $user): View
     {
         abort_unless(
             auth()->user()?->is_superadmin || $user->isRegistered(),
@@ -29,6 +43,20 @@ class ShowUserProfileController
             'organizations' => $organizations,
             'languages' => $languages,
             'contributions' => $contributions,
+        ]);
+    }
+
+    protected function organization(Organization $organization): View
+    {
+        $repositories = $organization->repositories()->with('owner')->cursor();
+        $members = $organization->members->filter(fn (User $user): bool => $user->isRegistered());
+        $languages = $repositories->pluck('language')->reject(Language::NOASSERTION())->unique()->collect()->values();
+
+        return view('web.profile.organization', [
+            'organization' => $organization,
+            'members' => $members,
+            'languages' => $languages,
+            'repositories' => $repositories,
         ]);
     }
 }

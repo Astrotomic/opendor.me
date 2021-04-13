@@ -80,7 +80,7 @@ class Organization extends Model implements Sitemapable
 
     public function getProfileUrlAttribute(): string
     {
-        return route('profile.organization', ['organization' => $this]);
+        return route('profile', ['profile' => $this->name]);
     }
 
     public function getAvatarUrlAttribute(): string

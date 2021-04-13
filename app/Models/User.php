@@ -218,7 +218,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             return null;
         }
 
-        return route('profile.user', ['user' => $this]);
+        return route('profile', ['profile' => $this->name]);
     }
 
     public function getTwitterUrlAttribute(): ?string
