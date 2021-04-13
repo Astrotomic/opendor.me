@@ -35,14 +35,14 @@
         <li class="py-1" role="none">
             @can('viewNova')
                 <a
-                    href="{{ url(config('nova.path')) }}"
+                    href="{{ url()->nova('/') }}"
                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                     role="menuitem"
                 >Nova</a>
             @endcan
             @can('viewHorizon')
                 <a
-                    href="{{ url(config('horizon.path')) }}"
+                    href="{{ url()->horizon('/') }}"
                     class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                     role="menuitem"
                 >Horizon</a>

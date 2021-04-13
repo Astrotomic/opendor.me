@@ -112,5 +112,35 @@ class AppServiceProvider extends ServiceProvider
 
             return new FilesystemAdapter($filesystem);
         });
+
+        URL::macro('nova', function (string $uri): string {
+            /** @var \Illuminate\Routing\UrlGenerator $this */
+            if (config('nova.domain') !== null) {
+                $this->forceRootUrl(config('nova.domain'));
+            }
+
+            return tap(
+                $this->to(Str::start(
+                    trim($uri, '/'),
+                    Str::finish(config('nova.path'), '/')
+                )),
+                fn () => $this->forceRootUrl(null)
+            );
+        });
+
+        URL::macro('horizon', function (string $uri): string {
+            /** @var \Illuminate\Routing\UrlGenerator $this */
+            if (config('horizon.domain') !== null) {
+                $this->forceRootUrl(config('horizon.domain'));
+            }
+
+            return tap(
+                $this->to(Str::start(
+                    trim($uri, '/'),
+                    Str::finish(config('horizon.path'), '/')
+                )),
+                fn () => $this->forceRootUrl(null)
+            );
+        });
     }
 }
