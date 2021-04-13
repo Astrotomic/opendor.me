@@ -232,8 +232,6 @@ return [
     ],
 
     'environments' => [
-        'production' => [],
-
-        'local' => [],
+        env('APP_ENV') => [],
     ],
 ];
