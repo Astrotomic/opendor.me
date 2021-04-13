@@ -97,16 +97,7 @@
             "@composer normalize --ansi --no-interaction --quiet",
             "@composer thanks --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi --no-interaction",
-            "@php artisan nova:publish --ansi --no-interaction --quiet",
-            "@php artisan horizon:publish --ansi --no-interaction --quiet",
-            "@php artisan config:clear --ansi --no-interaction --quiet",
-            "@php artisan view:clear --ansi --no-interaction --quiet",
-            "@php artisan cache:clear --ansi --no-interaction --quiet",
-            "@php artisan route:clear --ansi --no-interaction --quiet",
-            "@php artisan event:clear --ansi --no-interaction --quiet",
-            "@php artisan icons:clear --ansi --no-interaction --quiet",
-            "@icons"
+            "@php artisan package:discover --ansi --no-interaction"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
