@@ -35,8 +35,7 @@ registerRoute(
             request.destination === 'document'
             && !url.pathname.startsWith('/app/')
             && !url.pathname.startsWith('/auth/')
-            && !url.pathname.startsWith('/nova/')
-            && !url.pathname.startsWith('/horizon/')
+            && !url.pathname.startsWith('/admin/')
         ) {
             return true;
         }
