@@ -12,6 +12,7 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
@@ -37,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if (! $this->app->environment('local')) {
+            URL::forceScheme('https');
+        }
+
         PendingRequest::macro('when', function ($condition, Closure $callback): PendingRequest {
             /** @var \Illuminate\Http\Client\PendingRequest $this */
             $condition = value($condition);
