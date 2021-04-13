@@ -33,7 +33,7 @@ return [
     |
     */
 
-    'domain' => env('NOVA_DOMAIN_NAME', null),
+    'domain' => env('HORIZON_DOMAIN', env('ADMIN_DOMAIN')),
 
     /*
     |--------------------------------------------------------------------------
