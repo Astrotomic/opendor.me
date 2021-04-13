@@ -35,6 +35,14 @@ class ContentSecurityPolicy extends Policy
             ->addDirective(Directive::STYLE, Keyword::UNSAFE_INLINE)
             ->addDirective(Directive::FONT, Keyword::SELF)
             ->addNonceForDirective(Directive::SCRIPT);
+
+        if (config('app.mix_url')) {
+            $this
+                ->addDirective(Directive::SCRIPT, config('app.mix_url'))
+                ->addDirective(Directive::STYLE, config('app.mix_url'))
+                ->addDirective(Directive::FONT, config('app.mix_url'))
+                ->addDirective(Directive::IMG, config('app.mix_url'));
+        }
     }
 
     public function shouldBeApplied(Request $request, Response $response): bool
