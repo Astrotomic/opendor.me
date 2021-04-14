@@ -58,6 +58,7 @@
         "tightenco/tlint": "^5.0"
     },
     "config": {
+        "classmap-authoritative": true,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
