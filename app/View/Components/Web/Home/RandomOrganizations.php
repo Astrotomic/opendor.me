@@ -23,7 +23,7 @@ class RandomOrganizations extends Component
     public function organizations(): Collection
     {
         return Cache::remember(
-            __METHOD__,
+            __METHOD__.$this->limit,
             CarbonInterval::minutes(15),
             fn (): Collection => Organization::inRandomOrder()->limit($this->limit)->get()
         );

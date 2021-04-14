@@ -23,7 +23,7 @@ class RandomRepositories extends Component
     public function repositories(): Collection
     {
         return Cache::remember(
-            __METHOD__,
+            __METHOD__.$this->limit,
             CarbonInterval::minutes(15),
             fn (): Collection => Repository::inRandomOrder()->limit($this->limit)->with('owner')->get()
         );

@@ -23,7 +23,7 @@ class RandomContributors extends Component
     public function contributors(): Collection
     {
         return Cache::remember(
-            __METHOD__,
+            __METHOD__.$this->limit,
             CarbonInterval::minutes(15),
             fn (): Collection => User::whereIsRegistered()->inRandomOrder()->limit($this->limit)->get()
         );
