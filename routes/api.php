@@ -15,7 +15,5 @@ Route::get('ping', static function (Request $request): JsonResponse {
     return response()->json([
         'ping' => 'pong',
         'env' => config('app.env'),
-        'ip' => $request->ip(),
-        'ips' => $request->ips(),
     ]);
 })->name('ping');
