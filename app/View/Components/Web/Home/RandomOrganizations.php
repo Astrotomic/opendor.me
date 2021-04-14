@@ -3,29 +3,28 @@
 namespace App\View\Components\Web\Home;
 
 use App\Models\Organization;
+use App\View\Concerns\CachedView;
 use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 
 class RandomOrganizations extends Component
 {
-    public function __construct(protected int $limit = 6)
+    use CachedView;
+
+    public function __construct(public int $limit = 6)
     {
+        $this->ttl = CarbonInterval::minutes(15);
     }
 
-    public function render(): View
+    protected function view(): View
     {
         return view('components.web.home.random-organizations');
     }
 
     public function organizations(): Collection
     {
-        return Cache::remember(
-            __METHOD__.$this->limit,
-            CarbonInterval::minutes(15),
-            fn (): Collection => Organization::inRandomOrder()->limit($this->limit)->get()
-        );
+        return Organization::inRandomOrder()->limit($this->limit)->get();
     }
 }

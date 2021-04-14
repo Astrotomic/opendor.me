@@ -1,7 +1,3 @@
-<?php /** @var \App\Models\Repository $repository */ ?>
-<?php /** @var \App\Models\User $user */ ?>
-@props(['repository', 'user' => null])
-
 <div {{ $attributes->merge(['class' => 'bg-white rounded-lg divide-y divide-gray-200 shadow flex flex-col']) }}>
     <div class="flex-grow px-6 py-4 space-y-2 w-full">
         <div class="flex justify-between items-center space-x-6 w-full">

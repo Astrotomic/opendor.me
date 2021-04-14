@@ -4,17 +4,24 @@ namespace App\View\Components\Web;
 
 use App\Models\Organization;
 use App\Models\User;
+use App\View\Concerns\CachedView;
 use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class GithubSponsors extends Component
 {
-    public function render(): View
+    use CachedView;
+
+    public function __construct()
+    {
+        $this->ttl = CarbonInterval::minutes(15);
+    }
+
+    protected function view(): View
     {
         return view('components.web.github-sponsors');
     }
@@ -43,10 +50,7 @@ class GithubSponsors extends Component
         }
         GRAPHQL;
 
-        return Cache::remember(
-            'github_sponsors',
-            CarbonInterval::day(),
-            fn () => Http::baseUrl('https://api.github.com')
+        return Http::baseUrl('https://api.github.com')
                 ->accept('application/vnd.github.v3+json')
                 ->withToken(config('services.github.sponsors_access_token'))
                 ->withUserAgent(config('app.name').' '.config('app.url'))
@@ -63,10 +67,11 @@ class GithubSponsors extends Component
                     if ($sponsor['__typename'] === 'Organization') {
                         return Organization::fromGithub($sponsor);
                     }
+
+                    return null;
                 })
                 ->filter()
                 ->sortBy(fn (User | Organization $sponsor) => Str::lower($sponsor->name))
-                ->values()
-        );
+                ->values();
     }
 }
