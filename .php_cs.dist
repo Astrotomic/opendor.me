@@ -21,6 +21,7 @@ return \PhpCsFixer\Config::create()
         'phpdoc_to_comment' => false,
         'phpdoc_order' => true,
         'phpdoc_separation' => true,
+        'simplified_null_return' => false,
     ]))
     ->setLineEnding("\n")
     ->setIndent(str_repeat(' ', 4))
