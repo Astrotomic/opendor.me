@@ -5,7 +5,9 @@ namespace App\View\Components\Web\Home;
 use App\Models\Repository;
 use App\Models\RepositoryUserPivot;
 use App\Models\User;
+use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 
 class Stats extends Component
@@ -17,17 +19,28 @@ class Stats extends Component
 
     public function contributorsCount(): int
     {
-        return User::whereIsRegistered()->count();
+        return Cache::remember(
+            __METHOD__,
+            CarbonInterval::minute(),
+            fn (): int => User::whereIsRegistered()->count()
+        );
     }
 
     public function repositoriesCount(): int
     {
-        return Repository::count();
+        return Cache::remember(
+            __METHOD__,
+            CarbonInterval::minute(),
+            fn (): int => Repository::count()
+        );
     }
 
     public function contributionsCount(): int
     {
-        return RepositoryUserPivot::query()
+        return Cache::remember(
+            __METHOD__,
+            CarbonInterval::minute(),
+            fn (): int => RepositoryUserPivot::query()
             ->whereIn(
                 'user_id',
                 User::query()->select('id')->whereIsRegistered()
@@ -36,6 +49,7 @@ class Stats extends Component
                 'repository_id',
                 Repository::query()->select('id')
             )
-            ->count();
+            ->count()
+        );
     }
 }

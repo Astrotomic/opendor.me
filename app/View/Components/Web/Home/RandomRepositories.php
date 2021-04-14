@@ -3,8 +3,10 @@
 namespace App\View\Components\Web\Home;
 
 use App\Models\Repository;
+use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 
 class RandomRepositories extends Component
@@ -20,6 +22,10 @@ class RandomRepositories extends Component
 
     public function repositories(): Collection
     {
-        return Repository::inRandomOrder()->limit($this->limit)->get();
+        return Cache::remember(
+            __METHOD__,
+            CarbonInterval::minutes(15),
+            fn (): Collection => Repository::inRandomOrder()->limit($this->limit)->with('owner')->get()
+        );
     }
 }

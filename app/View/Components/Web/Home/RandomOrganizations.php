@@ -3,8 +3,10 @@
 namespace App\View\Components\Web\Home;
 
 use App\Models\Organization;
+use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 
 class RandomOrganizations extends Component
@@ -20,6 +22,10 @@ class RandomOrganizations extends Component
 
     public function organizations(): Collection
     {
-        return Organization::inRandomOrder()->limit($this->limit)->get();
+        return Cache::remember(
+            __METHOD__,
+            CarbonInterval::minutes(15),
+            fn (): Collection => Organization::inRandomOrder()->limit($this->limit)->get()
+        );
     }
 }
