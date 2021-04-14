@@ -2,7 +2,6 @@
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('user/autocomplete', static function (): JsonResponse {
@@ -11,7 +10,7 @@ Route::get('user/autocomplete', static function (): JsonResponse {
     );
 })->name('user.autocomplete');
 
-Route::get('ping', static function (Request $request): JsonResponse {
+Route::get('ping', static function (): JsonResponse {
     return response()->json([
         'ping' => 'pong',
         'env' => config('app.env'),
