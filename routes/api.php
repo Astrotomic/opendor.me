@@ -4,7 +4,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Arr;
 
 Route::get('user/autocomplete', static function (): JsonResponse {
     return response()->json(
@@ -16,9 +15,7 @@ Route::get('ping', static function (Request $request): JsonResponse {
     return response()->json([
         'ping' => 'pong',
         'env' => config('app.env'),
-        'headers' => array_map(
-            fn (array $headers) => count($headers) === 1 ? Arr::first($headers) : $headers,
-            $request->headers->all()
-        ),
+        'ip' => $request->ip(),
+        'ips' => $request->ips(),
     ]);
 })->name('ping');
