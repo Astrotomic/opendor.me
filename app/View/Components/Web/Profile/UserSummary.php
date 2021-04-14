@@ -2,8 +2,6 @@
 
 namespace App\View\Components\Web\Profile;
 
-use App\Enums\Language;
-use App\Models\Organization;
 use App\Models\User;
 use App\View\Concerns\CachedView;
 use Carbon\CarbonInterval;
