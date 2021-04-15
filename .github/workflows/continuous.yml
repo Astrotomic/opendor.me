@@ -14,6 +14,7 @@ jobs:
           extensions: dom, curl, mbstring, zip, pcntl, intl
           coverage: none
       - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer config "http-basic.satis.laravel-enlightn.com" "${{ secrets.ENLIGHTN_USERNAME }}" "${{ secrets.ENLIGHTN_PASSWORD }}"
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run
 
@@ -28,6 +29,7 @@ jobs:
           extensions: dom, curl, mbstring, zip, pcntl, intl
           coverage: none
       - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer config "http-basic.satis.laravel-enlightn.com" "${{ secrets.ENLIGHTN_USERNAME }}" "${{ secrets.ENLIGHTN_PASSWORD }}"
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/tlint lint ./app --no-interaction -v
 
@@ -42,6 +44,7 @@ jobs:
           extensions: dom, curl, mbstring, zip, pcntl, intl
           coverage: none
       - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer config "http-basic.satis.laravel-enlightn.com" "${{ secrets.ENLIGHTN_USERNAME }}" "${{ secrets.ENLIGHTN_PASSWORD }}"
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/phpmnd ./app --no-interaction
 
@@ -81,6 +84,7 @@ jobs:
           extensions: dom, curl, mbstring, zip, pcntl, intl
           coverage: xdebug
       - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer config "http-basic.satis.laravel-enlightn.com" "${{ secrets.ENLIGHTN_USERNAME }}" "${{ secrets.ENLIGHTN_PASSWORD }}"
       - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
       - run: vendor/bin/phpunit --coverage-html=.coverage --coverage-text
       - uses: actions/upload-artifact@v2
