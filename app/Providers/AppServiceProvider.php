@@ -130,7 +130,7 @@ class AppServiceProvider extends ServiceProvider
                     trim($uri, '/'),
                     Str::finish(config('nova.path'), '/')
                 )),
-                fn () => $this->forceRootUrl(null)
+                fn () => $this->forceRootUrl(config('app.url'))
             );
         });
 
@@ -145,7 +145,7 @@ class AppServiceProvider extends ServiceProvider
                     trim($uri, '/'),
                     Str::finish(config('horizon.path'), '/')
                 )),
-                fn () => $this->forceRootUrl(null)
+                fn () => $this->forceRootUrl(config('app.url'))
             );
         });
     }
