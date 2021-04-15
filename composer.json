@@ -43,6 +43,9 @@
         "stillat/numeral.php": "^2.0",
         "vyuldashev/nova-permission": "^2.11"
     },
+    "conflict": {
+        "tightenco/tlint": "5.0.16"
+    },
     "require-dev": {
         "astrotomic/phpunit-assertions": "^0.3.0",
         "barryvdh/laravel-debugbar": "^3.5",
