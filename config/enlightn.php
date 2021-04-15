@@ -1,5 +1,7 @@
 <?php
 
+use Enlightn\Enlightn\Analyzers\Reliability\EnvExampleAnalyzer;
+use Enlightn\Enlightn\Analyzers\Reliability\EnvVariableAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\StableDependencyAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\UnguardedModelsAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Performance\CdnAnalyzer;
@@ -37,6 +39,8 @@ return [
         RedisCacheHitRatioAnalyzer::class,
         CdnAnalyzer::class,
         FailedJobTimeoutAnalyzer::class,
+        EnvExampleAnalyzer::class,
+        EnvVariableAnalyzer::class,
 
         // ToDo: possibly not different sessions/cookies but we should tackle that issue.
         NovaSecurityAnalyzer::class,
