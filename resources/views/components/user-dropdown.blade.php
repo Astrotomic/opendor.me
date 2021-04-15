@@ -32,22 +32,24 @@
                 role="menuitem"
             >View Profile</a>
         </li>
-        <li class="py-1" role="none">
-            @can('viewNova')
-                <a
-                    href="{{ url()->nova('/') }}"
-                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                >Nova</a>
-            @endcan
-            @can('viewHorizon')
-                <a
-                    href="{{ url()->horizon('/') }}"
-                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                    role="menuitem"
-                >Horizon</a>
+        @canany(['viewNova', 'viewHorizon'])
+            <li class="py-1" role="none">
+                @can('viewNova')
+                    <a
+                        href="{{ url()->nova('/') }}"
+                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                        role="menuitem"
+                    >Nova</a>
                 @endcan
-        </li>
+                @can('viewHorizon')
+                    <a
+                        href="{{ url()->horizon('/') }}"
+                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                        role="menuitem"
+                    >Horizon</a>
+                    @endcan
+            </li>
+        @endcanany
         <li class="py-1" role="none">
             <x-logout :action="route('auth.signout')" class="block py-2 px-4 w-full text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                 Logout
