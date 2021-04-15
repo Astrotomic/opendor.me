@@ -22,8 +22,6 @@ class ProfileController
         if ($profile instanceof Organization) {
             return $this->organization($profile);
         }
-
-        throw new ModelNotFoundException();
     }
 
     protected function user(User $user): View
