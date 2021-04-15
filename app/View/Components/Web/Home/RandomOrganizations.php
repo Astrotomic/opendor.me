@@ -25,6 +25,10 @@ class RandomOrganizations extends Component
 
     public function organizations(): Collection
     {
-        return Organization::inRandomOrder()->limit($this->limit)->get();
+        return Organization::query()
+            ->inRandomOrder()
+            ->has('repositories')
+            ->limit($this->limit)
+            ->get();
     }
 }

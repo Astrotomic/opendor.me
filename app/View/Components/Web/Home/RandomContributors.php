@@ -25,6 +25,11 @@ class RandomContributors extends Component
 
     public function contributors(): Collection
     {
-        return User::whereIsRegistered()->inRandomOrder()->limit($this->limit)->get();
+        return User::query()
+            ->whereIsRegistered()
+            ->has('contributions')
+            ->inRandomOrder()
+            ->limit($this->limit)
+            ->get();
     }
 }

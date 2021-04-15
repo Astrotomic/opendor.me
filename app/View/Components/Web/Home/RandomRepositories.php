@@ -25,6 +25,10 @@ class RandomRepositories extends Component
 
     public function repositories(): Collection
     {
-        return Repository::inRandomOrder()->limit($this->limit)->with('owner')->get();
+        return Repository::query()
+            ->inRandomOrder()
+            ->limit($this->limit)
+            ->with('owner')
+            ->get();
     }
 }
