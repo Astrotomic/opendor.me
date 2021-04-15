@@ -21,11 +21,6 @@ class GithubSponsors extends Component
         $this->ttl = CarbonInterval::minutes(15);
     }
 
-    protected function view(): View
-    {
-        return view('components.web.github-sponsors');
-    }
-
     public function sponsors(): Collection
     {
         $query = <<<'GRAPHQL'
@@ -73,5 +68,10 @@ class GithubSponsors extends Component
                 ->filter()
                 ->sortBy(fn (User | Organization $sponsor) => Str::lower($sponsor->name))
                 ->values();
+    }
+
+    protected function view(): View
+    {
+        return view('components.web.github-sponsors');
     }
 }

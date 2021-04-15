@@ -18,11 +18,6 @@ class RandomOrganizations extends Component
         $this->ttl = CarbonInterval::minutes(15);
     }
 
-    protected function view(): View
-    {
-        return view('components.web.home.random-organizations');
-    }
-
     public function organizations(): Collection
     {
         return Organization::query()
@@ -30,5 +25,10 @@ class RandomOrganizations extends Component
             ->has('repositories')
             ->limit($this->limit)
             ->get();
+    }
+
+    protected function view(): View
+    {
+        return view('components.web.home.random-organizations');
     }
 }

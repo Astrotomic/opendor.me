@@ -18,11 +18,6 @@ class RandomContributors extends Component
         $this->ttl = CarbonInterval::minutes(15);
     }
 
-    protected function view(): View
-    {
-        return view('components.web.home.random-contributors');
-    }
-
     public function contributors(): Collection
     {
         return User::query()
@@ -31,5 +26,10 @@ class RandomContributors extends Component
             ->inRandomOrder()
             ->limit($this->limit)
             ->get();
+    }
+
+    protected function view(): View
+    {
+        return view('components.web.home.random-contributors');
     }
 }

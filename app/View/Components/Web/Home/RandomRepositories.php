@@ -18,11 +18,6 @@ class RandomRepositories extends Component
         $this->ttl = CarbonInterval::minutes(15);
     }
 
-    protected function view(): View
-    {
-        return view('components.web.home.random-repositories');
-    }
-
     public function repositories(): Collection
     {
         return Repository::query()
@@ -30,5 +25,10 @@ class RandomRepositories extends Component
             ->limit($this->limit)
             ->with('owner')
             ->get();
+    }
+
+    protected function view(): View
+    {
+        return view('components.web.home.random-repositories');
     }
 }

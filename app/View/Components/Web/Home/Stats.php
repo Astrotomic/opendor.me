@@ -13,11 +13,6 @@ class Stats extends Component
 {
     use CachedView;
 
-    protected function view(): View
-    {
-        return view('components.web.home.stats');
-    }
-
     public function contributorsCount(): int
     {
         return User::whereIsRegistered()->count();
@@ -40,5 +35,10 @@ class Stats extends Component
                 Repository::query()->select('id')
             )
             ->count();
+    }
+
+    protected function view(): View
+    {
+        return view('components.web.home.stats');
     }
 }
