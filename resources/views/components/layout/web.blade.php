@@ -13,7 +13,7 @@
     }
 </script>
 
-@env('production')
+@env('frosty-pond', 'divine-forest')
     <script async defer data-domain="{{ parse_url(url('/'), PHP_URL_HOST) }}" src="https://plausible.io/js/plausible.js"></script>
     <script nonce="{{ csp_nonce() }}">
         window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
