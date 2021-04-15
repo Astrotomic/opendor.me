@@ -42,7 +42,13 @@ class GithubController
         SyncUserOrganizations::dispatch($user);
         LoadUserRepositories::dispatch($user);
 
-        Auth::login($user);
+        /*
+         * ToDo: Find a way to keep signed-in on private devices but stay secure on public ones.
+         * We have to get the `remember` from a user checkbox.
+         * But how to combine with single button/click GitHub oAuth sign-in?
+         * https://www.laravel-enlightn.com/docs/security/session-timeout-analyzer.html
+         */
+        Auth::login($user, false);
 
         return redirect()->intended(
             route('app.contributions')

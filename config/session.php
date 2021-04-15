@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'lifetime' => CarbonInterval::fromString(env('SESSION_LIFETIME', '2h'))->totalMinutes,
+    'lifetime' => CarbonInterval::hours(2)->totalMinutes,
 
     'expire_on_close' => false,
 
