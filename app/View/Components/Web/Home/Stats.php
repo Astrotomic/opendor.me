@@ -35,10 +35,6 @@ class Stats extends Component
                 'user_id',
                 User::query()->select('id')->whereIsRegistered()
             )
-            ->whereIn(
-                'repository_id',
-                Repository::query()->select('id')
-            )
             ->count();
     }
 }
