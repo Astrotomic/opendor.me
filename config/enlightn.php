@@ -4,6 +4,7 @@ use Enlightn\Enlightn\Analyzers\Reliability\EnvExampleAnalyzer;
 use Enlightn\Enlightn\Analyzers\Reliability\EnvVariableAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\StableDependencyAnalyzer;
 use Enlightn\Enlightn\Analyzers\Security\UnguardedModelsAnalyzer;
+use Enlightn\Enlightn\Analyzers\Security\XSSAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Performance\CdnAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Performance\FallbackRouteAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Performance\RedisCacheHitRatioAnalyzer;
@@ -41,6 +42,7 @@ return [
         FailedJobTimeoutAnalyzer::class,
         EnvExampleAnalyzer::class,
         EnvVariableAnalyzer::class,
+        XSSAnalyzer::class,
 
         // ToDo: possibly not different sessions/cookies but we should tackle that issue.
         NovaSecurityAnalyzer::class,
