@@ -6,7 +6,6 @@ use App\Enums\Language;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
