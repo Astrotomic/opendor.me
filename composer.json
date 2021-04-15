@@ -9,11 +9,12 @@
         "ext-intl": "*",
         "ext-json": "*",
         "ext-redis": "*",
-        "astrotomic/laravel-cachable-attributes": "^0.3",
+        "astrotomic/laravel-cachable-attributes": "^0.3.0",
         "astrotomic/laravel-imgix": "^0.2.0",
         "astrotomic/php-open-graph": "^0.5.2",
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
         "dragonmantank/cron-expression": "^3.0.2",
+        "enlightn/enlightnpro": "^1.16",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -47,7 +48,6 @@
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.8",
         "egulias/email-validator": "^2.0",
-        "enlightn/enlightn": "^1.21",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^2.18",
@@ -88,6 +88,10 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "composer",
+            "url": "https://satis.laravel-enlightn.com"
         }
     ],
     "minimum-stability": "dev",
