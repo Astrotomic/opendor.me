@@ -45,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
 
         if (! $this->app->environment('local')) {
             URL::forceScheme('https');
+            URL::forceRootUrl(config('app.url'));
         }
 
         PendingRequest::macro('when', function ($condition, Closure $callback): PendingRequest {
