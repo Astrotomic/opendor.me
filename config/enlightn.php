@@ -7,6 +7,7 @@ use Enlightn\EnlightnPro\Analyzers\Performance\FallbackRouteAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Performance\RedisCacheHitRatioAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Performance\RedisSingleServerAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Reliability\ComposerPackagePublishAnalyzer;
+use Enlightn\EnlightnPro\Analyzers\Reliability\FailedJobTimeoutAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Reliability\StorageLinkAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Security\HorizonSecurityAnalyzer;
 use Enlightn\EnlightnPro\Analyzers\Security\NovaSecurityAnalyzer;
@@ -35,6 +36,7 @@ return [
         RedisSingleServerAnalyzer::class,
         RedisCacheHitRatioAnalyzer::class,
         CdnAnalyzer::class,
+        FailedJobTimeoutAnalyzer::class,
 
         // ToDo: possibly not different sessions/cookies but we should tackle that issue.
         NovaSecurityAnalyzer::class,
