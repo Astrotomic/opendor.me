@@ -51,7 +51,7 @@ class GithubController
         Auth::login($user, false);
 
         return redirect()->intended(
-            route('app.contributions')
+            route('home')
         );
     }
 
