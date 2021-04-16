@@ -83,7 +83,10 @@ class Repository extends Model
             || $data['disabled'] === true
             || $data['license'] === null
             || $data['name'] === '.github'
-            || $data['name'] === $data['owner']['login']
+            || (
+                $data['owner']['type'] === 'User'
+                && $data['name'] === $data['owner']['login']
+            )
         ) {
             return null;
         }
