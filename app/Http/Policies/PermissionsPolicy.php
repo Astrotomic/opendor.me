@@ -9,4 +9,12 @@ class PermissionsPolicy extends Policy
     public function configure(): void
     {
     }
+
+    public function __toString()
+    {
+        return collect(parent::__toString())
+            ->add('interest-cohort=()')
+            ->filter()
+            ->implode(';');
+    }
 }
