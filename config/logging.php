@@ -1,5 +1,6 @@
 <?php
 
+use Monolog\Handler\LogglyHandler;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
@@ -37,12 +38,20 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily', 'sentry', 'loggly'],
             'ignore_exceptions' => false,
         ],
 
         'sentry' => [
             'driver' => 'sentry',
+        ],
+
+        'loggly' => [
+            'driver' => 'monolog',
+            'handler' => LogglyHandler::class,
+            'with' => [
+                'token' => env('LOGGLY_TOKEN'),
+            ],
         ],
 
         'single' => [
@@ -55,7 +64,7 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
-            'days' => 14,
+            'days' => 2,
         ],
 
         'slack' => [
