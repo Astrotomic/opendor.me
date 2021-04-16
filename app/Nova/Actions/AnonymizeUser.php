@@ -29,7 +29,16 @@ class AnonymizeUser extends Action
     public function handle(ActionFields $fields, Collection $models): void
     {
         $models->each(function (User $user) {
-            $user->forceFill(['github_access_token' => null])->save();
+            $user->forceFill([
+                'github_access_token' => null,
+                'email' => "{$user->id}+{$user->name}@users.noreply.github.com",
+                'email_verified_at' => null,
+                'full_name' => null,
+                'description' => null,
+                'twitter' => null,
+                'website' => null,
+                'location' => null,
+            ])->save();
         });
     }
 
