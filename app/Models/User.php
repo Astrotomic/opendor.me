@@ -37,7 +37,6 @@ use Throwable;
  * @property string|null $github_access_token
  * @property \Carbon\Carbon|null $blocked_at
  * @property \App\Enums\BlockReason|null $block_reason
- * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $description
