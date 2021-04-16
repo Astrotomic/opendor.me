@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Enums\BlockReason as BlockReasonEnum;
 use App\Models\User as UserModel;
+use App\Nova\Actions\AnonymizeUser;
 use App\Nova\Actions\BlockEntity;
 use App\Nova\Actions\LoadRepositories;
 use App\Nova\Actions\SyncOrganizations;
@@ -136,6 +137,7 @@ class User extends Resource
             SyncOrganizations::make(),
             LoadRepositories::make(),
             UpdateEntityDetails::make(),
+            AnonymizeUser::make(),
         ];
     }
 }
