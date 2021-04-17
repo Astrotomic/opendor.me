@@ -9,7 +9,6 @@ use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
 use BadMethodCallException;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
