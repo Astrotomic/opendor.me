@@ -22,6 +22,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self MPL_20()
  * @method static self WTFPL()
  * @method static self ISC()
+ * @method static self UNLICENSE()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
@@ -44,6 +45,7 @@ final class License extends Enum
             'LGPL_21' => 'LGPL-2.1',
             'MIT' => 'MIT',
             'MPL_20' => 'MPL-2.0',
+            'UNLICENSE' => 'Unlicense',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -66,6 +68,7 @@ final class License extends Enum
             'LGPL_21' => 'LGPL 2.1',
             'MIT' => 'MIT',
             'MPL_20' => 'MPL 2.0',
+            'UNLICENSE' => 'Unlicense',
             'NOASSERTION' => 'Other',
         ];
     }
