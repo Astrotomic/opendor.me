@@ -21,6 +21,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self VUE()
  * @method static self DOCKERFILE()
  * @method static self C_SHARP()
+ * @method static self F_SHARP()
  * @method static self C_PLUSPLUS()
  * @method static self JAVA()
  * @method static self COFFEESCRIPT()
@@ -48,6 +49,7 @@ final class Language extends Enum
     {
         return [
             'C_SHARP' => 'C#',
+            'F_SHARP' => 'F#',
             'C_PLUSPLUS' => 'C++',
             'OBJECTIVE_C' => 'Objective-C',
             'VIM_SCRIPT' => 'Vim script',
@@ -83,6 +85,7 @@ final class Language extends Enum
             'XML' => 'XML',
             'OBJECTIVE_C' => 'Objective-C',
             'C_SHARP' => 'C#',
+            'F_SHARP' => 'F#',
             'C_PLUSPLUS' => 'C++',
             'VIM_SCRIPT' => 'Vim script',
             'VIM_L' => 'VimL',
