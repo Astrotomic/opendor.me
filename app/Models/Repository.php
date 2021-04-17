@@ -8,12 +8,14 @@ use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
+use BadMethodCallException;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -124,7 +126,12 @@ class Repository extends Model
                 'website' => $data['homepage'],
             ]);
         } catch (Throwable $ex) {
-            report(new Exception("Failed to create [{$data['full_name']}] repository.", previous: $ex));
+            if (
+                $ex instanceof BadMethodCallException
+                && preg_match('/There\'s no value (\w+) defined for enum App\\\Enums\\\([\w]+), consider adding it in the docblock definition/', $ex->getMessage(), $hits) === 1
+            ) {
+                File::append(storage_path('logs/missing-enum-values.log'), "{$hits[2]}: {$hits[1]}".PHP_EOL);
+            }
 
             return null;
         }
