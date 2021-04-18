@@ -14,7 +14,6 @@
         "astrotomic/php-open-graph": "^0.5.2",
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
         "dragonmantank/cron-expression": "^3.0.2",
-        "enlightn/enlightnpro": "^1.16",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -59,6 +58,9 @@
         "phpunit/phpunit": "^9.3.3",
         "povils/phpmnd": "^2.4",
         "tightenco/tlint": "^5.0"
+    },
+    "suggest": {
+        "enlightn/enlightnpro": "^1.16"
     },
     "config": {
         "classmap-authoritative": true,
