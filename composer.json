@@ -25,7 +25,6 @@
         "lorisleiva/cron-translator": "^0.2.0",
         "mazedlx/laravel-feature-policy": "^1.1",
         "nesbot/carbon": "^2.46",
-        "optimistdigital/nova-sortable": "^2.2",
         "owenvoke/blade-fontawesome": "^1.6",
         "ryangjchandler/orbit": "^0.7.4",
         "sentry/sentry-laravel": "^2.4",
