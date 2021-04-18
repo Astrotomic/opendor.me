@@ -26,6 +26,7 @@ use Spatie\Enum\Laravel\Enum;
  * @method static self UNLICENSE()
  * @method static self EUPL_12()
  * @method static self OSL_30()
+ * @method static self BSD0()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
@@ -52,6 +53,7 @@ final class License extends Enum
             'UNLICENSE' => 'Unlicense',
             'EUPL_12' => 'EUPL-1.2',
             'OSL_30' => 'OSL-3.0',
+            'BSD0' => '0BSD',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -78,6 +80,7 @@ final class License extends Enum
             'UNLICENSE' => 'Unlicense',
             'EUPL_12' => 'EUPL-1.2',
             'OSL_30' => 'OSL-3.0',
+            'BSD0' => 'BSD Zero',
             'NOASSERTION' => 'Other',
         ];
     }
