@@ -104,8 +104,6 @@ class Repository extends Model
 
         if ($data['fork']) {
             $blockReason = BlockReason::FORK();
-        } elseif (in_array($data['name'], ['dotfiles', '.dotfiles'])) {
-            $blockReason = BlockReason::DOTFILES();
         } elseif (Str::startsWith($data['name'], '.')) {
             $blockReason = BlockReason::REVIEW();
         }
