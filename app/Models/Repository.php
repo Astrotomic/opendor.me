@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Laravel\Nova\Actions\Actionable;
 use Throwable;
 
 /**
@@ -51,7 +50,6 @@ use Throwable;
  */
 class Repository extends Model
 {
-    use Actionable;
     use Blockable;
 
     public $incrementing = false;

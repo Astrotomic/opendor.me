@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Laravel\Nova\Actions\Actionable;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 
@@ -45,7 +44,6 @@ use Spatie\Sitemap\Tags\Url;
  */
 class Organization extends Model implements Sitemapable
 {
-    use Actionable;
     use Blockable;
 
     public $incrementing = false;
