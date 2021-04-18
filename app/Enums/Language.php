@@ -91,6 +91,7 @@ final class Language extends Enum
             'VIM_L' => 'VimL',
             'VISUAL_BASIC' => 'Visual Basic',
             'PUPPET' => 'Puppet',
+            'ASSEMBLY' => 'Assembly',
             'NOASSERTION' => 'Other',
         ];
     }
