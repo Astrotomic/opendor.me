@@ -20,7 +20,6 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Laravel\Nova\Actions\Actionable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
 use Spatie\Sitemap\Tags\Url;
@@ -74,7 +73,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authorizable;
     use MustVerifyEmail;
     use RoutesNotifications;
-    use Actionable;
     use Blockable;
     use HasRoles;
 

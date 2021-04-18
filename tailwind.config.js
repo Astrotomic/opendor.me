@@ -10,6 +10,7 @@ module.exports = {
               'bg-swift',
               'bg-blade',
               'bg-c',
+              'bg-f',
               'bg-css',
               'bg-go',
               'bg-html',

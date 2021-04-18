@@ -4,6 +4,9 @@ namespace App\Jobs;
 
 use App\Enums\BlockReason;
 use App\Jobs\Concerns\RateLimited;
+use App\Models\Organization;
+use App\Models\Repository;
+use App\Models\User;
 use Carbon\CarbonInterval;
 use Closure;
 use DateTimeInterface;
@@ -24,6 +27,10 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
     public function handle(): bool
     {
+        if ($this->entity()->isBlocked()) {
+            $this->delete();
+        }
+
         try {
             $this->run();
 
@@ -72,41 +79,28 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
     public function uniqueId(): ?string
     {
-        if (property_exists($this, 'user')) {
-            return Str::snake(class_basename($this->user)).':'.$this->user->id;
-        }
-
-        if (property_exists($this, 'repository')) {
-            return Str::snake(class_basename($this->repository)).':'.$this->repository->id;
-        }
-
-        if (property_exists($this, 'organization')) {
-            return Str::snake(class_basename($this->organization)).':'.$this->organization->id;
-        }
-
-        return null;
+        return Str::snake(class_basename($this->entity())).':'.$this->entity()->id;
     }
 
     public function tags(): array
     {
-        $tags = [];
+        return [
+            Str::snake(class_basename($this->entity())).':'.$this->entity()->id,
+            $this->entity()->name,
+        ];
+    }
 
-        if (property_exists($this, 'user')) {
-            $tags[] = Str::snake(class_basename($this->user)).':'.$this->user->id;
-            $tags[] = $this->user->name;
-        }
-
-        if (property_exists($this, 'repository')) {
-            $tags[] = Str::snake(class_basename($this->repository)).':'.$this->repository->id;
-            $tags[] = $this->repository->name;
-        }
-
-        if (property_exists($this, 'organization')) {
-            $tags[] = Str::snake(class_basename($this->organization)).':'.$this->organization->id;
-            $tags[] = $this->organization->name;
-        }
-
-        return $tags;
+    /**
+     * @return int|int[]
+     */
+    public function backoff(): int | array
+    {
+        return [
+            CarbonInterval::minute()->totalSeconds,
+            CarbonInterval::minutes(15)->totalSeconds,
+            CarbonInterval::minutes(30)->totalSeconds,
+            CarbonInterval::hour()->totalSeconds,
+        ];
     }
 
     abstract protected function run(): void;
@@ -123,5 +117,10 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
             $page++;
         } while ($response->count() >= $perPage);
+    }
+
+    protected function entity(): User | Organization | Repository
+    {
+        return $this->user ?? $this->organization ?? $this->repository;
     }
 }

@@ -8,12 +8,9 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
-use OptimistDigital\NovaSortable\Traits\HasSortableRows;
 
 class FAQ extends Resource
 {
-    use HasSortableRows;
-
     public static $model = FaqModel::class;
     public static $group = 'Content';
     public static $title = 'question';

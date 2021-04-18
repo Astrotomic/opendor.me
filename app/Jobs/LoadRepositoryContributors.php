@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Repository;
 use App\Models\User;
+use Carbon\CarbonInterval;
 use Illuminate\Support\Collection;
 
 class LoadRepositoryContributors extends GithubJob
@@ -11,6 +12,12 @@ class LoadRepositoryContributors extends GithubJob
     public function __construct(protected Repository $repository)
     {
         parent::__construct();
+        $this->timeout = CarbonInterval::hours(4)->totalSeconds;
+    }
+
+    public function backoff(): int
+    {
+        return CarbonInterval::hour()->totalSeconds;
     }
 
     public function run(): void

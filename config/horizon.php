@@ -227,7 +227,7 @@ return [
             'memory' => 512,
             'tries' => 1,
             'nice' => 0,
-            'timeout' => CarbonInterval::hour()->totalSeconds,
+            'timeout' => CarbonInterval::hours(6)->totalSeconds,
         ],
     ],
 
