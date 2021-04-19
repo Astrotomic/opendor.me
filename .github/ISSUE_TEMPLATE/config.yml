@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: 💡 Idea
-    url: https://github.com/Astrotomic/opendor.me/discussions/new?category=ideas
-    about: Please send new ideas in the Discussions section.
-  - name: 🚨 Security Vulnerability
-    url: https://github.com/Astrotomic/.github#security
-    about: Please report security vulnerabilities by email to dev@opendor.me
