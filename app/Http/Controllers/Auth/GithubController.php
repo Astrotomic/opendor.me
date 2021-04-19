@@ -8,6 +8,7 @@ use App\Jobs\UpdateUserDetails;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Bus;
 use Laravel\Socialite\Two\GithubProvider;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -38,9 +39,11 @@ class GithubController
             $user->markEmailAsVerified();
         }
 
-        UpdateUserDetails::dispatch($user);
-        SyncUserOrganizations::dispatch($user);
-        LoadUserRepositories::dispatch($user);
+        Bus::batch([
+            new UpdateUserDetails($user),
+            new SyncUserOrganizations($user),
+            new LoadUserRepositories($user),
+        ])->onQueue('github')->dispatch();
 
         /*
          * ToDo: Find a way to keep signed-in on private devices but stay secure on public ones.
