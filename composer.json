@@ -16,6 +16,7 @@
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
         "dragonmantank/cron-expression": "^3.0.2",
         "fideloper/proxy": "^4.4",
+        "filament/filament": "^1.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inspheric/nova-url-field": "^1.4",

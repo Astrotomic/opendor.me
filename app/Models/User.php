@@ -6,6 +6,10 @@ use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
+use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
+use Carbon\CarbonInterval;
+use Filament\Models\Concerns\IsFilamentUser;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -65,10 +69,11 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, MustVerifyEmailContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, MustVerifyEmailContract, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
+    use IsFilamentUser;
     use MustVerifyEmail;
     use RoutesNotifications;
     use Blockable;
@@ -77,6 +82,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected const SUPERADMIN_IDS = [
         6187884, // Gummibeer
+        4409904
     ];
 
     public $incrementing = false;
@@ -172,6 +178,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getIsSuperadminAttribute(): bool
     {
         return in_array($this->id, self::SUPERADMIN_IDS, true);
+    }
+
+    public function canAccessFilament()
+    {
+        return $this->getIsSuperadminAttribute();
     }
 
     public function getProfileUrlAttribute(): ?string
