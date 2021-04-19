@@ -7,7 +7,7 @@
 @endpush
 
 <x-layout.error>
-    <x-fal-alien-monster class="mx-auto w-24 h-24 text-gray-400"/>
+    <x-bx-bot class="mx-auto w-24 h-24 text-gray-400"/>
 
     <div class="mt-6 space-y-2">
         <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 uppercase sm:text-4xl">

@@ -1,44 +1,46 @@
 @props(['model'])
 
 <aside {{ $attributes->merge(['class' => 'space-y-0.5']) }}>
-    <ul class="flex flex-col text-gray-500 md:flex-row md:space-x-4">
-        <li>
-            <a href="{{ $model->github_url }}" class="flex items-center group">
-                <x-fab-github class="inline-block mr-1 w-4 h-4 group-hover:text-gray-900"/>
-                <span class="text-sm font-medium text-gray-900 group-hover:text-brand-500 truncate">
-                    {{ $model->name }}
-                </span>
-            </a>
-        </li>
+    <div class="grid grid-flow-row gap-1 md:grid-flow-col md:gap-4 justify-start">
+        <a href="{{ $model->github_url }}" class="grid grid-flow-col gap-1 justify-start items-center group">
+            <x-bxl-github class="w-4 h-4 group-hover:text-gray-900" />
+            
+            <span class="text-sm font-medium text-gray-900 group-hover:text-brand-500 truncate">
+                {{ $model->name }}
+            </span>
+        </a>
+
         @if($model->twitter)
-        <li>
-            <a href="{{ $model->twitter_url }}" class="flex items-center group">
-                <x-fab-twitter class="inline-block mr-1 w-4 h-4 group-hover:text-gray-900"/>
-                <span class="text-sm font-medium text-gray-900 group-hover:text-brand-500 truncate">
-                    {{ '@'.$model->twitter }}
-                </span>
-            </a>
-        </li>
+        <a href="{{ $model->twitter_url }}" class="grid grid-flow-col gap-1 justify-start items-center group">
+            <x-bxl-twitter class="w-4 h-4 group-hover:text-gray-900" />
+
+            <span class="text-sm font-medium text-gray-900 group-hover:text-brand-500 truncate">
+                {{ '@'.$model->twitter }}
+            </span>
+        </a>
         @endif
+
         @if($model->website)
-        <li>
-            <a href="{{ $model->website }}" class="flex items-center group">
-                <x-fas-globe class="inline-block mr-1 w-4 h-4 group-hover:text-gray-900"/>
-                <span class="text-sm font-medium text-gray-900 group-hover:text-brand-500 truncate">
-                    {{ \Illuminate\Support\Str::domain($model->website) }}
-                </span>
-            </a>
-        </li>
+        <a href="{{ $model->website }}" class="grid grid-flow-col gap-1 justify-start items-center group">
+            <x-bx-globe class="w-4 h-4 group-hover:text-gray-900"/>
+
+            <span class="text-sm font-medium text-gray-900 group-hover:text-brand-500 truncate">
+                {{ \Illuminate\Support\Str::domain($model->website) }}
+            </span>
+        </a>
         @endif
+
         @if($model->location)
-        <li class="flex items-center group">
-            <x-fas-map-marker-alt class="inline-block mr-1 w-4 h-4"/>
+        <div class="grid grid-flow-col gap-1 justify-start items-center group">
+            <x-bx-map class="w-4 h-4"/>
+
             <span class="text-sm font-medium text-gray-900 truncate">
                 {{ $model->location }}
             </span>
-        </li>
+        </div>
         @endif
-    </ul>
+    </div>
+
     @if($model->description)
     <p class="flex space-x-4 text-sm text-gray-500">
         {{ $model->description }}

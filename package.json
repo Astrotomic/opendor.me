@@ -14,7 +14,6 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-pro": "^5.15.3",
         "@ryangjchandler/alpine-clipboard": "^1.0.0",
         "alpinejs": "^2.8.2",
         "fuse.js": "^6.4.6",

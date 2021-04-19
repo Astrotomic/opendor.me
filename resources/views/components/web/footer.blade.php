@@ -22,7 +22,7 @@
             <div class="flex justify-center space-x-6 md:order-2">
                 <a href="https://github.com/Astrotomic/opendor.me" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">GitHub</span>
-                    <x-fab-github class="w-6 h-6"/>
+                    <x-bxl-github class="w-6 h-6"/>
                 </a>
             </div>
             <div class="mt-8 md:mt-0 md:order-1">
