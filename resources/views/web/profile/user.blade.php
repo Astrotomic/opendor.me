@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="flex text-gray-500">
-            <x-far-exclamation-circle class="inline-block w-3 h-3 mr-1.5 mt-1 text-red-500"/>
+            <x-bx-error-circle class="inline-block w-5 h-5 mr-1.5 text-red-500"/>
             <p class="flex-grow text-sm">
                 It can be that this profile is not complete. What you see is only the data we've already indexed.
             </p>
