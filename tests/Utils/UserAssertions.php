@@ -79,10 +79,8 @@ trait UserAssertions
 
     public static function assertEmails(User $actual): void
     {
-        PHPUnit::assertIsArray($actual->emails);
-        PHPUnit::assertNotEmpty($actual->emails);
-        PHPUnit::assertTrue(in_array($actual->email, $actual->emails));
-        foreach ($actual->emails as $email) {
+        NullableTypeAssertions::assertIsNullableArray($actual->emails);
+        foreach ($actual->emails ?? [] as $email) {
             EmailAssertions::assertValidLoose($email);
         }
     }
