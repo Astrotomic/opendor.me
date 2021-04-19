@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
 use Laravel\Socialite\Two\GithubProvider;
 use Laravel\Socialite\Facades\Socialite;
-use Laravel\Socialite\Two\InvalidStateException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,11 +17,7 @@ class GithubController
 {
     public function __invoke(): Response
     {
-        try {
-            $githubUser = $this->socialite()->user();
-        } catch (InvalidStateException $ex) {
-            return redirect()->route('home');
-        }
+        $githubUser = $this->socialite()->user();
 
         $data = [
             'email' => $githubUser->getEmail(),
@@ -53,9 +48,22 @@ class GithubController
          */
         Auth::login($user, false);
 
-        return redirect()->intended(
-            route('home')
-        )->setStatusCode(200); // https://github.com/Astrotomic/opendor.me/issues/56
+        // https://github.com/Astrotomic/opendor.me/issues/56
+        $redirectTo = url(session()->pull('url.intended', route('home')));
+
+        return response(<<<HTML
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8" />
+                    <meta http-equiv="refresh" content="1;url=$redirectTo" />
+                    <title>Redirecting to $redirectTo</title>
+                </head>
+                <body>
+                    Redirecting to <a href="$redirectTo">$redirectTo</a>.
+                </body>
+            </html>
+        HTML);
     }
 
     public function redirect(): RedirectResponse
