@@ -48,28 +48,12 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
             if (
                 $exception->hasResponse()
-                && $exception->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND
+                && in_array($exception->getResponse()->getStatusCode(), [Response::HTTP_NOT_FOUND, Response::HTTP_FORBIDDEN])
             ) {
-                if (property_exists($this, 'user')) {
-                    $this->user->update([
-                        'block_reason' => BlockReason::DELETED(),
-                        'blocked_at' => now(),
-                    ]);
-                }
-
-                if (property_exists($this, 'repository')) {
-                    $this->repository->update([
-                        'block_reason' => BlockReason::DELETED(),
-                        'blocked_at' => now(),
-                    ]);
-                }
-
-                if (property_exists($this, 'organization')) {
-                    $this->organization->update([
-                        'block_reason' => BlockReason::DELETED(),
-                        'blocked_at' => now(),
-                    ]);
-                }
+                $this->entity()->update([
+                    'block_reason' => BlockReason::DELETED(),
+                    'blocked_at' => now(),
+                ]);
 
                 $this->delete();
             }
