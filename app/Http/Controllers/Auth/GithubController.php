@@ -55,7 +55,7 @@ class GithubController
 
         return redirect()->intended(
             route('home')
-        )->setStatusCode(200);
+        )->setStatusCode(200); // https://github.com/Astrotomic/opendor.me/issues/56
     }
 
     public function redirect(): RedirectResponse
