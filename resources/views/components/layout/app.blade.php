@@ -45,7 +45,7 @@
                         x-cloak
                     >
                         <span class="sr-only">Close sidebar</span>
-                        <x-fal-times class="w-6 h-6 text-white"/>
+                        <x-bx-x class="w-6 h-6 text-white"/>
                     </button>
                 </div>
                 <div class="flex flex-shrink-0 items-center px-4">
@@ -58,7 +58,7 @@
                             <a href="#"
                                class="flex items-center py-2 px-2 text-base font-medium leading-5 text-gray-900 bg-gray-100 rounded-md group"
                                aria-current="page">
-                                <x-fad-badge-check class="mr-3 w-6 h-6 text-gray-400 group-hover:text-gray-500"/>
+                                <x-bxs-badge-check class="mr-3 w-6 h-6 text-gray-400 group-hover:text-gray-500"/>
                                 Contributions
                             </a>
                         </div>
@@ -120,7 +120,7 @@
                             </div>
 
                             <x-logout :action="route('auth.signout')" class="block flex-shrink-0 p-3 -mr-2 text-gray-400 rounded hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500">
-                                <x-fas-sign-out class="w-4 h-4"/>
+                                <x-bx-log-out class="w-4 h-4"/>
                                 <span class="sr-only">Logout</span>
                             </x-logout>
                         </div>
@@ -138,7 +138,7 @@
                                 class="flex justify-between items-center py-2 px-2 text-sm font-medium text-gray-900 bg-gray-200 rounded-md group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500"
                             >
                                 <span class="flex items-center">
-                                <x-fad-badge-check class="mr-3 w-6 h-6 text-gray-500"/>
+                                <x-bxs-badge-check class="mr-3 w-6 h-6 text-gray-500"/>
                                 <span>Contributions</span>
                                 </span>
                                 <span class="inline-flex items-center p-1 text-xs font-medium text-gray-500">
@@ -182,7 +182,7 @@
                 class="px-4 text-gray-500 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden"
             >
                 <span class="sr-only">Open sidebar</span>
-                <x-fal-bars class="w-6 h-6"/>
+                <x-bx-menu class="w-6 h-6"/>
             </button>
             <div class="flex flex-1 justify-between px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-1">
@@ -217,8 +217,8 @@
                             });"
                     >
                         <span class="mr-2 w-4 h-4">
-                            <x-far-share-alt class="w-full h-full" x-show="!copied"/>
-                            <x-far-check class="w-full h-full text-green-500" x-show="copied" x-cloak/>
+                            <x-bx-share-alt class="w-full h-full" x-show="!copied"/>
+                            <x-bx-check class="w-full h-full text-green-500" x-show="copied" x-cloak/>
                         </span>
                         <span>Share</span>
                     </button>

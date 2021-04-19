@@ -5,8 +5,9 @@
                 {{-- Mobile menu toggle --}}
                 <button type="button" class="inline-flex justify-center items-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-500" aria-controls="mobile-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
                     <span class="sr-only">Toggle main menu</span>
-                    <x-fal-bars class="block w-6 h-6" x-show="!open" x-cloak/>
-                    <x-fal-times class="block w-6 h-6" x-show="open" x-cloak/>
+
+                    <x-bx-menu class="block w-6 h-6" x-show="!open" x-cloak/>
+                    <x-bx-x class="block w-6 h-6" x-show="open" x-cloak/>
                 </button>
             </div>
             <div class="flex flex-1 justify-center items-center h-full sm:items-stretch sm:justify-start">
@@ -60,7 +61,7 @@
                 @if(auth()->guest())
                 <div class="flex-shrink-0">
                     <a href="{{ route('auth.github.redirect') }}" class="inline-flex relative items-center py-2 px-4 text-sm font-medium text-white rounded-md border border-transparent shadow-sm bg-brand-500 hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
-                        <x-fas-sign-in class="mr-2 w-4 h-4"/>
+                        <x-bx-log-in class="mr-2 w-4 h-4"/>
                         Sign-In
                     </a>
                 </div>

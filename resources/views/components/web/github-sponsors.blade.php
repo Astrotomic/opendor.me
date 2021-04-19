@@ -5,7 +5,7 @@
                 GitHub Sponsors
             </h2>
             <a href="https://github.com/sponsors/Gummibeer" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-brand-500 hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500">
-                <x-fab-github class="mr-2 h-4 w-4"/>
+                <x-bxl-github class="mr-2 h-4 w-4"/>
                 Sponsor
             </a>
         </div>

@@ -21,17 +21,17 @@
 
     <div class="flex -mt-px w-full divide-x divide-gray-200">
         <a href="{{ $repository->github_url }}" class="inline-flex relative flex-grow justify-center items-center py-4 px-3 -mr-px text-sm font-medium rounded-bl-lg group @if(!$user) flex-1 @endif" title="GitHub">
-            <x-fab-github class="w-5 h-5 text-gray-400 group-hover:text-gray-600"/>
+            <x-bxl-github class="w-5 h-5 text-gray-400 group-hover:text-gray-600"/>
             <span class="ml-3 text-gray-700 group-hover:text-gray-500">GitHub</span>
         </a>
         @if($user)
             <a href="{{ $repository->github_url }}/commits?author={{ $user->name }}" class="inline-flex relative flex-grow justify-center items-center py-4 px-3 -mr-px text-sm font-medium group" title="Commits">
-                <x-fas-code-commit class="w-5 h-5 text-gray-400 group-hover:text-gray-600"/>
+                <x-bx-git-commit class="w-5 h-5 text-gray-400 group-hover:text-gray-600"/>
                 <span class="ml-3 text-gray-700 group-hover:text-gray-500">Commits</span>
             </a>
         @endif
         <a href="{{ $repository->github_url }}/graphs/contributors" class="inline-flex relative flex-shrink justify-center items-center py-4 px-3 text-sm font-medium rounded-br-lg group @if(!$user) flex-1 @endif" title="Contributors">
-            <x-fas-users class="w-5 h-5 text-gray-400 group-hover:text-gray-600"/>
+            <x-bxs-group class="w-5 h-5 text-gray-400 group-hover:text-gray-600"/>
             <span class="@if($user) sr-only @else ml-3 @endif text-gray-700 group-hover:text-gray-500">Contributors</span>
         </a>
     </div>

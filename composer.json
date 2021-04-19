@@ -18,6 +18,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inspheric/nova-url-field": "^1.4",
+        "jfvoliveira/blade-boxicons": "dev-master",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
         "laravel/nova": "^3.22",
@@ -25,7 +26,6 @@
         "lorisleiva/cron-translator": "^0.2.0",
         "mazedlx/laravel-feature-policy": "^1.1",
         "nesbot/carbon": "^2.46",
-        "owenvoke/blade-fontawesome": "^1.6",
         "ryangjchandler/orbit": "^0.7.4",
         "sentry/sentry-laravel": "^2.4",
         "spatie/eloquent-sortable": "^3.0",
@@ -121,10 +121,6 @@
         "enlightn": "@php artisan enlightn --details --ci",
         "fix": [
             "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist"
-        ],
-        "icons": [
-            "@php artisan blade-fontawesome:sync-pro --ansi --no-interaction",
-            "@php artisan icons:cache --ansi --no-interaction"
         ],
         "ide": [
             "@php artisan ide-helper:eloquent --ansi --no-interaction --quiet",
