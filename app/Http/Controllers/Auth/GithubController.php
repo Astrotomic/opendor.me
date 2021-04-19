@@ -55,7 +55,7 @@ class GithubController
 
         return redirect()->intended(
             route('home')
-        );
+        )->setStatusCode(200);
     }
 
     public function redirect(): RedirectResponse
