@@ -6,10 +6,11 @@ use App\Jobs\LoadUserRepositories;
 use App\Jobs\SyncUserOrganizations;
 use App\Jobs\UpdateUserDetails;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Bus;
 use Laravel\Socialite\Two\GithubProvider;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,7 +18,11 @@ class GithubController
 {
     public function __invoke(): Response
     {
-        $githubUser = $this->socialite()->user();
+        try {
+            $githubUser = $this->socialite()->user();
+        } catch (InvalidStateException $ex) {
+            return redirect()->route('home');
+        }
 
         $data = [
             'email' => $githubUser->getEmail(),
@@ -30,17 +35,15 @@ class GithubController
 
         abort_if($user->isBlocked(), Response::HTTP_FORBIDDEN);
 
-        if ($user->wasRecentlyCreated) {
-            event(new Registered($user));
-        }
-
         if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
         }
 
-        UpdateUserDetails::dispatch($user);
-        SyncUserOrganizations::dispatch($user);
-        LoadUserRepositories::dispatch($user);
+        Bus::batch([
+            new UpdateUserDetails($user),
+            new SyncUserOrganizations($user),
+            new LoadUserRepositories($user),
+        ])->onQueue('github')->dispatch();
 
         /*
          * ToDo: Find a way to keep signed-in on private devices but stay secure on public ones.
@@ -52,7 +55,7 @@ class GithubController
 
         return redirect()->intended(
             route('home')
-        );
+        )->setStatusCode(200); // https://github.com/Astrotomic/opendor.me/issues/56
     }
 
     public function redirect(): RedirectResponse

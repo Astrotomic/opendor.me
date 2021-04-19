@@ -22,13 +22,19 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     public function __construct()
     {
         $this->queue = 'github';
-        $this->timeout = CarbonInterval::hour()->totalSeconds;
+        $this->timeout = CarbonInterval::minute()->totalSeconds;
     }
 
-    public function handle(): bool
+    public function handle(): ?bool
     {
+        if ($this->batch() !== null && $this->batch()->cancelled()) {
+            return null;
+        }
+
         if ($this->entity()->isBlocked()) {
             $this->delete();
+
+            return null;
         }
 
         try {
@@ -42,28 +48,12 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
             if (
                 $exception->hasResponse()
-                && $exception->getResponse()->getStatusCode() === Response::HTTP_NOT_FOUND
+                && in_array($exception->getResponse()->getStatusCode(), [Response::HTTP_NOT_FOUND, Response::HTTP_FORBIDDEN])
             ) {
-                if (property_exists($this, 'user')) {
-                    $this->user->update([
-                        'block_reason' => BlockReason::DELETED(),
-                        'blocked_at' => now(),
-                    ]);
-                }
-
-                if (property_exists($this, 'repository')) {
-                    $this->repository->update([
-                        'block_reason' => BlockReason::DELETED(),
-                        'blocked_at' => now(),
-                    ]);
-                }
-
-                if (property_exists($this, 'organization')) {
-                    $this->organization->update([
-                        'block_reason' => BlockReason::DELETED(),
-                        'blocked_at' => now(),
-                    ]);
-                }
+                $this->entity()->update([
+                    'block_reason' => BlockReason::DELETED(),
+                    'blocked_at' => now(),
+                ]);
 
                 $this->delete();
             }
@@ -96,7 +86,12 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     public function backoff(): int | array
     {
         return [
+            CarbonInterval::seconds(5)->totalSeconds,
+            CarbonInterval::seconds(10)->totalSeconds,
+            CarbonInterval::seconds(30)->totalSeconds,
             CarbonInterval::minute()->totalSeconds,
+            CarbonInterval::minutes(5)->totalSeconds,
+            CarbonInterval::minutes(10)->totalSeconds,
             CarbonInterval::minutes(15)->totalSeconds,
             CarbonInterval::minutes(30)->totalSeconds,
             CarbonInterval::hour()->totalSeconds,

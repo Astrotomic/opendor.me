@@ -29,7 +29,7 @@ class LoadContributors extends Action
 
     public function handle(ActionFields $fields, Collection $models): void
     {
-        $models->each(fn (Repository $repository) => LoadRepositoryContributors::dispatch($repository));
+        $models->each(fn (Repository $repository) => LoadRepositoryContributors::dispatchBatch($repository));
     }
 
     public function fields(): array

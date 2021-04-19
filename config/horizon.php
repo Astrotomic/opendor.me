@@ -224,10 +224,10 @@ return [
             'queue' => 'github',
             'balance' => 'auto',
             'maxProcesses' => 10,
-            'memory' => 512,
+            'memory' => 256,
             'tries' => 1,
             'nice' => 0,
-            'timeout' => CarbonInterval::hours(6)->totalSeconds,
+            'timeout' => CarbonInterval::minutes(15)->totalSeconds,
         ],
     ],
 

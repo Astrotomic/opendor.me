@@ -6,8 +6,6 @@ use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
-use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
-use Carbon\CarbonInterval;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -23,7 +21,6 @@ use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
 use Spatie\Sitemap\Tags\Url;
-use Throwable;
 
 /**
  * App\Models\User.
@@ -42,8 +39,8 @@ use Throwable;
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
+ * @property string[] $emails
  * @property-read string $avatar_url
- * @property-read string[] $emails
  * @property-read string $github_url
  * @property-read string|null $profile_url
  * @property-read bool $is_superadmin
@@ -67,7 +64,7 @@ use Throwable;
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, MustVerifyEmailContract, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
@@ -90,10 +87,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $casts = [
         'id' => 'int',
         'email_verified_at' => 'datetime',
-    ];
-
-    public $cachableAttributes = [
-        'emails',
+        'emails' => 'array',
     ];
 
     public static function fromGithub(array $data): self
@@ -149,7 +143,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $email = Str::of($email);
 
         $query
-            ->whereEmail($email)
+            ->whereRaw("emails @> '".json_encode($email)."'")
+            ->orWhere('email', $email)
             ->when($email->endsWith('@users.noreply.github.com'), static function (Builder $query) use ($email): void {
                 $parts = $email
                     ->beforeLast('@users.noreply.github.com')
@@ -170,38 +165,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getGithubUrlAttribute(): string
     {
         return "https://github.com/{$this->name}";
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getEmailsAttribute(): array
-    {
-        $default = array_unique([
-            $this->email,
-            "{$this->id}+{$this->name}@users.noreply.github.com",
-        ]);
-
-        if (! $this->hasGithubToken()) {
-            return $default;
-        }
-
-        return $this->remember(
-            'emails',
-            CarbonInterval::week()->totalSeconds,
-            function () use ($default): array {
-                try {
-                    return $this->github()->get('/user/emails')->collect()
-                        ->filter->verified
-                        ->pluck('email')
-                        ->concat($default)
-                        ->unique()
-                        ->toArray();
-                } catch (Throwable $exception) {
-                    return $default;
-                }
-            }
-        );
     }
 
     public function getIsSuperadminAttribute(): bool
