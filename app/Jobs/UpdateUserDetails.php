@@ -3,14 +3,12 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use Carbon\CarbonInterval;
 
 class UpdateUserDetails extends GithubJob
 {
     public function __construct(protected User $user)
     {
         parent::__construct();
-        $this->timeout = CarbonInterval::minutes(5)->totalSeconds;
     }
 
     public function run(): void
@@ -24,5 +22,17 @@ class UpdateUserDetails extends GithubJob
             'website' => $data['blog'],
             'location' => $data['location'],
         ]);
+
+        if (! $this->user->hasGithubToken()) {
+            return;
+        }
+
+        $emails = $this->user->github()->get('/user/emails')->collect()
+            ->filter->verified
+            ->pluck('email')
+            ->unique()
+            ->toArray();
+
+        $this->user->update(['emails' => $emails]);
     }
 }

@@ -5,14 +5,12 @@ namespace App\Jobs;
 use App\Enums\Language;
 use App\Enums\License;
 use App\Models\Repository;
-use Carbon\CarbonInterval;
 
 class UpdateRepositoryDetails extends GithubJob
 {
     public function __construct(protected Repository $repository)
     {
         parent::__construct();
-        $this->timeout = CarbonInterval::minutes(5)->totalSeconds;
     }
 
     public function run(): void

@@ -17,7 +17,7 @@ class RepositoryObserver
     public function created(Repository $repository): void
     {
         if (! $repository->isBlocked()) {
-            LoadRepositoryContributors::dispatch($repository);
+            LoadRepositoryContributors::dispatchBatch($repository);
         }
     }
 

@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Repository;
 use App\Models\User;
-use Carbon\CarbonInterval;
 use Illuminate\Support\Collection;
 
 class LoadUserRepositories extends GithubJob
@@ -12,7 +11,6 @@ class LoadUserRepositories extends GithubJob
     public function __construct(protected User $user)
     {
         parent::__construct();
-        $this->timeout = CarbonInterval::minutes(15)->totalSeconds;
     }
 
     public function run(): void

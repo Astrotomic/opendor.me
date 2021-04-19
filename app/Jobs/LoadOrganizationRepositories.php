@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\Organization;
 use App\Models\Repository;
-use Carbon\CarbonInterval;
 use Illuminate\Support\Collection;
 
 class LoadOrganizationRepositories extends GithubJob
@@ -12,7 +11,6 @@ class LoadOrganizationRepositories extends GithubJob
     public function __construct(protected Organization $organization)
     {
         parent::__construct();
-        $this->timeout = CarbonInterval::minutes(15)->totalSeconds;
     }
 
     public function run(): void

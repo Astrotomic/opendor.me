@@ -30,7 +30,7 @@ class GithubRepositoryContributors extends Command
                 return $repository->owner instanceof Organization && $repository->owner->members()->whereIsRegistered()->doesntExist();
             })
             ->each(static function (Repository $repository): void {
-                LoadRepositoryContributors::dispatch($repository);
+                LoadRepositoryContributors::dispatchBatch($repository);
             });
     }
 }
