@@ -6,11 +6,11 @@ use App\Jobs\LoadUserRepositories;
 use App\Jobs\SyncUserOrganizations;
 use App\Jobs\UpdateUserDetails;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
 use Laravel\Socialite\Two\GithubProvider;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,7 +18,11 @@ class GithubController
 {
     public function __invoke(): Response
     {
-        $githubUser = $this->socialite()->user();
+        try {
+            $githubUser = $this->socialite()->user();
+        } catch (InvalidStateException $ex) {
+            return redirect()->route('home');
+        }
 
         $data = [
             'email' => $githubUser->getEmail(),
