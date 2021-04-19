@@ -10,7 +10,7 @@
                         <dt class="text-lg font-medium leading-6 text-gray-900">
                             {{ $faq->question }}
                         </dt>
-                        <dd class="mt-2 text-base text-gray-500">
+                        <dd class="text-base text-gray-500 whitespace-pre-line">
                             {!! \Illuminate\Support\Str::markdown($faq->content) !!}
                         </dd>
                     </div>
