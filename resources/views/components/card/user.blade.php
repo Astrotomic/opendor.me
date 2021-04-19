@@ -7,7 +7,7 @@
 <div class="flex items-center p-4 space-x-4 bg-white rounded-lg shadow">
 @endif
     <x-gh-avatar :model="$model" class="w-12 h-12"/>
-    <div class="space-y-1">
+    <div class="space-y-1 overflow-hidden">
         <strong class="block text-lg font-medium leading-tight text-gray-900 truncate group-hover:text-brand-500">
             {{ $model->display_name }}
         </strong>
