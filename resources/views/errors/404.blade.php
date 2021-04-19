@@ -1,5 +1,5 @@
 @push('javascript')
-@env('production')
+@env('frosty-pond', 'divine-forest')
 <script nonce="{{ csp_nonce() }}">
     window.plausible("404", { props: { path: document.location.pathname } })
 </script>
