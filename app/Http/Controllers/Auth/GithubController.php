@@ -31,10 +31,6 @@ class GithubController
 
         abort_if($user->isBlocked(), Response::HTTP_FORBIDDEN);
 
-        if ($user->wasRecentlyCreated) {
-            event(new Registered($user));
-        }
-
         if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
         }
