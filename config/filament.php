@@ -112,7 +112,7 @@ return [
         'path' => app_path('Filament/Widgets'),
         'default' => [
             'account' => false,
-            'info' => true,
+            'info' => false,
             'new_users' => true,
         ],
     ],
