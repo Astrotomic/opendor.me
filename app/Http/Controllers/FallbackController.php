@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -14,7 +15,12 @@ class FallbackController
         $segments = $request->segments();
 
         if (count($segments) === 1) {
-            return redirect()->route('profile', ['profile' => Arr::first($segments)]);
+            if (
+                User::where('name', $segments[0])->exists()
+                || Organization::where('name', $segments[0])->exists()
+            ) {
+                return redirect()->route('profile', ['profile' => $segments[0]]);
+            }
         }
 
         throw new NotFoundHttpException();
