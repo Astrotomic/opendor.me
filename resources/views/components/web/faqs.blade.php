@@ -4,15 +4,13 @@
             Frequently Asked Questions
         </h2>
         <div class="pt-10 mt-6">
-            <dl class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-2">
+            <dl class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-2 md:gap-y-10 lg:gap-y-12 lg:gap-x-10">
                 @foreach($faqs() as $faq)
                     <div>
                         <dt class="text-lg font-medium leading-6 text-gray-900">
                             {{ $faq->question }}
                         </dt>
-                        <dd class="text-base text-gray-500 whitespace-pre-line">
-                            {!! \Illuminate\Support\Str::markdown($faq->content) !!}
-                        </dd>
+                        <dd class="mt-2 text-base text-gray-500 whitespace-pre-line">{!! trim(\Illuminate\Support\Str::markdown($faq->content)) !!}</dd>
                     </div>
                 @endforeach
             </dl>
