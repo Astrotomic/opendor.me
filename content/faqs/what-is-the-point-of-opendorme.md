@@ -1,7 +1,7 @@
 ---
 slug: what-is-the-point-of-opendorme
 priority: 100
-question: 'What is the point of Opendor.me?'
+question: 'What is the point of opendor.me?'
 is_draft: false
 ---
 Our goal is to help open-source contributors share and highlight their open-source work. We know how hard open-source work can be, but we also know how rewarding it can be.
