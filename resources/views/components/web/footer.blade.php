@@ -2,7 +2,7 @@
     <div class="py-12 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <ul class="flex flex-wrap justify-center -mx-4 space-x-2 -sm:mx-6 -lg:mx-8 sm:space-x-4">
             <li>
-                <a href="https://plant.treeware.earth/Astrotomic/opendor.me" class="block py-2 px-4 text-base text-gray-300 hover:text-white sm:px-6 lg:px-8">
+                <a href="https://forest.astrotomic.info" class="block py-2 px-4 text-base text-gray-300 hover:text-white sm:px-6 lg:px-8">
                     Plant a Tree
                 </a>
             </li>
@@ -13,7 +13,7 @@
             </li>
             <li>
                 <a href="https://plausible.io/opendor.me" class="block py-2 px-4 text-base text-gray-300 hover:text-white sm:px-6 lg:px-8">
-                    Statistics
+                    Analytics
                 </a>
             </li>
         </ul>
