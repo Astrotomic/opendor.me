@@ -21,3 +21,4 @@ auth.json
 /.coverage/
 yarn.lock
 composer.lock
+nova
