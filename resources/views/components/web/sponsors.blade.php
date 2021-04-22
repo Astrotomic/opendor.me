@@ -16,6 +16,10 @@
                 <img class="max-h-12" src="{{ asset('images/sponsors/enlightn.png') }}" alt="Enlightn">
                 <span class="text-lg font-medium text-center">Enlightn</span>
             </a>
+            <a href="https://algolia.com" class="flex flex-col justify-center items-center py-6 px-4 space-y-2">
+                <img class="max-h-12" src="{{ asset('images/sponsors/algolia.svg') }}" alt="Algolia">
+                <span class="text-lg font-medium text-center">Algolia</span>
+            </a>
         </div>
     </div>
 </div>
