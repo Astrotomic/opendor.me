@@ -23,17 +23,25 @@
         </div>
     </div>
     <div class="relative">
-        <ol class="absolute top-1.5 z-10 py-1 w-full bg-white rounded-md border border-gray-300 divide-y divide-gray-200 shadow-lg sm:w-auto" x-show="hits.length > 0 && isFocused" x-cloak>
-            <template x-for="hit in hits.slice(0, 3)" :key="hit.name" hidden>
-                <li>
-                    <a :href="hit.profile_url" class="flex items-center py-2 px-6 space-x-4 hover:bg-gray-100 group">
-                        <img :src="hit.avatar_url" :alt="hit.name" class="flex-shrink-0 w-6 h-6 rounded-md"/>
-                        <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.display_name"></span>
-                        <span class="hidden text-sm text-gray-500 sm:block" x-text="'@'+hit.name"></span>
-                    </a>
-                </li>
-            </template>
-        </ol>
+        <div class="absolute top-1.5 z-10 w-full bg-white rounded-md border border-gray-300 shadow-lg sm:w-auto" x-show="hits.length > 0 && isFocused" x-cloak>
+            <ol>
+                <template x-for="(hit, i) in hits.slice(0, 3)" :key="hit.name" hidden>
+                    <li class="border-b border-gray-200">
+                        <a :href="hit.profile_url" class="flex items-center py-2 px-6 space-x-4 hover:bg-gray-100 group" :class="{'rounded-t-md': i === 0}">
+                            <img :src="hit.avatar_url" :alt="hit.name" class="flex-shrink-0 w-6 h-6 rounded-md"/>
+                            <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.display_name"></span>
+                            <span class="hidden text-sm text-gray-500 sm:block" x-text="'@'+hit.name"></span>
+                        </a>
+                    </li>
+                </template>
+            </ol>
+            <div class="flex items-center justify-end px-2 py-1">
+                <span class="text-xs text-gray-500">Search by</span>
+                <a href="https://algolia.com" title="Algolia" class="ml-1">
+                    <img class="h-3" src="{{ asset('images/sponsors/algolia.svg') }}" alt="Algolia">
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
