@@ -49,21 +49,9 @@ class GithubController
         Auth::login($user, false);
 
         // https://github.com/Astrotomic/opendor.me/issues/56
-        $redirectTo = url(session()->pull('url.intended', route('home')));
+        $redirectTo = url(session()->pull('url.intended', route('home'))).'#newAuth';
 
-        return response(<<<HTML
-            <!DOCTYPE html>
-            <html lang="en">
-                <head>
-                    <meta charset="UTF-8" />
-                    <meta http-equiv="refresh" content="1;url=$redirectTo" />
-                    <title>Redirecting to $redirectTo</title>
-                </head>
-                <body>
-                    Redirecting to <a href="$redirectTo">$redirectTo</a>.
-                </body>
-            </html>
-        HTML);
+        return response()->redirectTo($redirectTo);
     }
 
     public function redirect(): RedirectResponse
