@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use Algolia\ScoutExtended\Console\Commands\ReImportCommand;
 use App\Console\Commands\GithubOrganizationDetails;
 use App\Console\Commands\GithubOrganizationRepositories;
 use App\Console\Commands\GithubRepositoryContributors;
@@ -37,10 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');
 
         // laravel/scout
-        $schedule->command(FlushCommand::class, [User::class])
-            ->dailyAt('02:00')
-            ->onOneServer()
-            ->onSuccess(fn () => $this->call(ImportCommand::class, ['model' => User::class]));
+        $schedule->command(ReImportCommand::class)->dailyAt('02:00')->onOneServer();
 
         // spatie/laravel-schedule-monitor
         $schedule->command(CleanLogCommand::class)->dailyAt('01:00')->onOneServer();
