@@ -8,9 +8,12 @@ use App\Console\Commands\GithubRepositoryContributors;
 use App\Console\Commands\GithubRepositoryDetails;
 use App\Console\Commands\GithubUserDetails;
 use App\Console\Commands\GithubUserRepositories;
+use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Laravel\Horizon\Console\SnapshotCommand;
+use Laravel\Scout\Console\FlushCommand;
+use Laravel\Scout\Console\ImportCommand;
 use Spatie\Backup\Commands\BackupCommand;
 use Spatie\Backup\Commands\CleanupCommand;
 use Spatie\Backup\Commands\MonitorCommand;
@@ -32,6 +35,12 @@ class Kernel extends ConsoleKernel
 
         // laravel/horizon
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');
+
+        // laravel/scout
+        $schedule->command(FlushCommand::class, [User::class])
+            ->dailyAt('02:00')
+            ->onOneServer()
+            ->onSuccess(fn () => $this->call(ImportCommand::class, ['model' => User::class]));
 
         // spatie/laravel-schedule-monitor
         $schedule->command(CleanLogCommand::class)->dailyAt('01:00')->onOneServer();

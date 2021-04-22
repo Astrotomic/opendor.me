@@ -18,6 +18,7 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
 use Spatie\Sitemap\Tags\Url;
@@ -72,6 +73,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use RoutesNotifications;
     use Blockable;
     use HasRoles;
+    use Searchable;
 
     protected const SUPERADMIN_IDS = [
         6187884, // Gummibeer
@@ -227,5 +229,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return Url::create($this->profile_url)
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'display_name' => $this->display_name,
+            'avatar_url' => $this->avatar_url,
+            'profile_url' => $this->profile_url,
+        ];
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->isRegistered();
+    }
+
+    protected function makeAllSearchableUsing(Builder $query): Builder
+    {
+        return $query->whereIsRegistered();
     }
 }
