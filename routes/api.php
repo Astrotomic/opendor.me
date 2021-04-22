@@ -1,14 +1,7 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
-
-Route::get('user/autocomplete', static function (): JsonResponse {
-    return response()->json(
-        User::whereIsRegistered()->get()->map(fn (User $user): array => $user->only('id', 'name', 'display_name'))
-    );
-})->name('user.autocomplete');
 
 Route::get('ping', static function (): JsonResponse {
     return response()->json([
