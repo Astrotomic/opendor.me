@@ -53,4 +53,9 @@ abstract class Resource extends NovaResource
     {
         return $query->withoutGlobalScope(BlockableScope::class);
     }
+
+    public static function usesScout(): bool
+    {
+        return false;
+    }
 }
