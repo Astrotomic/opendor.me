@@ -1,8 +1,7 @@
-<form
-    action="#"
+<div
     x-data="components.homeUserAutocomplete()"
-    @focusin.once="load"
-    @submit.prevent="search"
+    x-init="init"
+    id="user-autocomplete"
     @click.away="isFocused = false"
     {{ $attributes }}
 >
@@ -19,76 +18,62 @@
                 class="block py-2 py-3 px-3 pl-10 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:flex-1 focus:outline-none"
                 placeholder="Enter an username"
                 autocomplete="off"
-                x-ref="name"
-                @keyup.debounce="search"
-                @search="search"
                 @focus="isFocused = true"
             />
         </div>
-        <button
-            type="submit"
-            class="py-3 px-6 mt-3 w-full text-base font-medium text-white bg-gray-800 rounded-md border border-transparent shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
-        >
-            Search
-        </button>
     </div>
     <div class="relative">
-        <ul class="absolute top-1.5 z-10 py-1 w-full bg-white rounded-md border border-gray-300 divide-y divide-gray-200 shadow-lg sm:w-auto" x-show="hits.length > 0 && isFocused" x-cloak>
-            <template x-for="hit in hits.slice(0, 3)" :key="hit.item.name" hidden>
+        <ol class="absolute top-1.5 z-10 py-1 w-full bg-white rounded-md border border-gray-300 divide-y divide-gray-200 shadow-lg sm:w-auto" x-show="hits.length > 0 && isFocused" x-cloak>
+            <template x-for="hit in hits.slice(0, 3)" :key="hit.name" hidden>
                 <li>
-                    <a :href="profileUrl(hit.item)" class="flex items-center py-2 px-6 space-x-4 hover:bg-gray-100 group">
-                        <img
-                            :src="avatarUrl(hit.item)"
-                            :alt="hit.item.name"
-                            loading="lazy"
-                            class="flex-shrink-0 w-6 h-6 rounded-md"
-                        />
-                        <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.item.display_name"></span>
-                        <span class="hidden text-sm text-gray-500 sm:block" x-text="'@'+hit.item.name"></span>
+                    <a :href="hit.profile_url" class="flex items-center py-2 px-6 space-x-4 hover:bg-gray-100 group">
+                        <img :src="hit.avatar_url" :alt="hit.name" class="flex-shrink-0 w-6 h-6 rounded-md"/>
+                        <span class="font-medium text-gray-900 group-hover:text-brand-500" x-text="hit.display_name"></span>
+                        <span class="hidden text-sm text-gray-500 sm:block" x-text="'@'+hit.name"></span>
                     </a>
                 </li>
             </template>
-        </ul>
+        </ol>
     </div>
-</form>
+</div>
 
 @once
 @push('javascript')
 <script nonce="{{ csp_nonce() }}">
     window.components.homeUserAutocomplete = function () {
         return {
-            fuse: null,
+            search: null,
             hits: [],
-            isFocused: false,
-            load() {
-                this.$fuse(
-                    fetch('{{ route('api.user.autocomplete') }}').then(r => r.json()),
-                    {
-                        keys: ['name', 'display_name'],
-                        minMatchCharLength: 3,
-                        threshold: 0.5,
-                        includeScore: true,
-                        ignoreLocation: true,
-                    }).then(f => this.fuse = f)
-            },
-            search() {
-                if (this.fuse === null) {
-                    return;
-                }
+            init() {
+                this.search = algolia.instantsearch({
+                    indexName: '{{ (new \App\Models\User)->searchableAs() }}',
+                    searchClient: algolia.searchClient,
+                });
 
-                if (this.$refs.name.value.length < 2) {
-                    this.hits = [];
-                    return;
-                }
+                const autocomplete = algolia.connectors.connectAutocomplete((renderOptions, isFirstRender) => {
+                    const { indices, currentRefinement, refine, widgetParams } = renderOptions;
 
-                this.hits = this.fuse.search(this.$refs.name.value);
-            },
-            profileUrl(data) {
-                return '{{ route('profile', '%name%') }}'.replace('%name%', data.name)
-            },
-            avatarUrl(data) {
-                return 'https://avatars.githubusercontent.com/u/%id%'.replace('%id%', data.id)
-            },
+                    const input = widgetParams.container.querySelector('input[type="search"]');
+
+                    if (isFirstRender) {
+                        input.addEventListener('input', event => {
+                            refine(event.currentTarget.value);
+                        });
+                    }
+
+                    this.hits = currentRefinement.length > 0
+                        ? indices[0].hits
+                        : [];
+                });
+
+                this.search.addWidgets([
+                    autocomplete({
+                        container: document.querySelector('#user-autocomplete'),
+                    }),
+                ]);
+
+                this.search.start();
+            }
         };
     };
 </script>

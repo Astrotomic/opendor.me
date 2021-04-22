@@ -18,6 +18,8 @@ class ContentSecurityPolicy extends Policy
             ->addDirective(Directive::CHILD, Keyword::NONE)
             ->addDirective(Directive::CONNECT, Keyword::SELF)
             ->addDirective(Directive::CONNECT, 'https://plausible.io/api/event')
+            ->addDirective(Directive::CONNECT, 'https://*.algolia.net')
+            ->addDirective(Directive::CONNECT, 'https://*.algolianet.com')
             ->addDirective(Directive::FORM_ACTION, Keyword::SELF)
             ->addDirective(Directive::FRAME, Keyword::NONE)
             ->addDirective(Directive::FRAME_ANCESTORS, Keyword::NONE)
