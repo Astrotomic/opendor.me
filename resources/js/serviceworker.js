@@ -36,7 +36,7 @@ registerRoute(
             && !url.pathname.startsWith('/app/')
             && !url.pathname.startsWith('/auth/')
             && !url.pathname.startsWith('/admin/')
-            && !(url.pathname === '/' && url.hash === '#newAuth')
+            && url.hash !== '#newAuth'
         ) {
             return true;
         }
