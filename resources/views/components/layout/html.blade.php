@@ -26,6 +26,11 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
+    <script nonce="{{ csp_nonce() }}">
+        window.ALGOLIA_ID = '{{ config('scout.algolia.id') }}';
+        window.ALGOLIA_KEY = '{{ config('scout.algolia.search_key') }}';
+    </script>
+
     @stack('head')
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>

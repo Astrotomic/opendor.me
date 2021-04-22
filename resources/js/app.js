@@ -1,11 +1,16 @@
 import '@ryangjchandler/alpine-clipboard';
-import './alpine/fuse';
 import 'alpinejs';
 
 window.components = {};
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    if ('#newAuth' === location.hash) {
-        history.pushState("", document.title, window.location.pathname + window.location.search);
+import algoliasearch from 'algoliasearch/lite';
+import instantsearch from 'instantsearch.js';
+import { connectAutocomplete } from 'instantsearch.js/es/connectors'
+
+window.algolia = {
+    searchClient: algoliasearch(window.ALGOLIA_ID, window.ALGOLIA_KEY),
+    instantsearch,
+    connectors: {
+        connectAutocomplete,
     }
-});
+};

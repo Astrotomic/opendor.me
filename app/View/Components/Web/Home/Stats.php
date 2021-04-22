@@ -7,6 +7,7 @@ use App\Models\RepositoryUserPivot;
 use App\Models\User;
 use App\View\Concerns\CachedView;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\Component;
 
 class Stats extends Component
@@ -20,7 +21,9 @@ class Stats extends Component
 
     public function repositoriesCount(): int
     {
-        return Repository::count();
+        return Repository::query()
+            ->whereHas('contributors', fn (Builder $q) => $q->whereIsRegistered())
+            ->count();
     }
 
     public function contributionsCount(): int
