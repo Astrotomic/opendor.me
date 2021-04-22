@@ -9,6 +9,7 @@
         "ext-intl": "*",
         "ext-json": "*",
         "ext-redis": "*",
+        "algolia/scout-extended": "^1.17",
         "astrotomic/laravel-cachable-attributes": "^0.3.0",
         "astrotomic/laravel-imgix": "^0.2.0",
         "astrotomic/php-open-graph": "^0.5.2",

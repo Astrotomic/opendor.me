@@ -219,6 +219,15 @@ return [
 //            'tries' => 1,
 //            'nice' => 0,
 //        ],
+        'scout' => [
+            'connection' => 'redis',
+            'queue' => 'scout',
+            'balance' => 'off',
+            'maxProcesses' => 1,
+            'memory' => 128,
+            'tries' => 1,
+            'nice' => 0,
+        ],
         'github' => [
             'connection' => 'redis',
             'queue' => 'github',
