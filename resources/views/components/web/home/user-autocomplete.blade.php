@@ -42,6 +42,7 @@
 <script nonce="{{ csp_nonce() }}">
     window.components.homeUserAutocomplete = function () {
         return {
+            isFocused: false,
             search: null,
             hits: [],
             init() {
