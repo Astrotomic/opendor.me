@@ -13,8 +13,8 @@ class NewUsers extends Widget
 
     public string $selectedOption = '1m';
     public array $options = [
-        "1d" => 'Today',
-        "7d" => 'Last 7 days',
+        '1d' => 'Today',
+        '7d' => 'Last 7 days',
         '1m' => 'This month',
     ];
     private $records;
@@ -26,7 +26,7 @@ class NewUsers extends Widget
 
     public function updatedSelectedOption($value)
     {
-        $this->records = match($value) {
+        $this->records = match ($value) {
             '1d' => User::where('created_at', Carbon::today()),
             '7d' => User::where('created_at', Carbon::now()->subtract($value)),
             default => User::whereMonth('created_at', Carbon::now()->month),
