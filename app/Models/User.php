@@ -7,7 +7,6 @@ use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
-use Carbon\CarbonInterval;
 use Filament\Models\Concerns\IsFilamentUser;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Authenticatable;
@@ -82,7 +81,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected const SUPERADMIN_IDS = [
         6187884, // Gummibeer
-        4409904
+        4409904,
     ];
 
     public $incrementing = false;
@@ -180,7 +179,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return in_array($this->id, self::SUPERADMIN_IDS, true);
     }
 
-    public function canAccessFilament()
+    public function canAccessFilament(): bool
     {
         return $this->getIsSuperadminAttribute();
     }
