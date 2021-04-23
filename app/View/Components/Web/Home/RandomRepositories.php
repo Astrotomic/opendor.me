@@ -2,33 +2,30 @@
 
 namespace App\View\Components\Web\Home;
 
+use App\Eloquent\Scopes\OrderByScope;
 use App\Models\Repository;
-use App\View\Concerns\CachedView;
-use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class RandomRepositories extends Component
 {
-    use CachedView;
-
     public function __construct(protected int $limit = 3)
     {
-        $this->ttl = CarbonInterval::minutes(15);
+    }
+
+    public function render(): View
+    {
+        return view('components.web.home.random-repositories');
     }
 
     public function repositories(): Collection
     {
         return Repository::query()
+            ->withoutGlobalScope(OrderByScope::class)
             ->inRandomOrder()
             ->limit($this->limit)
             ->with('owner')
             ->get();
-    }
-
-    protected function view(): View
-    {
-        return view('components.web.home.random-repositories');
     }
 }

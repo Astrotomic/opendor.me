@@ -9,7 +9,6 @@ use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
 use BadMethodCallException;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;
@@ -135,7 +134,6 @@ class Repository extends Model
     protected static function booted(): void
     {
         self::addGlobalScope(new OrderByScope('name', 'asc'));
-        self::addGlobalScope(fn (Builder $query) => $query->has('owner'));
     }
 
     public function owner(): MorphTo
