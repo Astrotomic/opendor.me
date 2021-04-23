@@ -1,15 +1,7 @@
 <?php
 
-use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Http\Middleware\EncryptCookies;
 use Filament\Http\Middleware\RedirectIfAuthenticated;
-use Filament\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Routing\Middleware\SubstituteBindings;
-use Illuminate\Session\Middleware\AuthenticateSession;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return [
 
@@ -48,8 +40,8 @@ return [
     */
 
     'auth' => [
-        'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
-        'logout_redirect_route' => 'filament.auth.login',
+        'guard' => 'web',
+        'logout_redirect_route' => 'home',
     ],
 
     /*
@@ -165,16 +157,10 @@ return [
 
     'middleware' => [
         'auth' => [
-            Authenticate::class,
+            'auth',
         ],
         'base' => [
-            EncryptCookies::class,
-            AddQueuedCookiesToResponse::class,
-            StartSession::class,
-            AuthenticateSession::class,
-            ShareErrorsFromSession::class,
-            VerifyCsrfToken::class,
-            SubstituteBindings::class,
+            'web',
             DispatchServingFilamentEvent::class,
         ],
         'guest' => [
