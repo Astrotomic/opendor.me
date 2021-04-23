@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\GithubUserResource\RelationManagers;
+namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use Filament\Resources\Forms\Components;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\RelationManager;
 use Filament\Resources\Tables\Columns;
-use Filament\Resources\Tables\Filter;
 use Filament\Resources\Tables\Table;
 
-class RepositoriesRelationManager extends RelationManager
+class ContributionsRelationManager extends RelationManager
 {
     public static $primaryColumn = '';
 
-    public static $relationship = 'repositories';
-
+    public static $relationship = 'contributions';
 
     public static function form(Form $form)
     {
@@ -28,7 +25,7 @@ class RepositoriesRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Columns\Text::make('id')->primary()->sortable()->searchable(),
+                Columns\Text::make('id')->primary()->sortable('id')->searchable(),
                 Columns\Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
                 Columns\Text::make('license')->sortable(),
                 Columns\Text::make('language')->sortable()->searchable(),

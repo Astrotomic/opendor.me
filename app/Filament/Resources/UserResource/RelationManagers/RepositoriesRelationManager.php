@@ -1,20 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\GithubUserResource\RelationManagers;
+namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use App\Filament\Resources\Tables\Columns\Avatar;
-use Filament\Resources\Forms\Components;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\RelationManager;
 use Filament\Resources\Tables\Columns;
-use Filament\Resources\Tables\Filter;
 use Filament\Resources\Tables\Table;
 
-class OrganizationsRelationManager extends RelationManager
+class RepositoriesRelationManager extends RelationManager
 {
     public static $primaryColumn = '';
 
-    public static $relationship = 'organizations';
+    public static $relationship = 'repositories';
 
     public static function form(Form $form)
     {
@@ -28,9 +25,10 @@ class OrganizationsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Avatar::make('avatar_url')->label(''),
                 Columns\Text::make('id')->primary()->sortable()->searchable(),
                 Columns\Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
+                Columns\Text::make('license')->sortable(),
+                Columns\Text::make('language')->sortable()->searchable(),
                 Columns\Boolean::make('blocked_at')->sortable(),
             ])
             ->defaultSort('id', 'desc')
