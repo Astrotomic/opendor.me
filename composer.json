@@ -20,7 +20,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inspheric/nova-url-field": "^1.4",
-        "jfvoliveira/blade-boxicons": "dev-master",
+        "jfvoliveira/blade-boxicons": "dev-update-blade-icons",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
         "laravel/nova": "^3.22",
@@ -98,6 +98,10 @@
         {
             "type": "composer",
             "url": "https://satis.laravel-enlightn.com"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/mallardduck/blade-boxicons"
         }
     ],
     "minimum-stability": "dev",
