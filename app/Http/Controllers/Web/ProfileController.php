@@ -43,7 +43,7 @@ class ProfileController
 
     protected function organization(Organization $organization): View
     {
-        $repositories = $organization->repositories()->with('owner')->cursor();
+        $repositories = $organization->repositories()->with('owner')->get();
         $members = $organization->members->filter(fn (User $user): bool => $user->isRegistered());
         $languages = $repositories->pluck('language')->reject(Language::NOASSERTION())->unique()->collect()->values();
 

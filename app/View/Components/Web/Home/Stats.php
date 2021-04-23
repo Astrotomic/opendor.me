@@ -5,14 +5,16 @@ namespace App\View\Components\Web\Home;
 use App\Models\Repository;
 use App\Models\RepositoryUserPivot;
 use App\Models\User;
-use App\View\Concerns\CachedView;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\View\Component;
 
 class Stats extends Component
 {
-    use CachedView;
+    public function render(): View
+    {
+        return view('components.web.home.stats');
+    }
 
     public function contributorsCount(): int
     {
@@ -38,10 +40,5 @@ class Stats extends Component
                 Repository::query()->select('id')
             )
             ->count();
-    }
-
-    protected function view(): View
-    {
-        return view('components.web.home.stats');
     }
 }
