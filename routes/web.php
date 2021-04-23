@@ -10,6 +10,8 @@ Route::view('/faqs', 'web.faqs')->name('faqs');
 
 Route::view('/sponsors', 'web.sponsors')->name('sponsors');
 
+Route::view('/user-search', 'web.search.user')->name('user-search');
+
 Route::get('/@{profile}', ProfileController::class)->name('profile');
 
 Route::fallback(FallbackController::class);
