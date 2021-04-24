@@ -106,6 +106,7 @@ return [
             'account' => false,
             'info' => false,
             'new_users' => true,
+            'entities-per-block-reason' => true,
         ],
     ],
 
