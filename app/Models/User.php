@@ -250,11 +250,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function shouldBeSearchable(): bool
     {
-        return $this->isRegistered();
+        return $this->isRegistered() && $this->contributions()->exists();
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->whereIsRegistered();
+        return $query->whereIsRegistered()->has('contributions');
     }
 }
