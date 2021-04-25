@@ -177,7 +177,7 @@
                         </a>
 
                         <span class="inline-flex flex-1 justify-center items-center py-4 px-2 text-sm font-medium text-gray-300 line-through border-transparent sm:border-b-2 group">
-                            <x-bxs-business class="mr-2 w-5 h-5"/>
+                            <x-bx-buildings class="mr-2 w-5 h-5"/>
                             <span>Organizations</span>
                         </span>
                         <span class="inline-flex flex-1 justify-center items-center py-4 px-2 text-sm font-medium text-gray-300 line-through border-transparent sm:border-b-2 group">
