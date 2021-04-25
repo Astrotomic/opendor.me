@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
-use App\Eloquent\Scopes\OrderByScope;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
@@ -59,11 +58,6 @@ class Organization extends Model implements Sitemapable
             ['id' => $data['id']],
             ['name' => $data['login']]
         );
-    }
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function members(): BelongsToMany

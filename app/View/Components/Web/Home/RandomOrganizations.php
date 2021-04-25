@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Web\Home;
 
-use App\Eloquent\Scopes\OrderByScope;
 use App\Models\Organization;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -22,10 +21,7 @@ class RandomOrganizations extends Component
     public function organizations(): Collection
     {
         return Organization::query()
-            ->withoutGlobalScope(OrderByScope::class)
-            ->inRandomOrder()
             ->has('repositories')
-            ->limit($this->limit)
-            ->get();
+            ->takeRandom($this->limit);
     }
 }

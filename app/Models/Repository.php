@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
-use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
@@ -129,11 +128,6 @@ class Repository extends Model
 
             return null;
         }
-    }
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function owner(): MorphTo

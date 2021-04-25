@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
-use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\Language;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -102,11 +101,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 'email' => "{$data['id']}+{$data['login']}@users.noreply.github.com",
             ]
         );
-    }
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function repositories(): MorphMany
