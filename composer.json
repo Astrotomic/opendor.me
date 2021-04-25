@@ -19,7 +19,6 @@
         "filament/filament": "^1.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "inspheric/nova-url-field": "^1.4",
         "jfvoliveira/blade-boxicons": "dev-update-blade-icons",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
@@ -39,9 +38,7 @@
         "spatie/laravel-schedule-monitor": "^2.2.1",
         "spatie/laravel-sitemap": "^6.0",
         "spatie/laravel-sluggable": "^3.0",
-        "spatie/nova-backup-tool": "^4.1",
-        "stillat/numeral.php": "^2.0",
-        "vyuldashev/nova-permission": "^2.11"
+        "stillat/numeral.php": "^2.0"
     },
     "conflict": {
         "tightenco/tlint": "5.0.16"
@@ -108,8 +105,7 @@
     "prefer-stable": true,
     "scripts": {
         "post-update-cmd": [
-            "@php artisan horizon:publish --ansi --no-interaction",
-            "@php artisan nova:publish --ansi --no-interaction"
+            "@php artisan horizon:publish --ansi --no-interaction"
         ],
         "post-autoload-dump": [
             "@composer validate --strict --ansi --no-interaction --quiet",
@@ -143,7 +139,7 @@
             "vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
-        "route:list": "@php artisan route:list --columns=method,uri,name --except-path=nova,horizon,_debugbar --sort=name",
+        "route:list": "@php artisan route:list --columns=method,uri,name --except-path=horizon,_debugbar --sort=name",
         "test": "@php vendor/bin/phpunit",
         "test-coverage": "@php vendor/bin/phpunit --coverage-html=.coverage",
         "thanks": "echo 'composer global require symfony/thanks'"
