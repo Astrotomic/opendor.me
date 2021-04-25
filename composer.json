@@ -22,7 +22,6 @@
         "jfvoliveira/blade-boxicons": "dev-update-blade-icons",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
-        "laravel/nova": "^3.22",
         "laravel/socialite": "^5.2",
         "lorisleiva/cron-translator": "^0.2.0",
         "mazedlx/laravel-feature-policy": "^1.1",
