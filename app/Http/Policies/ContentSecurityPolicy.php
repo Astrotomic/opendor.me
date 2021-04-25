@@ -28,6 +28,7 @@ class ContentSecurityPolicy extends Policy
             ->addDirective(Directive::OBJECT, Keyword::NONE)
             ->addDirective(Directive::WORKER, Keyword::SELF)
             ->addDirective(Directive::IMG, Keyword::SELF)
+            ->addDirective(Directive::IMG, 'data:')
             ->addDirective(Directive::IMG, 'https://avatars.githubusercontent.com')
             ->addDirective(Directive::IMG, 'https://images.unsplash.com')
             ->addDirective(Directive::SCRIPT, Keyword::SELF)

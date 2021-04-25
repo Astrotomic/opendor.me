@@ -54,6 +54,18 @@
                             @endif
                         "
                     >Sponsors</a>
+
+                    <a
+                        href="{{ route('search.user') }}"
+                        class="
+                            inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2
+                            @if(request()->is('search/*'))
+                                border-brand-500 text-gray-900
+                            @else
+                                border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700
+                            @endif
+                        "
+                    >Search</a>
                 </div>
             </div>
 
@@ -109,6 +121,18 @@
                     @endif
                 "
             >Sponsors</a>
+
+            <a
+                href="{{ route('search.user') }}"
+                class="
+                    block py-2 pr-4 pl-3 text-base font-medium border-l-4
+                    @if(request()->is('search/*'))
+                        bg-brand-50 border-brand-500 text-brand-700
+                    @else
+                        border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700
+                    @endif
+                "
+            >Search</a>
         </div>
     </div>
 </nav>

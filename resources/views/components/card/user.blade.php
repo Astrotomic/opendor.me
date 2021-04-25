@@ -2,7 +2,7 @@
 @props(['model'])
 
 @if($model->profile_url)
-<a href="{{ $model->profile_url }}" class="flex items-center p-4 space-x-4 bg-white rounded-lg shadow group focus:ring-2 focus:ring-brand-500 focus:outline-none" disabled>
+<a href="{{ $model->profile_url }}" class="flex items-center p-4 space-x-4 bg-white rounded-lg shadow group focus:ring-2 focus:ring-brand-500 focus:outline-none">
 @else
 <div class="flex items-center p-4 space-x-4 bg-white rounded-lg shadow">
 @endif
