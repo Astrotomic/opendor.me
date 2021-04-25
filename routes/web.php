@@ -10,7 +10,10 @@ Route::view('/faqs', 'web.faqs')->name('faqs');
 
 Route::view('/sponsors', 'web.sponsors')->name('sponsors');
 
-Route::view('/user-search', 'web.search.user')->name('user-search');
+Route::prefix('/search')->name('search.')->group(static function (): void {
+    Route::get('/', fn () => redirect()->route('search.user'));
+    Route::view('/user', 'web.search.user')->name('user');
+});
 
 Route::get('/@{profile}', ProfileController::class)->name('profile');
 

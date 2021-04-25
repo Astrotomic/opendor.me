@@ -64,8 +64,8 @@
             templates: {
                 item: `
                 <a href="@{{ profile_url }}" class="flex items-center p-4 space-x-4 bg-white rounded-lg shadow group focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                    <img src="@{{ avatar_url }}" alt="@{{ name }}" width="192" height="192" loading="lazy" class="flex-shrink-0 rounded-md bg-white w-12 h-12">
-                    <div class="space-y-1 overflow-hidden">
+                    <img src="@{{ avatar_url }}" alt="@{{ name }}" width="192" height="192" loading="lazy" class="flex-shrink-0 w-12 h-12 bg-white rounded-md">
+                    <div class="overflow-hidden space-y-1">
                         <strong class="block text-lg font-medium leading-tight text-gray-900 truncate group-hover:text-brand-500">
                             @{{ display_name }}
                         </strong>
@@ -86,6 +86,7 @@
             operator: 'and',
             limit: 5,
             searchable: true,
+            searchablePlaceholder: 'Search for language',
             searchableIsAlwaysActive: false,
             sortBy: ['count:desc'],
             templates: {
@@ -105,7 +106,7 @@
             },
             cssClasses: {
                 searchableRoot: 'mb-2',
-                searchableInput: 'block py-2 px-3 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:flex-1 focus:outline-none',
+                searchableInput: 'block py-1.5 px-3 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:flex-1 focus:outline-none',
                 searchableSubmit: 'hidden',
                 searchableReset: 'hidden',
                 list: 'space-y-1',
@@ -156,7 +157,37 @@
 <x-layout.web page-title="User Search">
 
     <div class="bg-white">
-        <div class="py-8 px-4 mx-auto max-w-7xl sm:py-16 sm:px-6 lg:px-8">
+        <div class="py-8 px-4 mx-auto max-w-7xl sm:py-12 sm:px-6 lg:px-8">
+            <div class="hidden mb-8 sm:block">
+                <div class="border-b border-gray-200">
+                    <nav class="flex flex-col justify-between -mb-px space-y-2 sm:flex-row sm:space-y-0 sm:space-x-8" aria-label="Tabs">
+                        <a
+                            href="{{ route('search.user') }}"
+                            class="
+                                flex-1 justify-center group inline-flex items-center py-4 px-2 sm:border-b-2 font-medium text-sm
+                                @if(request()->is(trim(route('search.user', [], false), '/')))
+                                border-indigo-500 text-indigo-600
+                                @else
+                                border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300
+                                @endif
+                            "
+                        >
+                            <x-bx-user class="mr-2 w-5 h-5"/>
+                            <span>Users</span>
+                        </a>
+
+                        <span class="inline-flex flex-1 justify-center items-center py-4 px-2 text-sm font-medium text-gray-300 line-through border-transparent sm:border-b-2 group">
+                            <x-bxs-business class="mr-2 w-5 h-5"/>
+                            <span>Organizations</span>
+                        </span>
+                        <span class="inline-flex flex-1 justify-center items-center py-4 px-2 text-sm font-medium text-gray-300 line-through border-transparent sm:border-b-2 group">
+                            <x-bx-package class="mr-2 w-5 h-5"/>
+                            <span>Repositories</span>
+                        </span>
+                    </nav>
+                </div>
+            </div>
+
             <div id="algolia-search-input">
                 <template id="search-icon" hidden>
                     <x-bx-search class="w-5 h-5 text-gray-400"/>
@@ -173,22 +204,22 @@
                 </div>
             </div>
 
-            <div class="flex justify-between space-x-4 mt-2">
+            <div class="flex justify-between mt-2 space-x-4">
                 <div id="algolia-search-refinements"></div>
                 <div id="algolia-search-hits-per-page" class="hidden sm:block"></div>
             </div>
 
-            <div class="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-8 mt-2 sm:mt-6">
-                <div class="w-72 space-y-4">
+            <div class="flex flex-col mt-2 space-y-6 sm:flex-row sm:space-y-0 sm:space-x-8 sm:mt-6">
+                <div class="space-y-4 w-full sm:w-72">
                     <div>
-                        <strong class="block font-medium mb-2">Languages</strong>
+                        <strong class="block mb-2 font-medium">Languages</strong>
                         <div id="algolia-search-languages"></div>
                     </div>
                 </div>
                 <div id="algolia-search-hits" class="w-full"></div>
             </div>
 
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-8 space-y-2 sm:space-y-0 sm:space-x-4">
+            <div class="flex flex-col mt-8 space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:space-x-4">
                 <div id="algolia-search-stats-pagination"></div>
                 <div id="algolia-search-pagination"></div>
             </div>
