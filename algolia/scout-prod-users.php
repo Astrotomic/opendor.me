@@ -79,7 +79,9 @@ return [
     |
     */
 
-    'attributesForFaceting' => null,
+    'attributesForFaceting' => [
+        'searchable(languages)',
+    ],
 
     /*
     |--------------------------------------------------------------------------

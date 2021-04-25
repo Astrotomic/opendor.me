@@ -6,6 +6,7 @@ use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\Scopes\OrderByScope;
+use App\Enums\Language;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -238,16 +239,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'display_name' => $this->display_name,
             'avatar_url' => $this->avatar_url,
             'profile_url' => $this->profile_url,
+            'languages' => $this->contributions()
+                ->pluck('language')
+                ->reject(fn (Language $language): bool => $language->equals(Language::NOASSERTION()))
+                ->map(fn (Language $language): string => $language->label)
+                ->unique()
+                ->values(),
         ];
     }
 
     public function shouldBeSearchable(): bool
     {
-        return $this->isRegistered();
+        return $this->isRegistered() && $this->contributions()->exists();
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->whereIsRegistered();
+        return $query->whereIsRegistered()->has('contributions');
     }
 }

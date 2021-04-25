@@ -15,7 +15,7 @@
                 type="search"
                 name="name"
                 id="github-username"
-                class="block py-2 py-3 px-3 pl-10 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:flex-1 focus:outline-none"
+                class="block py-3 px-3 pl-10 w-full text-base placeholder-gray-500 rounded-md border border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:flex-1 focus:outline-none"
                 placeholder="Enter an username"
                 autocomplete="off"
                 @focus="isFocused = true"
