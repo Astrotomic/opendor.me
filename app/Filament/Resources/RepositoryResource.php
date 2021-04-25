@@ -2,32 +2,36 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GithubRepositoryResource\Pages;
+use App\Enums\BlockReason as BlockReasonEnum;
+use App\Filament\Resources\RepositoryResource\Pages;
 use App\Models\Repository;
 use Filament\Resources\Forms\Components;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Tables\Columns;
 use Filament\Resources\Tables\Table;
+use Illuminate\Support\Arr;
 
-class GithubRepositoryResource extends Resource
+class RepositoryResource extends Resource
 {
     public static $model = Repository::class;
     public static $label = 'Repositories';
-    public static $icon = 'heroicon-o-collection';
+    public static $icon = 'bx-package';
 
     public static function form(Form $form)
     {
         return $form
             ->schema([
-                Components\TextInput::make('id')->label('ID')->disabled(),
-                Components\TextInput::make('github_url')->label('Github')->disabled(),
+                Components\TextInput::make('id')->disabled(),
+                Components\TextInput::make('name')->disabled(),
                 Components\TextInput::make('licence')->disabled(),
                 Components\TextInput::make('language')->disabled(),
                 Components\TextInput::make('website')->disabled(),
                 Components\TextInput::make('stargazer_count')->label('Stars')->disabled(),
-                Components\TextInput::make('blocked_at'),
-                Components\TextInput::make('block_reason'),
+                Components\Select::make('block_reason') // ToDo: cast empty string to null
+                ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
+                    ->nullable(),
+                Components\TextInput::make('blocked_at')->disabled(),
 
             ]);
     }
@@ -57,9 +61,8 @@ class GithubRepositoryResource extends Resource
     public static function routes()
     {
         return [
-            Pages\ListGithubRepositories::routeTo('/', 'index'),
-            Pages\CreateGithubRepository::routeTo('/create', 'create'),
-            Pages\EditGithubRepository::routeTo('/{record}/edit', 'edit'),
+            Pages\ListRepositories::routeTo('/', 'index'),
+            Pages\EditRepository::routeTo('/{record}/edit', 'edit'),
         ];
     }
 }

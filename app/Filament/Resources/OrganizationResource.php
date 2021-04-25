@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GithubOrganizationResource\Pages;
+use App\Filament\Resources\OrganizationResource\Pages;
 use App\Filament\Resources\Tables\Columns\Avatar;
 use App\Models\Organization;
 use Filament\Resources\Forms\Form;
@@ -10,11 +10,11 @@ use Filament\Resources\Resource;
 use Filament\Resources\Tables\Columns;
 use Filament\Resources\Tables\Table;
 
-class GithubOrganizationResource extends Resource
+class OrganizationResource extends Resource
 {
     public static $model = Organization::class;
     public static $label = 'Organizations';
-    public static $icon = 'heroicon-o-globe-alt';
+    public static $icon = 'bx-buildings';
 
     public static function form(Form $form)
     {
@@ -49,9 +49,8 @@ class GithubOrganizationResource extends Resource
     public static function routes()
     {
         return [
-            Pages\ListGithubOrganizations::routeTo('/', 'index'),
-            Pages\CreateGithubOrganization::routeTo('/create', 'create'),
-            Pages\EditGithubOrganization::routeTo('/{record}/edit', 'edit'),
+            Pages\ListOrganizations::routeTo('/', 'index'),
+            Pages\EditOrganization::routeTo('/{record}/edit', 'edit'),
         ];
     }
 }

@@ -17,7 +17,7 @@ use Illuminate\Support\Arr;
 class UserResource extends Resource
 {
     public static $model = User::class;
-    public static $icon = 'heroicon-o-users';
+    public static $icon = 'bx-user';
 
     public static function form(Form $form): Form
     {
