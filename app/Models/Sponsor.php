@@ -5,14 +5,11 @@ namespace App\Models;
 use App\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
-use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Sponsor extends Model implements Sortable
+class Sponsor extends Model
 {
-    use SortableTrait;
     use Orbital;
     use HasSlug;
 
@@ -25,11 +22,6 @@ class Sponsor extends Model implements Sortable
     protected $keyType = 'string';
     protected $primaryKey = 'slug';
     protected $guarded = [];
-
-    protected $sortable = [
-        'order_column_name' => 'priority',
-        'sort_when_creating' => false,
-    ];
 
     public static function schema(Blueprint $table): void
     {

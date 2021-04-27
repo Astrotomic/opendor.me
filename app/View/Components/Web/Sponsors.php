@@ -9,10 +9,6 @@ use Illuminate\View\Component;
 
 class Sponsors extends Component
 {
-    public function __construct(protected ?int $limit = null)
-    {
-    }
-
     public function render(): View
     {
         return view('components.web.sponsors');
