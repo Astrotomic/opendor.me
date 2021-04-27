@@ -78,11 +78,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use HasRoles;
     use Searchable;
 
-    protected const SUPERADMIN_IDS = [
-        6187884, // Gummibeer
-        4409904,
-    ];
-
     public $incrementing = false;
 
     protected $hidden = [
@@ -170,7 +165,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getIsSuperadminAttribute(): bool
     {
-        return in_array($this->id, self::SUPERADMIN_IDS, true);
+        return in_array($this->id, config('auth.superadmin_ids'), true);
     }
 
     public function canAccessFilament(): bool
