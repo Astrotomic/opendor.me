@@ -8,15 +8,16 @@ use Filament\Widgets\Widget;
 
 class NewUsers extends Widget
 {
-    public string $title = 'New users';
     public static $view = 'filament.widgets.new-users';
 
+    public string $title = 'New users';
     public string $selectedOption = '1m';
     public array $options = [
         '1d' => 'Today',
         '7d' => 'Last 7 days',
         '1m' => 'This month',
     ];
+
     private $records;
 
     public function mount()

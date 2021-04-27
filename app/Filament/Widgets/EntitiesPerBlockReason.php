@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class EntitiesPerBlockReason extends Widget
 {
-    public string $title = 'Users per Block-Reason';
     public static $view = 'filament.widgets.entities-per-block-reason';
+
+    public string $title = 'Users per Block-Reason';
 
     public function render()
     {

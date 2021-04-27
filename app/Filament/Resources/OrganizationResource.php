@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\OrganizationResource\Pages;
+use App\Filament\Resources\OrganizationResource\Pages\EditOrganization;
+use App\Filament\Resources\OrganizationResource\Pages\ListOrganizations;
 use App\Filament\Resources\Tables\Columns\Avatar;
 use App\Models\Organization;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Tables\Columns;
+use Filament\Resources\Tables\Columns\Boolean;
+use Filament\Resources\Tables\Columns\Text;
 use Filament\Resources\Tables\Table;
 
 class OrganizationResource extends Resource
@@ -16,7 +18,7 @@ class OrganizationResource extends Resource
     public static $label = 'Organizations';
     public static $icon = 'bx-buildings';
 
-    public static function form(Form $form)
+    public static function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -24,33 +26,29 @@ class OrganizationResource extends Resource
             ]);
     }
 
-    public static function table(Table $table)
+    public static function table(Table $table): Table
     {
         return $table
             ->columns([
                 Avatar::make('avatar_url')->label(''),
-                Columns\Text::make('id')->primary()->sortable()->searchable(),
-                Columns\Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
-                Columns\Boolean::make('blocked_at')->sortable(),
+                Text::make('id')->primary()->sortable()->searchable(),
+                Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
+                Boolean::make('blocked_at')->sortable(),
             ])
             ->defaultSort('id', 'desc')
-            ->filters([
-                //
-            ]);
+            ->filters([]);
     }
 
-    public static function relations()
+    public static function relations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
-    public static function routes()
+    public static function routes(): array
     {
         return [
-            Pages\ListOrganizations::routeTo('/', 'index'),
-            Pages\EditOrganization::routeTo('/{record}/edit', 'edit'),
+            ListOrganizations::routeTo('/', 'index'),
+            EditOrganization::routeTo('/{record}/edit', 'edit'),
         ];
     }
 }

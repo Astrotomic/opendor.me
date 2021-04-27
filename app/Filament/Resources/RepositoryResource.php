@@ -3,12 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Enums\BlockReason as BlockReasonEnum;
-use App\Filament\Resources\RepositoryResource\Pages;
+use App\Filament\Resources\RepositoryResource\Pages\EditRepository;
+use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
 use App\Models\Repository;
-use Filament\Resources\Forms\Components;
+use Filament\Resources\Forms\Components\Select;
+use Filament\Resources\Forms\Components\TextInput;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Tables\Columns;
+use Filament\Resources\Tables\Columns\Boolean;
+use Filament\Resources\Tables\Columns\Text;
 use Filament\Resources\Tables\Table;
 use Illuminate\Support\Arr;
 
@@ -18,51 +21,46 @@ class RepositoryResource extends Resource
     public static $label = 'Repositories';
     public static $icon = 'bx-package';
 
-    public static function form(Form $form)
+    public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Components\TextInput::make('id')->disabled(),
-                Components\TextInput::make('name')->disabled(),
-                Components\TextInput::make('licence')->disabled(),
-                Components\TextInput::make('language')->disabled(),
-                Components\TextInput::make('website')->disabled(),
-                Components\TextInput::make('stargazer_count')->label('Stars')->disabled(),
-                Components\Select::make('block_reason') // ToDo: cast empty string to null
+                TextInput::make('id')->disabled(),
+                TextInput::make('name')->disabled(),
+                TextInput::make('licence')->disabled(),
+                TextInput::make('language')->disabled(),
+                TextInput::make('website')->disabled(),
+                TextInput::make('stargazer_count')->label('Stars')->disabled(),
+                Select::make('block_reason') // ToDo: cast empty string to null
                 ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
                     ->nullable(),
-                Components\TextInput::make('blocked_at')->disabled(),
-
+                TextInput::make('blocked_at')->disabled(),
             ]);
     }
 
-    public static function table(Table $table)
+    public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Columns\Text::make('id')->primary()->sortable()->searchable(),
-                Columns\Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
-                Columns\Text::make('license')->sortable(),
-                Columns\Text::make('language')->sortable()->searchable(),
-                Columns\Boolean::make('blocked_at')->sortable(),
+                Text::make('id')->primary()->sortable()->searchable(),
+                Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
+                Text::make('license')->sortable(),
+                Text::make('language')->sortable()->searchable(),
+                Boolean::make('blocked_at')->sortable(),
             ])
-            ->filters([
-                //
-            ]);
+            ->filters([]);
     }
 
-    public static function relations()
+    public static function relations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
-    public static function routes()
+    public static function routes(): array
     {
         return [
-            Pages\ListRepositories::routeTo('/', 'index'),
-            Pages\EditRepository::routeTo('/{record}/edit', 'edit'),
+            ListRepositories::routeTo('/', 'index'),
+            EditRepository::routeTo('/{record}/edit', 'edit'),
         ];
     }
 }

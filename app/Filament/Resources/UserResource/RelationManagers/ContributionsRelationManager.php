@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
+use App\Models\Repository;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\RelationManager;
-use Filament\Resources\Tables\Columns;
+use Filament\Resources\Tables\Columns\Boolean;
+use Filament\Resources\Tables\Columns\Text;
 use Filament\Resources\Tables\Table;
 
 class ContributionsRelationManager extends RelationManager
@@ -13,27 +15,32 @@ class ContributionsRelationManager extends RelationManager
 
     public static $relationship = 'contributions';
 
-    public static function form(Form $form)
+    public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                //
-            ]);
+            ->schema([]);
     }
 
-    public static function table(Table $table)
+    public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Columns\Text::make('id')->primary()->sortable('id')->searchable(),
-                Columns\Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
-                Columns\Text::make('license')->sortable(),
-                Columns\Text::make('language')->sortable()->searchable(),
-                Columns\Boolean::make('blocked_at')->sortable(),
+                Text::make('id')
+                    ->primary()
+                    ->sortable()
+                    ->searchable(),
+                Text::make('name')
+                    ->url(fn (Repository $record) => $record->github_url, true)
+                    ->sortable(),
+                Text::make('license')
+                    ->sortable(),
+                Text::make('language')
+                    ->sortable()
+                    ->searchable(),
+                Boolean::make('blocked_at')
+                    ->sortable(),
             ])
             ->defaultSort('id', 'desc')
-            ->filters([
-                //
-            ]);
+            ->filters([]);
     }
 }
