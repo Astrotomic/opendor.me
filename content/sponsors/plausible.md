@@ -1,0 +1,7 @@
+---
+slug: plausible
+priority: 2
+name: Plausible
+url: https://plausible.io/
+image: plausible.png
+---
