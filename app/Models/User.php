@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
-use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\Language;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -48,7 +47,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
  * @property-read string $display_name
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
@@ -102,11 +100,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 'email' => "{$data['id']}+{$data['login']}@users.noreply.github.com",
             ]
         );
-    }
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function repositories(): MorphMany

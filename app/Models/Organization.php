@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
-use App\Eloquent\Scopes\OrderByScope;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
@@ -33,7 +32,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $github_url
  * @property-read string|null $twitter_url
  * @property-read string $display_name
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  *
@@ -59,11 +57,6 @@ class Organization extends Model implements Sitemapable
             ['id' => $data['id']],
             ['name' => $data['login']]
         );
-    }
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function members(): BelongsToMany

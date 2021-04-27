@@ -7,6 +7,8 @@ use Closure;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Arr;
@@ -156,6 +158,18 @@ class AppServiceProvider extends ServiceProvider
                 )),
                 fn () => $this->forceRootUrl(config('app.url'))
             );
+        });
+
+        Builder::macro('takeRandom', function (int $limit): Collection {
+            /** @var \Illuminate\Database\Eloquent\Builder $this */
+
+            return $this
+                ->limit($limit * 3)
+                ->whereRaw('RANDOM() < 0.1')
+                ->get()
+                ->shuffle()
+                ->take($limit)
+                ->values();
         });
     }
 }

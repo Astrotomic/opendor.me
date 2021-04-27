@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Web\Home;
 
-use App\Eloquent\Scopes\OrderByScope;
 use App\Models\Repository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -22,10 +21,7 @@ class RandomRepositories extends Component
     public function repositories(): Collection
     {
         return Repository::query()
-            ->withoutGlobalScope(OrderByScope::class)
-            ->inRandomOrder()
-            ->limit($this->limit)
             ->with('owner')
-            ->get();
+            ->takeRandom($this->limit);
     }
 }

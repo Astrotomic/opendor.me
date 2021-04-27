@@ -2,7 +2,6 @@
 
 namespace App\Nova\Metrics;
 
-use App\Eloquent\Scopes\OrderByScope;
 use App\Enums\Language;
 use App\Models\Repository;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -15,7 +14,6 @@ class RepositoriesPerLanguage extends Partition
         return $this->count(
             $request,
             Repository::query()
-                ->withoutGlobalScope(OrderByScope::class)
                 ->withCasts(['language' => 'string'])
                 ->orderBy('language'),
             'language'
