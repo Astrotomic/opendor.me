@@ -128,16 +128,16 @@ class AppServiceProvider extends ServiceProvider
             return new FilesystemAdapter($filesystem);
         });
 
-        URL::macro('nova', function (string $uri): string {
+        URL::macro('filament', function (string $uri): string {
             /** @var \Illuminate\Routing\UrlGenerator $this */
-            if (config('nova.domain') !== null) {
-                $this->forceRootUrl(config('nova.domain'));
+            if (config('filament.domain') !== null) {
+                $this->forceRootUrl(config('filament.domain'));
             }
 
             return tap(
                 $this->to(Str::start(
                     trim($uri, '/'),
-                    Str::finish(config('nova.path'), '/')
+                    Str::finish(config('filament.path'), '/')
                 )),
                 fn () => $this->forceRootUrl(config('app.url'))
             );
