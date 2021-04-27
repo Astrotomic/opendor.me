@@ -3,9 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Enums\BlockReason as BlockReasonEnum;
+use App\Enums\Language;
+use App\Enums\License;
 use App\Filament\Resources\RepositoryResource\Pages\EditRepository;
 use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
 use App\Models\Repository;
+use Filament\Resources\Forms\Components\DateTimePicker;
 use Filament\Resources\Forms\Components\Select;
 use Filament\Resources\Forms\Components\TextInput;
 use Filament\Resources\Forms\Form;
@@ -25,16 +28,25 @@ class RepositoryResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('id')->disabled(),
-                TextInput::make('name')->disabled(),
-                TextInput::make('licence')->disabled(),
-                TextInput::make('language')->disabled(),
-                TextInput::make('website')->disabled(),
-                TextInput::make('stargazer_count')->label('Stars')->disabled(),
-                Select::make('block_reason') // ToDo: cast empty string to null
-                ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
+                TextInput::make('id')
+                    ->disabled(),
+                TextInput::make('name')
+                    ->disabled(),
+                Select::make('license')
+                    ->options(License::toArray()),
+                Select::make('language') // ToDo: cast empty string to null
+                    ->options(Arr::prepend(Language::toArray(), '—', null))
                     ->nullable(),
-                TextInput::make('blocked_at')->disabled(),
+                TextInput::make('website')
+                    ->disabled(),
+                TextInput::make('stargazers_count')
+                    ->label('Stars')
+                    ->disabled(),
+                Select::make('block_reason') // ToDo: cast empty string to null
+                    ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
+                    ->nullable(),
+                DateTimePicker::make('blocked_at')
+                    ->disabled(),
             ]);
     }
 
@@ -43,7 +55,7 @@ class RepositoryResource extends Resource
         return $table
             ->columns([
                 Text::make('id')->primary()->sortable()->searchable(),
-                Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
+                Text::make('name')->url(fn (Repository $record) => $record->github_url, true)->sortable(),
                 Text::make('license')->sortable(),
                 Text::make('language')->sortable()->searchable(),
                 Boolean::make('blocked_at')->sortable(),

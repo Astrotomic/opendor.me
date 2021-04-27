@@ -32,7 +32,7 @@ class OrganizationResource extends Resource
             ->columns([
                 Avatar::make('avatar_url')->label(''),
                 Text::make('id')->primary()->sortable()->searchable(),
-                Text::make('github_url')->url(fn ($record) => $record->github_url, true)->label('Name')->sortable(),
+                Text::make('name')->url(fn (Organization $record) => $record->github_url, true)->sortable(),
                 Boolean::make('blocked_at')->sortable(),
             ])
             ->defaultSort('id', 'desc')
