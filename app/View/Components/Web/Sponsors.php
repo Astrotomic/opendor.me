@@ -20,6 +20,6 @@ class Sponsors extends Component
 
     public function sponsors(): Collection
     {
-        return Sponsor::orderBy('priority')->get();
+        return Sponsor::orderBy('name')->get();
     }
 }
