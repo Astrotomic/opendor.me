@@ -20,6 +20,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "inspheric/nova-url-field": "^1.4",
         "jfvoliveira/blade-boxicons": "dev-master",
+        "kevinrob/guzzle-cache-middleware": "^3.3",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
         "laravel/nova": "^3.22",
