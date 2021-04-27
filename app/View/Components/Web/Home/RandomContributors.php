@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Web\Home;
 
-use App\Eloquent\Scopes\OrderByScope;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -22,11 +21,8 @@ class RandomContributors extends Component
     public function contributors(): Collection
     {
         return User::query()
-            ->withoutGlobalScope(OrderByScope::class)
-            ->inRandomOrder()
             ->whereIsRegistered()
             ->has('contributions')
-            ->limit($this->limit)
-            ->get();
+            ->takeRandom($this->limit);
     }
 }

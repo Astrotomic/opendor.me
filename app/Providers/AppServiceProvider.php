@@ -7,14 +7,20 @@ use Closure;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\LaravelCacheStorage;
+use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 use League\Flysystem\Filesystem;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -35,6 +41,16 @@ class AppServiceProvider extends ServiceProvider
             $numeral->setLanguageManager(new LanguageManager());
 
             return $numeral;
+        });
+
+        $this->app->singleton(CacheMiddleware::class, function (): CacheMiddleware {
+            return new CacheMiddleware(
+                new PrivateCacheStrategy(
+                    new LaravelCacheStorage(
+                        Cache::store()
+                    )
+                )
+            );
         });
     }
 
@@ -66,6 +82,7 @@ class AppServiceProvider extends ServiceProvider
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withOptions(['http_errors' => true])
+                ->withMiddleware(app(CacheMiddleware::class))
                 ->withMiddleware(function (callable $handler): Closure {
                     return function (RequestInterface $request, array $options) use ($handler): PromiseInterface {
                         $promise = $handler($request, $options);
@@ -156,6 +173,18 @@ class AppServiceProvider extends ServiceProvider
                 )),
                 fn () => $this->forceRootUrl(config('app.url'))
             );
+        });
+
+        Builder::macro('takeRandom', function (int $limit): Collection {
+            /** @var \Illuminate\Database\Eloquent\Builder $this */
+
+            return $this
+                ->limit($limit * 3)
+                ->whereRaw('RANDOM() < 0.1')
+                ->get()
+                ->shuffle()
+                ->take($limit)
+                ->values();
         });
     }
 }

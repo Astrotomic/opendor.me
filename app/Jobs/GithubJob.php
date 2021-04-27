@@ -9,7 +9,6 @@ use App\Models\Repository;
 use App\Models\User;
 use Carbon\CarbonInterval;
 use Closure;
-use DateTimeInterface;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Support\Str;
@@ -18,6 +17,9 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class GithubJob extends Job implements ShouldBeUnique
 {
     use RateLimited;
+
+    public ?int $tries = 3;
+    public ?int $maxExceptions = 1;
 
     public function __construct()
     {
@@ -56,18 +58,15 @@ abstract class GithubJob extends Job implements ShouldBeUnique
                 ]);
 
                 $this->delete();
+
+                return null;
             }
 
             throw $exception;
         }
     }
 
-    public function retryUntil(): ?DateTimeInterface
-    {
-        return now()->addHours(18);
-    }
-
-    public function uniqueId(): ?string
+    public function uniqueId(): string
     {
         return Str::snake(class_basename($this->entity())).':'.$this->entity()->id;
     }
@@ -75,7 +74,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     public function tags(): array
     {
         return [
-            Str::snake(class_basename($this->entity())).':'.$this->entity()->id,
+            $this->uniqueId(),
             $this->entity()->name,
         ];
     }
@@ -86,9 +85,6 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     public function backoff(): int | array
     {
         return [
-            CarbonInterval::seconds(5)->totalSeconds,
-            CarbonInterval::seconds(10)->totalSeconds,
-            CarbonInterval::seconds(30)->totalSeconds,
             CarbonInterval::minute()->totalSeconds,
             CarbonInterval::minutes(5)->totalSeconds,
             CarbonInterval::minutes(10)->totalSeconds,

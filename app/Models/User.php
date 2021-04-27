@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
-use App\Eloquent\Scopes\OrderByScope;
+use App\Enums\Language;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Filament\Models\Concerns\IsFilamentUser;
 use Filament\Models\Contracts\FilamentUser;
@@ -50,7 +50,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
  * @property-read string $display_name
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
@@ -106,11 +105,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
                 'email' => "{$data['id']}+{$data['login']}@users.noreply.github.com",
             ]
         );
-    }
-
-    protected static function booted(): void
-    {
-        self::addGlobalScope(new OrderByScope('name', 'asc'));
     }
 
     public function repositories(): MorphMany
@@ -248,16 +242,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'display_name' => $this->display_name,
             'avatar_url' => $this->avatar_url,
             'profile_url' => $this->profile_url,
+            'languages' => $this->contributions()
+                ->pluck('language')
+                ->reject(fn (Language $language): bool => $language->equals(Language::NOASSERTION()))
+                ->map(fn (Language $language): string => $language->label)
+                ->unique()
+                ->values(),
         ];
     }
 
     public function shouldBeSearchable(): bool
     {
-        return $this->isRegistered();
+        return $this->isRegistered() && $this->contributions()->exists();
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
-        return $query->whereIsRegistered();
+        return $query->whereIsRegistered()->has('contributions');
     }
 }
