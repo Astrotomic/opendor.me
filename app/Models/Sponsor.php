@@ -16,6 +16,8 @@ class Sponsor extends Model implements Sortable
     use Orbital;
     use HasSlug;
 
+    public static $driver = 'yaml';
+
     public $incrementing = false;
     public $timestamps = false;
 
