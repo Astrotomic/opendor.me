@@ -1,3 +1,9 @@
+@push('head')
+    <meta name="description" content="{{ config('app.name') }} profile of {{ $user->name }}."/>
+
+    <x-open-graph.website :image="$user->avatar_url"/>
+@endpush
+
 <x-layout.web :page-title="$user->name" class="py-10">
     <div class="flex flex-col px-4 mx-auto space-y-3 max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="flex items-center space-x-5">
