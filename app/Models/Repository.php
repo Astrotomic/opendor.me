@@ -37,7 +37,6 @@ use Throwable;
  * @property-read string $github_url
  * @property-read string $repository_name
  * @property-read string $vendor_name
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
  * @property-read \App\Models\User|\App\Models\Organization $owner
  *

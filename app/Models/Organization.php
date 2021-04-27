@@ -32,7 +32,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $github_url
  * @property-read string|null $twitter_url
  * @property-read string $display_name
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Nova\Actions\ActionEvent[] $actions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  *
