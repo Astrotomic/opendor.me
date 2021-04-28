@@ -26,7 +26,6 @@ class Sponsor extends Model
     public static function schema(Blueprint $table): void
     {
         $table->string('slug')->primary();
-        $table->integer('priority')->unsigned();
         $table->string('name');
         $table->string('url');
         $table->string('image');
