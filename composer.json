@@ -59,6 +59,7 @@
         "phpunit/phpunit": "^9.3.3",
         "povils/phpmnd": "^2.4",
         "tightenco/tlint": "^5.0",
+        "wnx/laravel-stats": "^2.5",
         "wulfheart/pretty_routes": "^0.1.2"
     },
     "suggest": {
