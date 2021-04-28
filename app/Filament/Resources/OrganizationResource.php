@@ -2,15 +2,21 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\BlockReason as BlockReasonEnum;
 use App\Filament\Resources\OrganizationResource\Pages\EditOrganization;
 use App\Filament\Resources\OrganizationResource\Pages\ListOrganizations;
 use App\Filament\Resources\Tables\Columns\Avatar;
 use App\Models\Organization;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Textarea;
+use Filament\Resources\Forms\Components\Select;
+use Filament\Resources\Forms\Components\TextInput;
 use Filament\Resources\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Tables\Columns\Boolean;
 use Filament\Resources\Tables\Columns\Text;
 use Filament\Resources\Tables\Table;
+use Illuminate\Support\Arr;
 
 class OrganizationResource extends Resource
 {
@@ -22,7 +28,16 @@ class OrganizationResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('id')->disabled(),
+                TextInput::make('full_name')->disabled(),
+                TextInput::make('description')->disabled(),
+                TextInput::make('location')->disabled(),
+                TextInput::make('twitter')->disabled(),
+                TextInput::make('website')->disabled(),
+                Select::make('block_reason') // ToDo: cast empty string to null
+                      ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
+                      ->nullable(),
+                TextInput::make('blocked_at')->disabled(),
             ]);
     }
 
