@@ -2,6 +2,7 @@
     <meta name="description" content="{{ config('app.name') }} profile of {{ $user->name }}."/>
 
     <x-open-graph.website :image="$user->avatar_url"/>
+    <x-twitter/>
 @endpush
 
 <x-layout.web :page-title="$user->name" class="py-10">

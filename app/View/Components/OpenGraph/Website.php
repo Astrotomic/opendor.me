@@ -18,7 +18,7 @@ class Website extends Component
     ) {
         $this->title = $this->title
             ? Str::finish($this->title, ' | '.config('app.name'))
-            : null;
+            : config('app.name');
     }
 
     public function render(): Htmlable
@@ -27,6 +27,7 @@ class Website extends Component
             OpenGraph::website($this->title)
                 ->locale(app()->getLocale())
                 ->siteName(config('app.name'))
+                ->title($this->title)
                 ->url($this->url ?? request()->url())
                 ->when($this->description)->description($this->description)
                 ->when($this->image)->image($this->image)
