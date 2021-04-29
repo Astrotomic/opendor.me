@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Eloquent\Orbital;
+use App\Eloquent\Orbit;
 use Illuminate\Database\Schema\Blueprint;
 use Spatie\Sluggable\SlugOptions;
 
-class Sponsor extends Orbital
+class Sponsor extends Orbit
 {
     public static $driver = 'yaml';
 

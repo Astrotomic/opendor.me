@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Eloquent\Orbit;
 use Illuminate\Database\Schema\Blueprint;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -21,7 +22,7 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|FAQ query()
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class FAQ extends \App\Eloquent\Orbital implements Sortable
+class FAQ extends Orbit implements Sortable
 {
     use SortableTrait;
 

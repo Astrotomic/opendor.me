@@ -3,11 +3,12 @@
 namespace App\Eloquent;
 
 use Illuminate\Database\Schema\Blueprint;
+use Orbit\Concerns\Orbital;
 use Spatie\Sluggable\HasSlug;
 
-abstract class Orbital extends Model
+abstract class Orbit extends Model
 {
-    use \Orbit\Concerns\Orbital;
+    use Orbital;
     use HasSlug;
 
     public $incrementing = false;
