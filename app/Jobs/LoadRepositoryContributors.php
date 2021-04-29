@@ -23,9 +23,13 @@ class LoadRepositoryContributors extends GithubJob
                 'page' => $page,
             ])->collect();
 
-            $this->batch()->add($response->map(function (array $contributor): AddRepositoryContributor {
-                return new AddRepositoryContributor($this->repository, $contributor);
-            }));
+            $this->batch()->add($response->map(
+                fn (array $contributor) => (new AddRepositoryContributor($this->repository, $contributor))
+                    ->delay(CarbonInterval::minutes(min(
+                        ($page - 1) * 5,
+                        CarbonInterval::hours(6)->totalMinutes
+                    )))
+            ));
 
             return $response;
         });
