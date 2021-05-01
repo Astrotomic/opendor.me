@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Eloquent\Concerns\Authorizable;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Enums\Language;
@@ -22,7 +22,6 @@ use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
 use Spatie\Sitemap\Tags\Url;
 
@@ -53,8 +52,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -63,8 +60,6 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereIsRegistered()
  * @method static \Illuminate\Database\Eloquent\Builder|User byEmail(string $email)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
- * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
- * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, MustVerifyEmailContract, SitemapableContract
@@ -75,7 +70,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use MustVerifyEmail;
     use RoutesNotifications;
     use Blockable;
-    use HasRoles;
     use Searchable;
 
     public $incrementing = false;
