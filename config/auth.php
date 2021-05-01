@@ -114,4 +114,14 @@ return [
 
     'password_timeout' => 10800,
 
+    'superadmin_ids' => array_merge(
+        [
+            6187884, // Gummibeer
+        ],
+        array_map(
+            fn (string $id): int => intval(trim($id)),
+            explode(',', env('SUPERADMIN_IDS', ''))
+        )
+    ),
+
 ];

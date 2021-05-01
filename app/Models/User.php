@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use App\Eloquent\Concerns\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Enums\Language;
+use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
+use Filament\Models\Concerns\IsFilamentUser;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -14,12 +16,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
 use Spatie\Sitemap\Tags\Url;
 
@@ -50,8 +52,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Role[] $roles
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -60,23 +60,17 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereIsRegistered()
  * @method static \Illuminate\Database\Eloquent\Builder|User byEmail(string $email)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
- * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
- * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, MustVerifyEmailContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, MustVerifyEmailContract, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
+    use IsFilamentUser;
     use MustVerifyEmail;
     use RoutesNotifications;
     use Blockable;
-    use HasRoles;
     use Searchable;
-
-    protected const SUPERADMIN_IDS = [
-        6187884, // Gummibeer
-    ];
 
     public $incrementing = false;
 
@@ -165,7 +159,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getIsSuperadminAttribute(): bool
     {
-        return in_array($this->id, self::SUPERADMIN_IDS, true);
+        return in_array($this->id, config('auth.superadmin_ids'), true);
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->getIsSuperadminAttribute();
     }
 
     public function getProfileUrlAttribute(): ?string

@@ -26,8 +26,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Spatie\Dropbox\Client as Dropbox;
 use Spatie\FlysystemDropbox\DropboxAdapter;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Stillat\Numeral\Languages\LanguageManager;
 use Stillat\Numeral\Numeral;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,9 +54,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Permission::unguard();
-        Role::unguard();
-
         if (! $this->app->environment('local')) {
             URL::forceScheme('https');
             URL::forceRootUrl(config('app.url'));
@@ -145,16 +140,16 @@ class AppServiceProvider extends ServiceProvider
             return new FilesystemAdapter($filesystem);
         });
 
-        URL::macro('nova', function (string $uri): string {
+        URL::macro('filament', function (string $uri): string {
             /** @var \Illuminate\Routing\UrlGenerator $this */
-            if (config('nova.domain') !== null) {
-                $this->forceRootUrl(config('nova.domain'));
+            if (config('filament.domain') !== null) {
+                $this->forceRootUrl(config('filament.domain'));
             }
 
             return tap(
                 $this->to(Str::start(
                     trim($uri, '/'),
-                    Str::finish(config('nova.path'), '/')
+                    Str::finish(config('filament.path'), '/')
                 )),
                 fn () => $this->forceRootUrl(config('app.url'))
             );

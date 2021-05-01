@@ -16,14 +16,13 @@
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
         "dragonmantank/cron-expression": "^3.0.2",
         "fideloper/proxy": "^4.4",
+        "filament/filament": "^1.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "inspheric/nova-url-field": "^1.4",
-        "jfvoliveira/blade-boxicons": "dev-master",
+        "jfvoliveira/blade-boxicons": "dev-update-blade-icons",
         "kevinrob/guzzle-cache-middleware": "^3.3",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
-        "laravel/nova": "^3.22",
         "laravel/socialite": "^5.2",
         "lorisleiva/cron-translator": "^0.2.0",
         "mazedlx/laravel-feature-policy": "^1.1",
@@ -35,13 +34,10 @@
         "spatie/laravel-backup": "^7.3",
         "spatie/laravel-csp": "^2.6",
         "spatie/laravel-enum": "^2.4",
-        "spatie/laravel-permission": "^4.0",
         "spatie/laravel-schedule-monitor": "^2.2.1",
         "spatie/laravel-sitemap": "^6.0",
         "spatie/laravel-sluggable": "^3.0",
-        "spatie/nova-backup-tool": "^4.1",
-        "stillat/numeral.php": "^2.0",
-        "vyuldashev/nova-permission": "^2.11"
+        "stillat/numeral.php": "^2.0"
     },
     "conflict": {
         "tightenco/tlint": "5.0.16"
@@ -58,14 +54,13 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
         "povils/phpmnd": "^2.4",
-        "tightenco/tlint": "^5.0",
+        "tightenco/tlint": "^6.0",
         "wulfheart/pretty_routes": "^0.1.2"
     },
     "suggest": {
         "enlightn/enlightnpro": "^1.16"
     },
     "config": {
-        "classmap-authoritative": true,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
@@ -94,19 +89,18 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://nova.laravel.com"
+            "url": "https://satis.laravel-enlightn.com"
         },
         {
-            "type": "composer",
-            "url": "https://satis.laravel-enlightn.com"
+            "type": "vcs",
+            "url": "https://github.com/mallardduck/blade-boxicons"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "post-update-cmd": [
-            "@php artisan horizon:publish --ansi --no-interaction",
-            "@php artisan nova:publish --ansi --no-interaction"
+            "@php artisan horizon:publish --ansi --no-interaction"
         ],
         "post-autoload-dump": [
             "@composer validate --strict --ansi --no-interaction --quiet",

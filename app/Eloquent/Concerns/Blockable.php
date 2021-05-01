@@ -4,6 +4,7 @@ namespace App\Eloquent\Concerns;
 
 use App\Eloquent\Scopes\BlockableScope;
 use App\Enums\BlockReason;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property \Carbon\Carbon|null $blocked_at
@@ -18,6 +19,14 @@ trait Blockable
     public static function bootBlockable(): void
     {
         static::addGlobalScope(new BlockableScope());
+
+        static::saving(static function (Model $model): void {
+            if ($model->block_reason !== null) {
+                $model->blocked_at = now();
+            } else {
+                $model->blocked_at = null;
+            }
+        });
     }
 
     public function initializeBlockable(): void
