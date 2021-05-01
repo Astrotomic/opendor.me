@@ -1,5 +1,6 @@
 <?php
 
+use App\Filament\Widgets\UsersPerBlockReason;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Http\Middleware\RedirectIfAuthenticated;
 
@@ -105,8 +106,6 @@ return [
         'default' => [
             'account' => false,
             'info' => false,
-            'new_users' => true,
-            'entities-per-block-reason' => true,
         ],
     ],
 

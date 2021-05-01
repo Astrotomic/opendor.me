@@ -2,35 +2,59 @@
 
 namespace App\Filament\Widgets;
 
+use App\Enums\BlockReason;
 use App\Models\User;
 use Filament\Widgets\Widget;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Fluent;
+use Illuminate\Support\Str;
+use stdClass;
 
-class EntitiesPerBlockReason extends Widget
+abstract class EntitiesPerBlockReason extends Widget
 {
     public static $view = 'filament.widgets.entities-per-block-reason';
 
-    public string $title = 'Users per Block-Reason';
+    protected static string $model;
 
-    public function render()
+    public string $title;
+    public int $total;
+    public Collection $reasons;
+
+    public function mount(): void
     {
-        $records = DB::table(User::table())
-                     ->selectRaw('block_reason, count(*) AS quantity')
-                     ->groupBy('block_reason')
-                     ->orderBy('quantity', 'desc')
-                     ->get();
+        $this->title = $this->title();
+        $this->total = $this->total();
+        $this->reasons = $this->reasons();
+    }
 
-        $reasons = $records->reject(function ($item) {
-            return $item->block_reason === null;
-        })->transform(function ($item) use ($records) {
-            $item->percentage = $item->quantity / $records->count();
-            $item->block_reason = ucfirst(strtolower($item->block_reason));
+    protected function title(): string
+    {
+        return Str::of(static::$model)
+            ->classBasename()
+            ->plural()
+            ->append(' per Block-Reason');
+    }
 
-            return $item;
-        })->sortByDesc('quantity');
+    protected function total(): int
+    {
+        return DB::table(static::$model::table())->whereNotNull('block_reason')->count();
+    }
 
-        return view(self::$view, [
-            'reasons' => $reasons,
-        ]);
+    protected function reasons(): Collection
+    {
+        $records = DB::table(static::$model::table())
+            ->selectRaw('block_reason, count(*) AS quantity')
+            ->groupBy('block_reason')
+            ->get();
+
+        return $records
+            ->reject(fn (stdClass $item): bool => $item->block_reason === null)
+            ->transform(fn (stdClass $item): Fluent => new Fluent([
+                'quantity' => $item->quantity,
+                'percentage' => $item->quantity / $this->total * 100,
+                'block_reason' => BlockReason::make($item->block_reason),
+            ]))
+            ->sortByDesc('quantity');
     }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Enums;
 
-use Spatie\Enum\Laravel\Enum;
-
 /**
  * @method static self AGPL_30()
  * @method static self APACHE_20()

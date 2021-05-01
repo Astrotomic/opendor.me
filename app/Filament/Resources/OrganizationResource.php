@@ -7,8 +7,6 @@ use App\Filament\Resources\OrganizationResource\Pages\EditOrganization;
 use App\Filament\Resources\OrganizationResource\Pages\ListOrganizations;
 use App\Filament\Resources\Tables\Columns\Avatar;
 use App\Models\Organization;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\Textarea;
 use Filament\Resources\Forms\Components\Select;
 use Filament\Resources\Forms\Components\TextInput;
 use Filament\Resources\Forms\Form;
@@ -29,12 +27,13 @@ class OrganizationResource extends Resource
         return $form
             ->schema([
                 TextInput::make('id')->disabled(),
+                TextInput::make('name')->disabled(),
                 TextInput::make('full_name')->disabled(),
                 TextInput::make('description')->disabled(),
                 TextInput::make('location')->disabled(),
                 TextInput::make('twitter')->disabled(),
                 TextInput::make('website')->disabled(),
-                Select::make('block_reason') // ToDo: cast empty string to null
+                Select::make('block_reason')
                       ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
                       ->nullable(),
                 TextInput::make('blocked_at')->disabled(),
@@ -46,9 +45,16 @@ class OrganizationResource extends Resource
         return $table
             ->columns([
                 Avatar::make('avatar_url')->label(''),
-                Text::make('id')->primary()->sortable()->searchable(),
-                Text::make('name')->url(fn (Organization $record) => $record->github_url, true)->sortable(),
-                Boolean::make('blocked_at')->sortable(),
+                Text::make('id')
+                    ->primary()
+                    ->sortable()
+                    ->searchable(),
+                Text::make('name')
+                    ->url(fn (Organization $record) => $record->github_url, true)
+                    ->sortable()
+                    ->searchable(),
+                Boolean::make('blocked_at')
+                    ->sortable(),
             ])
             ->defaultSort('id', 'desc')
             ->filters([]);

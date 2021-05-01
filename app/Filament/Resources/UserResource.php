@@ -36,7 +36,7 @@ class UserResource extends Resource
                 TextInput::make('location')->disabled(),
                 TextInput::make('twitter')->disabled(),
                 TextInput::make('website')->disabled(),
-                Select::make('block_reason') // ToDo: cast empty string to null
+                Select::make('block_reason')
                     ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
                     ->nullable(),
                 TextInput::make('blocked_at')->disabled(),
@@ -50,9 +50,11 @@ class UserResource extends Resource
                 Avatar::make('avatar_url')->label(''),
                 Text::make('id')
                     ->primary()
+                    ->sortable()
                     ->searchable(),
                 Text::make('name')
                     ->url(fn (User $record): string => $record->github_url, true)
+                    ->sortable()
                     ->searchable(),
                 Text::make('full_name')
                     ->searchable(),

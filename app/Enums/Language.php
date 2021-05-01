@@ -3,7 +3,6 @@
 namespace App\Enums;
 
 use Illuminate\Support\Str;
-use Spatie\Enum\Laravel\Enum;
 
 /**
  * @method static self BLADE()

@@ -5,12 +5,13 @@ namespace App\Filament\Widgets;
 use App\Models\User;
 use Carbon\Carbon;
 use Filament\Widgets\Widget;
+use Illuminate\Contracts\View\View;
 
 class NewUsers extends Widget
 {
     public static $view = 'filament.widgets.new-users';
 
-    public string $title = 'New users';
+    public string $title = 'New Users';
     public string $selectedOption = '1m';
     public array $options = [
         '1d' => 'Today',
@@ -18,14 +19,14 @@ class NewUsers extends Widget
         '1m' => 'This month',
     ];
 
-    private $records;
+    protected $records;
 
-    public function mount()
+    public function mount(): void
     {
         $this->updatedSelectedOption($this->selectedOption);
     }
 
-    public function updatedSelectedOption($value)
+    public function updatedSelectedOption(string $value): void
     {
         $this->records = match ($value) {
             '1d' => User::where('created_at', Carbon::today()),
@@ -34,7 +35,7 @@ class NewUsers extends Widget
         };
     }
 
-    public function render()
+    public function render(): View
     {
         return view(self::$view, [
             'count' => $this->records->count(),

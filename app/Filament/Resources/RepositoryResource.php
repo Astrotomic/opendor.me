@@ -34,15 +34,14 @@ class RepositoryResource extends Resource
                     ->disabled(),
                 Select::make('license')
                     ->options(License::toArray()),
-                Select::make('language') // ToDo: cast empty string to null
-                    ->options(Arr::prepend(Language::toArray(), '—', null))
-                    ->nullable(),
+                Select::make('language')
+                    ->options(Language::toArray()),
                 TextInput::make('website')
                     ->disabled(),
                 TextInput::make('stargazers_count')
                     ->label('Stars')
                     ->disabled(),
-                Select::make('block_reason') // ToDo: cast empty string to null
+                Select::make('block_reason')
                     ->options(Arr::prepend(BlockReasonEnum::toArray(), '—', null))
                     ->nullable(),
                 DateTimePicker::make('blocked_at')
@@ -54,11 +53,20 @@ class RepositoryResource extends Resource
     {
         return $table
             ->columns([
-                Text::make('id')->primary()->sortable()->searchable(),
-                Text::make('name')->url(fn (Repository $record) => $record->github_url, true)->sortable(),
-                Text::make('license')->sortable(),
-                Text::make('language')->sortable()->searchable(),
-                Boolean::make('blocked_at')->sortable(),
+                Text::make('id')
+                    ->primary()
+                    ->sortable()
+                    ->searchable(),
+                Text::make('name')
+                    ->url(fn (Repository $record) => $record->github_url, true)
+                    ->sortable()
+                    ->searchable(),
+                Text::make('license')
+                    ->sortable(),
+                Text::make('language')
+                    ->sortable(),
+                Boolean::make('blocked_at')
+                    ->sortable(),
             ])
             ->filters([]);
     }
