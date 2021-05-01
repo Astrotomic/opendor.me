@@ -3,7 +3,6 @@
 namespace App\Filament\Widgets;
 
 use App\Enums\BlockReason;
-use App\Models\User;
 use Filament\Widgets\Widget;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
