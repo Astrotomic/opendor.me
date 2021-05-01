@@ -39,7 +39,7 @@ class GithubRepositoryContributors extends Command
                     ->each(static function (Collection $repositories, int $i) {
                         $repositories->each(fn (Repository $repository) => Bus::batch([
                             (new LoadRepositoryContributors($repository))->delay(CarbonInterval::minutes($i * 5)),
-                        ])->onQueue('github')->dispatch());
+                        ])->onQueue('github')->name($repository->name)->dispatch());
                     });
             });
     }
