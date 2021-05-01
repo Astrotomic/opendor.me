@@ -27,15 +27,13 @@ registerRoute(
         if (request.destination === 'image' && url.pathname.startsWith('/images/sponsors/')) {
             return true;
         }
-        if (url.pathname === '/api/user/autocomplete') {
-            return true;
-        }
 
         if (
             request.destination === 'document'
             && !url.pathname.startsWith('/app/')
             && !url.pathname.startsWith('/auth/')
             && !url.pathname.startsWith('/admin/')
+            && !url.pathname.startsWith('/livewire/')
             && url.hash !== '#newAuth'
         ) {
             return true;

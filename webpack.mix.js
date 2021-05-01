@@ -7,4 +7,5 @@ mix
         require('tailwindcss'),
     ])
     .copyDirectory('resources/images', 'public/images')
+    .copyDirectory('vendor/filament/filament/dist', 'public/vendor/filament/assets')
     .version();
