@@ -4,7 +4,6 @@ namespace App\Enums;
 
 use Closure;
 use Illuminate\Support\Str;
-use Spatie\Enum\Laravel\Enum;
 
 /**
  * @method static self DUPLICATE()

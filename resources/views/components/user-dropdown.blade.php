@@ -32,21 +32,21 @@
                 role="menuitem"
             >View Profile</a>
         </li>
-        @canany(['viewNova', 'viewHorizon'])
+        @canany(['viewFilament', 'viewHorizon'])
         <li class="py-1" role="none">
-            @can('viewNova')
+            @can('viewFilament')
             <a
-                href="{{ url()->nova('/') }}"
+                href="{{ url()->filament('/') }}"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
-            >Nova</a>
+            >Backoffice</a>
             @endcan
             @can('viewHorizon')
             <a
                 href="{{ url()->horizon('/') }}"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
-            >Horizon</a>
+            >Queue</a>
             @endcan
         </li>
         @endcanany
