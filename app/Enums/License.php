@@ -11,6 +11,7 @@ namespace App\Enums;
  * @method static self CC_BY_40()
  * @method static self CC_BY_NC_SA_30()
  * @method static self CC_BY_NC_SA_40()
+ * @method static self CC_BY_NC_ND_40()
  * @method static self CC_BY_SA_30()
  * @method static self CC_BY_SA_40()
  * @method static self GPL_20()
@@ -40,6 +41,7 @@ final class License extends Enum
             'CC_BY_40' => 'CC-BY-4.0',
             'CC_BY_NC_SA_30' => 'CC-BY-NC-SA-3.0',
             'CC_BY_NC_SA_40' => 'CC-BY-NC-SA-4.0',
+            'CC_BY_NC_ND_40' => 'CC-BY-NC-ND-4.0',
             'CC_BY_SA_30' => 'CC-BY-SA-3.0',
             'CC_BY_SA_40' => 'CC-BY-SA-4.0',
             'GPL_20' => 'GPL-2.0',
@@ -67,6 +69,7 @@ final class License extends Enum
             'CC_BY_40' => 'CC BY 4.0',
             'CC_BY_NC_SA_30' => 'CC BY-NC-SA 3.0',
             'CC_BY_NC_SA_40' => 'CC BY-NC-SA 4.0',
+            'CC_BY_NC_ND_40' => 'CC BY-NC-ND 4.0',
             'CC_BY_SA_30' => 'CC BY-SA 3.0',
             'CC_BY_SA_40' => 'CC BY-SA 4.0',
             'GPL_20' => 'GPL 2.0',

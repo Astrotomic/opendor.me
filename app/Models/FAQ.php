@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Eloquent\Model;
+use App\Eloquent\Orbit;
 use Illuminate\Database\Schema\Blueprint;
-use Orbit\Concerns\Orbital;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
-use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -24,19 +22,11 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|FAQ query()
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class FAQ extends Model implements Sortable
+class FAQ extends Orbit implements Sortable
 {
     use SortableTrait;
-    use Orbital;
-    use HasSlug;
-
-    public $incrementing = false;
-    public $timestamps = false;
 
     protected $table = 'faqs';
-    protected $keyType = 'string';
-    protected $primaryKey = 'slug';
-    protected $guarded = [];
 
     protected $sortable = [
         'order_column_name' => 'priority',
@@ -53,11 +43,6 @@ class FAQ extends Model implements Sortable
         $table->integer('priority')->unsigned();
         $table->string('question');
         $table->boolean('is_draft')->default(false);
-    }
-
-    public static function getOrbitalName(): string
-    {
-        return static::table();
     }
 
     public function getSlugOptions(): SlugOptions

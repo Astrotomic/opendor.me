@@ -55,7 +55,8 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
         "povils/phpmnd": "^2.4",
-        "tightenco/tlint": "^6.0"
+        "tightenco/tlint": "^6.0",
+        "wulfheart/pretty_routes": "^0.1.2"
     },
     "suggest": {
         "enlightn/enlightnpro": "^1.16"
@@ -134,7 +135,7 @@
             "vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
-        "route:list": "@php artisan route:list --columns=method,uri,name --except-path=horizon,_debugbar --sort=name",
+        "route:list": "@php artisan route:pretty --except-path=nova,horizon,_debugbar,livewire,filament",
         "test": "@php vendor/bin/phpunit",
         "test-coverage": "@php vendor/bin/phpunit --coverage-html=.coverage",
         "thanks": "echo 'composer global require symfony/thanks'"

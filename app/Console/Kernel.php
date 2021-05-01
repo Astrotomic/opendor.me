@@ -9,8 +9,10 @@ use App\Console\Commands\GithubRepositoryContributors;
 use App\Console\Commands\GithubRepositoryDetails;
 use App\Console\Commands\GithubUserDetails;
 use App\Console\Commands\GithubUserRepositories;
+use Carbon\CarbonInterval;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Queue\Console\PruneBatchesCommand;
 use Laravel\Horizon\Console\SnapshotCommand;
 use Spatie\Backup\Commands\BackupCommand;
 use Spatie\Backup\Commands\CleanupCommand;
@@ -33,12 +35,16 @@ class Kernel extends ConsoleKernel
 
         // laravel/horizon
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');
+        $schedule->command(PruneBatchesCommand::class, [
+            '--hours' => CarbonInterval::days(2)->totalHours,
+            '--unfinished' => CarbonInterval::week()->totalHours,
+        ])->dailyAt('02:00')->onOneServer()->environments('gorgeous-moon');
 
         // laravel/scout
         $schedule->command(ReImportCommand::class)->dailyAt('02:00')->onOneServer();
 
         // spatie/laravel-schedule-monitor
-        $schedule->command(CleanLogCommand::class)->dailyAt('01:00')->onOneServer();
+        $schedule->command(CleanLogCommand::class)->dailyAt('02:00')->onOneServer();
 
         // spatie/laravel-backup
         $schedule->command(BackupCommand::class)->twiceDaily(1, 13);
