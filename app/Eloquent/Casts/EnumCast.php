@@ -2,7 +2,9 @@
 
 namespace App\Eloquent\Casts;
 
-class EnumCast extends \Spatie\Enum\Laravel\Casts\EnumCast
+use Spatie\Enum\Laravel\Casts\EnumCast as SpatieEnumCast;
+
+class EnumCast extends SpatieEnumCast
 {
     public function get($model, string $key, $value, array $attributes)
     {

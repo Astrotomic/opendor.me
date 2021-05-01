@@ -55,7 +55,7 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
         "povils/phpmnd": "^2.4",
-        "tightenco/tlint": "^5.0"
+        "tightenco/tlint": "^6.0"
     },
     "suggest": {
         "enlightn/enlightnpro": "^1.16"
