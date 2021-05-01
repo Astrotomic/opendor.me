@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Enums\Language;
@@ -17,6 +16,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
 use Illuminate\Support\Facades\Http;
