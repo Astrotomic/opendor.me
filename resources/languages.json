@@ -1,0 +1,2732 @@
+[
+    {
+        "color": "#814CCC",
+        "url": "https:\/\/github.com\/trending?l=1C-Enterprise",
+        "name": "1C Enterprise",
+        "enum": "1C_ENTERPRISE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=4D",
+        "name": "4D",
+        "enum": "4D"
+    },
+    {
+        "color": "#E8274B",
+        "url": "https:\/\/github.com\/trending?l=ABAP",
+        "name": "ABAP",
+        "enum": "ABAP"
+    },
+    {
+        "color": "#555e25",
+        "url": "https:\/\/github.com\/trending?l=ABAP-CDS",
+        "name": "ABAP CDS",
+        "enum": "ABAP_CDS"
+    },
+    {
+        "color": "#B9D9FF",
+        "url": "https:\/\/github.com\/trending?l=AGS-Script",
+        "name": "AGS Script",
+        "enum": "AGS_SCRIPT"
+    },
+    {
+        "color": "#34EB6B",
+        "url": "https:\/\/github.com\/trending?l=AIDL",
+        "name": "AIDL",
+        "enum": "AIDL"
+    },
+    {
+        "color": "#3AA2B5",
+        "url": "https:\/\/github.com\/trending?l=AL",
+        "name": "AL",
+        "enum": "AL"
+    },
+    {
+        "color": "#E6EFBB",
+        "url": "https:\/\/github.com\/trending?l=AMPL",
+        "name": "AMPL",
+        "enum": "AMPL"
+    },
+    {
+        "color": "#9DC3FF",
+        "url": "https:\/\/github.com\/trending?l=ANTLR",
+        "name": "ANTLR",
+        "enum": "ANTLR"
+    },
+    {
+        "color": "#2ACCA8",
+        "url": "https:\/\/github.com\/trending?l=API-Blueprint",
+        "name": "API Blueprint",
+        "enum": "API_BLUEPRINT"
+    },
+    {
+        "color": "#5A8164",
+        "url": "https:\/\/github.com\/trending?l=APL",
+        "name": "APL",
+        "enum": "APL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=ASL",
+        "name": "ASL",
+        "enum": "ASL"
+    },
+    {
+        "color": "#9400ff",
+        "url": "https:\/\/github.com\/trending?l=ASP.NET",
+        "name": "ASP.NET",
+        "enum": "ASPNET"
+    },
+    {
+        "color": "#1ac620",
+        "url": "https:\/\/github.com\/trending?l=ATS",
+        "name": "ATS",
+        "enum": "ATS"
+    },
+    {
+        "color": "#882B0F",
+        "url": "https:\/\/github.com\/trending?l=ActionScript",
+        "name": "ActionScript",
+        "enum": "ACTIONSCRIPT"
+    },
+    {
+        "color": "#02f88c",
+        "url": "https:\/\/github.com\/trending?l=Ada",
+        "name": "Ada",
+        "enum": "ADA"
+    },
+    {
+        "color": "#315665",
+        "url": "https:\/\/github.com\/trending?l=Agda",
+        "name": "Agda",
+        "enum": "AGDA"
+    },
+    {
+        "color": "#64C800",
+        "url": "https:\/\/github.com\/trending?l=Alloy",
+        "name": "Alloy",
+        "enum": "ALLOY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Alpine-Abuild",
+        "name": "Alpine Abuild",
+        "enum": "ALPINE_ABUILD"
+    },
+    {
+        "color": "#C7D7DC",
+        "url": "https:\/\/github.com\/trending?l=AngelScript",
+        "name": "AngelScript",
+        "enum": "ANGELSCRIPT"
+    },
+    {
+        "color": "#1797c0",
+        "url": "https:\/\/github.com\/trending?l=Apex",
+        "name": "Apex",
+        "enum": "APEX"
+    },
+    {
+        "color": "#0B3D91",
+        "url": "https:\/\/github.com\/trending?l=Apollo-Guidance-Computer",
+        "name": "Apollo Guidance Computer",
+        "enum": "APOLLO_GUIDANCE_COMPUTER"
+    },
+    {
+        "color": "#101F1F",
+        "url": "https:\/\/github.com\/trending?l=AppleScript",
+        "name": "AppleScript",
+        "enum": "APPLESCRIPT"
+    },
+    {
+        "color": "#aa2afe",
+        "url": "https:\/\/github.com\/trending?l=Arc",
+        "name": "Arc",
+        "enum": "ARC"
+    },
+    {
+        "color": "#a957b0",
+        "url": "https:\/\/github.com\/trending?l=AspectJ",
+        "name": "AspectJ",
+        "enum": "ASPECTJ"
+    },
+    {
+        "color": "#6E4C13",
+        "url": "https:\/\/github.com\/trending?l=Assembly",
+        "name": "Assembly",
+        "enum": "ASSEMBLY"
+    },
+    {
+        "color": "#ff0000",
+        "url": "https:\/\/github.com\/trending?l=Asymptote",
+        "name": "Asymptote",
+        "enum": "ASYMPTOTE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Augeas",
+        "name": "Augeas",
+        "enum": "AUGEAS"
+    },
+    {
+        "color": "#6594b9",
+        "url": "https:\/\/github.com\/trending?l=AutoHotkey",
+        "name": "AutoHotkey",
+        "enum": "AUTOHOTKEY"
+    },
+    {
+        "color": "#1C3552",
+        "url": "https:\/\/github.com\/trending?l=AutoIt",
+        "name": "AutoIt",
+        "enum": "AUTOIT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Awk",
+        "name": "Awk",
+        "enum": "AWK"
+    },
+    {
+        "color": "#ff0000",
+        "url": "https:\/\/github.com\/trending?l=BASIC",
+        "name": "BASIC",
+        "enum": "BASIC"
+    },
+    {
+        "color": "#FF5000",
+        "url": "https:\/\/github.com\/trending?l=Ballerina",
+        "name": "Ballerina",
+        "enum": "BALLERINA"
+    },
+    {
+        "color": "#C1F12E",
+        "url": "https:\/\/github.com\/trending?l=Batchfile",
+        "name": "Batchfile",
+        "enum": "BATCHFILE"
+    },
+    {
+        "color": "#a52f4e",
+        "url": "https:\/\/github.com\/trending?l=Beef",
+        "name": "Beef",
+        "enum": "BEEF"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Befunge",
+        "name": "Befunge",
+        "enum": "BEFUNGE"
+    },
+    {
+        "color": "#519aba",
+        "url": "https:\/\/github.com\/trending?l=Bicep",
+        "name": "Bicep",
+        "enum": "BICEP"
+    },
+    {
+        "color": "#6A463F",
+        "url": "https:\/\/github.com\/trending?l=Bison",
+        "name": "Bison",
+        "enum": "BISON"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=BitBake",
+        "name": "BitBake",
+        "enum": "BITBAKE"
+    },
+    {
+        "color": "#f7523f",
+        "url": "https:\/\/github.com\/trending?l=Blade",
+        "name": "Blade",
+        "enum": "BLADE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=BlitzBasic",
+        "name": "BlitzBasic",
+        "enum": "BLITZBASIC"
+    },
+    {
+        "color": "#cd6400",
+        "url": "https:\/\/github.com\/trending?l=BlitzMax",
+        "name": "BlitzMax",
+        "enum": "BLITZMAX"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Bluespec",
+        "name": "Bluespec",
+        "enum": "BLUESPEC"
+    },
+    {
+        "color": "#d4bec1",
+        "url": "https:\/\/github.com\/trending?l=Boo",
+        "name": "Boo",
+        "enum": "BOO"
+    },
+    {
+        "color": "#c80fa0",
+        "url": "https:\/\/github.com\/trending?l=Boogie",
+        "name": "Boogie",
+        "enum": "BOOGIE"
+    },
+    {
+        "color": "#2F2530",
+        "url": "https:\/\/github.com\/trending?l=Brainfuck",
+        "name": "Brainfuck",
+        "enum": "BRAINFUCK"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Brightscript",
+        "name": "Brightscript",
+        "enum": "BRIGHTSCRIPT"
+    },
+    {
+        "color": "#ffd539",
+        "url": "https:\/\/github.com\/trending?l=Browserslist",
+        "name": "Browserslist",
+        "enum": "BROWSERSLIST"
+    },
+    {
+        "color": "#555555",
+        "url": "https:\/\/github.com\/trending?l=C",
+        "name": "C",
+        "enum": "C"
+    },
+    {
+        "color": "#178600",
+        "url": "https:\/\/github.com\/trending?l=Csharp",
+        "name": "C#",
+        "enum": "C_SHARP"
+    },
+    {
+        "color": "#f34b7d",
+        "url": "https:\/\/github.com\/trending?l=C++",
+        "name": "C++",
+        "enum": "C_PLUSPLUS"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=C2hs-Haskell",
+        "name": "C2hs Haskell",
+        "enum": "C2HS_HASKELL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=CLIPS",
+        "name": "CLIPS",
+        "enum": "CLIPS"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=CMake",
+        "name": "CMake",
+        "enum": "CMAKE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=COBOL",
+        "name": "COBOL",
+        "enum": "COBOL"
+    },
+    {
+        "color": "#244776",
+        "url": "https:\/\/github.com\/trending?l=CSON",
+        "name": "CSON",
+        "enum": "CSON"
+    },
+    {
+        "color": "#563d7c",
+        "url": "https:\/\/github.com\/trending?l=CSS",
+        "name": "CSS",
+        "enum": "CSS"
+    },
+    {
+        "color": "#5886E1",
+        "url": "https:\/\/github.com\/trending?l=CUE",
+        "name": "CUE",
+        "enum": "CUE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=CWeb",
+        "name": "CWeb",
+        "enum": "CWEB"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Cap'n-Proto",
+        "name": "Cap'n Proto",
+        "enum": "CAPN_PROTO"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=CartoCSS",
+        "name": "CartoCSS",
+        "enum": "CARTOCSS"
+    },
+    {
+        "color": "#dfa535",
+        "url": "https:\/\/github.com\/trending?l=Ceylon",
+        "name": "Ceylon",
+        "enum": "CEYLON"
+    },
+    {
+        "color": "#8dc63f",
+        "url": "https:\/\/github.com\/trending?l=Chapel",
+        "name": "Chapel",
+        "enum": "CHAPEL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Charity",
+        "name": "Charity",
+        "enum": "CHARITY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=ChucK",
+        "name": "ChucK",
+        "enum": "CHUCK"
+    },
+    {
+        "color": "#ccccff",
+        "url": "https:\/\/github.com\/trending?l=Cirru",
+        "name": "Cirru",
+        "enum": "CIRRU"
+    },
+    {
+        "color": "#db901e",
+        "url": "https:\/\/github.com\/trending?l=Clarion",
+        "name": "Clarion",
+        "enum": "CLARION"
+    },
+    {
+        "color": "#6a40fd",
+        "url": "https:\/\/github.com\/trending?l=Classic-ASP",
+        "name": "Classic ASP",
+        "enum": "CLASSIC_ASP"
+    },
+    {
+        "color": "#3F85AF",
+        "url": "https:\/\/github.com\/trending?l=Clean",
+        "name": "Clean",
+        "enum": "CLEAN"
+    },
+    {
+        "color": "#E4E6F3",
+        "url": "https:\/\/github.com\/trending?l=Click",
+        "name": "Click",
+        "enum": "CLICK"
+    },
+    {
+        "color": "#db5855",
+        "url": "https:\/\/github.com\/trending?l=Clojure",
+        "name": "Clojure",
+        "enum": "CLOJURE"
+    },
+    {
+        "color": "#0d948f",
+        "url": "https:\/\/github.com\/trending?l=Closure-Templates",
+        "name": "Closure Templates",
+        "enum": "CLOSURE_TEMPLATES"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=CodeQL",
+        "name": "CodeQL",
+        "enum": "CODEQL"
+    },
+    {
+        "color": "#244776",
+        "url": "https:\/\/github.com\/trending?l=CoffeeScript",
+        "name": "CoffeeScript",
+        "enum": "COFFEESCRIPT"
+    },
+    {
+        "color": "#ed2cd6",
+        "url": "https:\/\/github.com\/trending?l=ColdFusion",
+        "name": "ColdFusion",
+        "enum": "COLDFUSION"
+    },
+    {
+        "color": "#ed2cd6",
+        "url": "https:\/\/github.com\/trending?l=ColdFusion-CFC",
+        "name": "ColdFusion CFC",
+        "enum": "COLDFUSION_CFC"
+    },
+    {
+        "color": "#3fb68b",
+        "url": "https:\/\/github.com\/trending?l=Common-Lisp",
+        "name": "Common Lisp",
+        "enum": "COMMON_LISP"
+    },
+    {
+        "color": "#B5314C",
+        "url": "https:\/\/github.com\/trending?l=Common-Workflow-Language",
+        "name": "Common Workflow Language",
+        "enum": "COMMON_WORKFLOW_LANGUAGE"
+    },
+    {
+        "color": "#B0CE4E",
+        "url": "https:\/\/github.com\/trending?l=Component-Pascal",
+        "name": "Component Pascal",
+        "enum": "COMPONENT_PASCAL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Cool",
+        "name": "Cool",
+        "enum": "COOL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Coq",
+        "name": "Coq",
+        "enum": "COQ"
+    },
+    {
+        "color": "#000100",
+        "url": "https:\/\/github.com\/trending?l=Crystal",
+        "name": "Crystal",
+        "enum": "CRYSTAL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Csound",
+        "name": "Csound",
+        "enum": "CSOUND"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Csound-Document",
+        "name": "Csound Document",
+        "enum": "CSOUND_DOCUMENT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Csound-Score",
+        "name": "Csound Score",
+        "enum": "CSOUND_SCORE"
+    },
+    {
+        "color": "#3A4E3A",
+        "url": "https:\/\/github.com\/trending?l=Cuda",
+        "name": "Cuda",
+        "enum": "CUDA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Cycript",
+        "name": "Cycript",
+        "enum": "CYCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Cython",
+        "name": "Cython",
+        "enum": "CYTHON"
+    },
+    {
+        "color": "#ba595e",
+        "url": "https:\/\/github.com\/trending?l=D",
+        "name": "D",
+        "enum": "D"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=DIGITAL-Command-Language",
+        "name": "DIGITAL Command Language",
+        "enum": "DIGITAL_COMMAND_LANGUAGE"
+    },
+    {
+        "color": "#447265",
+        "url": "https:\/\/github.com\/trending?l=DM",
+        "name": "DM",
+        "enum": "DM"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=DTrace",
+        "name": "DTrace",
+        "enum": "DTRACE"
+    },
+    {
+        "color": "#FFEC25",
+        "url": "https:\/\/github.com\/trending?l=Dafny",
+        "name": "Dafny",
+        "enum": "DAFNY"
+    },
+    {
+        "color": "#00B4AB",
+        "url": "https:\/\/github.com\/trending?l=Dart",
+        "name": "Dart",
+        "enum": "DART"
+    },
+    {
+        "color": "#003a52",
+        "url": "https:\/\/github.com\/trending?l=DataWeave",
+        "name": "DataWeave",
+        "enum": "DATAWEAVE"
+    },
+    {
+        "color": "#dfafff",
+        "url": "https:\/\/github.com\/trending?l=Dhall",
+        "name": "Dhall",
+        "enum": "DHALL"
+    },
+    {
+        "color": "#384d54",
+        "url": "https:\/\/github.com\/trending?l=Dockerfile",
+        "name": "Dockerfile",
+        "enum": "DOCKERFILE"
+    },
+    {
+        "color": "#cca760",
+        "url": "https:\/\/github.com\/trending?l=Dogescript",
+        "name": "Dogescript",
+        "enum": "DOGESCRIPT"
+    },
+    {
+        "color": "#6c616e",
+        "url": "https:\/\/github.com\/trending?l=Dylan",
+        "name": "Dylan",
+        "enum": "DYLAN"
+    },
+    {
+        "color": "#ccce35",
+        "url": "https:\/\/github.com\/trending?l=E",
+        "name": "E",
+        "enum": "E"
+    },
+    {
+        "color": "#8a1267",
+        "url": "https:\/\/github.com\/trending?l=ECL",
+        "name": "ECL",
+        "enum": "ECL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=ECLiPSe",
+        "name": "ECLiPSe",
+        "enum": "ECLIPSE"
+    },
+    {
+        "color": "#a91e50",
+        "url": "https:\/\/github.com\/trending?l=EJS",
+        "name": "EJS",
+        "enum": "EJS"
+    },
+    {
+        "color": "#a78649",
+        "url": "https:\/\/github.com\/trending?l=EQ",
+        "name": "EQ",
+        "enum": "EQ"
+    },
+    {
+        "color": "#4d6977",
+        "url": "https:\/\/github.com\/trending?l=Eiffel",
+        "name": "Eiffel",
+        "enum": "EIFFEL"
+    },
+    {
+        "color": "#6e4a7e",
+        "url": "https:\/\/github.com\/trending?l=Elixir",
+        "name": "Elixir",
+        "enum": "ELIXIR"
+    },
+    {
+        "color": "#60B5CC",
+        "url": "https:\/\/github.com\/trending?l=Elm",
+        "name": "Elm",
+        "enum": "ELM"
+    },
+    {
+        "color": "#c065db",
+        "url": "https:\/\/github.com\/trending?l=Emacs-Lisp",
+        "name": "Emacs Lisp",
+        "enum": "EMACS_LISP"
+    },
+    {
+        "color": "#FFF4F3",
+        "url": "https:\/\/github.com\/trending?l=EmberScript",
+        "name": "EmberScript",
+        "enum": "EMBERSCRIPT"
+    },
+    {
+        "color": "#B83998",
+        "url": "https:\/\/github.com\/trending?l=Erlang",
+        "name": "Erlang",
+        "enum": "ERLANG"
+    },
+    {
+        "color": "#b845fc",
+        "url": "https:\/\/github.com\/trending?l=Fsharp",
+        "name": "F#",
+        "enum": "F_SHARP"
+    },
+    {
+        "color": "#572e30",
+        "url": "https:\/\/github.com\/trending?l=F*",
+        "name": "F*",
+        "enum": "F"
+    },
+    {
+        "color": "#88ccff",
+        "url": "https:\/\/github.com\/trending?l=FLUX",
+        "name": "FLUX",
+        "enum": "FLUX"
+    },
+    {
+        "color": "#636746",
+        "url": "https:\/\/github.com\/trending?l=Factor",
+        "name": "Factor",
+        "enum": "FACTOR"
+    },
+    {
+        "color": "#7b9db4",
+        "url": "https:\/\/github.com\/trending?l=Fancy",
+        "name": "Fancy",
+        "enum": "FANCY"
+    },
+    {
+        "color": "#14253c",
+        "url": "https:\/\/github.com\/trending?l=Fantom",
+        "name": "Fantom",
+        "enum": "FANTOM"
+    },
+    {
+        "color": "#c37240",
+        "url": "https:\/\/github.com\/trending?l=Faust",
+        "name": "Faust",
+        "enum": "FAUST"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Filebench-WML",
+        "name": "Filebench WML",
+        "enum": "FILEBENCH_WML"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Filterscript",
+        "name": "Filterscript",
+        "enum": "FILTERSCRIPT"
+    },
+    {
+        "color": "#341708",
+        "url": "https:\/\/github.com\/trending?l=Forth",
+        "name": "Forth",
+        "enum": "FORTH"
+    },
+    {
+        "color": "#4d41b1",
+        "url": "https:\/\/github.com\/trending?l=Fortran",
+        "name": "Fortran",
+        "enum": "FORTRAN"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Fortran-Free-Form",
+        "name": "Fortran Free Form",
+        "enum": "FORTRAN_FREE_FORM"
+    },
+    {
+        "color": "#867db1",
+        "url": "https:\/\/github.com\/trending?l=FreeBasic",
+        "name": "FreeBasic",
+        "enum": "FREEBASIC"
+    },
+    {
+        "color": "#0050b2",
+        "url": "https:\/\/github.com\/trending?l=FreeMarker",
+        "name": "FreeMarker",
+        "enum": "FREEMARKER"
+    },
+    {
+        "color": "#00cafe",
+        "url": "https:\/\/github.com\/trending?l=Frege",
+        "name": "Frege",
+        "enum": "FREGE"
+    },
+    {
+        "color": "#5f021f",
+        "url": "https:\/\/github.com\/trending?l=Futhark",
+        "name": "Futhark",
+        "enum": "FUTHARK"
+    },
+    {
+        "color": "#D08CF2",
+        "url": "https:\/\/github.com\/trending?l=G-code",
+        "name": "G-code",
+        "enum": "G_CODE"
+    },
+    {
+        "color": "#FFC766",
+        "url": "https:\/\/github.com\/trending?l=GAML",
+        "name": "GAML",
+        "enum": "GAML"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=GAMS",
+        "name": "GAMS",
+        "enum": "GAMS"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=GAP",
+        "name": "GAP",
+        "enum": "GAP"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=GCC-Machine-Description",
+        "name": "GCC Machine Description",
+        "enum": "GCC_MACHINE_DESCRIPTION"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=GDB",
+        "name": "GDB",
+        "enum": "GDB"
+    },
+    {
+        "color": "#355570",
+        "url": "https:\/\/github.com\/trending?l=GDScript",
+        "name": "GDScript",
+        "enum": "GDSCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=GLSL",
+        "name": "GLSL",
+        "enum": "GLSL"
+    },
+    {
+        "color": "#71b417",
+        "url": "https:\/\/github.com\/trending?l=Game-Maker-Language",
+        "name": "Game Maker Language",
+        "enum": "GAME_MAKER_LANGUAGE"
+    },
+    {
+        "color": "#701516",
+        "url": "https:\/\/github.com\/trending?l=Gemfile.lock",
+        "name": "Gemfile.lock",
+        "enum": "GEMFILELOCK"
+    },
+    {
+        "color": "#fb855d",
+        "url": "https:\/\/github.com\/trending?l=Genie",
+        "name": "Genie",
+        "enum": "GENIE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Genshi",
+        "name": "Genshi",
+        "enum": "GENSHI"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Gentoo-Ebuild",
+        "name": "Gentoo Ebuild",
+        "enum": "GENTOO_EBUILD"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Gentoo-Eclass",
+        "name": "Gentoo Eclass",
+        "enum": "GENTOO_ECLASS"
+    },
+    {
+        "color": "#5B2063",
+        "url": "https:\/\/github.com\/trending?l=Gherkin",
+        "name": "Gherkin",
+        "enum": "GHERKIN"
+    },
+    {
+        "color": "#c1ac7f",
+        "url": "https:\/\/github.com\/trending?l=Glyph",
+        "name": "Glyph",
+        "enum": "GLYPH"
+    },
+    {
+        "color": "#f0a9f0",
+        "url": "https:\/\/github.com\/trending?l=Gnuplot",
+        "name": "Gnuplot",
+        "enum": "GNUPLOT"
+    },
+    {
+        "color": "#00ADD8",
+        "url": "https:\/\/github.com\/trending?l=Go",
+        "name": "Go",
+        "enum": "GO"
+    },
+    {
+        "color": "#88562A",
+        "url": "https:\/\/github.com\/trending?l=Golo",
+        "name": "Golo",
+        "enum": "GOLO"
+    },
+    {
+        "color": "#82937f",
+        "url": "https:\/\/github.com\/trending?l=Gosu",
+        "name": "Gosu",
+        "enum": "GOSU"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Grace",
+        "name": "Grace",
+        "enum": "GRACE"
+    },
+    {
+        "color": "#ff0000",
+        "url": "https:\/\/github.com\/trending?l=Grammatical-Framework",
+        "name": "Grammatical Framework",
+        "enum": "GRAMMATICAL_FRAMEWORK"
+    },
+    {
+        "color": "#e10098",
+        "url": "https:\/\/github.com\/trending?l=GraphQL",
+        "name": "GraphQL",
+        "enum": "GRAPHQL"
+    },
+    {
+        "color": "#e69f56",
+        "url": "https:\/\/github.com\/trending?l=Groovy",
+        "name": "Groovy",
+        "enum": "GROOVY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Groovy-Server-Pages",
+        "name": "Groovy Server Pages",
+        "enum": "GROOVY_SERVER_PAGES"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=HCL",
+        "name": "HCL",
+        "enum": "HCL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=HLSL",
+        "name": "HLSL",
+        "enum": "HLSL"
+    },
+    {
+        "color": "#e34c26",
+        "url": "https:\/\/github.com\/trending?l=HTML",
+        "name": "HTML",
+        "enum": "HTML"
+    },
+    {
+        "color": "#878787",
+        "url": "https:\/\/github.com\/trending?l=Hack",
+        "name": "Hack",
+        "enum": "HACK"
+    },
+    {
+        "color": "#ece2a9",
+        "url": "https:\/\/github.com\/trending?l=Haml",
+        "name": "Haml",
+        "enum": "HAML"
+    },
+    {
+        "color": "#f7931e",
+        "url": "https:\/\/github.com\/trending?l=Handlebars",
+        "name": "Handlebars",
+        "enum": "HANDLEBARS"
+    },
+    {
+        "color": "#0e60e3",
+        "url": "https:\/\/github.com\/trending?l=Harbour",
+        "name": "Harbour",
+        "enum": "HARBOUR"
+    },
+    {
+        "color": "#5e5086",
+        "url": "https:\/\/github.com\/trending?l=Haskell",
+        "name": "Haskell",
+        "enum": "HASKELL"
+    },
+    {
+        "color": "#df7900",
+        "url": "https:\/\/github.com\/trending?l=Haxe",
+        "name": "Haxe",
+        "enum": "HAXE"
+    },
+    {
+        "color": "#dce200",
+        "url": "https:\/\/github.com\/trending?l=HiveQL",
+        "name": "HiveQL",
+        "enum": "HIVEQL"
+    },
+    {
+        "color": "#ffefaf",
+        "url": "https:\/\/github.com\/trending?l=HolyC",
+        "name": "HolyC",
+        "enum": "HOLYC"
+    },
+    {
+        "color": "#7790B2",
+        "url": "https:\/\/github.com\/trending?l=Hy",
+        "name": "Hy",
+        "enum": "HY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=HyPhy",
+        "name": "HyPhy",
+        "enum": "HYPHY"
+    },
+    {
+        "color": "#a3522f",
+        "url": "https:\/\/github.com\/trending?l=IDL",
+        "name": "IDL",
+        "enum": "IDL"
+    },
+    {
+        "color": "#0000cc",
+        "url": "https:\/\/github.com\/trending?l=IGOR-Pro",
+        "name": "IGOR Pro",
+        "enum": "IGOR_PRO"
+    },
+    {
+        "color": "#b30000",
+        "url": "https:\/\/github.com\/trending?l=Idris",
+        "name": "Idris",
+        "enum": "IDRIS"
+    },
+    {
+        "color": "#99AAFF",
+        "url": "https:\/\/github.com\/trending?l=ImageJ-Macro",
+        "name": "ImageJ Macro",
+        "enum": "IMAGEJ_MACRO"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Inform-7",
+        "name": "Inform 7",
+        "enum": "INFORM_7"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Inno-Setup",
+        "name": "Inno Setup",
+        "enum": "INNO_SETUP"
+    },
+    {
+        "color": "#a9188d",
+        "url": "https:\/\/github.com\/trending?l=Io",
+        "name": "Io",
+        "enum": "IO"
+    },
+    {
+        "color": "#078193",
+        "url": "https:\/\/github.com\/trending?l=Ioke",
+        "name": "Ioke",
+        "enum": "IOKE"
+    },
+    {
+        "color": "#FEFE00",
+        "url": "https:\/\/github.com\/trending?l=Isabelle",
+        "name": "Isabelle",
+        "enum": "ISABELLE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Isabelle-ROOT",
+        "name": "Isabelle ROOT",
+        "enum": "ISABELLE_ROOT"
+    },
+    {
+        "color": "#9EEDFF",
+        "url": "https:\/\/github.com\/trending?l=J",
+        "name": "J",
+        "enum": "J"
+    },
+    {
+        "color": "#DBCA00",
+        "url": "https:\/\/github.com\/trending?l=JFlex",
+        "name": "JFlex",
+        "enum": "JFLEX"
+    },
+    {
+        "color": "#40d47e",
+        "url": "https:\/\/github.com\/trending?l=JSONiq",
+        "name": "JSONiq",
+        "enum": "JSONIQ"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Jasmin",
+        "name": "Jasmin",
+        "enum": "JASMIN"
+    },
+    {
+        "color": "#b07219",
+        "url": "https:\/\/github.com\/trending?l=Java",
+        "name": "Java",
+        "enum": "JAVA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Java-Server-Pages",
+        "name": "Java Server Pages",
+        "enum": "JAVA_SERVER_PAGES"
+    },
+    {
+        "color": "#f1e05a",
+        "url": "https:\/\/github.com\/trending?l=JavaScript",
+        "name": "JavaScript",
+        "enum": "JAVASCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=JavaScript+ERB",
+        "name": "JavaScript+ERB",
+        "enum": "JAVASCRIPTERB"
+    },
+    {
+        "color": "#a52a22",
+        "url": "https:\/\/github.com\/trending?l=Jinja",
+        "name": "Jinja",
+        "enum": "JINJA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Jison",
+        "name": "Jison",
+        "enum": "JISON"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Jison-Lex",
+        "name": "Jison Lex",
+        "enum": "JISON_LEX"
+    },
+    {
+        "color": "#843179",
+        "url": "https:\/\/github.com\/trending?l=Jolie",
+        "name": "Jolie",
+        "enum": "JOLIE"
+    },
+    {
+        "color": "#0064bd",
+        "url": "https:\/\/github.com\/trending?l=Jsonnet",
+        "name": "Jsonnet",
+        "enum": "JSONNET"
+    },
+    {
+        "color": "#a270ba",
+        "url": "https:\/\/github.com\/trending?l=Julia",
+        "name": "Julia",
+        "enum": "JULIA"
+    },
+    {
+        "color": "#DA5B0B",
+        "url": "https:\/\/github.com\/trending?l=Jupyter-Notebook",
+        "name": "Jupyter Notebook",
+        "enum": "JUPYTER_NOTEBOOK"
+    },
+    {
+        "color": "#28430A",
+        "url": "https:\/\/github.com\/trending?l=KRL",
+        "name": "KRL",
+        "enum": "KRL"
+    },
+    {
+        "color": "#773b37",
+        "url": "https:\/\/github.com\/trending?l=Kaitai-Struct",
+        "name": "Kaitai Struct",
+        "enum": "KAITAI_STRUCT"
+    },
+    {
+        "color": "#F18E33",
+        "url": "https:\/\/github.com\/trending?l=Kotlin",
+        "name": "Kotlin",
+        "enum": "KOTLIN"
+    },
+    {
+        "color": "#4C3023",
+        "url": "https:\/\/github.com\/trending?l=LFE",
+        "name": "LFE",
+        "enum": "LFE"
+    },
+    {
+        "color": "#185619",
+        "url": "https:\/\/github.com\/trending?l=LLVM",
+        "name": "LLVM",
+        "enum": "LLVM"
+    },
+    {
+        "color": "#cc9900",
+        "url": "https:\/\/github.com\/trending?l=LOLCODE",
+        "name": "LOLCODE",
+        "enum": "LOLCODE"
+    },
+    {
+        "color": "#3d9970",
+        "url": "https:\/\/github.com\/trending?l=LSL",
+        "name": "LSL",
+        "enum": "LSL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=LabVIEW",
+        "name": "LabVIEW",
+        "enum": "LABVIEW"
+    },
+    {
+        "color": "#2980B9",
+        "url": "https:\/\/github.com\/trending?l=Lark",
+        "name": "Lark",
+        "enum": "LARK"
+    },
+    {
+        "color": "#999999",
+        "url": "https:\/\/github.com\/trending?l=Lasso",
+        "name": "Lasso",
+        "enum": "LASSO"
+    },
+    {
+        "color": "#f2a542",
+        "url": "https:\/\/github.com\/trending?l=Latte",
+        "name": "Latte",
+        "enum": "LATTE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Lean",
+        "name": "Lean",
+        "enum": "LEAN"
+    },
+    {
+        "color": "#1d365d",
+        "url": "https:\/\/github.com\/trending?l=Less",
+        "name": "Less",
+        "enum": "LESS"
+    },
+    {
+        "color": "#DBCA00",
+        "url": "https:\/\/github.com\/trending?l=Lex",
+        "name": "Lex",
+        "enum": "LEX"
+    },
+    {
+        "color": "#9ccc7c",
+        "url": "https:\/\/github.com\/trending?l=LilyPond",
+        "name": "LilyPond",
+        "enum": "LILYPOND"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Limbo",
+        "name": "Limbo",
+        "enum": "LIMBO"
+    },
+    {
+        "color": "#67b8de",
+        "url": "https:\/\/github.com\/trending?l=Liquid",
+        "name": "Liquid",
+        "enum": "LIQUID"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Literate-Agda",
+        "name": "Literate Agda",
+        "enum": "LITERATE_AGDA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Literate-CoffeeScript",
+        "name": "Literate CoffeeScript",
+        "enum": "LITERATE_COFFEESCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Literate-Haskell",
+        "name": "Literate Haskell",
+        "enum": "LITERATE_HASKELL"
+    },
+    {
+        "color": "#499886",
+        "url": "https:\/\/github.com\/trending?l=LiveScript",
+        "name": "LiveScript",
+        "enum": "LIVESCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Logos",
+        "name": "Logos",
+        "enum": "LOGOS"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Logtalk",
+        "name": "Logtalk",
+        "enum": "LOGTALK"
+    },
+    {
+        "color": "#652B81",
+        "url": "https:\/\/github.com\/trending?l=LookML",
+        "name": "LookML",
+        "enum": "LOOKML"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=LoomScript",
+        "name": "LoomScript",
+        "enum": "LOOMSCRIPT"
+    },
+    {
+        "color": "#000080",
+        "url": "https:\/\/github.com\/trending?l=Lua",
+        "name": "Lua",
+        "enum": "LUA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=M",
+        "name": "M",
+        "enum": "M"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=M4",
+        "name": "M4",
+        "enum": "M4"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=M4Sugar",
+        "name": "M4Sugar",
+        "enum": "M4SUGAR"
+    },
+    {
+        "color": "#e16737",
+        "url": "https:\/\/github.com\/trending?l=MATLAB",
+        "name": "MATLAB",
+        "enum": "MATLAB"
+    },
+    {
+        "color": "#00a6a6",
+        "url": "https:\/\/github.com\/trending?l=MAXScript",
+        "name": "MAXScript",
+        "enum": "MAXSCRIPT"
+    },
+    {
+        "color": "#5EC8DB",
+        "url": "https:\/\/github.com\/trending?l=MLIR",
+        "name": "MLIR",
+        "enum": "MLIR"
+    },
+    {
+        "color": "#62A8D6",
+        "url": "https:\/\/github.com\/trending?l=MQL4",
+        "name": "MQL4",
+        "enum": "MQL4"
+    },
+    {
+        "color": "#4A76B8",
+        "url": "https:\/\/github.com\/trending?l=MQL5",
+        "name": "MQL5",
+        "enum": "MQL5"
+    },
+    {
+        "color": "#b7e1f4",
+        "url": "https:\/\/github.com\/trending?l=MTML",
+        "name": "MTML",
+        "enum": "MTML"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=MUF",
+        "name": "MUF",
+        "enum": "MUF"
+    },
+    {
+        "color": "#d8ffff",
+        "url": "https:\/\/github.com\/trending?l=Macaulay2",
+        "name": "Macaulay2",
+        "enum": "MACAULAY2"
+    },
+    {
+        "color": "#427819",
+        "url": "https:\/\/github.com\/trending?l=Makefile",
+        "name": "Makefile",
+        "enum": "MAKEFILE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Mako",
+        "name": "Mako",
+        "enum": "MAKO"
+    },
+    {
+        "color": "#083fa1",
+        "url": "https:\/\/github.com\/trending?l=Markdown",
+        "name": "Markdown",
+        "enum": "MARKDOWN"
+    },
+    {
+        "color": "#42bff2",
+        "url": "https:\/\/github.com\/trending?l=Marko",
+        "name": "Marko",
+        "enum": "MARKO"
+    },
+    {
+        "color": "#f97732",
+        "url": "https:\/\/github.com\/trending?l=Mask",
+        "name": "Mask",
+        "enum": "MASK"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Mathematica",
+        "name": "Mathematica",
+        "enum": "MATHEMATICA"
+    },
+    {
+        "color": "#c4a79c",
+        "url": "https:\/\/github.com\/trending?l=Max",
+        "name": "Max",
+        "enum": "MAX"
+    },
+    {
+        "color": "#ff2b2b",
+        "url": "https:\/\/github.com\/trending?l=Mercury",
+        "name": "Mercury",
+        "enum": "MERCURY"
+    },
+    {
+        "color": "#007800",
+        "url": "https:\/\/github.com\/trending?l=Meson",
+        "name": "Meson",
+        "enum": "MESON"
+    },
+    {
+        "color": "#8f14e9",
+        "url": "https:\/\/github.com\/trending?l=Metal",
+        "name": "Metal",
+        "enum": "METAL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=MiniD",
+        "name": "MiniD",
+        "enum": "MINID"
+    },
+    {
+        "color": "#c7a938",
+        "url": "https:\/\/github.com\/trending?l=Mirah",
+        "name": "Mirah",
+        "enum": "MIRAH"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Modelica",
+        "name": "Modelica",
+        "enum": "MODELICA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Modula-2",
+        "name": "Modula-2",
+        "enum": "MODULA_2"
+    },
+    {
+        "color": "#223388",
+        "url": "https:\/\/github.com\/trending?l=Modula-3",
+        "name": "Modula-3",
+        "enum": "MODULA_3"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Module-Management-System",
+        "name": "Module Management System",
+        "enum": "MODULE_MANAGEMENT_SYSTEM"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Monkey",
+        "name": "Monkey",
+        "enum": "MONKEY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Moocode",
+        "name": "Moocode",
+        "enum": "MOOCODE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=MoonScript",
+        "name": "MoonScript",
+        "enum": "MOONSCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Motorola-68K-Assembly",
+        "name": "Motorola 68K Assembly",
+        "enum": "MOTOROLA_68K_ASSEMBLY"
+    },
+    {
+        "color": "#724b3b",
+        "url": "https:\/\/github.com\/trending?l=Mustache",
+        "name": "Mustache",
+        "enum": "MUSTACHE"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Myghty",
+        "name": "Myghty",
+        "enum": "MYGHTY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=NASL",
+        "name": "NASL",
+        "enum": "NASL"
+    },
+    {
+        "color": "#28431f",
+        "url": "https:\/\/github.com\/trending?l=NCL",
+        "name": "NCL",
+        "enum": "NCL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=NSIS",
+        "name": "NSIS",
+        "enum": "NSIS"
+    },
+    {
+        "color": "#111522",
+        "url": "https:\/\/github.com\/trending?l=NWScript",
+        "name": "NWScript",
+        "enum": "NWSCRIPT"
+    },
+    {
+        "color": "#990000",
+        "url": "https:\/\/github.com\/trending?l=Nearley",
+        "name": "Nearley",
+        "enum": "NEARLEY"
+    },
+    {
+        "color": "#3d3c6e",
+        "url": "https:\/\/github.com\/trending?l=Nemerle",
+        "name": "Nemerle",
+        "enum": "NEMERLE"
+    },
+    {
+        "color": "#0aa0ff",
+        "url": "https:\/\/github.com\/trending?l=NetLinx",
+        "name": "NetLinx",
+        "enum": "NETLINX"
+    },
+    {
+        "color": "#747faa",
+        "url": "https:\/\/github.com\/trending?l=NetLinx+ERB",
+        "name": "NetLinx+ERB",
+        "enum": "NETLINXERB"
+    },
+    {
+        "color": "#ff6375",
+        "url": "https:\/\/github.com\/trending?l=NetLogo",
+        "name": "NetLogo",
+        "enum": "NETLOGO"
+    },
+    {
+        "color": "#87AED7",
+        "url": "https:\/\/github.com\/trending?l=NewLisp",
+        "name": "NewLisp",
+        "enum": "NEWLISP"
+    },
+    {
+        "color": "#3ac486",
+        "url": "https:\/\/github.com\/trending?l=Nextflow",
+        "name": "Nextflow",
+        "enum": "NEXTFLOW"
+    },
+    {
+        "color": "#ffc200",
+        "url": "https:\/\/github.com\/trending?l=Nim",
+        "name": "Nim",
+        "enum": "NIM"
+    },
+    {
+        "color": "#009917",
+        "url": "https:\/\/github.com\/trending?l=Nit",
+        "name": "Nit",
+        "enum": "NIT"
+    },
+    {
+        "color": "#7e7eff",
+        "url": "https:\/\/github.com\/trending?l=Nix",
+        "name": "Nix",
+        "enum": "NIX"
+    },
+    {
+        "color": "#c9df40",
+        "url": "https:\/\/github.com\/trending?l=Nu",
+        "name": "Nu",
+        "enum": "NU"
+    },
+    {
+        "color": "#9C8AF9",
+        "url": "https:\/\/github.com\/trending?l=NumPy",
+        "name": "NumPy",
+        "enum": "NUMPY"
+    },
+    {
+        "color": "#3d8137",
+        "url": "https:\/\/github.com\/trending?l=Nunjucks",
+        "name": "Nunjucks",
+        "enum": "NUNJUCKS"
+    },
+    {
+        "color": "#3be133",
+        "url": "https:\/\/github.com\/trending?l=OCaml",
+        "name": "OCaml",
+        "enum": "OCAML"
+    },
+    {
+        "color": "#424893",
+        "url": "https:\/\/github.com\/trending?l=ObjectScript",
+        "name": "ObjectScript",
+        "enum": "OBJECTSCRIPT"
+    },
+    {
+        "color": "#438eff",
+        "url": "https:\/\/github.com\/trending?l=Objective-C",
+        "name": "Objective-C",
+        "enum": "OBJECTIVE_C"
+    },
+    {
+        "color": "#6866fb",
+        "url": "https:\/\/github.com\/trending?l=Objective-C++",
+        "name": "Objective-C++",
+        "enum": "OBJECTIVE_C_PLUSPLUS"
+    },
+    {
+        "color": "#ff0c5a",
+        "url": "https:\/\/github.com\/trending?l=Objective-J",
+        "name": "Objective-J",
+        "enum": "OBJECTIVE_J"
+    },
+    {
+        "color": "#60AFFE",
+        "url": "https:\/\/github.com\/trending?l=Odin",
+        "name": "Odin",
+        "enum": "ODIN"
+    },
+    {
+        "color": "#cabbff",
+        "url": "https:\/\/github.com\/trending?l=Omgrofl",
+        "name": "Omgrofl",
+        "enum": "OMGROFL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Opa",
+        "name": "Opa",
+        "enum": "OPA"
+    },
+    {
+        "color": "#f7ede0",
+        "url": "https:\/\/github.com\/trending?l=Opal",
+        "name": "Opal",
+        "enum": "OPAL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Open-Policy-Agent",
+        "name": "Open Policy Agent",
+        "enum": "OPEN_POLICY_AGENT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=OpenCL",
+        "name": "OpenCL",
+        "enum": "OPENCL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=OpenEdge-ABL",
+        "name": "OpenEdge ABL",
+        "enum": "OPENEDGE_ABL"
+    },
+    {
+        "color": "#AA70FF",
+        "url": "https:\/\/github.com\/trending?l=OpenQASM",
+        "name": "OpenQASM",
+        "enum": "OPENQASM"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=OpenRC-runscript",
+        "name": "OpenRC runscript",
+        "enum": "OPENRC_RUNSCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=OpenSCAD",
+        "name": "OpenSCAD",
+        "enum": "OPENSCAD"
+    },
+    {
+        "color": "#77aa99",
+        "url": "https:\/\/github.com\/trending?l=Org",
+        "name": "Org",
+        "enum": "ORG"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Ox",
+        "name": "Ox",
+        "enum": "OX"
+    },
+    {
+        "color": "#cdd0e3",
+        "url": "https:\/\/github.com\/trending?l=Oxygene",
+        "name": "Oxygene",
+        "enum": "OXYGENE"
+    },
+    {
+        "color": "#fab738",
+        "url": "https:\/\/github.com\/trending?l=Oz",
+        "name": "Oz",
+        "enum": "OZ"
+    },
+    {
+        "color": "#7055b5",
+        "url": "https:\/\/github.com\/trending?l=P4",
+        "name": "P4",
+        "enum": "P4"
+    },
+    {
+        "color": "#4F5D95",
+        "url": "https:\/\/github.com\/trending?l=PHP",
+        "name": "PHP",
+        "enum": "PHP"
+    },
+    {
+        "color": "#dad8d8",
+        "url": "https:\/\/github.com\/trending?l=PLSQL",
+        "name": "PLSQL",
+        "enum": "PLSQL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=PLpgSQL",
+        "name": "PLpgSQL",
+        "enum": "PLPGSQL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=POV-Ray-SDL",
+        "name": "POV-Ray SDL",
+        "enum": "POV_RAY_SDL"
+    },
+    {
+        "color": "#cc0000",
+        "url": "https:\/\/github.com\/trending?l=Pan",
+        "name": "Pan",
+        "enum": "PAN"
+    },
+    {
+        "color": "#6600cc",
+        "url": "https:\/\/github.com\/trending?l=Papyrus",
+        "name": "Papyrus",
+        "enum": "PAPYRUS"
+    },
+    {
+        "color": "#f3ca0a",
+        "url": "https:\/\/github.com\/trending?l=Parrot",
+        "name": "Parrot",
+        "enum": "PARROT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Parrot-Assembly",
+        "name": "Parrot Assembly",
+        "enum": "PARROT_ASSEMBLY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Parrot-Internal-Representation",
+        "name": "Parrot Internal Representation",
+        "enum": "PARROT_INTERNAL_REPRESENTATION"
+    },
+    {
+        "color": "#E3F171",
+        "url": "https:\/\/github.com\/trending?l=Pascal",
+        "name": "Pascal",
+        "enum": "PASCAL"
+    },
+    {
+        "color": "#dbb284",
+        "url": "https:\/\/github.com\/trending?l=Pawn",
+        "name": "Pawn",
+        "enum": "PAWN"
+    },
+    {
+        "color": "#C76F5B",
+        "url": "https:\/\/github.com\/trending?l=Pep8",
+        "name": "Pep8",
+        "enum": "PEP8"
+    },
+    {
+        "color": "#0298c3",
+        "url": "https:\/\/github.com\/trending?l=Perl",
+        "name": "Perl",
+        "enum": "PERL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=PicoLisp",
+        "name": "PicoLisp",
+        "enum": "PICOLISP"
+    },
+    {
+        "color": "#fcd7de",
+        "url": "https:\/\/github.com\/trending?l=PigLatin",
+        "name": "PigLatin",
+        "enum": "PIGLATIN"
+    },
+    {
+        "color": "#005390",
+        "url": "https:\/\/github.com\/trending?l=Pike",
+        "name": "Pike",
+        "enum": "PIKE"
+    },
+    {
+        "color": "#d80074",
+        "url": "https:\/\/github.com\/trending?l=PogoScript",
+        "name": "PogoScript",
+        "enum": "POGOSCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Pony",
+        "name": "Pony",
+        "enum": "PONY"
+    },
+    {
+        "color": "#da291c",
+        "url": "https:\/\/github.com\/trending?l=PostScript",
+        "name": "PostScript",
+        "enum": "POSTSCRIPT"
+    },
+    {
+        "color": "#8f0f8d",
+        "url": "https:\/\/github.com\/trending?l=PowerBuilder",
+        "name": "PowerBuilder",
+        "enum": "POWERBUILDER"
+    },
+    {
+        "color": "#012456",
+        "url": "https:\/\/github.com\/trending?l=PowerShell",
+        "name": "PowerShell",
+        "enum": "POWERSHELL"
+    },
+    {
+        "color": "#0c344b",
+        "url": "https:\/\/github.com\/trending?l=Prisma",
+        "name": "Prisma",
+        "enum": "PRISMA"
+    },
+    {
+        "color": "#0096D8",
+        "url": "https:\/\/github.com\/trending?l=Processing",
+        "name": "Processing",
+        "enum": "PROCESSING"
+    },
+    {
+        "color": "#74283c",
+        "url": "https:\/\/github.com\/trending?l=Prolog",
+        "name": "Prolog",
+        "enum": "PROLOG"
+    },
+    {
+        "color": "#7fa2a7",
+        "url": "https:\/\/github.com\/trending?l=Propeller-Spin",
+        "name": "Propeller Spin",
+        "enum": "PROPELLER_SPIN"
+    },
+    {
+        "color": "#a86454",
+        "url": "https:\/\/github.com\/trending?l=Pug",
+        "name": "Pug",
+        "enum": "PUG"
+    },
+    {
+        "color": "#302B6D",
+        "url": "https:\/\/github.com\/trending?l=Puppet",
+        "name": "Puppet",
+        "enum": "PUPPET"
+    },
+    {
+        "color": "#5a6986",
+        "url": "https:\/\/github.com\/trending?l=PureBasic",
+        "name": "PureBasic",
+        "enum": "PUREBASIC"
+    },
+    {
+        "color": "#1D222D",
+        "url": "https:\/\/github.com\/trending?l=PureScript",
+        "name": "PureScript",
+        "enum": "PURESCRIPT"
+    },
+    {
+        "color": "#3572A5",
+        "url": "https:\/\/github.com\/trending?l=Python",
+        "name": "Python",
+        "enum": "PYTHON"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Python-console",
+        "name": "Python console",
+        "enum": "PYTHON_CONSOLE"
+    },
+    {
+        "color": "#fed659",
+        "url": "https:\/\/github.com\/trending?l=Qsharp",
+        "name": "Q#",
+        "enum": "Q_SHARP"
+    },
+    {
+        "color": "#44a51c",
+        "url": "https:\/\/github.com\/trending?l=QML",
+        "name": "QML",
+        "enum": "QML"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=QMake",
+        "name": "QMake",
+        "enum": "QMAKE"
+    },
+    {
+        "color": "#00b841",
+        "url": "https:\/\/github.com\/trending?l=Qt-Script",
+        "name": "Qt Script",
+        "enum": "QT_SCRIPT"
+    },
+    {
+        "color": "#882233",
+        "url": "https:\/\/github.com\/trending?l=Quake",
+        "name": "Quake",
+        "enum": "QUAKE"
+    },
+    {
+        "color": "#198CE7",
+        "url": "https:\/\/github.com\/trending?l=R",
+        "name": "R",
+        "enum": "R"
+    },
+    {
+        "color": "#77d9fb",
+        "url": "https:\/\/github.com\/trending?l=RAML",
+        "name": "RAML",
+        "enum": "RAML"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=REALbasic",
+        "name": "REALbasic",
+        "enum": "REALBASIC"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=REXX",
+        "name": "REXX",
+        "enum": "REXX"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=RPC",
+        "name": "RPC",
+        "enum": "RPC"
+    },
+    {
+        "color": "#665a4e",
+        "url": "https:\/\/github.com\/trending?l=RUNOFF",
+        "name": "RUNOFF",
+        "enum": "RUNOFF"
+    },
+    {
+        "color": "#3c5caa",
+        "url": "https:\/\/github.com\/trending?l=Racket",
+        "name": "Racket",
+        "enum": "RACKET"
+    },
+    {
+        "color": "#9d5200",
+        "url": "https:\/\/github.com\/trending?l=Ragel",
+        "name": "Ragel",
+        "enum": "RAGEL"
+    },
+    {
+        "color": "#0000fb",
+        "url": "https:\/\/github.com\/trending?l=Raku",
+        "name": "Raku",
+        "enum": "RAKU"
+    },
+    {
+        "color": "#fffaa0",
+        "url": "https:\/\/github.com\/trending?l=Rascal",
+        "name": "Rascal",
+        "enum": "RASCAL"
+    },
+    {
+        "color": "#ed5051",
+        "url": "https:\/\/github.com\/trending?l=ReScript",
+        "name": "ReScript",
+        "enum": "RESCRIPT"
+    },
+    {
+        "color": "#ff5847",
+        "url": "https:\/\/github.com\/trending?l=Reason",
+        "name": "Reason",
+        "enum": "REASON"
+    },
+    {
+        "color": "#358a5b",
+        "url": "https:\/\/github.com\/trending?l=Rebol",
+        "name": "Rebol",
+        "enum": "REBOL"
+    },
+    {
+        "color": "#0673ba",
+        "url": "https:\/\/github.com\/trending?l=Record-Jar",
+        "name": "Record Jar",
+        "enum": "RECORD_JAR"
+    },
+    {
+        "color": "#f50000",
+        "url": "https:\/\/github.com\/trending?l=Red",
+        "name": "Red",
+        "enum": "RED"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Redcode",
+        "name": "Redcode",
+        "enum": "REDCODE"
+    },
+    {
+        "color": "#ff7f7f",
+        "url": "https:\/\/github.com\/trending?l=Ren'Py",
+        "name": "Ren'Py",
+        "enum": "RENPY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=RenderScript",
+        "name": "RenderScript",
+        "enum": "RENDERSCRIPT"
+    },
+    {
+        "color": "#2D54CB",
+        "url": "https:\/\/github.com\/trending?l=Ring",
+        "name": "Ring",
+        "enum": "RING"
+    },
+    {
+        "color": "#A71E49",
+        "url": "https:\/\/github.com\/trending?l=Riot",
+        "name": "Riot",
+        "enum": "RIOT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=RobotFramework",
+        "name": "RobotFramework",
+        "enum": "ROBOTFRAMEWORK"
+    },
+    {
+        "color": "#ecdebe",
+        "url": "https:\/\/github.com\/trending?l=Roff",
+        "name": "Roff",
+        "enum": "ROFF"
+    },
+    {
+        "color": "#cc0088",
+        "url": "https:\/\/github.com\/trending?l=Rouge",
+        "name": "Rouge",
+        "enum": "ROUGE"
+    },
+    {
+        "color": "#701516",
+        "url": "https:\/\/github.com\/trending?l=Ruby",
+        "name": "Ruby",
+        "enum": "RUBY"
+    },
+    {
+        "color": "#dea584",
+        "url": "https:\/\/github.com\/trending?l=Rust",
+        "name": "Rust",
+        "enum": "RUST"
+    },
+    {
+        "color": "#B34936",
+        "url": "https:\/\/github.com\/trending?l=SAS",
+        "name": "SAS",
+        "enum": "SAS"
+    },
+    {
+        "color": "#c6538c",
+        "url": "https:\/\/github.com\/trending?l=SCSS",
+        "name": "SCSS",
+        "enum": "SCSS"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=SMT",
+        "name": "SMT",
+        "enum": "SMT"
+    },
+    {
+        "color": "#3F3F3F",
+        "url": "https:\/\/github.com\/trending?l=SQF",
+        "name": "SQF",
+        "enum": "SQF"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=SQLPL",
+        "name": "SQLPL",
+        "enum": "SQLPL"
+    },
+    {
+        "color": "#348a34",
+        "url": "https:\/\/github.com\/trending?l=SRecode-Template",
+        "name": "SRecode Template",
+        "enum": "SRECODE_TEMPLATE"
+    },
+    {
+        "color": "#ff9900",
+        "url": "https:\/\/github.com\/trending?l=SVG",
+        "name": "SVG",
+        "enum": "SVG"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=SWIG",
+        "name": "SWIG",
+        "enum": "SWIG"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Sage",
+        "name": "Sage",
+        "enum": "SAGE"
+    },
+    {
+        "color": "#646464",
+        "url": "https:\/\/github.com\/trending?l=SaltStack",
+        "name": "SaltStack",
+        "enum": "SALTSTACK"
+    },
+    {
+        "color": "#a53b70",
+        "url": "https:\/\/github.com\/trending?l=Sass",
+        "name": "Sass",
+        "enum": "SASS"
+    },
+    {
+        "color": "#c22d40",
+        "url": "https:\/\/github.com\/trending?l=Scala",
+        "name": "Scala",
+        "enum": "SCALA"
+    },
+    {
+        "color": "#bd181a",
+        "url": "https:\/\/github.com\/trending?l=Scaml",
+        "name": "Scaml",
+        "enum": "SCAML"
+    },
+    {
+        "color": "#1e4aec",
+        "url": "https:\/\/github.com\/trending?l=Scheme",
+        "name": "Scheme",
+        "enum": "SCHEME"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Scilab",
+        "name": "Scilab",
+        "enum": "SCILAB"
+    },
+    {
+        "color": "#0579aa",
+        "url": "https:\/\/github.com\/trending?l=Self",
+        "name": "Self",
+        "enum": "SELF"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=ShaderLab",
+        "name": "ShaderLab",
+        "enum": "SHADERLAB"
+    },
+    {
+        "color": "#89e051",
+        "url": "https:\/\/github.com\/trending?l=Shell",
+        "name": "Shell",
+        "enum": "SHELL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=ShellSession",
+        "name": "ShellSession",
+        "enum": "SHELLSESSION"
+    },
+    {
+        "color": "#120F14",
+        "url": "https:\/\/github.com\/trending?l=Shen",
+        "name": "Shen",
+        "enum": "SHEN"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Sieve",
+        "name": "Sieve",
+        "enum": "SIEVE"
+    },
+    {
+        "color": "#64E6AD",
+        "url": "https:\/\/github.com\/trending?l=Singularity",
+        "name": "Singularity",
+        "enum": "SINGULARITY"
+    },
+    {
+        "color": "#007eff",
+        "url": "https:\/\/github.com\/trending?l=Slash",
+        "name": "Slash",
+        "enum": "SLASH"
+    },
+    {
+        "color": "#003fa2",
+        "url": "https:\/\/github.com\/trending?l=Slice",
+        "name": "Slice",
+        "enum": "SLICE"
+    },
+    {
+        "color": "#2b2b2b",
+        "url": "https:\/\/github.com\/trending?l=Slim",
+        "name": "Slim",
+        "enum": "SLIM"
+    },
+    {
+        "color": "#c94949",
+        "url": "https:\/\/github.com\/trending?l=SmPL",
+        "name": "SmPL",
+        "enum": "SMPL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Smali",
+        "name": "Smali",
+        "enum": "SMALI"
+    },
+    {
+        "color": "#596706",
+        "url": "https:\/\/github.com\/trending?l=Smalltalk",
+        "name": "Smalltalk",
+        "enum": "SMALLTALK"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Smarty",
+        "name": "Smarty",
+        "enum": "SMARTY"
+    },
+    {
+        "color": "#AA6746",
+        "url": "https:\/\/github.com\/trending?l=Solidity",
+        "name": "Solidity",
+        "enum": "SOLIDITY"
+    },
+    {
+        "color": "#f69e1d",
+        "url": "https:\/\/github.com\/trending?l=SourcePawn",
+        "name": "SourcePawn",
+        "enum": "SOURCEPAWN"
+    },
+    {
+        "color": "#800000",
+        "url": "https:\/\/github.com\/trending?l=Squirrel",
+        "name": "Squirrel",
+        "enum": "SQUIRREL"
+    },
+    {
+        "color": "#b2011d",
+        "url": "https:\/\/github.com\/trending?l=Stan",
+        "name": "Stan",
+        "enum": "STAN"
+    },
+    {
+        "color": "#dc566d",
+        "url": "https:\/\/github.com\/trending?l=Standard-ML",
+        "name": "Standard ML",
+        "enum": "STANDARD_ML"
+    },
+    {
+        "color": "#76d275",
+        "url": "https:\/\/github.com\/trending?l=Starlark",
+        "name": "Starlark",
+        "enum": "STARLARK"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Stata",
+        "name": "Stata",
+        "enum": "STATA"
+    },
+    {
+        "color": "#3fb34f",
+        "url": "https:\/\/github.com\/trending?l=StringTemplate",
+        "name": "StringTemplate",
+        "enum": "STRINGTEMPLATE"
+    },
+    {
+        "color": "#ff6347",
+        "url": "https:\/\/github.com\/trending?l=Stylus",
+        "name": "Stylus",
+        "enum": "STYLUS"
+    },
+    {
+        "color": "#46390b",
+        "url": "https:\/\/github.com\/trending?l=SuperCollider",
+        "name": "SuperCollider",
+        "enum": "SUPERCOLLIDER"
+    },
+    {
+        "color": "#ff3e00",
+        "url": "https:\/\/github.com\/trending?l=Svelte",
+        "name": "Svelte",
+        "enum": "SVELTE"
+    },
+    {
+        "color": "#ffac45",
+        "url": "https:\/\/github.com\/trending?l=Swift",
+        "name": "Swift",
+        "enum": "SWIFT"
+    },
+    {
+        "color": "#DAE1C2",
+        "url": "https:\/\/github.com\/trending?l=SystemVerilog",
+        "name": "SystemVerilog",
+        "enum": "SYSTEMVERILOG"
+    },
+    {
+        "color": "#A0AA87",
+        "url": "https:\/\/github.com\/trending?l=TI-Program",
+        "name": "TI Program",
+        "enum": "TI_PROGRAM"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=TLA",
+        "name": "TLA",
+        "enum": "TLA"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=TSQL",
+        "name": "TSQL",
+        "enum": "TSQL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=TSX",
+        "name": "TSX",
+        "enum": "TSX"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=TXL",
+        "name": "TXL",
+        "enum": "TXL"
+    },
+    {
+        "color": "#e4cc98",
+        "url": "https:\/\/github.com\/trending?l=Tcl",
+        "name": "Tcl",
+        "enum": "TCL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Tcsh",
+        "name": "Tcsh",
+        "enum": "TCSH"
+    },
+    {
+        "color": "#3D6117",
+        "url": "https:\/\/github.com\/trending?l=TeX",
+        "name": "TeX",
+        "enum": "TEX"
+    },
+    {
+        "color": "#00004c",
+        "url": "https:\/\/github.com\/trending?l=Terra",
+        "name": "Terra",
+        "enum": "TERRA"
+    },
+    {
+        "color": "#df66e4",
+        "url": "https:\/\/github.com\/trending?l=TextMate-Properties",
+        "name": "TextMate Properties",
+        "enum": "TEXTMATE_PROPERTIES"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Thrift",
+        "name": "Thrift",
+        "enum": "THRIFT"
+    },
+    {
+        "color": "#cf142b",
+        "url": "https:\/\/github.com\/trending?l=Turing",
+        "name": "Turing",
+        "enum": "TURING"
+    },
+    {
+        "color": "#c1d026",
+        "url": "https:\/\/github.com\/trending?l=Twig",
+        "name": "Twig",
+        "enum": "TWIG"
+    },
+    {
+        "color": "#2b7489",
+        "url": "https:\/\/github.com\/trending?l=TypeScript",
+        "name": "TypeScript",
+        "enum": "TYPESCRIPT"
+    },
+    {
+        "color": "#4e3617",
+        "url": "https:\/\/github.com\/trending?l=Unified-Parallel-C",
+        "name": "Unified Parallel C",
+        "enum": "UNIFIED_PARALLEL_C"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Unix-Assembly",
+        "name": "Unix Assembly",
+        "enum": "UNIX_ASSEMBLY"
+    },
+    {
+        "color": "#9933cc",
+        "url": "https:\/\/github.com\/trending?l=Uno",
+        "name": "Uno",
+        "enum": "UNO"
+    },
+    {
+        "color": "#a54c4d",
+        "url": "https:\/\/github.com\/trending?l=UnrealScript",
+        "name": "UnrealScript",
+        "enum": "UNREALSCRIPT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=UrWeb",
+        "name": "UrWeb",
+        "enum": "URWEB"
+    },
+    {
+        "color": "#4f87c4",
+        "url": "https:\/\/github.com\/trending?l=V",
+        "name": "V",
+        "enum": "V"
+    },
+    {
+        "color": "#867db1",
+        "url": "https:\/\/github.com\/trending?l=VBA",
+        "name": "VBA",
+        "enum": "VBA"
+    },
+    {
+        "color": "#15dcdc",
+        "url": "https:\/\/github.com\/trending?l=VBScript",
+        "name": "VBScript",
+        "enum": "VBSCRIPT"
+    },
+    {
+        "color": "#148AA8",
+        "url": "https:\/\/github.com\/trending?l=VCL",
+        "name": "VCL",
+        "enum": "VCL"
+    },
+    {
+        "color": "#adb2cb",
+        "url": "https:\/\/github.com\/trending?l=VHDL",
+        "name": "VHDL",
+        "enum": "VHDL"
+    },
+    {
+        "color": "#fbe5cd",
+        "url": "https:\/\/github.com\/trending?l=Vala",
+        "name": "Vala",
+        "enum": "VALA"
+    },
+    {
+        "color": "#f26025",
+        "url": "https:\/\/github.com\/trending?l=Valve-Data-Format",
+        "name": "Valve Data Format",
+        "enum": "VALVE_DATA_FORMAT"
+    },
+    {
+        "color": "#b2b7f8",
+        "url": "https:\/\/github.com\/trending?l=Verilog",
+        "name": "Verilog",
+        "enum": "VERILOG"
+    },
+    {
+        "color": "#199f4b",
+        "url": "https:\/\/github.com\/trending?l=Vim-script",
+        "name": "Vim script",
+        "enum": "VIM_SCRIPT"
+    },
+    {
+        "color": "#945db7",
+        "url": "https:\/\/github.com\/trending?l=Visual-Basic-.NET",
+        "name": "Visual Basic .NET",
+        "enum": "VISUAL_BASIC_NET"
+    },
+    {
+        "color": "#1F1F1F",
+        "url": "https:\/\/github.com\/trending?l=Volt",
+        "name": "Volt",
+        "enum": "VOLT"
+    },
+    {
+        "color": "#41b883",
+        "url": "https:\/\/github.com\/trending?l=Vue",
+        "name": "Vue",
+        "enum": "VUE"
+    },
+    {
+        "color": "#04133b",
+        "url": "https:\/\/github.com\/trending?l=WebAssembly",
+        "name": "WebAssembly",
+        "enum": "WEBASSEMBLY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=WebIDL",
+        "name": "WebIDL",
+        "enum": "WEBIDL"
+    },
+    {
+        "color": "#a23738",
+        "url": "https:\/\/github.com\/trending?l=Wollok",
+        "name": "Wollok",
+        "enum": "WOLLOK"
+    },
+    {
+        "color": "#4B6BEF",
+        "url": "https:\/\/github.com\/trending?l=X10",
+        "name": "X10",
+        "enum": "X10"
+    },
+    {
+        "color": "#99DA07",
+        "url": "https:\/\/github.com\/trending?l=XC",
+        "name": "XC",
+        "enum": "XC"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=XProc",
+        "name": "XProc",
+        "enum": "XPROC"
+    },
+    {
+        "color": "#5232e7",
+        "url": "https:\/\/github.com\/trending?l=XQuery",
+        "name": "XQuery",
+        "enum": "XQUERY"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=XS",
+        "name": "XS",
+        "enum": "XS"
+    },
+    {
+        "color": "#EB8CEB",
+        "url": "https:\/\/github.com\/trending?l=XSLT",
+        "name": "XSLT",
+        "enum": "XSLT"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Xojo",
+        "name": "Xojo",
+        "enum": "XOJO"
+    },
+    {
+        "color": "#285EEF",
+        "url": "https:\/\/github.com\/trending?l=Xonsh",
+        "name": "Xonsh",
+        "enum": "XONSH"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Xtend",
+        "name": "Xtend",
+        "enum": "XTEND"
+    },
+    {
+        "color": "#cb171e",
+        "url": "https:\/\/github.com\/trending?l=YAML",
+        "name": "YAML",
+        "enum": "YAML"
+    },
+    {
+        "color": "#220000",
+        "url": "https:\/\/github.com\/trending?l=YARA",
+        "name": "YARA",
+        "enum": "YARA"
+    },
+    {
+        "color": "#32AB90",
+        "url": "https:\/\/github.com\/trending?l=YASnippet",
+        "name": "YASnippet",
+        "enum": "YASNIPPET"
+    },
+    {
+        "color": "#4B6C4B",
+        "url": "https:\/\/github.com\/trending?l=Yacc",
+        "name": "Yacc",
+        "enum": "YACC"
+    },
+    {
+        "color": "#0d665e",
+        "url": "https:\/\/github.com\/trending?l=ZAP",
+        "name": "ZAP",
+        "enum": "ZAP"
+    },
+    {
+        "color": "#dc75e5",
+        "url": "https:\/\/github.com\/trending?l=ZIL",
+        "name": "ZIL",
+        "enum": "ZIL"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Zeek",
+        "name": "Zeek",
+        "enum": "ZEEK"
+    },
+    {
+        "color": "#00BCD1",
+        "url": "https:\/\/github.com\/trending?l=ZenScript",
+        "name": "ZenScript",
+        "enum": "ZENSCRIPT"
+    },
+    {
+        "color": "#118f9e",
+        "url": "https:\/\/github.com\/trending?l=Zephir",
+        "name": "Zephir",
+        "enum": "ZEPHIR"
+    },
+    {
+        "color": "#ec915c",
+        "url": "https:\/\/github.com\/trending?l=Zig",
+        "name": "Zig",
+        "enum": "ZIG"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=Zimpl",
+        "name": "Zimpl",
+        "enum": "ZIMPL"
+    },
+    {
+        "color": "#913960",
+        "url": "https:\/\/github.com\/trending?l=eC",
+        "name": "eC",
+        "enum": "EC"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=fish",
+        "name": "fish",
+        "enum": "FISH"
+    },
+    {
+        "color": "#c7254e",
+        "url": "https:\/\/github.com\/trending?l=jq",
+        "name": "jq",
+        "enum": "JQ"
+    },
+    {
+        "color": "#3d57c3",
+        "url": "https:\/\/github.com\/trending?l=mIRC-Script",
+        "name": "mIRC Script",
+        "enum": "MIRC_SCRIPT"
+    },
+    {
+        "color": "#E22837",
+        "url": "https:\/\/github.com\/trending?l=mcfunction",
+        "name": "mcfunction",
+        "enum": "MCFUNCTION"
+    },
+    {
+        "color": null,
+        "url": "https:\/\/github.com\/trending?l=mupad",
+        "name": "mupad",
+        "enum": "MUPAD"
+    },
+    {
+        "color": "#94B0C7",
+        "url": "https:\/\/github.com\/trending?l=nesC",
+        "name": "nesC",
+        "enum": "NESC"
+    },
+    {
+        "color": "#b0b77e",
+        "url": "https:\/\/github.com\/trending?l=ooc",
+        "name": "ooc",
+        "enum": "OOC"
+    },
+    {
+        "color": "#0040cd",
+        "url": "https:\/\/github.com\/trending?l=q",
+        "name": "q",
+        "enum": "Q"
+    },
+    {
+        "color": "#64b970",
+        "url": "https:\/\/github.com\/trending?l=sed",
+        "name": "sed",
+        "enum": "SED"
+    },
+    {
+        "color": "#42f1f4",
+        "url": "https:\/\/github.com\/trending?l=wdl",
+        "name": "wdl",
+        "enum": "WDL"
+    },
+    {
+        "color": "#7582D1",
+        "url": "https:\/\/github.com\/trending?l=wisp",
+        "name": "wisp",
+        "enum": "WISP"
+    },
+    {
+        "color": "#403a40",
+        "url": "https:\/\/github.com\/trending?l=xBase",
+        "name": "xBase",
+        "enum": "XBASE"
+    }
+]
