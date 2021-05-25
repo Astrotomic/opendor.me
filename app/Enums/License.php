@@ -26,6 +26,7 @@ namespace App\Enums;
  * @method static self EUPL_12()
  * @method static self OSL_30()
  * @method static self BSD0()
+ * @method static self NCSA()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
