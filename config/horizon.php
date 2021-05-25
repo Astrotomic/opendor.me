@@ -224,9 +224,9 @@ return [
         'scout' => [
             'connection' => 'redis',
             'queue' => 'scout',
-            'balance' => 'off',
-            'maxProcesses' => 1,
-            'memory' => 128,
+            'balance' => 'auto',
+            'maxProcesses' => 5,
+            'memory' => 64,
             'tries' => 1,
             'nice' => 0,
         ],
