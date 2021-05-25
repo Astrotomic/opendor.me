@@ -74,13 +74,13 @@ class GithubLanguages extends Command
         $doctag = '/**'.Str::after($before, '/**');
         $before = Str::before($before, $doctag);
 
-        $doctag = '/**'.PHP_EOL.
-            $languages
+        $doctag = '/**'.PHP_EOL
+            .$languages
                 ->reject(fn (array $language): bool => preg_match('/^\d.*/', $language['enum']) === 1)
                 ->map(fn (array $language) => " * @method static self {$language['enum']}()")
-                ->implode(PHP_EOL).PHP_EOL.
-            ' * @method static self NOASSERTION()'.PHP_EOL.
-            ' */';
+                ->implode(PHP_EOL).PHP_EOL
+            .' * @method static self NOASSERTION()'.PHP_EOL
+            .' */';
 
         File::put($file, trim($before).PHP_EOL.PHP_EOL.trim($doctag).PHP_EOL.trim($after).PHP_EOL);
     }

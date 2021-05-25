@@ -2,6 +2,7 @@
     "preset": "laravel",
     "disabled": [
         "NoInlineVarDocs",
-        "NoParensEmptyInstantiations"
+        "NoParensEmptyInstantiations",
+        "NoStringInterpolationWithoutBraces"
     ]
 }

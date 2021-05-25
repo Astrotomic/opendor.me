@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MonitoredScheduledTaskResourceResource\Pages;
+use App\Filament\Resources\MonitoredScheduledTaskResourceResource\Pages\ListMonitoredScheduledTaskResources;
 use App\Filament\Resources\Tables\Columns\Cron;
 use App\Filament\Resources\Tables\Columns\DateTimeDiff;
 use Carbon\Carbon;
@@ -55,7 +55,7 @@ class MonitoredScheduledTaskResourceResource extends Resource
     public static function routes(): array
     {
         return [
-            Pages\ListMonitoredScheduledTaskResources::routeTo('/', 'index'),
+            ListMonitoredScheduledTaskResources::routeTo('/', 'index'),
         ];
     }
 }
