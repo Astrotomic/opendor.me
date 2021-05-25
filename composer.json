@@ -19,7 +19,7 @@
         "filament/filament": "^1.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "jfvoliveira/blade-boxicons": "dev-update-blade-icons",
+        "mallardduck/blade-boxicons": "^2.0.2",
         "kevinrob/guzzle-cache-middleware": "^3.3",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
@@ -91,10 +91,6 @@
         {
             "type": "composer",
             "url": "https://satis.laravel-enlightn.com"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/mallardduck/blade-boxicons"
         }
     ],
     "minimum-stability": "dev",

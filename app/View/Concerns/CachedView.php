@@ -6,6 +6,7 @@ use Carbon\CarbonInterval;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\HtmlString;
 
 trait CachedView
 {
@@ -13,13 +14,13 @@ trait CachedView
 
     abstract protected function view(): View;
 
-    public function render(): string
+    public function render(): HtmlString
     {
-        return Cache::remember(
+        return new HtmlString(Cache::remember(
             $this->cacheMutex(),
             $this->ttl ?? CarbonInterval::minute(),
             fn (): string => $this->view()->with($this->data())->render()
-        );
+        ));
     }
 
     protected function cacheMutex(): string
