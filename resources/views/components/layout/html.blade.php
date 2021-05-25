@@ -6,7 +6,6 @@
 
     <link rel="dns-prefetch" href="https://avatars.githubusercontent.com"/>
     <link rel="dns-prefetch" href="https://images.unsplash.com"/>
-    <link rel="dns-prefetch" href="https://plausible.io"/>
 
     <title>{{ $title }}</title>
 

@@ -54,6 +54,7 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
         "povils/phpmnd": "^2.4",
+        "spatie/ray": "^1.22",
         "tightenco/tlint": "^6.0",
         "wulfheart/pretty_routes": "^0.1.2"
     },

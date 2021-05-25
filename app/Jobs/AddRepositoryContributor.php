@@ -27,5 +27,7 @@ class AddRepositoryContributor extends GithubJob
         $this->repository->contributors()->syncWithoutDetaching([
             $user->id,
         ]);
+
+        $user->touch();
     }
 }

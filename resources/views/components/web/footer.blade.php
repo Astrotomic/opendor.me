@@ -13,12 +13,6 @@
                     <span>Status</span>
                 </a>
             </li>
-            <li>
-                <a href="https://plausible.io/opendor.me" class="flex items-center py-2 px-3 text-base text-gray-300 hover:text-white sm:px-6 lg:px-8">
-                    <x-bx-stats class="h-4 w-4 mr-1"/>
-                    Analytics
-                </a>
-            </li>
         </ul>
 
         <div class="mt-4 md:flex md:items-center md:justify-between">

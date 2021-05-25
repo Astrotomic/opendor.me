@@ -1,11 +1,3 @@
-@push('javascript')
-@env('frosty-pond', 'divine-forest')
-<script nonce="{{ csp_nonce() }}">
-    window.plausible("404", { props: { path: document.location.pathname } })
-</script>
-@endenv
-@endpush
-
 <x-layout.error>
     <x-bx-ghost class="mx-auto w-24 h-24 text-gray-400"/>
 

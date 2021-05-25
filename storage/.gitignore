@@ -1,0 +1,6 @@
+*
+!app/
+!debugbar/
+!framework/
+!logs/
+!.gitignore

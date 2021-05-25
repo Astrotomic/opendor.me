@@ -2,184 +2,495 @@
 
 namespace App\Enums;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 /**
- * @method static self BLADE()
- * @method static self CSS()
- * @method static self GO()
- * @method static self HTML()
- * @method static self JAVASCRIPT()
- * @method static self MARKDOWN()
- * @method static self PHP()
- * @method static self PYTHON()
- * @method static self RUBY()
- * @method static self SCSS()
- * @method static self SHELL()
- * @method static self TYPESCRIPT()
- * @method static self VUE()
- * @method static self DOCKERFILE()
- * @method static self C_SHARP()
- * @method static self F_SHARP()
- * @method static self C_PLUSPLUS()
- * @method static self JAVA()
- * @method static self COFFEESCRIPT()
- * @method static self SMARTY()
- * @method static self ELIXIR()
- * @method static self POWERSHELL()
- * @method static self YAML()
- * @method static self PERL()
- * @method static self OBJECTIVE_C()
- * @method static self LUA()
- * @method static self SWIFT()
- * @method static self XML()
- * @method static self KOTLIN()
- * @method static self VIM_SCRIPT()
- * @method static self VIM_L()
- * @method static self VISUAL_BASIC()
- * @method static self HCL()
- * @method static self C()
- * @method static self PUPPET()
+ * @method static self ABAP()
+ * @method static self ABAP_CDS()
+ * @method static self AGS_SCRIPT()
+ * @method static self AIDL()
+ * @method static self AL()
+ * @method static self AMPL()
+ * @method static self ANTLR()
+ * @method static self API_BLUEPRINT()
+ * @method static self APL()
+ * @method static self ASL()
+ * @method static self ASPNET()
+ * @method static self ATS()
  * @method static self ACTIONSCRIPT()
- * @method static self ARDUINO()
+ * @method static self ADA()
+ * @method static self AGDA()
+ * @method static self ALLOY()
+ * @method static self ALPINE_ABUILD()
+ * @method static self ANGELSCRIPT()
+ * @method static self APEX()
+ * @method static self APOLLO_GUIDANCE_COMPUTER()
+ * @method static self APPLESCRIPT()
+ * @method static self ARC()
+ * @method static self ASPECTJ()
  * @method static self ASSEMBLY()
+ * @method static self ASYMPTOTE()
+ * @method static self AUGEAS()
+ * @method static self AUTOHOTKEY()
+ * @method static self AUTOIT()
+ * @method static self AWK()
+ * @method static self BASIC()
+ * @method static self BALLERINA()
+ * @method static self BATCHFILE()
+ * @method static self BEEF()
+ * @method static self BEFUNGE()
+ * @method static self BICEP()
+ * @method static self BISON()
+ * @method static self BITBAKE()
+ * @method static self BLADE()
+ * @method static self BLITZBASIC()
+ * @method static self BLITZMAX()
+ * @method static self BLUESPEC()
+ * @method static self BOO()
+ * @method static self BOOGIE()
+ * @method static self BRAINFUCK()
+ * @method static self BRIGHTSCRIPT()
+ * @method static self BROWSERSLIST()
+ * @method static self C()
+ * @method static self C_SHARP()
+ * @method static self C_PLUSPLUS()
+ * @method static self C2HS_HASKELL()
+ * @method static self CLIPS()
+ * @method static self CMAKE()
+ * @method static self COBOL()
+ * @method static self CSON()
+ * @method static self CSS()
+ * @method static self CUE()
+ * @method static self CWEB()
+ * @method static self CAPN_PROTO()
+ * @method static self CARTOCSS()
+ * @method static self CEYLON()
+ * @method static self CHAPEL()
+ * @method static self CHARITY()
+ * @method static self CHUCK()
+ * @method static self CIRRU()
+ * @method static self CLARION()
+ * @method static self CLASSIC_ASP()
+ * @method static self CLEAN()
+ * @method static self CLICK()
  * @method static self CLOJURE()
+ * @method static self CLOSURE_TEMPLATES()
+ * @method static self CODEQL()
+ * @method static self COFFEESCRIPT()
  * @method static self COLDFUSION()
+ * @method static self COLDFUSION_CFC()
+ * @method static self COMMON_LISP()
+ * @method static self COMMON_WORKFLOW_LANGUAGE()
+ * @method static self COMPONENT_PASCAL()
+ * @method static self COOL()
+ * @method static self COQ()
+ * @method static self CRYSTAL()
+ * @method static self CSOUND()
+ * @method static self CSOUND_DOCUMENT()
+ * @method static self CSOUND_SCORE()
+ * @method static self CUDA()
+ * @method static self CYCRIPT()
+ * @method static self CYTHON()
+ * @method static self D()
+ * @method static self DIGITAL_COMMAND_LANGUAGE()
+ * @method static self DM()
+ * @method static self DTRACE()
+ * @method static self DAFNY()
  * @method static self DART()
- * @method static self EAGLE()
+ * @method static self DATAWEAVE()
+ * @method static self DHALL()
+ * @method static self DOCKERFILE()
+ * @method static self DOGESCRIPT()
+ * @method static self DYLAN()
+ * @method static self E()
+ * @method static self ECL()
+ * @method static self ECLIPSE()
+ * @method static self EJS()
+ * @method static self EQ()
+ * @method static self EIFFEL()
+ * @method static self ELIXIR()
  * @method static self ELM()
+ * @method static self EMACS_LISP()
+ * @method static self EMBERSCRIPT()
+ * @method static self ERLANG()
+ * @method static self F_SHARP()
+ * @method static self F()
+ * @method static self FLUX()
+ * @method static self FACTOR()
+ * @method static self FANCY()
+ * @method static self FANTOM()
+ * @method static self FAUST()
+ * @method static self FILEBENCH_WML()
+ * @method static self FILTERSCRIPT()
+ * @method static self FORTH()
+ * @method static self FORTRAN()
+ * @method static self FORTRAN_FREE_FORM()
+ * @method static self FREEBASIC()
+ * @method static self FREEMARKER()
+ * @method static self FREGE()
+ * @method static self FUTHARK()
+ * @method static self G_CODE()
+ * @method static self GAML()
+ * @method static self GAMS()
+ * @method static self GAP()
+ * @method static self GCC_MACHINE_DESCRIPTION()
+ * @method static self GDB()
+ * @method static self GDSCRIPT()
  * @method static self GLSL()
+ * @method static self GAME_MAKER_LANGUAGE()
+ * @method static self GEMFILELOCK()
+ * @method static self GENIE()
+ * @method static self GENSHI()
+ * @method static self GENTOO_EBUILD()
+ * @method static self GENTOO_ECLASS()
+ * @method static self GHERKIN()
+ * @method static self GLYPH()
  * @method static self GNUPLOT()
+ * @method static self GO()
+ * @method static self GOLO()
+ * @method static self GOSU()
+ * @method static self GRACE()
+ * @method static self GRAMMATICAL_FRAMEWORK()
+ * @method static self GRAPHQL()
  * @method static self GROOVY()
+ * @method static self GROOVY_SERVER_PAGES()
+ * @method static self HCL()
+ * @method static self HLSL()
+ * @method static self HTML()
  * @method static self HACK()
  * @method static self HAML()
  * @method static self HANDLEBARS()
+ * @method static self HARBOUR()
+ * @method static self HASKELL()
+ * @method static self HAXE()
+ * @method static self HIVEQL()
+ * @method static self HOLYC()
+ * @method static self HY()
+ * @method static self HYPHY()
+ * @method static self IDL()
+ * @method static self IGOR_PRO()
+ * @method static self IDRIS()
+ * @method static self IMAGEJ_MACRO()
+ * @method static self INFORM_7()
+ * @method static self INNO_SETUP()
+ * @method static self IO()
+ * @method static self IOKE()
+ * @method static self ISABELLE()
+ * @method static self ISABELLE_ROOT()
+ * @method static self J()
+ * @method static self JFLEX()
+ * @method static self JSONIQ()
+ * @method static self JASMIN()
+ * @method static self JAVA()
+ * @method static self JAVA_SERVER_PAGES()
+ * @method static self JAVASCRIPT()
+ * @method static self JAVASCRIPTERB()
+ * @method static self JINJA()
+ * @method static self JISON()
+ * @method static self JISON_LEX()
+ * @method static self JOLIE()
+ * @method static self JSONNET()
  * @method static self JULIA()
+ * @method static self JUPYTER_NOTEBOOK()
+ * @method static self KRL()
+ * @method static self KAITAI_STRUCT()
+ * @method static self KOTLIN()
+ * @method static self LFE()
+ * @method static self LLVM()
+ * @method static self LOLCODE()
+ * @method static self LSL()
+ * @method static self LABVIEW()
+ * @method static self LARK()
+ * @method static self LASSO()
+ * @method static self LATTE()
+ * @method static self LEAN()
  * @method static self LESS()
+ * @method static self LEX()
+ * @method static self LILYPOND()
+ * @method static self LIMBO()
+ * @method static self LIQUID()
+ * @method static self LITERATE_AGDA()
+ * @method static self LITERATE_COFFEESCRIPT()
+ * @method static self LITERATE_HASKELL()
+ * @method static self LIVESCRIPT()
+ * @method static self LOGOS()
+ * @method static self LOGTALK()
+ * @method static self LOOKML()
+ * @method static self LOOMSCRIPT()
+ * @method static self LUA()
+ * @method static self M()
+ * @method static self M4()
+ * @method static self M4SUGAR()
+ * @method static self MATLAB()
+ * @method static self MAXSCRIPT()
+ * @method static self MLIR()
+ * @method static self MQL4()
+ * @method static self MQL5()
+ * @method static self MTML()
+ * @method static self MUF()
+ * @method static self MACAULAY2()
  * @method static self MAKEFILE()
+ * @method static self MAKO()
+ * @method static self MARKDOWN()
+ * @method static self MARKO()
+ * @method static self MASK()
  * @method static self MATHEMATICA()
+ * @method static self MAX()
+ * @method static self MERCURY()
+ * @method static self MESON()
+ * @method static self METAL()
+ * @method static self MINID()
+ * @method static self MIRAH()
+ * @method static self MODELICA()
+ * @method static self MODULA_2()
+ * @method static self MODULA_3()
+ * @method static self MODULE_MANAGEMENT_SYSTEM()
+ * @method static self MONKEY()
+ * @method static self MOOCODE()
+ * @method static self MOONSCRIPT()
+ * @method static self MOTOROLA_68K_ASSEMBLY()
  * @method static self MUSTACHE()
- * @method static self NGINX()
+ * @method static self MYGHTY()
+ * @method static self NASL()
+ * @method static self NCL()
+ * @method static self NSIS()
+ * @method static self NWSCRIPT()
+ * @method static self NEARLEY()
+ * @method static self NEMERLE()
+ * @method static self NETLINX()
+ * @method static self NETLINXERB()
+ * @method static self NETLOGO()
+ * @method static self NEWLISP()
+ * @method static self NEXTFLOW()
+ * @method static self NIM()
+ * @method static self NIT()
+ * @method static self NIX()
+ * @method static self NU()
+ * @method static self NUMPY()
+ * @method static self NUNJUCKS()
  * @method static self OCAML()
+ * @method static self OBJECTSCRIPT()
+ * @method static self OBJECTIVE_C()
+ * @method static self OBJECTIVE_C_PLUSPLUS()
+ * @method static self OBJECTIVE_J()
+ * @method static self ODIN()
+ * @method static self OMGROFL()
+ * @method static self OPA()
+ * @method static self OPAL()
+ * @method static self OPEN_POLICY_AGENT()
+ * @method static self OPENCL()
+ * @method static self OPENEDGE_ABL()
+ * @method static self OPENQASM()
+ * @method static self OPENRC_RUNSCRIPT()
+ * @method static self OPENSCAD()
+ * @method static self ORG()
+ * @method static self OX()
+ * @method static self OXYGENE()
  * @method static self OZ()
+ * @method static self P4()
+ * @method static self PHP()
+ * @method static self PLSQL()
  * @method static self PLPGSQL()
+ * @method static self POV_RAY_SDL()
+ * @method static self PAN()
+ * @method static self PAPYRUS()
+ * @method static self PARROT()
+ * @method static self PARROT_ASSEMBLY()
+ * @method static self PARROT_INTERNAL_REPRESENTATION()
+ * @method static self PASCAL()
+ * @method static self PAWN()
+ * @method static self PEP8()
+ * @method static self PERL()
+ * @method static self PICOLISP()
+ * @method static self PIGLATIN()
+ * @method static self PIKE()
+ * @method static self POGOSCRIPT()
+ * @method static self PONY()
  * @method static self POSTSCRIPT()
+ * @method static self POWERBUILDER()
+ * @method static self POWERSHELL()
+ * @method static self PRISMA()
+ * @method static self PROCESSING()
+ * @method static self PROLOG()
+ * @method static self PROPELLER_SPIN()
+ * @method static self PUG()
+ * @method static self PUPPET()
+ * @method static self PUREBASIC()
+ * @method static self PURESCRIPT()
+ * @method static self PYTHON()
+ * @method static self PYTHON_CONSOLE()
+ * @method static self Q_SHARP()
+ * @method static self QML()
+ * @method static self QMAKE()
+ * @method static self QT_SCRIPT()
+ * @method static self QUAKE()
+ * @method static self R()
+ * @method static self RAML()
+ * @method static self REALBASIC()
+ * @method static self REXX()
+ * @method static self RPC()
+ * @method static self RUNOFF()
+ * @method static self RACKET()
+ * @method static self RAGEL()
+ * @method static self RAKU()
+ * @method static self RASCAL()
  * @method static self RESCRIPT()
+ * @method static self REASON()
+ * @method static self REBOL()
+ * @method static self RECORD_JAR()
+ * @method static self RED()
+ * @method static self REDCODE()
+ * @method static self RENPY()
+ * @method static self RENDERSCRIPT()
+ * @method static self RING()
+ * @method static self RIOT()
+ * @method static self ROBOTFRAMEWORK()
+ * @method static self ROFF()
+ * @method static self ROUGE()
+ * @method static self RUBY()
  * @method static self RUST()
+ * @method static self SAS()
+ * @method static self SCSS()
+ * @method static self SMT()
+ * @method static self SQF()
+ * @method static self SQLPL()
+ * @method static self SRECODE_TEMPLATE()
+ * @method static self SVG()
+ * @method static self SWIG()
+ * @method static self SAGE()
+ * @method static self SALTSTACK()
  * @method static self SASS()
  * @method static self SCALA()
- * @method static self SQLPL()
- * @method static self TEX()
+ * @method static self SCAML()
+ * @method static self SCHEME()
+ * @method static self SCILAB()
+ * @method static self SELF()
+ * @method static self SHADERLAB()
+ * @method static self SHELL()
+ * @method static self SHELLSESSION()
+ * @method static self SHEN()
+ * @method static self SIEVE()
+ * @method static self SINGULARITY()
+ * @method static self SLASH()
+ * @method static self SLICE()
+ * @method static self SLIM()
+ * @method static self SMPL()
+ * @method static self SMALI()
+ * @method static self SMALLTALK()
+ * @method static self SMARTY()
+ * @method static self SOLIDITY()
+ * @method static self SOURCEPAWN()
+ * @method static self SQUIRREL()
+ * @method static self STAN()
+ * @method static self STANDARD_ML()
+ * @method static self STARLARK()
+ * @method static self STATA()
+ * @method static self STRINGTEMPLATE()
+ * @method static self STYLUS()
+ * @method static self SUPERCOLLIDER()
+ * @method static self SVELTE()
+ * @method static self SWIFT()
+ * @method static self SYSTEMVERILOG()
+ * @method static self TI_PROGRAM()
+ * @method static self TLA()
  * @method static self TSQL()
+ * @method static self TSX()
+ * @method static self TXL()
+ * @method static self TCL()
+ * @method static self TCSH()
+ * @method static self TEX()
+ * @method static self TERRA()
+ * @method static self TEXTMATE_PROPERTIES()
+ * @method static self THRIFT()
+ * @method static self TURING()
  * @method static self TWIG()
+ * @method static self TYPESCRIPT()
+ * @method static self UNIFIED_PARALLEL_C()
+ * @method static self UNIX_ASSEMBLY()
+ * @method static self UNO()
+ * @method static self UNREALSCRIPT()
+ * @method static self URWEB()
+ * @method static self V()
+ * @method static self VBA()
+ * @method static self VBSCRIPT()
+ * @method static self VCL()
  * @method static self VHDL()
+ * @method static self VALA()
+ * @method static self VALVE_DATA_FORMAT()
+ * @method static self VERILOG()
+ * @method static self VIM_SCRIPT()
+ * @method static self VISUAL_BASIC_NET()
+ * @method static self VOLT()
+ * @method static self VUE()
  * @method static self WEBASSEMBLY()
+ * @method static self WEBIDL()
+ * @method static self WOLLOK()
+ * @method static self X10()
+ * @method static self XC()
+ * @method static self XPROC()
+ * @method static self XQUERY()
+ * @method static self XS()
+ * @method static self XSLT()
+ * @method static self XOJO()
+ * @method static self XONSH()
+ * @method static self XTEND()
+ * @method static self YAML()
+ * @method static self YARA()
+ * @method static self YASNIPPET()
+ * @method static self YACC()
+ * @method static self ZAP()
+ * @method static self ZIL()
+ * @method static self ZEEK()
+ * @method static self ZENSCRIPT()
+ * @method static self ZEPHIR()
+ * @method static self ZIG()
+ * @method static self ZIMPL()
+ * @method static self EC()
+ * @method static self FISH()
+ * @method static self JQ()
+ * @method static self MIRC_SCRIPT()
+ * @method static self MCFUNCTION()
+ * @method static self MUPAD()
+ * @method static self NESC()
+ * @method static self OOC()
+ * @method static self Q()
+ * @method static self SED()
+ * @method static self WDL()
+ * @method static self WISP()
+ * @method static self XBASE()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
 {
     protected static function values(): array
     {
-        return [
-            'C_SHARP' => 'C#',
-            'F_SHARP' => 'F#',
-            'C_PLUSPLUS' => 'C++',
-            'OBJECTIVE_C' => 'Objective-C',
-            'VIM_SCRIPT' => 'Vim script',
-            'VIM_L' => 'VimL',
-            'VISUAL_BASIC' => 'Visual Basic',
-            'NOASSERTION' => 'OTHER',
-        ];
+        return self::languages()
+            ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
+            ->put('NOASSERTION', 'OTHER')
+            ->all();
     }
 
     protected static function labels(): array
     {
-        return [
-            'BLADE' => 'Blade',
-            'GO' => 'Go',
-            'JAVASCRIPT' => 'JavaScript',
-            'MARKDOWN' => 'Markdown',
-            'PHP' => 'PHP',
-            'PYTHON' => 'Python',
-            'RUBY' => 'Ruby',
-            'SHELL' => 'Shell',
-            'TYPESCRIPT' => 'Typescript',
-            'VUE' => 'Vue.js',
-            'DOCKERFILE' => 'Dockerfile',
-            'COFFEESCRIPT' => 'CoffeeScript',
-            'JAVA' => 'Java',
-            'ELIXIR' => 'Elixir',
-            'SMARTY' => 'Smarty',
-            'POWERSHELL' => 'PowerShell',
-            'PERL' => 'Perl',
-            'LUA' => 'Lua',
-            'SWIFT' => 'Swift',
-            'KOTLIN' => 'Kotlin',
-            'XML' => 'XML',
-            'OBJECTIVE_C' => 'Objective-C',
-            'C_SHARP' => 'C#',
-            'F_SHARP' => 'F#',
-            'C_PLUSPLUS' => 'C++',
-            'VIM_SCRIPT' => 'Vim script',
-            'VIM_L' => 'VimL',
-            'VISUAL_BASIC' => 'Visual Basic',
-            'PUPPET' => 'Puppet',
-            'ACTIONSCRIPT' => 'ActionScript',
-            'ARDUINO' => 'Arduino',
-            'ASSEMBLY' => 'Assembly',
-            'CLOJURE' => 'Clojure',
-            'COLDFUSION' => 'ColdFusion',
-            'DART' => 'Dart',
-            'EAGLE' => 'Eagle',
-            'ELM' => 'Elm',
-            'GLSL' => 'GLSL',
-            'GNUPLOT' => 'Gnuplot',
-            'GROOVY' => 'Groovy',
-            'HACK' => 'Hack',
-            'HAML' => 'Haml',
-            'HANDLEBARS' => 'Handlebars',
-            'JULIA' => 'Julia',
-            'LESS' => 'Less',
-            'MAKEFILE' => 'Makefile',
-            'MATHEMATICA' => 'Mathematica',
-            'MUSTACHE' => 'Mustache',
-            'NGINX' => 'Nginx',
-            'OCAML' => 'OCaml',
-            'OZ' => 'Oz',
-            'PLPGSQL' => 'PLpgSQL',
-            'POSTSCRIPT' => 'PostScript',
-            'RESCRIPT' => 'ReScript',
-            'RUST' => 'Rust',
-            'SASS' => 'Sass',
-            'SCALA' => 'Scala',
-            'SQLPL' => 'SQLPL',
-            'TEX' => 'TeX',
-            'TSQL' => 'TSQL',
-            'TWIG' => 'Twig',
-            'VHDL' => 'VHDL',
-            'WEBASSEMBLY' => 'WebAssembly',
-            'NOASSERTION' => 'Other',
-        ];
+        return self::languages()
+            ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
+            ->put('NOASSERTION', 'Other')
+            ->all();
+    }
+
+    private static function languages(): Collection
+    {
+        return collect(json_decode(File::get(resource_path('languages.json')), true));
     }
 
     public function color(): string
     {
-        return Str::slug(match ($this->value) {
-            static::NOASSERTION()->value => 'gray-300',
-            static::SMARTY()->value => 'gray-300',
-            static::XML()->value => 'gray-300',
-            static::HCL()->value => 'gray-300',
-            static::ARDUINO()->value => 'gray-300',
-            static::EAGLE()->value => 'gray-300',
-            static::GLSL()->value => 'gray-300',
-            static::MATHEMATICA()->value => 'gray-300',
-            static::NGINX()->value => 'gray-300',
-            static::PLPGSQL()->value => 'gray-300',
-            static::SQLPL()->value => 'gray-300',
-            static::TSQL()->value => 'gray-300',
-            static::VIM_L()->value => static::VIM_SCRIPT()->value,
-            static::VISUAL_BASIC()->value => 'visual-basic-net',
-            default => $this->value,
-        });
+        $language = self::languages()->firstWhere('name', $this->value);
+
+        return ($language['color'] ?? null)
+            ? Str::of($this->value)->slug()->prepend('lang-')
+            : 'gray-300';
     }
 }
