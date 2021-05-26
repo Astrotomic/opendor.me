@@ -484,6 +484,7 @@ final class Language extends Enum
     {
         return once(
             fn () => collect(json_decode(File::get(resource_path('languages.json')), true))
+                ->push(['color' => null, 'name' => 'Other', 'enum' => 'NOASSERTION'])
         );
     }
 
