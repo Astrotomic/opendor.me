@@ -266,6 +266,7 @@ use Illuminate\Support\Str;
  * @method static self NETLOGO()
  * @method static self NEWLISP()
  * @method static self NEXTFLOW()
+ * @method static self NGINX()
  * @method static self NIM()
  * @method static self NIT()
  * @method static self NIX()
@@ -470,10 +471,12 @@ final class Language extends Enum
     protected static function values(): array
     {
         return once(fn () => self::languages()
-            ->mapWithKeys(fn (array $language): array => [$language['enum'] => match($language['name']) {
-                'Other' => 'OTHER',
-                default => $language['name'],
-            }])
+            ->mapWithKeys(fn (array $language): array => [
+                $language['enum'] => match ($language['name']) {
+                    'Other' => 'OTHER',
+                    default => $language['name'],
+                },
+            ])
             ->all());
     }
 
