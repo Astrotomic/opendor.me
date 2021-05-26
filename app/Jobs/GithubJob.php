@@ -18,7 +18,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 {
     use RateLimited;
 
-    public ?int $tries = 3;
+    public ?int $tries = 12;
     public ?int $maxExceptions = 1;
 
     public function __construct()
