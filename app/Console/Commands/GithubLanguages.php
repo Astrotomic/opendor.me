@@ -22,6 +22,7 @@ class GithubLanguages extends Command
             ->put('VimL', ['color' => null])
             ->put('Arduino', ['color' => null])
             ->put('Eagle', ['color' => null])
+            ->put('Nginx', ['color' => null])
             ->map(fn (array $language, string $name): array => array_merge(
                 $language,
                 [

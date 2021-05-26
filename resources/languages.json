@@ -1305,6 +1305,11 @@
         "enum": "NEXTFLOW"
     },
     {
+        "color": null,
+        "name": "Nginx",
+        "enum": "NGINX"
+    },
+    {
         "color": "#ffc200",
         "name": "Nim",
         "enum": "NIM"

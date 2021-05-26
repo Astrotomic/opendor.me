@@ -266,6 +266,7 @@ use Illuminate\Support\Str;
  * @method static self NETLOGO()
  * @method static self NEWLISP()
  * @method static self NEXTFLOW()
+ * @method static self NGINX()
  * @method static self NIM()
  * @method static self NIT()
  * @method static self NIX()
