@@ -19,12 +19,12 @@
         "filament/filament": "^1.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "mallardduck/blade-boxicons": "^2.0.2",
         "kevinrob/guzzle-cache-middleware": "^3.3",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
         "laravel/socialite": "^5.2",
         "lorisleiva/cron-translator": "^0.2.0",
+        "mallardduck/blade-boxicons": "^2.0.2",
         "mazedlx/laravel-feature-policy": "^1.1",
         "nesbot/carbon": "^2.46",
         "ryangjchandler/orbit": "^0.7.4",
@@ -37,6 +37,7 @@
         "spatie/laravel-schedule-monitor": "^2.2.1",
         "spatie/laravel-sitemap": "^6.0",
         "spatie/laravel-sluggable": "^3.0",
+        "spatie/once": "^3.0",
         "stillat/numeral.php": "^2.0"
     },
     "conflict": {

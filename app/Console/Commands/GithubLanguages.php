@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Enums\Language;
 use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -37,6 +38,7 @@ class GithubLanguages extends Command
                     default => $language['enum'],
                 },
             ]))
+            ->map(fn (array $language): array => Arr::only($language, ['name', 'enum', 'color']))
             ->sortBy('name')
             ->values();
         $this->comment("found {$languages->count()} languages");
@@ -79,6 +81,7 @@ class GithubLanguages extends Command
                 ->reject(fn (array $language): bool => preg_match('/^\d.*/', $language['enum']) === 1)
                 ->map(fn (array $language) => " * @method static self {$language['enum']}()")
                 ->implode(PHP_EOL).PHP_EOL
+            .' * @method static self ARDUINO()'.PHP_EOL
             .' * @method static self NOASSERTION()'.PHP_EOL
             .' */';
 

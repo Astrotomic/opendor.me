@@ -460,29 +460,34 @@ use Illuminate\Support\Str;
  * @method static self WDL()
  * @method static self WISP()
  * @method static self XBASE()
+ * @method static self ARDUINO()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
 {
     protected static function values(): array
     {
-        return self::languages()
+        return once(fn () => self::languages()
             ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
+            ->put('ARDUINO', 'Arduino')
             ->put('NOASSERTION', 'OTHER')
-            ->all();
+            ->all());
     }
 
     protected static function labels(): array
     {
-        return self::languages()
+        return once(fn () => self::languages()
             ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
+            ->put('ARDUINO', 'Arduino')
             ->put('NOASSERTION', 'Other')
-            ->all();
+            ->all());
     }
 
     private static function languages(): Collection
     {
-        return collect(json_decode(File::get(resource_path('languages.json')), true));
+        return once(
+            fn () => collect(json_decode(File::get(resource_path('languages.json')), true))
+        );
     }
 
     public function color(): string
