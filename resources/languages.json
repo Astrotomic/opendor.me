@@ -525,6 +525,11 @@
         "enum": "EQ"
     },
     {
+        "color": null,
+        "name": "Eagle",
+        "enum": "EAGLE"
+    },
+    {
         "color": "#4d6977",
         "name": "Eiffel",
         "enum": "EIFFEL"
