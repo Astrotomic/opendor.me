@@ -471,10 +471,12 @@ final class Language extends Enum
     protected static function values(): array
     {
         return once(fn () => self::languages()
-            ->mapWithKeys(fn (array $language): array => [$language['enum'] => match($language['name']) {
-                'Other' => 'OTHER',
-                default => $language['name'],
-            }])
+            ->mapWithKeys(fn (array $language): array => [
+                $language['enum'] => match ($language['name']) {
+                    'Other' => 'OTHER',
+                    default => $language['name'],
+                },
+            ])
             ->all());
     }
 
