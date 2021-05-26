@@ -120,6 +120,11 @@
         "enum": "ARC"
     },
     {
+        "color": null,
+        "name": "Arduino",
+        "enum": "ARDUINO"
+    },
+    {
         "color": "#a957b0",
         "name": "AspectJ",
         "enum": "ASPECTJ"
@@ -2078,6 +2083,11 @@
         "color": "#199f4b",
         "name": "Vim script",
         "enum": "VIM_SCRIPT"
+    },
+    {
+        "color": null,
+        "name": "VimL",
+        "enum": "VIML"
     },
     {
         "color": "#945db7",

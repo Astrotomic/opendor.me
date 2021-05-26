@@ -29,6 +29,7 @@ use Illuminate\Support\Str;
  * @method static self APOLLO_GUIDANCE_COMPUTER()
  * @method static self APPLESCRIPT()
  * @method static self ARC()
+ * @method static self ARDUINO()
  * @method static self ASPECTJ()
  * @method static self ASSEMBLY()
  * @method static self ASYMPTOTE()
@@ -421,6 +422,7 @@ use Illuminate\Support\Str;
  * @method static self VALVE_DATA_FORMAT()
  * @method static self VERILOG()
  * @method static self VIM_SCRIPT()
+ * @method static self VIML()
  * @method static self VISUAL_BASIC_NET()
  * @method static self VOLT()
  * @method static self VUE()
@@ -460,7 +462,6 @@ use Illuminate\Support\Str;
  * @method static self WDL()
  * @method static self WISP()
  * @method static self XBASE()
- * @method static self ARDUINO()
  * @method static self NOASSERTION()
  */
 final class Language extends Enum
@@ -469,8 +470,6 @@ final class Language extends Enum
     {
         return once(fn () => self::languages()
             ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
-            ->put('ARDUINO', 'Arduino')
-            ->put('NOASSERTION', 'OTHER')
             ->all());
     }
 
@@ -478,8 +477,6 @@ final class Language extends Enum
     {
         return once(fn () => self::languages()
             ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
-            ->put('ARDUINO', 'Arduino')
-            ->put('NOASSERTION', 'Other')
             ->all());
     }
 

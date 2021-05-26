@@ -19,6 +19,8 @@ class GithubLanguages extends Command
         $this->info('retrieve all languages from ozh/github-colors');
         $languages = Http::get('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json')
             ->collect()
+            ->put('VimL', ['color' => null])
+            ->put('Arduino', ['color' => null])
             ->map(fn (array $language, string $name): array => array_merge(
                 $language,
                 [
@@ -78,11 +80,10 @@ class GithubLanguages extends Command
 
         $doctag = '/**'.PHP_EOL
             .$languages
+                ->push(['color' => null, 'name' => 'Other', 'enum' => 'NOASSERTION'])
                 ->reject(fn (array $language): bool => preg_match('/^\d.*/', $language['enum']) === 1)
                 ->map(fn (array $language) => " * @method static self {$language['enum']}()")
                 ->implode(PHP_EOL).PHP_EOL
-            .' * @method static self ARDUINO()'.PHP_EOL
-            .' * @method static self NOASSERTION()'.PHP_EOL
             .' */';
 
         File::put($file, trim($before).PHP_EOL.PHP_EOL.trim($doctag).PHP_EOL.trim($after).PHP_EOL);
