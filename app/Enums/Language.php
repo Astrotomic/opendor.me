@@ -110,6 +110,7 @@ use Illuminate\Support\Str;
  * @method static self ECLIPSE()
  * @method static self EJS()
  * @method static self EQ()
+ * @method static self EAGLE()
  * @method static self EIFFEL()
  * @method static self ELIXIR()
  * @method static self ELM()
@@ -469,7 +470,10 @@ final class Language extends Enum
     protected static function values(): array
     {
         return once(fn () => self::languages()
-            ->mapWithKeys(fn (array $language): array => [$language['enum'] => $language['name']])
+            ->mapWithKeys(fn (array $language): array => [$language['enum'] => match($language['name']) {
+                'Other' => 'OTHER',
+                default => $language['name'],
+            }])
             ->all());
     }
 
