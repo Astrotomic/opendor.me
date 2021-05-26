@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Repositories\GithubSponsorRepository;
 use Closure;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Contracts\Container\Container;
@@ -50,6 +51,8 @@ class AppServiceProvider extends ServiceProvider
                 )
             );
         });
+
+        $this->app->singleton(GithubSponsorRepository::class);
     }
 
     public function boot(): void
