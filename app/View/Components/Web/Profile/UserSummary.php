@@ -10,12 +10,13 @@ use Illuminate\View\Component;
 class UserSummary extends Component
 {
     public Collection $organizations;
+    public Collection $languages;
 
     public function __construct(
-        public User $user,
-        public Collection $languages
+        public User $user
     ) {
         $this->organizations = $this->user->organizations()->has('repositories')->get();
+        $this->languages = $this->user->languages;
     }
 
     public function render(): View

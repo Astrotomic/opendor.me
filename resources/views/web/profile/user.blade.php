@@ -12,7 +12,7 @@
                 </h1>
                 <x-profile.aside :model="$user"/>
                 <ul class="flex flex-wrap space-x-2">
-                    @foreach($languages->unique() as $language)
+                    @foreach($user->languages as $language)
                         <li><x-repository.language :language="$language" class="shadow"/></li>
                     @endforeach
                 </ul>
@@ -24,13 +24,12 @@
                 It can be that this profile is not complete. What you see is only the data we've already indexed.
             </p>
         </div>
-        <x-web.profile.user-summary :user="$user" :languages="$languages"/>
+        <x-web.profile.user-summary :user="$user"/>
     </div>
 
     <section class="px-4 mx-auto mt-8 space-y-8 max-w-3xl sm:mt-12 lg:mt-16 sm:px-6 lg:px-8 lg:max-w-7xl sm:space-y-12 lg:space-y-16">
-        @foreach($contributions as $repositories)
-            @php($owner = $repositories->first()->owner)
-            <div class="space-y-6" x-data="{{ json_encode(['showAll' => false, 'count' => $repositories->count()]) }}">
+        @foreach($contributionOwners as $owner)
+            <div class="space-y-6">
                 <div class="flex items-center space-x-5">
                     <div class="flex-shrink-0">
                         <div class="relative">
@@ -46,31 +45,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    @foreach($repositories->take(6) as $repository)
-                        <x-card.repository :repository="$repository" :user="$user"/>
-                    @endforeach
-                </div>
-
-                @if($repositories->count() > 6)
-                    <button
-                        type="button"
-                        @click="showAll = !showAll"
-                        class="block mx-auto items-center px-2.5 py-1.5 border border-gray-300 shadow text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 shadow"
-                        x-text="(showAll ? 'hide additional repositories' : `show all ${count} repositories`)"
-                    ></button>
-
-                    <div
-                        class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                        x-cloak
-                        x-show="showAll"
-                        :aria-hidden="!showAll"
-                    >
-                        @foreach($repositories->slice(6) as $repository)
-                            <x-card.repository :repository="$repository" :user="$user"/>
-                        @endforeach
-                    </div>
-                @endif
+                <x-repository.paginated-list :contributor="$user" :owner="$owner" />
             </div>
         @endforeach
     </section>

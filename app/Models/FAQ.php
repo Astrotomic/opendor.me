@@ -21,6 +21,8 @@ use Spatie\Sluggable\SlugOptions;
  * @method static \Illuminate\Database\Eloquent\Builder|FAQ ordered(string $direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|FAQ query()
  * @mixin \Illuminate\Database\Eloquent\Builder
+ *
+ * @property bool $is_draft
  */
 class FAQ extends Orbit implements Sortable
 {

@@ -15,6 +15,13 @@ abstract class Model extends IlluminateModel
 
     protected $guarded = [];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->makeHidden(['created_at', 'updated_at']);
+    }
+
     public static function table(): string
     {
         return (new static())->getTable();
