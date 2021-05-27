@@ -158,9 +158,6 @@ window.components.paginatedRepositoryList = function () {
                 })
                 .finally(() => {
                     this.loading = false;
-                    if(this.autoload){
-                        setTimeout(() => this.loadNextPage(), 500);
-                    }
                 });
         },
     };
