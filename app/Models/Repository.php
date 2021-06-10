@@ -58,6 +58,12 @@ class Repository extends Model
         'stargazers_count' => 'int',
     ];
 
+    protected $appends = [
+        'vendor_name',
+        'repository_name',
+        'github_url',
+    ];
+
     public static function fromName(string $name): ?self
     {
         $repository = static::where(DB::raw('LOWER(name)'), Str::lower($name))->first();
@@ -180,5 +186,27 @@ class Repository extends Model
         }
 
         return Http::github();
+    }
+
+    public function toArray()
+    {
+        $attributes = parent::toArray();
+
+        if ($attributes['license'] instanceof License) {
+            $attributes['license'] = [
+                'value' => $attributes['license']->value,
+                'label' => $attributes['license']->label,
+            ];
+        }
+        if ($attributes['language'] instanceof Language) {
+            $attributes['language'] = [
+                'value' => $attributes['language']->value,
+                'label' => $attributes['language']->label,
+                'color' => $attributes['language']->color(),
+            ];
+        }
+        $attributes['stargazers_numeral'] = Str::numeral($attributes['stargazers_count']);
+
+        return $attributes;
     }
 }

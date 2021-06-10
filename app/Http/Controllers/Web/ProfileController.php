@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Enums\Language;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController
@@ -30,28 +27,27 @@ class ProfileController
             Response::HTTP_NOT_FOUND
         );
 
-        $contributions = $user->contributions()->with('owner')->get();
-        $languages = $contributions->pluck('language')->reject(Language::NOASSERTION())->collect()->values();
-        $contributions = $contributions->groupBy('vendor_name')->sortBy(fn (Collection $repositories, string $owner): string => Str::lower($owner));
+        $contributionOwners = $user
+            ->contributions()
+            ->with('owner')
+            ->distinct('owner_type', 'owner_id')
+            ->get()
+            ->pluck('owner')
+            ->sortBy('name');
 
         return view('web.profile.user', [
             'user' => $user,
-            'languages' => $languages,
-            'contributions' => $contributions,
+            'contributionOwners' => $contributionOwners,
         ]);
     }
 
     protected function organization(Organization $organization): View
     {
-        $repositories = $organization->repositories()->with('owner')->get();
         $members = $organization->members->filter(fn (User $user): bool => $user->isRegistered());
-        $languages = $repositories->pluck('language')->reject(Language::NOASSERTION())->unique()->collect()->values();
 
         return view('web.profile.organization', [
             'organization' => $organization,
             'members' => $members,
-            'languages' => $languages,
-            'repositories' => $repositories,
         ]);
     }
 }

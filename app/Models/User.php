@@ -6,6 +6,7 @@ use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Enums\Language;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
+use Astrotomic\CachableAttributes\CachesAttributes;
 use Filament\Models\Concerns\IsFilamentUser;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Authenticatable;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Notifications\RoutesNotifications;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
@@ -43,6 +45,9 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $twitter
  * @property string|null $website
  * @property string[] $emails
+ * @property string|null $remember_token
+ * @property-read Collection $languages
+ * @property-read \App\Enums\Language|null $primary_language
  * @property-read string $avatar_url
  * @property-read string $github_url
  * @property-read string|null $profile_url
@@ -71,18 +76,27 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use RoutesNotifications;
     use Blockable;
     use Searchable;
+    use CachesAttributes;
 
     public $incrementing = false;
-
-    protected $hidden = [
-        'github_access_token',
-        'remember_token',
-    ];
 
     protected $casts = [
         'id' => 'int',
         'email_verified_at' => 'datetime',
         'emails' => 'array',
+    ];
+
+    protected $hidden = [
+        'github_access_token',
+        'remember_token',
+        'email',
+        'email_verified_at',
+        'emails',
+    ];
+
+    protected $appends = [
+        'avatar_url',
+        'profile_url',
     ];
 
     public static function fromGithub(array $data): self
@@ -192,6 +206,29 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
 
         return Str::start($url, 'https://');
+    }
+
+    public function getLanguagesAttribute(): Collection
+    {
+        return once(
+            fn () => $this->contributions()
+            ->distinct('language')
+            ->orderBy('language')
+            ->pluck('language')
+        );
+    }
+
+    public function getPrimaryLanguageAttribute(): ?Language
+    {
+        return once(fn () => Language::tryFrom(
+            $this->contributions()
+                ->withCasts(['language' => 'string'])
+                ->pluck('language')
+                ->countBy(null)
+                ->sortDesc()
+                ->keys()
+                ->first()
+        ));
     }
 
     public function getDisplayNameAttribute(): string

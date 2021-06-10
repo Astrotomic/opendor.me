@@ -30,6 +30,15 @@
         window.ALGOLIA_KEY = '{{ config('scout.algolia.search_key') }}';
     </script>
 
+    <script nonce="{{ csp_nonce() }}">
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('{{ asset('serviceworker.js') }}')
+                .then(function (registration) {
+                    registration.update();
+                });
+        }
+    </script>
+
     @stack('head')
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>

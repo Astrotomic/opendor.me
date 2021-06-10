@@ -1,7 +1,7 @@
 <p class="text-gray-700">
     <span class="font-medium text-gray-900">{{ $user->display_name }}</span> has contributed to <span class="font-medium text-gray-900">{{ $user->contributions_count }}</span> different repositories.
     <br/>
-    These repositories have {!! $languages->unique()->map(fn(\App\Enums\Language $l) => '<span class="font-medium text-gray-900">'.$l->label.'</span>')->join(', ', ' and ') !!} as their primary {{ \Illuminate\Support\Str::plural('language', $languages->unique()->count()) }} - most contributions were made to repositories using <span class="font-medium text-gray-900">{{ $languages->groupBy(fn(\App\Enums\Language $l) => $l->label)->map(fn(\Illuminate\Support\Collection $repos) => $repos->count())->sortDesc()->keys()->first() }}</span> as primary language.
+    These repositories have {!! $languages->map(fn(\App\Enums\Language $l) => '<span class="font-medium text-gray-900">'.$l->label.'</span>')->join(', ', ' and ') !!} as their primary {{ \Illuminate\Support\Str::plural('language', $languages->count()) }} - most contributions were made to repositories using <span class="font-medium text-gray-900">{{ $user->primary_language }}</span> as primary language.
     @if($user->repositories()->exists())
         <br/>
         They publish open-source repositories using their own <span class="font-medium text-gray-900">{{ $user->name }}</span> nickname.

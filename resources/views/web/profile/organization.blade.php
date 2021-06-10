@@ -13,7 +13,7 @@
                 </h1>
                 <x-profile.aside :model="$organization"/>
                 <ul class="flex flex-wrap space-x-2">
-                    @foreach($languages as $language)
+                    @foreach($organization->languages as $language)
                         <li><x-repository.language :language="$language" class="shadow"/></li>
                     @endforeach
                 </ul>
@@ -34,16 +34,10 @@
     </section>
     @endif
 
-    @if($repositories->isNotEmpty())
     <section class="px-4 mx-auto mt-8 max-w-3xl sm:mt-12 lg:mt-16 sm:px-6 lg:px-8 lg:max-w-7xl">
         <h2 class="flex items-center mb-4 text-2xl font-bold text-gray-900">
             Repositories
         </h2>
-        <div class="grid grid-cols-1 col-span-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            @foreach($repositories as $repository)
-                <x-card.repository :repository="$repository"/>
-            @endforeach
-        </div>
+        <x-repository.paginated-list :owner="$organization" />
     </section>
-    @endif
 </x-layout.web>
