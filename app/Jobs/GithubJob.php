@@ -18,7 +18,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 {
     use RateLimited;
 
-    public ?int $tries = 3;
+    public ?int $tries = 12;
     public ?int $maxExceptions = 1;
 
     public function __construct()
@@ -29,6 +29,8 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
     public function handle(): ?bool
     {
+        User::disableSearchSyncing();
+
         if ($this->batch() !== null && $this->batch()->cancelled()) {
             return null;
         }

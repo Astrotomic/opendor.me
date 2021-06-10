@@ -15,6 +15,7 @@ use Spatie\Sluggable\SlugOptions;
  * @property int $priority
  * @property string $question
  * @property string|null $content
+ * @property bool $is_draft
  *
  * @method static \Illuminate\Database\Eloquent\Builder|FAQ newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FAQ newQuery()

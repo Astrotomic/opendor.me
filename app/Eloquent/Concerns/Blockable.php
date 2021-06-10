@@ -38,6 +38,8 @@ trait Blockable
         if (! isset($this->casts['block_reason'])) {
             $this->casts['block_reason'] = BlockReason::class.':nullable';
         }
+
+        $this->makeHidden(['blocked_at', 'block_reason']);
     }
 
     public function isBlocked(): bool

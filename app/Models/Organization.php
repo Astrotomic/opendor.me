@@ -7,6 +7,7 @@ use App\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Spatie\Sitemap\Contracts\Sitemapable;
@@ -49,6 +50,11 @@ class Organization extends Model implements Sitemapable
     protected $casts = [
         'id' => 'int',
         'is_verified' => 'bool',
+    ];
+
+    protected $appends = [
+        'avatar_url',
+        'profile_url',
     ];
 
     public static function fromGithub(array $data): self
@@ -105,6 +111,16 @@ class Organization extends Model implements Sitemapable
     public function getDisplayNameAttribute(): string
     {
         return $this->full_name ?? Str::title($this->name);
+    }
+
+    public function getLanguagesAttribute(): Collection
+    {
+        return once(
+            fn () => $this->repositories()
+                ->distinct('language')
+                ->orderBy('language')
+                ->pluck('language')
+        );
     }
 
     public function github(): PendingRequest

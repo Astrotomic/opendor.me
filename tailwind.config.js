@@ -8,6 +8,7 @@ module.exports = {
         options: {
             safelist: [
                 /^bg-lang-/,
+                /^bg-gray-300$/,
             ],
         },
     },
