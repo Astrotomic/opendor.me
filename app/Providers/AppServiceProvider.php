@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -61,6 +62,8 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
             URL::forceRootUrl(config('app.url'));
         }
+
+        Paginator::currentPathResolver(fn(): string => url(request()->path()));
 
         PendingRequest::macro('when', function ($condition, Closure $callback): PendingRequest {
             /** @var \Illuminate\Http\Client\PendingRequest $this */
