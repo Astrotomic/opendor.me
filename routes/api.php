@@ -25,7 +25,7 @@ Route::get('repository', static function (Request $request) {
             $owner['type'],
             fn (Builder $q) => $q->whereKey($owner['id'])
         ))
-        ->orderBy('name')
-        ->cursorPaginate(6)
+        ->orderByDesc('stargazers_count')
+        ->paginate(6)
         ->withQueryString();
 })->name('repository');
