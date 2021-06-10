@@ -32,7 +32,8 @@ class ProfileController
             ->with('owner')
             ->distinct('owner_type', 'owner_id')
             ->get()
-            ->pluck('owner');
+            ->pluck('owner')
+            ->sortBy('name');
 
         return view('web.profile.user', [
             'user' => $user,
