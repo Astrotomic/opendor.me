@@ -231,6 +231,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         ));
     }
 
+    public function getVendorsAttribute(): Collection
+    {
+        return once(fn () => $this
+            ->contributions()
+            ->with('owner')
+            ->distinct('owner_type', 'owner_id')
+            ->get()
+            ->pluck('owner')
+            ->sortBy(fn (User | Organization $owner): string => Str::lower($owner->name))
+            ->unique('id'));
+    }
+
     public function getDisplayNameAttribute(): string
     {
         return $this->full_name ?? Str::title($this->name);

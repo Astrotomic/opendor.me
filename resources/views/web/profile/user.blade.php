@@ -28,7 +28,7 @@
     </div>
 
     <section class="px-4 mx-auto mt-8 space-y-8 max-w-3xl sm:mt-12 lg:mt-16 sm:px-6 lg:px-8 lg:max-w-7xl sm:space-y-12 lg:space-y-16">
-        @foreach($contributionOwners as $owner)
+        @foreach($user->vendors as $owner)
             <div class="space-y-6">
                 <div class="flex items-center space-x-5">
                     <div class="flex-shrink-0">
