@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\Request;
@@ -32,7 +33,7 @@ abstract class TestCase extends BaseTestCase
         ]);
     }
 
-    protected function fixture(string $path): array
+    public function fixture(string $path): array
     {
         return json_decode(File::get(
             Str::of($path)
@@ -42,7 +43,12 @@ abstract class TestCase extends BaseTestCase
         ), true);
     }
 
-    protected function requiresPostgreSQL(): void
+    public function user(string $name = 'Gummibeer'): User
+    {
+        return User::fromGithub($this->fixture('users/'.$name));
+    }
+
+    public function requiresPostgreSQL(): void
     {
         if (DB::getDriverName() !== 'pgsql') {
             $this->markTestSkipped('This test requires a PostgreSQL database connection');

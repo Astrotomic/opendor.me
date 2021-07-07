@@ -16,7 +16,7 @@ trait UserAssertions
      */
     public static function assertUser($actual): void
     {
-        PHPUnit::assertInstanceOf(User::class, $actual);
+        expect($actual)->toBeInstanceOf(User::class);
 
         PHPUnit::assertIsInt($actual->id);
         PHPUnit::assertIsString($actual->name);

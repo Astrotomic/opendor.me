@@ -1,7 +1,5 @@
 <?php
 
-namespace Tests\Feature\Models;
-
 use App\Enums\BlockReason;
 use App\Jobs\LoadOrganizationRepositories;
 use App\Jobs\LoadUserRepositories;
@@ -13,65 +11,53 @@ use Spatie\Enum\Phpunit\EnumAssertions;
 use Tests\Feature\TestCase;
 use Tests\Utils\UserAssertions;
 
-final class UserTest extends TestCase
-{
-    public function test_it_creates_user_from_github(): void
-    {
-        $user = User::fromGithub($this->fixture('users/Gummibeer'));
+it('creates user from Github', function () {
+    expect($this->user('Gummibeer'))
+        ->toBeUser()
+        ->name->toBe('Gummibeer')
+        ->email->toBe('6187884+Gummibeer@users.noreply.github.com')
+        ->isRegistered()->toBeFalse();
+});
 
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-        $this->assertSame('6187884+Gummibeer@users.noreply.github.com', $user->email);
-        $this->assertFalse($user->isRegistered());
-    }
+it('finds user from Github', function () {
+    $user1 = $this->user('Gummibeer');
+    $user2 = $this->user('Gummibeer');
 
-    public function test_it_finds_user_from_github(): void
-    {
-        $user1 = User::fromGithub($this->fixture('users/Gummibeer'));
-        $user2 = User::fromGithub($this->fixture('users/Gummibeer'));
+    expect($user1)->toBeModel($user2)
+        ->and([$user1, $user2])
+        ->sequence(fn($user) => $user->name->toBe('Gummibeer'))
+        ->each->toBeUser();
+});
 
-        UserAssertions::assertUser($user1);
-        UserAssertions::assertUser($user2);
-        ModelAssertions::assertSame($user1, $user2);
+it('finds blocked user from Github', function () {
+    $user = $this->user('Gummibeer');
+    $user->update([
+        'block_reason' => BlockReason::SPAM(),
+        'blocked_at' => now(),
+    ]);
 
-        $this->assertSame('Gummibeer', $user1->name);
-        $this->assertSame('Gummibeer', $user2->name);
-    }
+    expect([$user, $this->user('Gummibeer')])
+        ->each(fn($user) => $user
+            ->toBeUser()
+            ->name->toBe('Gummibeer')
+            ->block_reason->toBe(BlockReason::SPAM())
+        );
+});
 
-    public function test_it_finds_blocked_user_from_github(): void
-    {
-        $user1 = User::fromGithub($this->fixture('users/Gummibeer'));
-        $user1->update([
-            'block_reason' => BlockReason::SPAM(),
-            'blocked_at' => now(),
-        ]);
+it('finds users by email', function () {
+    $this->requiresPostgreSQL();
 
-        $user2 = User::fromGithub($this->fixture('users/Gummibeer'));
+    User::fromGithub($this->fixture('users/Gummibeer'))
+        ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
 
-        UserAssertions::assertUser($user1);
-        UserAssertions::assertUser($user2);
-        ModelAssertions::assertSame($user1, $user2);
+    $user = User::byEmail('dev@gummibeer.de')->first();
+    UserAssertions::assertUser($user);
+    $this->assertSame('Gummibeer', $user->name);
+});
 
-        $this->assertSame('Gummibeer', $user1->name);
-        $this->assertSame('Gummibeer', $user2->name);
-        EnumAssertions::assertSameEnum(BlockReason::SPAM(), $user1->block_reason);
-        EnumAssertions::assertSameEnum(BlockReason::SPAM(), $user2->block_reason);
-    }
-
-    public function test_it_finds_user_by_email(): void
-    {
-        $this->requiresPostgreSQL();
-
-        User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
-
-        $user = User::byEmail('dev@gummibeer.de')->first();
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-    }
-
-    public function test_it_finds_user_by_github_email(): void
-    {
+it(
+    'test_it_finds_user_by_github_email',
+    function () {
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
@@ -81,9 +67,11 @@ final class UserTest extends TestCase
         UserAssertions::assertUser($user);
         $this->assertSame('Gummibeer', $user->name);
     }
+);
 
-    public function test_it_finds_user_by_name_only_github_email(): void
-    {
+it(
+    'test_it_finds_user_by_name_only_github_email',
+    function () {
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
@@ -93,9 +81,11 @@ final class UserTest extends TestCase
         UserAssertions::assertUser($user);
         $this->assertSame('Gummibeer', $user->name);
     }
+);
 
-    public function test_it_finds_user_by_id_only_github_email(): void
-    {
+it(
+    'test_it_finds_user_by_id_only_github_email',
+    function () {
         $this->requiresPostgreSQL();
 
         User::fromGithub($this->fixture('users/Gummibeer'))
@@ -105,9 +95,11 @@ final class UserTest extends TestCase
         UserAssertions::assertUser($user);
         $this->assertSame('Gummibeer', $user->name);
     }
+);
 
-    public function test_it_returns_sorted_vendors(): void
-    {
+it(
+    'test_it_returns_sorted_vendors',
+    function () {
         $user = User::fromGithub($this->fixture('users/Gummibeer'));
         UserAssertions::assertUser($user);
         LoadUserRepositories::dispatchSync(User::fromGithub($this->fixture('users/barryvdh')));
@@ -136,4 +128,4 @@ final class UserTest extends TestCase
         $this->assertSame('barryvdh', $vendorNames[2]);
         $this->assertSame('EventSaucePHP', $vendorNames[3]);
     }
-}
+);
