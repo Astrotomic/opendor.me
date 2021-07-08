@@ -25,8 +25,10 @@ it('finds user from Github', function () {
 
     expect($user1)->toBeModel($user2)
         ->and([$user1, $user2])
-        ->sequence(fn($user) => $user->name->toBe('Gummibeer'))
-        ->each->toBeUser();
+        ->each(fn($user) => $user
+            ->toBeUser()
+            ->name->toBe('Gummibeer')
+        );
 });
 
 it('finds blocked user from Github', function () {
