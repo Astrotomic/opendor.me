@@ -3,6 +3,10 @@
 namespace Tests\Feature\Models;
 
 use App\Enums\BlockReason;
+use App\Jobs\LoadOrganizationRepositories;
+use App\Jobs\LoadUserRepositories;
+use App\Models\Organization;
+use App\Models\Repository;
 use App\Models\User;
 use Astrotomic\PhpunitAssertions\Laravel\ModelAssertions;
 use Spatie\Enum\Phpunit\EnumAssertions;
@@ -100,5 +104,36 @@ final class UserTest extends TestCase
         $user = User::byEmail('6187884@users.noreply.github.com')->first();
         UserAssertions::assertUser($user);
         $this->assertSame('Gummibeer', $user->name);
+    }
+
+    public function test_it_returns_sorted_vendors(): void
+    {
+        $user = User::fromGithub($this->fixture('users/Gummibeer'));
+        UserAssertions::assertUser($user);
+        LoadUserRepositories::dispatchSync(User::fromGithub($this->fixture('users/barryvdh')));
+        LoadOrganizationRepositories::dispatchSync(Organization::fromGithub($this->fixture('orgs/algolia')));
+        LoadOrganizationRepositories::dispatchSync(Organization::fromGithub($this->fixture('orgs/Astrotomic')));
+        LoadOrganizationRepositories::dispatchSync(Organization::fromGithub($this->fixture('orgs/EventSaucePHP')));
+
+        $user->contributions()->sync(
+            Repository::all()
+        );
+
+        $vendorNames = $user->vendors->pluck('name');
+
+        $this->assertEquals(
+            [
+                'algolia',
+                'Astrotomic',
+                'barryvdh',
+                'EventSaucePHP',
+            ],
+            $vendorNames->all()
+        );
+
+        $this->assertSame('algolia', $vendorNames[0]);
+        $this->assertSame('Astrotomic', $vendorNames[1]);
+        $this->assertSame('barryvdh', $vendorNames[2]);
+        $this->assertSame('EventSaucePHP', $vendorNames[3]);
     }
 }

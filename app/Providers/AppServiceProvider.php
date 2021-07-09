@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
             URL::forceRootUrl(config('app.url'));
         }
 
-        Paginator::currentPathResolver(fn(): string => url(request()->path()));
+        Paginator::currentPathResolver(fn (): string => url(request()->path()));
 
         PendingRequest::macro('when', function ($condition, Closure $callback): PendingRequest {
             /** @var \Illuminate\Http\Client\PendingRequest $this */

@@ -27,17 +27,8 @@ class ProfileController
             Response::HTTP_NOT_FOUND
         );
 
-        $contributionOwners = $user
-            ->contributions()
-            ->with('owner')
-            ->distinct('owner_type', 'owner_id')
-            ->get()
-            ->pluck('owner')
-            ->sortBy('name');
-
         return view('web.profile.user', [
             'user' => $user,
-            'contributionOwners' => $contributionOwners,
         ]);
     }
 
