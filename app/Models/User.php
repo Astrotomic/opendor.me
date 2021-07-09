@@ -216,23 +216,27 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return once(
             fn () => $this->contributions()
-            ->distinct('language')
-            ->orderBy('language')
-            ->pluck('language')
+                ->distinct('language')
+                ->orderBy('language')
+                ->pluck('language')
         );
     }
 
     public function getPrimaryLanguageAttribute(): ?Language
     {
-        return once(fn () => Language::tryFrom(
-            $this->contributions()
+        $language = once(
+            fn () => $this->contributions()
                 ->withCasts(['language' => 'string'])
                 ->pluck('language')
                 ->countBy(null)
                 ->sortDesc()
                 ->keys()
                 ->first()
-        ));
+        );
+
+        return $language
+            ? Language::tryFrom($language)
+            : null;
     }
 
     public function getVendorsAttribute(): Collection
