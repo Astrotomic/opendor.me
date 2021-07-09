@@ -301,7 +301,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function addReferrer(string $referrer): self
     {
         $this->referrer = collect($this->referrer)
-            ->push($referrer)
+            ->push(Str::slug($referrer))
             ->unique()
             ->values()
             ->all();
