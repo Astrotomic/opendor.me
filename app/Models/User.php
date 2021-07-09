@@ -46,7 +46,8 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $website
  * @property string[] $emails
  * @property string|null $remember_token
- * @property-read Collection $languages
+ * @property string[]|null $referrer
+ * @property-read \Illuminate\Support\Collection $languages
  * @property-read \App\Enums\Language|null $primary_language
  * @property-read string $avatar_url
  * @property-read string $github_url
@@ -54,6 +55,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
  * @property-read string $display_name
+ * @property-read \Illuminate\Support\Collection $vendors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
@@ -84,6 +86,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'id' => 'int',
         'email_verified_at' => 'datetime',
         'emails' => 'array',
+        'referrer' => 'array',
     ];
 
     protected $hidden = [
@@ -92,6 +95,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'email',
         'email_verified_at',
         'emails',
+        'referrer',
     ];
 
     protected $appends = [
@@ -292,6 +296,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function shouldBeSearchable(): bool
     {
         return $this->isRegistered() && $this->contributions()->exists();
+    }
+
+    public function addReferrer(string $referrer): self
+    {
+        $this->referrer = collect($this->referrer)
+            ->push($referrer)
+            ->unique()
+            ->values()
+            ->all();
+
+        return $this;
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
