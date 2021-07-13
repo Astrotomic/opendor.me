@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      args:
+        user: opendor-dev
+        uid: 1000
+      context: ./
+      dockerfile: .docker/php/Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+      - redis
+    networks:
+      - opendor
+
+  db:
+    image: postgres:13
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - psql:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    networks:
+      - opendor
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: .docker/nginx/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - app
+    networks:
+      - opendor
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - "redis:/data"
+    networks:
+      - opendor
+
+volumes:
+  psql:
+  redis:
+
+networks:
+  opendor:
+    driver: bridge
