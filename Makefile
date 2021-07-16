@@ -3,16 +3,18 @@ DC = docker exec -it opendorme_app /bin/bash -c
 connect-app: ## Connect to app container
 	docker exec -it opendorme_app /bin/bash
 
-build: ## Build local environment
+build: ## Build container images
 	mkdir -p ./storage/nginx
 	touch ./storage/nginx/error.log
 	touch ./storage/nginx/access.log
 	docker-compose build
 
-start: ## Start local environment silently
+setup: build start composer-install key-generate migrate npm-install npm-dev  ## Setup project for development
+
+start: ## Start application silently
 	docker-compose up -d
 
-stop: ## Stop local environment
+stop: ## Stop application
 	docker-compose down
 
 restart: stop start ## Restart the application
@@ -22,6 +24,12 @@ composer-install: ## Install composer dependencies
 
 composer-update: ## Update composer dependencies
 	$(DC) 'composer update $(filter-out $@,$(MAKECMDGOALS))'
+
+copy-env: ## Copy .env.example as .env
+	cp .env.example .env
+
+key-generate: ## Generate key for laravel
+	$(DC) 'php artisan key:generate'
 
 migrate: ## Migrate database
 	$(DC) 'php artisan migrate'
@@ -39,10 +47,10 @@ npm-install: ## Install npm
 	$(DC) 'npm install'
 
 npm-dev: ## Run development build
-	$(DC) 'npm run dev'
+	$(DC) 'npm run development'
 
 npm-prod: ## Run production build
-	$(DC) 'npm run prod'
+	$(DC) 'npm run production'
 
 cleanup-docker: ## Remove old docker images
 	docker rmi $$(docker images --filter "dangling=true" -q --no-trunc)
