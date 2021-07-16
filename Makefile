@@ -1,7 +1,7 @@
-DC = docker exec -it opendorme_app_1 /bin/bash -c
+DC = docker exec -it opendorme_app /bin/bash -c
 
 connect-app: ## Connect to app container
-	docker exec -it opendorme_app_1 /bin/bash
+	docker exec -it opendorme_app /bin/bash
 
 build: ## Build local environment
 	mkdir -p ./storage/nginx

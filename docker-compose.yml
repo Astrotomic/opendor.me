@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   app:
+    container_name: opendorme_app
     build:
       args:
         user: opendor-dev
@@ -19,6 +20,7 @@ services:
       - opendor
 
   db:
+    container_name: opendorme_db
     image: postgres:13
     restart: unless-stopped
     environment:
@@ -33,6 +35,7 @@ services:
       - opendor
 
   nginx:
+    container_name: opendorme_nginx
     build:
       context: ./
       dockerfile: .docker/nginx/Dockerfile
@@ -47,6 +50,7 @@ services:
       - opendor
 
   redis:
+    container_name: opendorme_redis
     image: "redis:alpine"
     ports:
       - "${REDIS_PORT:-6379}:6379"
