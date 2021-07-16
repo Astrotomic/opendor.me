@@ -1,6 +1,6 @@
 # opendor.me
 
-This is the repository for the [opendor.me](http://opendor.me). The code is entirely open source and licensed under [CCLC Licensce](LICENSE.md). Read the installation guide below to get started with setting up the app on your machine.
+This is the repository for the [opendor.me](http://opendor.me). The code is entirely open source and licensed under [CC BY-NC-SA 3.0 Licensce](LICENSE.md). Read the installation guide below to get started with setting up the app on your machine.
 
 ## Requirements
 
