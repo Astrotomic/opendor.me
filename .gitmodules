@@ -1,0 +1,3 @@
+[submodule "laradock-opendor"]
+	path = laradock-opendor
+	url = https://github.com/Laradock/laradock.git

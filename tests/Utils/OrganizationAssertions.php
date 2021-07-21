@@ -2,51 +2,36 @@
 
 namespace Tests\Utils;
 
-use App\Models\User;
-use Astrotomic\PhpunitAssertions\EmailAssertions;
+use App\Models\Organization;
 use Astrotomic\PhpunitAssertions\NullableTypeAssertions;
 use Astrotomic\PhpunitAssertions\UrlAssertions;
-use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert as PHPUnit;
 
-trait UserAssertions
+trait OrganizationAssertions
 {
     /**
-     * @param \App\Models\User|mixed $actual
+     * @param \App\Models\Organization|mixed $actual
      */
-    public static function assertUser($actual): void
+    public static function assertOrganization($actual): void
     {
-        PHPUnit::assertInstanceOf(User::class, $actual);
+        PHPUnit::assertInstanceOf(Organization::class, $actual);
         PHPUnit::assertIsInt($actual->id);
         PHPUnit::assertIsString($actual->name);
+        PHPUnit::assertIsString($actual->display_name);
 
-        self::assertEmail($actual);
         self::assertGithubUrl($actual);
         self::assertAvatarUrl($actual);
         self::assertTwitter($actual);
-        self::assertEmails($actual);
 
-        NullableTypeAssertions::assertIsNullableString($actual->github_access_token);
         NullableTypeAssertions::assertIsNullableString($actual->full_name);
         NullableTypeAssertions::assertIsNullableString($actual->description);
         NullableTypeAssertions::assertIsNullableString($actual->location);
+        NullableTypeAssertions::assertIsNullableBool($actual->is_verified);
 
         BlockableAssertions::assertBlockable($actual);
     }
 
-    public static function assertEmail(User $actual): void
-    {
-        EmailAssertions::assertValidLoose($actual->email);
-        PHPUnit::assertIsBool($actual->hasVerifiedEmail());
-        if (Str::endsWith($actual->email, '@users.noreply.github.com')) {
-            EmailAssertions::assertLocalPart($actual->id.'+'.$actual->name, $actual->email);
-            PHPUnit::assertFalse($actual->hasVerifiedEmail());
-        } else {
-            PHPUnit::assertTrue($actual->hasVerifiedEmail());
-        }
-    }
-
-    public static function assertGithubUrl(User $actual): void
+    public static function assertGithubUrl(Organization $actual): void
     {
         UrlAssertions::assertValidLoose($actual->github_url);
         UrlAssertions::assertScheme('https', $actual->github_url);
@@ -54,7 +39,7 @@ trait UserAssertions
         UrlAssertions::assertPath('/'.$actual->name, $actual->github_url);
     }
 
-    public static function assertAvatarUrl(User $actual): void
+    public static function assertAvatarUrl(Organization $actual): void
     {
         UrlAssertions::assertValidLoose($actual->avatar_url);
         UrlAssertions::assertScheme('https', $actual->avatar_url);
@@ -62,7 +47,7 @@ trait UserAssertions
         UrlAssertions::assertPath('/u/'.$actual->id, $actual->avatar_url);
     }
 
-    public static function assertTwitter(User $actual): void
+    public static function assertTwitter(Organization $actual): void
     {
         NullableTypeAssertions::assertIsNullableString($actual->twitter);
 
@@ -73,14 +58,6 @@ trait UserAssertions
             UrlAssertions::assertPath('/'.$actual->twitter, $actual->twitter_url);
         } else {
             PHPUnit::assertNull($actual->twitter_url);
-        }
-    }
-
-    public static function assertEmails(User $actual): void
-    {
-        NullableTypeAssertions::assertIsNullableArray($actual->emails);
-        foreach ($actual->emails ?? [] as $email) {
-            EmailAssertions::assertValidLoose($email);
         }
     }
 }
