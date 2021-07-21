@@ -14,8 +14,8 @@ The following tools are required in order to start the installation.
 
 1. Clone this repository with `git clone https://github.com/Astrotomic/opendor.me.git`
 2. Run `cp .env.example .env` to copy .env file
-3. Run `make build-env` to build local environment
-4. Run `make start-env` to start the application
+3. Run `make setup` to setup local environment
+4. Run `make start` to start the application
 
 ### Github Setup
 
@@ -36,4 +36,4 @@ Command | Description
 `make migrate` | Run the migration
 `make npm-dev` | Build the dependecies
 `make npm-install` | Install npm dependecies
-`make stop-env` | Stop the running conatiners
+`make stop` | Stop the running conatiners
