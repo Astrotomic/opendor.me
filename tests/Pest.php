@@ -13,6 +13,7 @@
 
 use Astrotomic\PhpunitAssertions\Laravel\ModelAssertions;
 use Illuminate\Support\Facades\DB;
+use Tests\Utils\OrganizationAssertions;
 use Tests\Utils\UserAssertions;
 
 uses(Tests\Feature\TestCase::class)->in('Feature');
@@ -30,6 +31,11 @@ uses(Tests\Feature\TestCase::class)->in('Feature');
 
 expect()->extend('toBeUser', function() {
     UserAssertions::assertUser($this->value);
+    return $this;
+});
+
+expect()->extend('toBeOrganization', function() {
+    OrganizationAssertions::assertOrganization($this->value);
     return $this;
 });
 
