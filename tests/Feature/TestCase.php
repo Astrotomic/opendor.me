@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Organization;
 use App\Models\User;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -48,10 +49,17 @@ abstract class TestCase extends BaseTestCase
         return User::fromGithub($this->fixture('users/'.$name));
     }
 
-    public function requiresPostgreSQL(): void
+    public function organization(string $name = 'Astrotomic'): Organization
+    {
+        return Organization::fromGithub($this->fixture('orgs/'.$name));
+    }
+
+    public function requiresPostgreSQL()
     {
         if (DB::getDriverName() !== 'pgsql') {
             $this->markTestSkipped('This test requires a PostgreSQL database connection');
         }
+
+        return $this;
     }
 }
