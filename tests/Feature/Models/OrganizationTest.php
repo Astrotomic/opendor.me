@@ -2,6 +2,10 @@
 
 use App\Enums\BlockReason;
 
+it('works', function() {
+    expect(true)->toBeTrue();
+});
+
 it('creates organization from Github')
     ->expect(fn() => $this->organization('Astrotomic'))
     ->toBeOrganization()
