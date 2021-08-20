@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Backpack\CrudPanel;
 use App\Models\User;
 use App\Repositories\GithubSponsorRepository;
 use Closure;
@@ -54,6 +55,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(GithubSponsorRepository::class);
+
+        $this->app->singleton('crud', CrudPanel::class);
     }
 
     public function boot(): void

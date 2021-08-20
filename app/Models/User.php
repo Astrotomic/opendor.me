@@ -7,8 +7,7 @@ use App\Eloquent\Model;
 use App\Enums\Language;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Astrotomic\CachableAttributes\CachesAttributes;
-use Filament\Models\Concerns\IsFilamentUser;
-use Filament\Models\Contracts\FilamentUser;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -69,11 +68,11 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, MustVerifyEmailContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
 {
+    use CrudTrait;
     use Authenticatable;
     use Authorizable;
-    use IsFilamentUser;
     use MustVerifyEmail;
     use RoutesNotifications;
     use Blockable;
@@ -180,9 +179,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return in_array($this->id, config('auth.superadmin_ids'), true);
     }
 
-    public function canAccessFilament(): bool
+    public function getIsRegisteredAttribute(): bool
     {
-        return $this->getIsSuperadminAttribute();
+        return $this->isRegistered();
     }
 
     public function getProfileUrlAttribute(): ?string

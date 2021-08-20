@@ -44,6 +44,7 @@ use Spatie\Sitemap\Tags\Url;
  */
 class Organization extends Model implements Sitemapable
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use Blockable;
 
     public $incrementing = false;
