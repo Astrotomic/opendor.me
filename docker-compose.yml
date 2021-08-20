@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: opendorme_app
+    build:
+      args:
+        user: opendor-dev
+        uid: 1000
+      context: ./
+      dockerfile: .docker/php/Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - db
+      - redis
+    networks:
+      - opendor
+
+  db:
+    container_name: opendorme_db
+    image: postgres:13
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-opendor}
+      POSTGRES_USER: ${DB_USERNAME:-opendor-dev}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-12345}
+      PGPORT: ${DB_PORT:-5432}
+    volumes:
+      - psql:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT:-5432}:${DB_PORT:-5432}"
+    networks:
+      - opendor
+
+  nginx:
+    container_name: opendorme_nginx
+    build:
+      context: ./
+      dockerfile: .docker/nginx/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - app
+    networks:
+      - opendor
+
+  redis:
+    container_name: opendorme_redis
+    image: "redis:alpine"
+    command: "--port ${REDIS_PORT:-6379}"
+    ports:
+      - "${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
+    volumes:
+      - "redis:/data"
+    networks:
+      - opendor
+
+volumes:
+  psql:
+  redis:
+
+networks:
+  opendor:
+    driver: bridge
