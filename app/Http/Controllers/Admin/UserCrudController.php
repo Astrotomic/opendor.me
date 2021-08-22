@@ -8,6 +8,9 @@ use App\Models\Organization;
 use App\Models\Repository;
 use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -17,13 +20,13 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class UserCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use ListOperation;
+    use ShowOperation;
+    use UpdateOperation;
 
     public function setup(): void
     {
-        $this->crud->setModel(\App\Models\User::class);
+        $this->crud->setModel(User::class);
         $this->crud->setRoute(config('backpack.base.route_prefix').'/user');
         $this->crud->setEntityNameStrings('user', 'users');
         $this->crud->addClause('withBlocked');

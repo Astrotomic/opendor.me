@@ -2,10 +2,11 @@
 
 namespace App\Backpack;
 
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanel as BackpackCrudPanel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
-class CrudPanel extends \Backpack\CRUD\app\Library\CrudPanel\CrudPanel
+class CrudPanel extends BackpackCrudPanel
 {
     public function getEntry($id)
     {

@@ -7,6 +7,7 @@ use App\Eloquent\Model;
 use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use BadMethodCallException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -47,7 +48,7 @@ use Throwable;
  */
 class Repository extends Model
 {
-    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use CrudTrait;
     use Blockable;
 
     public $incrementing = false;
