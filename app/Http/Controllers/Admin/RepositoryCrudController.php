@@ -7,7 +7,6 @@ use App\Enums\Language;
 use App\Enums\License;
 use App\Http\Requests\RepositoryRequest;
 use App\Models\Organization;
-use App\Models\Repository;
 use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Illuminate\Database\Eloquent\Builder;
@@ -100,23 +99,23 @@ class RepositoryCrudController extends CrudController
             [
                 'type'  => 'dropdown',
                 'name'  => 'block_reason',
-                'label' => 'Blocked'
+                'label' => 'Blocked',
             ],
             BlockReason::toArray(),
-            fn($value) => $this->crud->addClause('where', 'block_reason', $value)
+            fn ($value) => $this->crud->addClause('where', 'block_reason', $value)
         );
 
         $this->crud->addFilter(
             [
                 'type'  => 'select2',
                 'name'  => 'user',
-                'label' => 'User'
+                'label' => 'User',
             ],
-            fn() => User::query()->pluck('name', 'id')->toArray(),
-            fn($value) => $this->crud->query->whereHasMorph(
+            fn () => User::query()->pluck('name', 'id')->toArray(),
+            fn ($value) => $this->crud->query->whereHasMorph(
                 'owner',
                 User::class,
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
 
@@ -124,13 +123,13 @@ class RepositoryCrudController extends CrudController
             [
                 'type'  => 'select2',
                 'name'  => 'organization',
-                'label' => 'Organization'
+                'label' => 'Organization',
             ],
-            fn() => Organization::query()->pluck('name', 'id')->toArray(),
-            fn($value) => $this->crud->query->whereHasMorph(
+            fn () => Organization::query()->pluck('name', 'id')->toArray(),
+            fn ($value) => $this->crud->query->whereHasMorph(
                 'owner',
                 Organization::class,
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
 
@@ -138,14 +137,14 @@ class RepositoryCrudController extends CrudController
             [
                 'type'  => 'select2',
                 'name'  => 'contributors',
-                'label' => 'Contributor'
+                'label' => 'Contributor',
             ],
-            fn() => User::query()
+            fn () => User::query()
                 ->pluck('name', 'id')
                 ->toArray(),
-            fn($value) => $this->crud->query->whereHas(
+            fn ($value) => $this->crud->query->whereHas(
                 'contributors',
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
     }

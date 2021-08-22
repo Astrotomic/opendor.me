@@ -113,32 +113,32 @@ class UserCrudController extends CrudController
             [
                 'type'  => 'simple',
                 'name'  => 'is_registered',
-                'label' => 'Registered'
+                'label' => 'Registered',
             ],
             false,
-            fn() => $this->crud->addClause('whereIsRegistered')
+            fn () => $this->crud->addClause('whereIsRegistered')
         );
 
         $this->crud->addFilter(
             [
                 'type'  => 'dropdown',
                 'name'  => 'block_reason',
-                'label' => 'Blocked'
+                'label' => 'Blocked',
             ],
             BlockReason::toArray(),
-            fn($value) => $this->crud->addClause('where', 'block_reason', $value)
+            fn ($value) => $this->crud->addClause('where', 'block_reason', $value)
         );
 
         $this->crud->addFilter(
             [
                 'type'  => 'select2',
                 'name'  => 'organizations',
-                'label' => 'Organization'
+                'label' => 'Organization',
             ],
-            fn() => Organization::query()->pluck('name', 'id')->toArray(),
-            fn($value) => $this->crud->query->whereHas(
+            fn () => Organization::query()->pluck('name', 'id')->toArray(),
+            fn ($value) => $this->crud->query->whereHas(
                 'organizations',
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
 
@@ -146,15 +146,15 @@ class UserCrudController extends CrudController
             [
                 'type'  => 'select2',
                 'name'  => 'repositories',
-                'label' => 'Repository'
+                'label' => 'Repository',
             ],
-            fn() => Repository::query()
-                ->where('owner_type', (new User)->getMorphClass())
+            fn () => Repository::query()
+                ->where('owner_type', (new User())->getMorphClass())
                 ->pluck('name', 'id')
                 ->toArray(),
-            fn($value) => $this->crud->query->whereHas(
+            fn ($value) => $this->crud->query->whereHas(
                 'repositories',
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
 
@@ -162,12 +162,12 @@ class UserCrudController extends CrudController
             [
                 'type'  => 'select2',
                 'name'  => 'contributions',
-                'label' => 'Contribution'
+                'label' => 'Contribution',
             ],
-            fn() => Repository::query()->pluck('name', 'id')->toArray(),
-            fn($value) => $this->crud->query->whereHas(
+            fn () => Repository::query()->pluck('name', 'id')->toArray(),
+            fn ($value) => $this->crud->query->whereHas(
                 'contributions',
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
     }

@@ -102,22 +102,22 @@ class OrganizationCrudController extends CrudController
             [
                 'type'  => 'dropdown',
                 'name'  => 'block_reason',
-                'label' => 'Blocked'
+                'label' => 'Blocked',
             ],
             BlockReason::toArray(),
-            fn($value) => $this->crud->addClause('where', 'block_reason', $value)
+            fn ($value) => $this->crud->addClause('where', 'block_reason', $value)
         );
 
         $this->crud->addFilter(
             [
                 'type'  => 'select2',
                 'name'  => 'members',
-                'label' => 'Member'
+                'label' => 'Member',
             ],
-            fn() => User::query()->pluck('name', 'id')->toArray(),
-            fn($value) => $this->crud->query->whereHas(
+            fn () => User::query()->pluck('name', 'id')->toArray(),
+            fn ($value) => $this->crud->query->whereHas(
                 'members',
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
 
@@ -125,15 +125,15 @@ class OrganizationCrudController extends CrudController
             [
                 'type'  => 'select2',
                 'name'  => 'repositories',
-                'label' => 'Repository'
+                'label' => 'Repository',
             ],
-            fn() => Repository::query()
-                ->where('owner_type', (new Organization)->getMorphClass())
+            fn () => Repository::query()
+                ->where('owner_type', (new Organization())->getMorphClass())
                 ->pluck('name', 'id')
                 ->toArray(),
-            fn($value) => $this->crud->query->whereHas(
+            fn ($value) => $this->crud->query->whereHas(
                 'repositories',
-                fn(Builder $q) => $q->where('id', $value)
+                fn (Builder $q) => $q->where('id', $value)
             )
         );
     }
