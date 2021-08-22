@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
@@ -44,6 +45,7 @@ use Spatie\Sitemap\Tags\Url;
  */
 class Organization extends Model implements Sitemapable
 {
+    use CrudTrait;
     use Blockable;
 
     public $incrementing = false;
