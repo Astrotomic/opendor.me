@@ -149,21 +149,6 @@ class AppServiceProvider extends ServiceProvider
             return new FilesystemAdapter($filesystem);
         });
 
-        URL::macro('filament', function (string $uri): string {
-            /** @var \Illuminate\Routing\UrlGenerator $this */
-            if (config('filament.domain') !== null) {
-                $this->forceRootUrl(config('filament.domain'));
-            }
-
-            return tap(
-                $this->to(Str::start(
-                    trim($uri, '/'),
-                    Str::finish(config('filament.path'), '/')
-                )),
-                fn () => $this->forceRootUrl(config('app.url'))
-            );
-        });
-
         URL::macro('horizon', function (string $uri): string {
             /** @var \Illuminate\Routing\UrlGenerator $this */
             if (config('horizon.domain') !== null) {
