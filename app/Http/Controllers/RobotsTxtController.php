@@ -15,7 +15,7 @@ class RobotsTxtController
             'Disallow: /auth/',
             'Disallow: /app/',
             'Disallow: /admin/',
-            'Disallow: '.Str::of(config('filament.path'))->start('/')->finish('/'),
+            'Disallow: '.Str::of(config('backpack.base.route_prefix'))->start('/')->finish('/'),
             'Disallow: '.Str::of(config('horizon.path'))->start('/')->finish('/'),
             '',
             'Sitemap: '.route('sitemap.xml'),
