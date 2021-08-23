@@ -38,6 +38,7 @@ use Throwable;
  * @property-read string $github_url
  * @property-read string $repository_name
  * @property-read string $vendor_name
+ * @property-read bool $is_blocked
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
  * @property-read \App\Models\User|\App\Models\Organization $owner
  *

@@ -46,6 +46,9 @@ use Spatie\Sitemap\Tags\Url;
  * @property string[] $emails
  * @property string|null $remember_token
  * @property string[]|null $referrer
+ * @property \Carbon\Carbon|null $registered_at
+ * @property-read bool $is_blocked
+ * @property-read bool $is_registered
  * @property-read \Illuminate\Support\Collection $languages
  * @property-read \App\Enums\Language|null $primary_language
  * @property-read string $avatar_url
@@ -84,6 +87,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $casts = [
         'id' => 'int',
         'email_verified_at' => 'datetime',
+        'registered_at' => 'datetime',
         'emails' => 'array',
         'referrer' => 'array',
     ];
@@ -93,6 +97,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'remember_token',
         'email',
         'email_verified_at',
+        'registered_at',
         'emails',
         'referrer',
     ];
@@ -137,7 +142,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function scopeWhereIsRegistered(Builder $query): void
     {
-        $query->whereHasGithubAccessToken()->whereNotNull('email_verified_at');
+        $query
+            ->whereHasGithubAccessToken()
+            ->whereNotNull('email_verified_at')
+            ->whereNotNull('registered_at');
     }
 
     public function scopeWhereEmail(Builder $query, string $email): void
