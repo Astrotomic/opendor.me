@@ -7,4 +7,5 @@ mix
         require('tailwindcss'),
     ])
     .copyDirectory('resources/images', 'public/images')
+    .copyDirectory('vendor/backpack/crud/src/public', 'public')
     .version();
