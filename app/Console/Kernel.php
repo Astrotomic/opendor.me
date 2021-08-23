@@ -5,8 +5,8 @@ namespace App\Console;
 use Algolia\ScoutExtended\Console\Commands\ReImportCommand;
 use App\Console\Commands\GithubOrganizationDetails;
 use App\Console\Commands\GithubOrganizationRepositories;
-use App\Console\Commands\GithubRepositoryContributors;
 use App\Console\Commands\GithubRepositoryDetails;
+use App\Console\Commands\GithubUserContributions;
 use App\Console\Commands\GithubUserDetails;
 use App\Console\Commands\GithubUserRepositories;
 use Carbon\CarbonInterval;
@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(GithubOrganizationDetails::class)->dailyAt('12:00')->onOneServer();
         $schedule->command(GithubRepositoryDetails::class)->dailyAt('12:00')->onOneServer();
         // github:repository:contributors
-        $schedule->command(GithubRepositoryContributors::class)->dailyAt('15:00')->onOneServer();
+        $schedule->command(GithubUserContributions::class)->dailyAt('15:00')->onOneServer();
 
         // laravel/horizon
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');

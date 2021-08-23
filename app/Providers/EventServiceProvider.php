@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\DispatchUserContributionSync;
 use App\Listeners\SetRegisteredAt;
 use App\Models\Organization;
 use App\Models\Repository;
@@ -17,6 +18,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SetRegisteredAt::class,
+            DispatchUserContributionSync::class,
 //            SendEmailVerificationNotification::class,
         ],
     ];
