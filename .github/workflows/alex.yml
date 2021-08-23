@@ -7,5 +7,6 @@ jobs:
     timeout-minutes: 2
     continue-on-error: false
     steps:
+      - uses: actions/checkout@v2
       - run: yarn global add alex
       - run: $(yarn global bin)/alex content/faqs
