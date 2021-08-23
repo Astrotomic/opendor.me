@@ -1,0 +1,11 @@
+on:
+  push:
+
+jobs:
+  alex:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    continue-on-error: false
+    steps:
+      - run: yarn global add alex
+      - run: $(yarn global bin)/alex content/faqs

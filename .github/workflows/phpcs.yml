@@ -1,0 +1,18 @@
+on:
+  push:
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: dom, curl, mbstring, zip, pcntl, intl
+          coverage: none
+      - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+      - run: composer config "http-basic.satis.laravel-enlightn.com" "${{ secrets.ENLIGHTN_USERNAME }}" "${{ secrets.ENLIGHTN_PASSWORD }}"
+      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
+      - run: vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run
