@@ -19,7 +19,7 @@ class Html extends Component
     public function __construct(
         ?string $title = null,
         ?string $description = null
-    ){
+    ) {
         $this->title = $title
             ? Str::finish($title, ' | '.config('app.name'))
             : config('app.name');
@@ -52,7 +52,8 @@ class Html extends Component
                         ->width(2048)
                         ->height(1170)
                 )),
-            ($image
+            (
+                $image
                 ? Twitter::summaryLargeImage()
                 : Twitter::summary()
             )
