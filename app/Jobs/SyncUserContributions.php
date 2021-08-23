@@ -64,11 +64,6 @@ class SyncUserContributions extends GithubJob
                   nameWithOwner
                 }
               }
-              pullRequestContributionsByRepository(maxRepositories: 100) {
-                repository {
-                  nameWithOwner
-                }
-              }
             }
           }
         }
