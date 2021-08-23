@@ -6,6 +6,7 @@ use App\Jobs\LoadUserRepositories;
 use App\Jobs\SyncUserOrganizations;
 use App\Jobs\UpdateUserDetails;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
@@ -39,6 +40,10 @@ class GithubController
             $user
                 ->addReferrer($request->session()->pull('referrer'))
                 ->save();
+        }
+
+        if ($user->registered_at === null) {
+            event(new Registered($user));
         }
 
         Bus::batch([
