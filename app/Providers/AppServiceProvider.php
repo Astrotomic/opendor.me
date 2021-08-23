@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Backpack\CrudPanel;
 use App\Models\User;
 use App\Repositories\GithubSponsorRepository;
+use Astrotomic\OpenGraph\Type;
+use Astrotomic\OpenGraph\Types\Website;
 use Closure;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Contracts\Container\Container;
@@ -57,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(GithubSponsorRepository::class);
 
         $this->app->singleton('crud', CrudPanel::class);
+
+        $this->app->singleton(Type::class, Website::class);
     }
 
     public function boot(): void
