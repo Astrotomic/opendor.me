@@ -1,6 +1,6 @@
 <?php
 
-$finder = \PhpCsFixer\Finder::create()
+$finder = (new \PhpCsFixer\Finder)
     ->notPath('vendor')
     ->notPath('bootstrap')
     ->notPath('storage')
@@ -13,8 +13,8 @@ $finder = \PhpCsFixer\Finder::create()
     ->name('*.php')
     ->in(__DIR__);
 
-return \PhpCsFixer\Config::create()
-    ->setRules(array_merge(require '.php_cs.laravel', [
+return (new \PhpCsFixer\Config)
+    ->setRules(array_merge(require '.php-cs-rules.laravel.php', [
         '@PSR2' => true,
         '@PSR12' => true,
         'no_unused_imports' => true,
