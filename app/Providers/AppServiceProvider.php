@@ -172,12 +172,9 @@ class AppServiceProvider extends ServiceProvider
             /** @var \Illuminate\Database\Eloquent\Builder $this */
 
             return $this
-                ->limit($limit * 3)
-                ->whereRaw('RANDOM() < 0.1')
-                ->get()
-                ->shuffle()
-                ->take($limit)
-                ->values();
+                ->inRandomOrder()
+                ->limit($limit)
+                ->get();
         });
     }
 }
