@@ -47,6 +47,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $remember_token
  * @property string[]|null $referrer
  * @property \Carbon\Carbon|null $registered_at
+ * @property string $randomness
  * @property-read bool $is_blocked
  * @property-read bool $is_registered
  * @property-read \Illuminate\Support\Collection $languages

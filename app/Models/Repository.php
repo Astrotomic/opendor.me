@@ -35,6 +35,7 @@ use Throwable;
  * @property \Carbon\Carbon|null $updated_at
  * @property int $stargazers_count
  * @property string|null $website
+ * @property string $randomness
  * @property-read string $github_url
  * @property-read string $repository_name
  * @property-read string $vendor_name
