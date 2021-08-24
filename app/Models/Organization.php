@@ -29,6 +29,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
+ * @property string $randomness
  * @property-read string $profile_url
  * @property-read string $avatar_url
  * @property-read string $github_url

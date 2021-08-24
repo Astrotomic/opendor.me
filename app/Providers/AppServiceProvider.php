@@ -172,12 +172,12 @@ class AppServiceProvider extends ServiceProvider
             /** @var \Illuminate\Database\Eloquent\Builder $this */
 
             return $this
-                ->limit($limit * 3)
-                ->whereRaw('RANDOM() < 0.1')
-                ->get()
-                ->shuffle()
-                ->take($limit)
-                ->values();
+                ->orderByRaw('randomness <-> point(?, ?)', [
+                    (random_int(PHP_INT_MIN, PHP_INT_MAX) / PHP_INT_MAX),
+                    (random_int(PHP_INT_MIN, PHP_INT_MAX) / PHP_INT_MAX),
+                ])
+                ->limit($limit)
+                ->get();
         });
     }
 }
