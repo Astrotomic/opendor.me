@@ -23,6 +23,9 @@ class GithubLanguages extends Command
             ->put('Arduino', ['color' => null])
             ->put('Eagle', ['color' => null])
             ->put('Nginx', ['color' => null])
+            ->put('Perl6', ['color' => null])
+            ->put('BRO', ['color' => null])
+            ->put('ASP', ['color' => null])
             ->map(fn (array $language, string $name): array => array_merge(
                 $language,
                 [
@@ -43,7 +46,7 @@ class GithubLanguages extends Command
                 },
             ]))
             ->map(fn (array $language): array => Arr::only($language, ['name', 'enum', 'color']))
-            ->sortBy('name')
+            ->sortBy('enum')
             ->values();
         $this->comment("found {$languages->count()} languages");
 
