@@ -27,6 +27,7 @@ namespace App\Enums;
  * @method static self OSL_30()
  * @method static self BSD0()
  * @method static self NCSA()
+ * @method static self ZLIB()
  * @method static self NOASSERTION()
  */
 final class License extends Enum
@@ -55,6 +56,7 @@ final class License extends Enum
             'EUPL_12' => 'EUPL-1.2',
             'OSL_30' => 'OSL-3.0',
             'BSD0' => '0BSD',
+            'ZLIB' => 'Zlib',
             'NOASSERTION' => 'OTHER',
         ];
     }
@@ -83,6 +85,7 @@ final class License extends Enum
             'EUPL_12' => 'EUPL-1.2',
             'OSL_30' => 'OSL-3.0',
             'BSD0' => 'BSD Zero',
+            'ZLIB' => 'Zlib',
             'NOASSERTION' => 'Other',
         ];
     }

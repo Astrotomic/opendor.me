@@ -2293,5 +2293,60 @@
         "color": "#403a40",
         "name": "xBase",
         "enum": "XBASE"
+    },
+    {
+        "color": null,
+        "name": "JSON",
+        "enum": "JSON"
+    },
+    {
+        "color": null,
+        "name": "ASP",
+        "enum": "ASP"
+    },
+    {
+        "color": null,
+        "name": "SQL",
+        "enum": "SQL"
+    },
+    {
+        "color": null,
+        "name": "ApacheConf",
+        "enum": "APACHECONF"
+    },
+    {
+        "color": null,
+        "name": "reStructuredText",
+        "enum": "RESTRUCTUREDTEXT"
+    },
+    {
+        "color": null,
+        "name": "Cucumber",
+        "enum": "CUCUMBER"
+    },
+    {
+        "color": null,
+        "name": "KiCad",
+        "enum": "KICAD"
+    },
+    {
+        "color": null,
+        "name": "Perl6",
+        "enum": "PERL6"
+    },
+    {
+        "color": null,
+        "name": "Groff",
+        "enum": "GROFF"
+    },
+    {
+        "color": null,
+        "name": "Fluent",
+        "enum": "FLUENT"
+    },
+    {
+        "color": null,
+        "name": "Bro",
+        "enum": "BRO"
     }
 ]
