@@ -24,27 +24,27 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // github:*:repositories
-        $schedule->command(GithubOrganizationRepositories::class)->dailyAt('03:00')->onOneServer();
-        $schedule->command(GithubUserRepositories::class)->dailyAt('03:00')->onOneServer();
+        $schedule->command(GithubUserRepositories::class)->dailyAt('02:00')->onOneServer();
+        $schedule->command(GithubOrganizationRepositories::class)->dailyAt('04:00')->onOneServer();
         // github:*:details
-        $schedule->command(GithubUserDetails::class)->dailyAt('12:00')->onOneServer();
-        $schedule->command(GithubOrganizationDetails::class)->dailyAt('12:00')->onOneServer();
-        $schedule->command(GithubRepositoryDetails::class)->dailyAt('12:00')->onOneServer();
+        $schedule->command(GithubUserDetails::class)->dailyAt('06:00')->onOneServer();
+        $schedule->command(GithubOrganizationDetails::class)->dailyAt('08:00')->onOneServer();
+        $schedule->command(GithubRepositoryDetails::class)->dailyAt('10:00')->onOneServer();
         // github:repository:contributors
-        $schedule->command(GithubUserContributions::class)->dailyAt('15:00')->onOneServer();
+        $schedule->command(GithubUserContributions::class)->dailyAt('13:00')->onOneServer();
 
         // laravel/horizon
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');
         $schedule->command(PruneBatchesCommand::class, [
             '--hours' => CarbonInterval::days(2)->totalHours,
             '--unfinished' => CarbonInterval::week()->totalHours,
-        ])->dailyAt('02:00')->onOneServer()->environments('gorgeous-moon');
+        ])->dailyAt('00:00')->onOneServer()->environments('gorgeous-moon');
 
         // laravel/scout
         $schedule->command(ReImportCommand::class)->twiceDaily()->onOneServer()->environments('gorgeous-moon');
 
         // spatie/laravel-schedule-monitor
-        $schedule->command(CleanLogCommand::class)->dailyAt('02:00')->onOneServer();
+        $schedule->command(CleanLogCommand::class)->dailyAt('00:00')->onOneServer();
 
         // spatie/laravel-backup
         $schedule->command(BackupCommand::class)->twiceDaily(1, 13);
