@@ -30,9 +30,8 @@ return [
     |
     */
 
-    // ToDo: https://github.com/laravel/framework/pull/37080
-    // 'prefix' => (string) Str::of(env('SCOUT_PREFIX', ''))->whenNotEmpty(fn (Stringable $prefix) => $prefix->finish('_')),
-    'prefix' => Str::finish(env('SCOUT_PREFIX', ''), '_'),
+    'prefix' => (string) Str::of(env('SCOUT_PREFIX', ''))
+        ->whenNotEmpty(fn (\Illuminate\Support\Stringable $prefix) => $prefix->finish('_')),
 
     /*
     |--------------------------------------------------------------------------

@@ -289,27 +289,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
     }
 
-    public function toSearchableArray(): array
-    {
-        return [
-            'name' => $this->name,
-            'display_name' => $this->display_name,
-            'avatar_url' => $this->avatar_url,
-            'profile_url' => $this->profile_url,
-            'languages' => $this->contributions()
-                ->pluck('language')
-                ->reject(fn (Language $language): bool => $language->equals(Language::NOASSERTION()))
-                ->map(fn (Language $language): string => $language->label)
-                ->unique()
-                ->values(),
-        ];
-    }
-
-    public function shouldBeSearchable(): bool
-    {
-        return $this->isRegistered() && $this->contributions()->exists();
-    }
-
     public function addReferrer(string $referrer): self
     {
         $this->referrer = collect($this->referrer)
@@ -319,6 +298,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ->all();
 
         return $this;
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'display_name' => $this->display_name,
+            'avatar_url' => $this->avatar_url,
+            'profile_url' => $this->profile_url,
+            'languages' => $this->languages
+                ->reject(fn (Language $language): bool => $language->equals(Language::NOASSERTION()))
+                ->map(fn (Language $language): string => $language->label)
+                ->values(),
+        ];
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->isRegistered() && $this->contributions()->exists();
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
