@@ -2,14 +2,14 @@
 @push('javascript')
 <script nonce="{{ csp_nonce() }}">
     const search = algolia.instantsearch({
-        indexName: '{{ (new \App\Models\User)->searchableAs() }}',
+        indexName: '{{ (new \App\Models\Organization)->searchableAs() }}',
         searchClient: algolia.searchClient,
     });
 
     search.addWidgets([
         algolia.widgets.searchBox({
             container: '#algolia-search-input',
-            placeholder: 'Enter an username',
+            placeholder: 'Enter an organization name',
             searchAsYouType: true,
             showReset: false,
             showLoadingIndicator: false,
@@ -26,7 +26,7 @@
         algolia.widgets.stats({
             container: '#algolia-search-stats-total',
             templates: {
-                text: (renderOptions) => `Found <strong>${renderOptions.nbHits}</strong> matching users`
+                text: (renderOptions) => `Found <strong>${renderOptions.nbHits}</strong> matching organizations`
             },
             cssClasses: {
                 text: 'text-sm text-gray-500',
@@ -41,7 +41,7 @@
                     let to = Math.min((renderOptions.page + 1) * renderOptions.hitsPerPage, total);
 
                     return `
-                        Showing <strong>${from}</strong> to <strong>${to}</strong> of <strong>${total}</strong> matching users
+                        Showing <strong>${from}</strong> to <strong>${to}</strong> of <strong>${total}</strong> matching organizations
                     `
                 }
             },
@@ -154,7 +154,7 @@
 @endpush
 @endonce
 
-<x-layout.web page-title="User Search">
+<x-layout.web page-title="Organization Search">
 
     <div class="bg-white">
         <div class="py-8 px-4 mx-auto max-w-7xl sm:py-12 sm:px-6 lg:px-8">
