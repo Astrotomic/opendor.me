@@ -19,18 +19,18 @@ class GithubSponsorRepository extends Repository
             'github:sponsors',
             CarbonInterval::hour(),
             fn (): Collection => collect()
-                ->merge(GithubSponsors::fromUser('Gummibeer')->select('databaseId', 'login')->all())
-                ->merge(GithubSponsors::fromUser('SarahSibert')->select('databaseId', 'login')->all())
+                ->merge(GithubSponsors::user('Gummibeer')->sponsors(['databaseId', 'login']))
+                ->merge(GithubSponsors::user('SarahSibert')->sponsors(['databaseId', 'login']))
                 ->unique('databaseId')
-                ->map(static function (Fluent $sponsor): User | Organization | null {
+                ->map(static function (array $sponsor): User | Organization | null {
                     $sponsor['id'] = $sponsor['databaseId'];
 
                     if ($sponsor['__typename'] === 'User') {
-                        return User::fromGithub($sponsor->getAttributes());
+                        return User::fromGithub($sponsor);
                     }
 
                     if ($sponsor['__typename'] === 'Organization') {
-                        return Organization::fromGithub($sponsor->getAttributes());
+                        return Organization::fromGithub($sponsor);
                     }
 
                     return null;
