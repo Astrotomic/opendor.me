@@ -8,7 +8,6 @@ use Astrotomic\GithubSponsors\Facades\GithubSponsors;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 
 class GithubSponsorRepository extends Repository
