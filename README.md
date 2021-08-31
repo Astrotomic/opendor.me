@@ -1,4 +1,8 @@
-# opendor.me
+# [opendor.me](https://opendor.me)
+
+[![](https://img.shields.io/hsts/preload/opendor.me?style=flat-square)](https://hstspreload.org/?domain=opendor.me)
+[![](https://img.shields.io/mozilla-observatory/grade/opendor.me?publish&style=flat-square)](https://observatory.mozilla.org/analyze/opendor.me)
+[![](https://img.shields.io/security-headers?style=flat-square&url=https%3A%2F%2Fopendor.me)](https://securityheaders.com/?q=https%3A%2F%2Fopendor.me)
 
 This is the repository for the [opendor.me](http://opendor.me). The code is entirely open source and licensed under [CC BY-NC-SA 3.0 Licensce](LICENSE.md). Read the installation guide below to get started with setting up the app on your machine.
 
