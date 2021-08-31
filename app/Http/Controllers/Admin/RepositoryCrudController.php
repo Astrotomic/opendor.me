@@ -32,6 +32,7 @@ class RepositoryCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix').'/repository');
         $this->crud->setEntityNameStrings('repository', 'repositories');
         $this->crud->addClause('withBlocked');
+        $this->crud->setOperationSetting('setFromDb', false);
     }
 
     protected function setupListOperation(): void

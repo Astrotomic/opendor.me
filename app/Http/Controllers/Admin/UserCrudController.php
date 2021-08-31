@@ -30,6 +30,7 @@ class UserCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix').'/user');
         $this->crud->setEntityNameStrings('user', 'users');
         $this->crud->addClause('withBlocked');
+        $this->crud->setOperationSetting('setFromDb', false);
     }
 
     protected function setupListOperation(): void

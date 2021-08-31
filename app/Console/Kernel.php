@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
         ])->dailyAt('00:00')->onOneServer()->environments('gorgeous-moon');
 
         // laravel/scout
-        $schedule->command(ReImportCommand::class)->twiceDaily()->onOneServer()->environments('gorgeous-moon');
+        $schedule->command(ReImportCommand::class)->everyThreeHours()->onOneServer()->environments('gorgeous-moon');
 
         // spatie/laravel-schedule-monitor
         $schedule->command(CleanLogCommand::class)->dailyAt('00:00')->onOneServer();
