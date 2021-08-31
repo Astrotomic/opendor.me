@@ -30,6 +30,7 @@ class OrganizationCrudController extends CrudController
         $this->crud->setRoute(config('backpack.base.route_prefix').'/organization');
         $this->crud->setEntityNameStrings('organization', 'organizations');
         $this->crud->addClause('withBlocked');
+        $this->crud->setOperationSetting('setFromDb', false);
     }
 
     protected function setupListOperation(): void
