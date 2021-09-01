@@ -3,7 +3,7 @@
     "type": "project",
     "description": "",
     "keywords": [],
-    "license": "MIT",
+    "license": "CC-BY-NC-SA-3.0",
     "require": {
         "php": "^8.0",
         "ext-intl": "*",
