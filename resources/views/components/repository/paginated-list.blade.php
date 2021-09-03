@@ -130,7 +130,7 @@ window.components.paginatedRepositoryList = function () {
                 .then(res => res.json())
                 .then(paginator => {
                     paginator.data.forEach(repository => this.repositories.push(repository));
-                    this.nextPageUrl = paginator.next_page_url;
+                    this.nextPageUrl = paginator.links.next;
                 })
                 .finally(() => {
                     this.loading = false;
@@ -154,7 +154,7 @@ window.components.paginatedRepositoryList = function () {
                 .then(res => res.json())
                 .then(paginator => {
                     paginator.data.forEach(repository => this.repositories.push(repository));
-                    this.nextPageUrl = paginator.next_page_url;
+                    this.nextPageUrl = paginator.links.next;
                 })
                 .finally(() => {
                     this.loading = false;

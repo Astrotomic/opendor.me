@@ -12,7 +12,7 @@ class LoadOrganizationRepositories extends GithubJob
     public function __construct(protected Organization $organization)
     {
         parent::__construct();
-        $this->timeout = CarbonInterval::minutes(5)->totalSeconds;
+        $this->timeout = CarbonInterval::minutes(15)->totalSeconds;
     }
 
     public function run(): void
