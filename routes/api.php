@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\RepositoryResource;
 use App\Models\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
@@ -14,18 +15,20 @@ Route::get('ping', static function (): JsonResponse {
 })->name('ping');
 
 Route::get('repository', static function (Request $request) {
-    return Repository::query()
-        ->with('owner')
-        ->when($request->input('contributor'), fn (Builder $query, int $contributor) => $query->whereHas(
-            'contributors',
-            fn (Builder $q) => $q->whereKey($contributor)
-        ))
-        ->when($request->input('owner'), fn (Builder $query, array $owner) => $query->whereHasMorph(
-            'owner',
-            $owner['type'],
-            fn (Builder $q) => $q->whereKey($owner['id'])
-        ))
-        ->orderByDesc('stargazers_count')
-        ->paginate(6)
-        ->withQueryString();
+    return RepositoryResource::collection(
+        Repository::query()
+            ->with('owner')
+            ->when($request->input('contributor'), fn (Builder $query, int $contributor) => $query->whereHas(
+                'contributors',
+                fn (Builder $q) => $q->whereKey($contributor)
+            ))
+            ->when($request->input('owner'), fn (Builder $query, array $owner) => $query->whereHasMorph(
+                'owner',
+                $owner['type'],
+                fn (Builder $q) => $q->whereKey($owner['id'])
+            ))
+            ->orderByDesc('stargazers_count')
+            ->paginate(6)
+            ->withQueryString()
+    );
 })->name('repository');
