@@ -26,7 +26,7 @@ class RepositoryResource extends JsonResource
             'license' => LicenseResource::make($this->resource->license),
             'owner' => $this->whenLoaded(
                 'owner',
-                fn() => RepositoryOwnerResource::make($this->resource->owner),
+                fn () => RepositoryOwnerResource::make($this->resource->owner),
                 null,
             ),
         ];

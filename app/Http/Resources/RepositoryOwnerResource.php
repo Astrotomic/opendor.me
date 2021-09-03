@@ -2,10 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Enums\LanguageResource;
-use App\Http\Resources\Enums\LicenseResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Str;
 
 class RepositoryOwnerResource extends JsonResource
 {
