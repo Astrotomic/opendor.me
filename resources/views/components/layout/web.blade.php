@@ -10,4 +10,6 @@
     </main>
 
     <x-web.footer/>
+
+    <x-web.umami/>
 </x-layout.html>

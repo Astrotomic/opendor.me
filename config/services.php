@@ -37,4 +37,11 @@ return [
         'sponsors_token' => env('GITHUB_SPONSORS_ACCESS_TOKEN'),
     ],
 
+    'umami' => [
+        'enabled' => env('UMAMI_ENABLED', false),
+        'website_id' => env('UMAMI_WEBSITE_ID'),
+        'api_url' => env('UMAMI_API_URL'),
+        'domain' => env('UMAMI_DOMAIN', 'opendor.me'),
+    ],
+
 ];
