@@ -1,5 +1,6 @@
 @once
 @push('javascript')
+@if(config('services.umami.enabled'))
 <script
     async
     defer
@@ -7,5 +8,6 @@
     data-domains="{{ config('services.umami.domain') }}"
     src="https://{{ config('services.umami.api_url') }}/umami.js"
 ></script>
+@endif
 @endpush
 @endonce
