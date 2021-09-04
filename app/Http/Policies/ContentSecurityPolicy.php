@@ -13,8 +13,8 @@ class ContentSecurityPolicy extends Policy
     public function configure(): void
     {
         $this
+            ->addDirective(Directive::DEFAULT, Keyword::NONE)
             ->addDirective(Directive::BASE, Keyword::SELF)
-            ->addDirective(Directive::DEFAULT, Keyword::SELF)
             ->addDirective(Directive::CHILD, Keyword::NONE)
             ->addDirective(Directive::CONNECT, Keyword::SELF)
             ->addDirective(Directive::CONNECT, 'https://*.algolia.net')
@@ -43,6 +43,12 @@ class ContentSecurityPolicy extends Policy
                 ->addDirective(Directive::STYLE, config('app.mix_url'))
                 ->addDirective(Directive::FONT, config('app.mix_url'))
                 ->addDirective(Directive::IMG, config('app.mix_url'));
+        }
+
+        if (config('services.umami.enabled')) {
+            $this
+                ->addDirective(Directive::CONNECT, sprintf('https://%s/api/collect', config('services.umami.api_url')))
+                ->addDirective(Directive::SCRIPT, sprintf('https://%s/umami.js', config('services.umami.api_url')));
         }
     }
 
