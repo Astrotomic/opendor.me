@@ -38,6 +38,6 @@
         <h2 class="flex items-center mb-4 text-2xl font-bold text-gray-900">
             Repositories
         </h2>
-        <x-repository.paginated-list :owner="$organization" />
+        <x-repository.paginated-list :owner="$organization" :autoload="true" />
     </section>
 </x-layout.web>

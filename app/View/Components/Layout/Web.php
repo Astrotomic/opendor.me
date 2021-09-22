@@ -9,11 +9,16 @@ class Web extends Component
 {
     public ?string $title;
     public ?string $pageTitle;
+    public ?string $description;
 
-    public function __construct(?string $pageTitle = null, ?string $title = null)
-    {
+    public function __construct(
+        ?string $pageTitle = null,
+        ?string $title = null,
+        ?string $description = null
+    ) {
         $this->pageTitle = $pageTitle;
         $this->title = $title ?? $pageTitle;
+        $this->description = $description;
     }
 
     public function render(): View

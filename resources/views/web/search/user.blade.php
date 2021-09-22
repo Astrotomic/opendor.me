@@ -9,7 +9,7 @@
     search.addWidgets([
         algolia.widgets.searchBox({
             container: '#algolia-search-input',
-            placeholder: 'Enter an username',
+            placeholder: 'Enter a username',
             searchAsYouType: true,
             showReset: false,
             showLoadingIndicator: false,
@@ -158,51 +158,9 @@
 
     <div class="bg-white">
         <div class="py-8 px-4 mx-auto max-w-7xl sm:py-12 sm:px-6 lg:px-8">
-            <div class="hidden mb-8 sm:block">
-                <div class="border-b border-gray-200">
-                    <nav class="flex flex-col justify-between -mb-px space-y-2 sm:flex-row sm:space-y-0 sm:space-x-8" aria-label="Tabs">
-                        <a
-                            href="{{ route('search.user') }}"
-                            class="
-                                flex-1 justify-center group inline-flex items-center py-4 px-2 sm:border-b-2 font-medium text-sm
-                                @if(request()->is(trim(route('search.user', [], false), '/')))
-                                border-indigo-500 text-indigo-600
-                                @else
-                                border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300
-                                @endif
-                            "
-                        >
-                            <x-bx-user class="mr-2 w-5 h-5"/>
-                            <span>Users</span>
-                        </a>
+            <x-web.search.nav/>
 
-                        <span class="inline-flex flex-1 justify-center items-center py-4 px-2 text-sm font-medium text-gray-300 line-through border-transparent sm:border-b-2 group">
-                            <x-bx-buildings class="mr-2 w-5 h-5"/>
-                            <span>Organizations</span>
-                        </span>
-                        <span class="inline-flex flex-1 justify-center items-center py-4 px-2 text-sm font-medium text-gray-300 line-through border-transparent sm:border-b-2 group">
-                            <x-bx-package class="mr-2 w-5 h-5"/>
-                            <span>Repositories</span>
-                        </span>
-                    </nav>
-                </div>
-            </div>
-
-            <div id="algolia-search-input">
-                <template id="search-icon" hidden>
-                    <x-bx-search class="w-5 h-5 text-gray-400"/>
-                </template>
-            </div>
-
-            <div class="flex justify-between items-center mt-0.5">
-                <div id="algolia-search-stats-total"></div>
-                <div class="flex items-center">
-                    <span class="text-xs text-gray-500">Search by</span>
-                    <a href="https://algolia.com" title="Algolia" class="ml-1">
-                        <img class="h-3" src="{{ asset('images/sponsors/algolia.svg') }}" alt="Algolia">
-                    </a>
-                </div>
-            </div>
+            <x-web.search.input/>
 
             <div class="flex justify-between mt-2 space-x-4">
                 <div id="algolia-search-refinements"></div>
@@ -219,10 +177,7 @@
                 <div id="algolia-search-hits" class="w-full"></div>
             </div>
 
-            <div class="flex flex-col mt-8 space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 sm:space-x-4">
-                <div id="algolia-search-stats-pagination"></div>
-                <div id="algolia-search-pagination"></div>
-            </div>
+            <x-web.search.pagination/>
         </div>
     </div>
 

@@ -46,4 +46,9 @@ trait Blockable
     {
         return $this->blocked_at !== null;
     }
+
+    public function getIsBlockedAttribute(): bool
+    {
+        return $this->isBlocked();
+    }
 }

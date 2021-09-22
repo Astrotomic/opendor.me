@@ -7,8 +7,7 @@ use App\Eloquent\Model;
 use App\Enums\Language;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Astrotomic\CachableAttributes\CachesAttributes;
-use Filament\Models\Concerns\IsFilamentUser;
-use Filament\Models\Contracts\FilamentUser;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -46,7 +45,12 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $website
  * @property string[] $emails
  * @property string|null $remember_token
- * @property-read Collection $languages
+ * @property string[]|null $referrer
+ * @property \Carbon\Carbon|null $registered_at
+ * @property string $randomness
+ * @property-read bool $is_blocked
+ * @property-read bool $is_registered
+ * @property-read \Illuminate\Support\Collection $languages
  * @property-read \App\Enums\Language|null $primary_language
  * @property-read string $avatar_url
  * @property-read string $github_url
@@ -54,6 +58,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
  * @property-read string $display_name
+ * @property-read \Illuminate\Support\Collection $vendors
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
@@ -67,11 +72,11 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, MustVerifyEmailContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
 {
+    use CrudTrait;
     use Authenticatable;
     use Authorizable;
-    use IsFilamentUser;
     use MustVerifyEmail;
     use RoutesNotifications;
     use Blockable;
@@ -83,7 +88,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $casts = [
         'id' => 'int',
         'email_verified_at' => 'datetime',
+        'registered_at' => 'datetime',
         'emails' => 'array',
+        'referrer' => 'array',
     ];
 
     protected $hidden = [
@@ -91,7 +98,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'remember_token',
         'email',
         'email_verified_at',
+        'registered_at',
         'emails',
+        'referrer',
     ];
 
     protected $appends = [
@@ -134,7 +143,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function scopeWhereIsRegistered(Builder $query): void
     {
-        $query->whereHasGithubAccessToken()->whereNotNull('email_verified_at');
+        $query
+            ->whereHasGithubAccessToken()
+            ->whereNotNull('email_verified_at')
+            ->whereNotNull('registered_at');
     }
 
     public function scopeWhereEmail(Builder $query, string $email): void
@@ -176,9 +188,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return in_array($this->id, config('auth.superadmin_ids'), true);
     }
 
-    public function canAccessFilament(): bool
+    public function getIsRegisteredAttribute(): bool
     {
-        return $this->getIsSuperadminAttribute();
+        return $this->isRegistered();
     }
 
     public function getProfileUrlAttribute(): ?string
@@ -212,23 +224,27 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return once(
             fn () => $this->contributions()
-            ->distinct('language')
-            ->orderBy('language')
-            ->pluck('language')
+                ->distinct('language')
+                ->orderBy('language')
+                ->pluck('language')
         );
     }
 
     public function getPrimaryLanguageAttribute(): ?Language
     {
-        return once(fn () => Language::tryFrom(
-            $this->contributions()
+        $language = once(
+            fn () => $this->contributions()
                 ->withCasts(['language' => 'string'])
                 ->pluck('language')
                 ->countBy(null)
                 ->sortDesc()
                 ->keys()
                 ->first()
-        ));
+        );
+
+        return $language
+            ? Language::tryFrom($language)
+            : null;
     }
 
     public function getVendorsAttribute(): Collection
@@ -273,6 +289,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
     }
 
+    public function addReferrer(string $referrer): self
+    {
+        $this->referrer = collect($this->referrer)
+            ->push(Str::slug($referrer))
+            ->unique()
+            ->values()
+            ->all();
+
+        return $this;
+    }
+
     public function toSearchableArray(): array
     {
         return [
@@ -280,11 +307,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'display_name' => $this->display_name,
             'avatar_url' => $this->avatar_url,
             'profile_url' => $this->profile_url,
-            'languages' => $this->contributions()
-                ->pluck('language')
+            'languages' => $this->languages
                 ->reject(fn (Language $language): bool => $language->equals(Language::NOASSERTION()))
                 ->map(fn (Language $language): string => $language->label)
-                ->unique()
                 ->values(),
         ];
     }

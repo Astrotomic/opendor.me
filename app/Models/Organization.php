@@ -4,12 +4,16 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
+use App\Enums\Language;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 
@@ -28,11 +32,14 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
+ * @property string $randomness
  * @property-read string $profile_url
  * @property-read string $avatar_url
  * @property-read string $github_url
  * @property-read string|null $twitter_url
  * @property-read string $display_name
+ * @property-read bool $is_blocked
+ * @property-read \Illuminate\Support\Collection $languages
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
  *
@@ -43,7 +50,9 @@ use Spatie\Sitemap\Tags\Url;
  */
 class Organization extends Model implements Sitemapable
 {
+    use CrudTrait;
     use Blockable;
+    use Searchable;
 
     public $incrementing = false;
 
@@ -136,5 +145,29 @@ class Organization extends Model implements Sitemapable
     {
         return Url::create($this->profile_url)
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'display_name' => $this->display_name,
+            'avatar_url' => $this->avatar_url,
+            'profile_url' => $this->profile_url,
+            'languages' => $this->languages
+                ->reject(fn (Language $language): bool => $language->equals(Language::NOASSERTION()))
+                ->map(fn (Language $language): string => $language->label)
+                ->values(),
+        ];
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->repositories()->exists();
+    }
+
+    protected function makeAllSearchableUsing(Builder $query): Builder
+    {
+        return $query->has('repositories');
     }
 }

@@ -6,6 +6,8 @@ use App\Jobs\LoadUserRepositories;
 use App\Jobs\SyncUserOrganizations;
 use App\Jobs\UpdateUserDetails;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
 use Laravel\Socialite\Two\GithubProvider;
@@ -15,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GithubController
 {
-    public function __invoke(): Response
+    public function __invoke(Request $request): Response
     {
         $githubUser = $this->socialite()->user();
 
@@ -32,6 +34,16 @@ class GithubController
 
         if (! $user->hasVerifiedEmail()) {
             $user->markEmailAsVerified();
+        }
+
+        if ($request->session()->has('referrer')) {
+            $user
+                ->addReferrer($request->session()->pull('referrer'))
+                ->save();
+        }
+
+        if ($user->registered_at === null) {
+            event(new Registered($user));
         }
 
         Bus::batch([

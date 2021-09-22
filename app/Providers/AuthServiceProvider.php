@@ -18,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_superadmin ? true : null;
         });
 
-        Gate::define('viewFilament', static function (User $user): bool {
+        Gate::define('viewBackpack', static function (User $user): bool {
             return $user->is_superadmin;
         });
     }

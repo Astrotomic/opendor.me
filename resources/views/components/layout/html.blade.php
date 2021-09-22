@@ -8,6 +8,9 @@
     <link rel="dns-prefetch" href="https://images.unsplash.com"/>
 
     <title>{{ $title }}</title>
+    @if($description)
+        <meta name="description" content="{{ $description }}"/>
+    @endif
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
@@ -22,6 +25,8 @@
 
     <link rel="sitemap" type="application/xml" href="{{ route('sitemap.xml') }}"/>
     <link rel="canonical" href="{{ rtrim(request()->url(), '/') }}"/>
+
+    {{ $opengraph }}
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
