@@ -6,7 +6,7 @@ use Carbon\CarbonInterval;
 
 it('has the expected configuration')
     ->expect(fn() => new LoadUserRepositories(new User()))
-    ->timeout->toEqual(CarbonInterval::minutes(5)->totalSeconds)
+    ->timeout->toEqual(CarbonInterval::minutes(15)->totalSeconds)
     ->queue->toEqual('github');
 
 it('saves the users repositories', function() {
