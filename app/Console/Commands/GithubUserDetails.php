@@ -20,8 +20,8 @@ class GithubUserDetails extends Command
                 $this->argument('name'),
                 fn (Builder $query, string $name) => $query->where('name', $name)
             )
-            ->each(static function (User $use): void {
-                UpdateUserDetails::dispatch($use);
+            ->each(static function (User $user): void {
+                UpdateUserDetails::dispatch($user);
             });
     }
 }

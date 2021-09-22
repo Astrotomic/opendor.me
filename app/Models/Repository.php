@@ -7,6 +7,7 @@ use App\Eloquent\Model;
 use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use BadMethodCallException;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -34,9 +35,11 @@ use Throwable;
  * @property \Carbon\Carbon|null $updated_at
  * @property int $stargazers_count
  * @property string|null $website
+ * @property string $randomness
  * @property-read string $github_url
  * @property-read string $repository_name
  * @property-read string $vendor_name
+ * @property-read bool $is_blocked
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
  * @property-read \App\Models\User|\App\Models\Organization $owner
  *
@@ -47,6 +50,7 @@ use Throwable;
  */
 class Repository extends Model
 {
+    use CrudTrait;
     use Blockable;
 
     public $incrementing = false;
@@ -186,27 +190,5 @@ class Repository extends Model
         }
 
         return Http::github();
-    }
-
-    public function toArray()
-    {
-        $attributes = parent::toArray();
-
-        if ($attributes['license'] instanceof License) {
-            $attributes['license'] = [
-                'value' => $attributes['license']->value,
-                'label' => $attributes['license']->label,
-            ];
-        }
-        if ($attributes['language'] instanceof Language) {
-            $attributes['language'] = [
-                'value' => $attributes['language']->value,
-                'label' => $attributes['language']->label,
-                'color' => $attributes['language']->color(),
-            ];
-        }
-        $attributes['stargazers_numeral'] = Str::numeral($attributes['stargazers_count']);
-
-        return $attributes;
     }
 }

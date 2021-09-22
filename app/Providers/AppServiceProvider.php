@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Backpack\CrudPanel;
 use App\Models\User;
 use App\Repositories\GithubSponsorRepository;
+use Astrotomic\OpenGraph\Type;
+use Astrotomic\OpenGraph\Types\Website;
 use Closure;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Contracts\Container\Container;
@@ -54,6 +57,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(GithubSponsorRepository::class);
+
+        $this->app->singleton('crud', CrudPanel::class);
+
+        $this->app->singleton(Type::class, Website::class);
     }
 
     public function boot(): void
@@ -144,21 +151,6 @@ class AppServiceProvider extends ServiceProvider
             $filesystem = new Filesystem($adapter, ['case_sensitive' => false]);
 
             return new FilesystemAdapter($filesystem);
-        });
-
-        URL::macro('filament', function (string $uri): string {
-            /** @var \Illuminate\Routing\UrlGenerator $this */
-            if (config('filament.domain') !== null) {
-                $this->forceRootUrl(config('filament.domain'));
-            }
-
-            return tap(
-                $this->to(Str::start(
-                    trim($uri, '/'),
-                    Str::finish(config('filament.path'), '/')
-                )),
-                fn () => $this->forceRootUrl(config('app.url'))
-            );
         });
 
         URL::macro('horizon', function (string $uri): string {

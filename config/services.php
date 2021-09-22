@@ -34,7 +34,14 @@ return [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => '/auth/github/callback',
-        'sponsors_access_token' => env('GITHUB_SPONSORS_ACCESS_TOKEN'),
+        'sponsors_token' => env('GITHUB_SPONSORS_ACCESS_TOKEN'),
+    ],
+
+    'umami' => [
+        'enabled' => env('UMAMI_ENABLED', false),
+        'website_id' => env('UMAMI_WEBSITE_ID'),
+        'api_url' => env('UMAMI_API_URL'),
+        'domain' => env('UMAMI_DOMAIN', 'opendor.me'),
     ],
 
 ];

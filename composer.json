@@ -3,7 +3,7 @@
     "type": "project",
     "description": "",
     "keywords": [],
-    "license": "MIT",
+    "license": "CC-BY-NC-SA-3.0",
     "require": {
         "php": "^8.0",
         "ext-intl": "*",
@@ -11,19 +11,18 @@
         "ext-redis": "*",
         "algolia/scout-extended": "^1.17",
         "astrotomic/laravel-cachable-attributes": "^0.3.0",
+        "astrotomic/laravel-github-sponsors": "^0.3.0",
         "astrotomic/laravel-imgix": "^0.2.0",
         "astrotomic/php-open-graph": "^0.5.2",
+        "backpack/crud": "4.1.*",
         "blade-ui-kit/blade-ui-kit": "^0.2.0",
-        "dragonmantank/cron-expression": "^3.0.2",
         "fideloper/proxy": "^4.4",
-        "filament/filament": "^1.9",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "kevinrob/guzzle-cache-middleware": "^3.3",
         "laravel/framework": "^8.12",
         "laravel/horizon": "^5.7",
         "laravel/socialite": "^5.2",
-        "lorisleiva/cron-translator": "^0.2.0",
         "mallardduck/blade-boxicons": "^2.0.2",
         "mazedlx/laravel-feature-policy": "^1.1",
         "nesbot/carbon": "^2.46",
@@ -45,12 +44,14 @@
     },
     "require-dev": {
         "astrotomic/phpunit-assertions": "^0.3.0",
+        "backpack/generators": "^3.1",
         "barryvdh/laravel-debugbar": "^3.5",
         "barryvdh/laravel-ide-helper": "^2.8",
         "egulias/email-validator": "^2.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "friendsofphp/php-cs-fixer": "^2.18",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "laracasts/generators": "^2.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3",
@@ -115,7 +116,7 @@
         ],
         "enlightn": "@php artisan enlightn --details --ci",
         "fix": [
-            "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist"
+            "vendor/bin/php-cs-fixer fix --using-cache=no"
         ],
         "ide": [
             "@php artisan ide-helper:eloquent --ansi --no-interaction --quiet",
@@ -128,11 +129,11 @@
         ],
         "lint": [
             "vendor/bin/phpmnd ./app",
-            "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --dry-run",
+            "vendor/bin/php-cs-fixer fix --using-cache=no --dry-run",
             "vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
-        "route:list": "@php artisan route:pretty --except-path=nova,horizon,_debugbar,livewire,filament",
+        "route:list": "@php artisan route:pretty --except-path=nova,horizon,_debugbar",
         "test": "@php vendor/bin/phpunit",
         "test-coverage": "@php vendor/bin/phpunit --coverage-html=.coverage",
         "thanks": "echo 'composer global require symfony/thanks'"
