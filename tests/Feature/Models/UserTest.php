@@ -1,139 +1,70 @@
 <?php
 
-namespace Tests\Feature\Models;
-
 use App\Enums\BlockReason;
 use App\Jobs\LoadOrganizationRepositories;
 use App\Jobs\LoadUserRepositories;
-use App\Models\Organization;
 use App\Models\Repository;
 use App\Models\User;
-use Astrotomic\PhpunitAssertions\Laravel\ModelAssertions;
-use Spatie\Enum\Phpunit\EnumAssertions;
-use Tests\Feature\TestCase;
-use Tests\Utils\UserAssertions;
 
-final class UserTest extends TestCase
-{
-    public function test_it_creates_user_from_github(): void
-    {
-        $user = User::fromGithub($this->fixture('users/Gummibeer'));
+it('creates user from Github')
+    ->expect(fn () => $this->user('Gummibeer'))
+    ->toBeUser()
+    ->name->toBe('Gummibeer')
+    ->email->toBe('6187884+Gummibeer@users.noreply.github.com')
+    ->isRegistered()->toBeFalse();
 
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-        $this->assertSame('6187884+Gummibeer@users.noreply.github.com', $user->email);
-        $this->assertFalse($user->isRegistered());
-    }
+it('finds user from Github')
+    ->expect(fn () => $this->user('Gummibeer'))
+    ->toBeModel(fn () => $this->user('Gummibeer'))
+    ->toBeUser()
+    ->name->toBe('Gummibeer');
 
-    public function test_it_finds_user_from_github(): void
-    {
-        $user1 = User::fromGithub($this->fixture('users/Gummibeer'));
-        $user2 = User::fromGithub($this->fixture('users/Gummibeer'));
+it('finds blocked user from Github')
+    ->tap(fn () => $this->user = $this->user('Gummibeer'))
+    ->tap(fn () => $this->user->update([
+        'block_reason' => BlockReason::SPAM(),
+        'blocked_at' => now(),
+    ]))
+    ->expect(fn () => $this->user('Gummibeer'))
+    ->toBeUser()
+    ->name->toBe('Gummibeer')
+    ->block_reason->toBe(BlockReason::SPAM())
+    ->isBlocked()->toBeTrue();
 
-        UserAssertions::assertUser($user1);
-        UserAssertions::assertUser($user2);
-        ModelAssertions::assertSame($user1, $user2);
+it('finds users by email')
+    ->requiresPostgreSQL()
+    ->with([
+        ['dev@gummibeer.de'],
+        ['6187884+Gummibeer@users.noreply.github.com'],
+        ['Gummibeer@users.noreply.github.com'],
+        ['6187884@users.noreply.github.com'],
+    ])
+    ->tap(fn () => $this->user('Gummibeer')->update([
+        'email' => 'dev@gummibeer.de',
+        'email_verified_at' => now(),
+    ]))
+    ->expect(fn ($email) => User::byEmail($email)->first())
+    ->toBeUser()
+    ->name->toBe('Gummibeer');
 
-        $this->assertSame('Gummibeer', $user1->name);
-        $this->assertSame('Gummibeer', $user2->name);
-    }
+it(
+    'returns ordered vendors alphabetically regardless of case',
+    function () {
+        LoadUserRepositories::dispatchSync($this->user('barryvdh'));
+        LoadOrganizationRepositories::dispatchSync($this->organization('algolia'));
+        LoadOrganizationRepositories::dispatchSync($this->organization('Astrotomic'));
+        LoadOrganizationRepositories::dispatchSync($this->organization('EventSaucePHP'));
 
-    public function test_it_finds_blocked_user_from_github(): void
-    {
-        $user1 = User::fromGithub($this->fixture('users/Gummibeer'));
-        $user1->update([
-            'block_reason' => BlockReason::SPAM(),
-            'blocked_at' => now(),
-        ]);
-
-        $user2 = User::fromGithub($this->fixture('users/Gummibeer'));
-
-        UserAssertions::assertUser($user1);
-        UserAssertions::assertUser($user2);
-        ModelAssertions::assertSame($user1, $user2);
-
-        $this->assertSame('Gummibeer', $user1->name);
-        $this->assertSame('Gummibeer', $user2->name);
-        EnumAssertions::assertSameEnum(BlockReason::SPAM(), $user1->block_reason);
-        EnumAssertions::assertSameEnum(BlockReason::SPAM(), $user2->block_reason);
-    }
-
-    public function test_it_finds_user_by_email(): void
-    {
-        $this->requiresPostgreSQL();
-
-        User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
-
-        $user = User::byEmail('dev@gummibeer.de')->first();
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-    }
-
-    public function test_it_finds_user_by_github_email(): void
-    {
-        $this->requiresPostgreSQL();
-
-        User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
-
-        $user = User::byEmail('6187884+Gummibeer@users.noreply.github.com')->first();
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-    }
-
-    public function test_it_finds_user_by_name_only_github_email(): void
-    {
-        $this->requiresPostgreSQL();
-
-        User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
-
-        $user = User::byEmail('Gummibeer@users.noreply.github.com')->first();
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-    }
-
-    public function test_it_finds_user_by_id_only_github_email(): void
-    {
-        $this->requiresPostgreSQL();
-
-        User::fromGithub($this->fixture('users/Gummibeer'))
-            ->update(['email' => 'dev@gummibeer.de', 'email_verified_at' => now()]);
-
-        $user = User::byEmail('6187884@users.noreply.github.com')->first();
-        UserAssertions::assertUser($user);
-        $this->assertSame('Gummibeer', $user->name);
-    }
-
-    public function test_it_returns_sorted_vendors(): void
-    {
-        $user = User::fromGithub($this->fixture('users/Gummibeer'));
-        UserAssertions::assertUser($user);
-        LoadUserRepositories::dispatchSync(User::fromGithub($this->fixture('users/barryvdh')));
-        LoadOrganizationRepositories::dispatchSync(Organization::fromGithub($this->fixture('orgs/algolia')));
-        LoadOrganizationRepositories::dispatchSync(Organization::fromGithub($this->fixture('orgs/Astrotomic')));
-        LoadOrganizationRepositories::dispatchSync(Organization::fromGithub($this->fixture('orgs/EventSaucePHP')));
-
+        $user = $this->user('Gummibeer');
         $user->contributions()->sync(
             Repository::all()
         );
 
-        $vendorNames = $user->vendors->pluck('name');
-
-        $this->assertEquals(
-            [
-                'algolia',
-                'Astrotomic',
-                'barryvdh',
-                'EventSaucePHP',
-            ],
-            $vendorNames->all()
-        );
-
-        $this->assertSame('algolia', $vendorNames[0]);
-        $this->assertSame('Astrotomic', $vendorNames[1]);
-        $this->assertSame('barryvdh', $vendorNames[2]);
-        $this->assertSame('EventSaucePHP', $vendorNames[3]);
+        expect($user->vendors->pluck('name')->all())->toBe([
+            'algolia',
+            'Astrotomic',
+            'barryvdh',
+            'EventSaucePHP',
+        ]);
     }
-}
+);

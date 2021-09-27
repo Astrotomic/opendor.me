@@ -9,7 +9,7 @@
     search.addWidgets([
         algolia.widgets.searchBox({
             container: '#algolia-search-input',
-            placeholder: 'Enter an username',
+            placeholder: 'Enter a username',
             searchAsYouType: true,
             showReset: false,
             showLoadingIndicator: false,
