@@ -46,16 +46,6 @@ class AppServiceProvider extends ServiceProvider
             return $numeral;
         });
 
-        $this->app->singleton(CacheMiddleware::class, function (): CacheMiddleware {
-            return new CacheMiddleware(
-                new PrivateCacheStrategy(
-                    new LaravelCacheStorage(
-                        Cache::store()
-                    )
-                )
-            );
-        });
-
         $this->app->singleton(GithubSponsorRepository::class);
 
         $this->app->singleton('crud', CrudPanel::class);
@@ -90,7 +80,6 @@ class AppServiceProvider extends ServiceProvider
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withOptions(['http_errors' => true])
-                ->withMiddleware(app(CacheMiddleware::class))
                 ->withMiddleware(function (callable $handler): Closure {
                     return function (RequestInterface $request, array $options) use ($handler): PromiseInterface {
                         $promise = $handler($request, $options);
