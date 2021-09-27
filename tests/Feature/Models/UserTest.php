@@ -50,21 +50,21 @@ it('finds users by email')
 it(
     'returns ordered vendors alphabetically regardless of case',
     function () {
-    LoadUserRepositories::dispatchSync($this->user('barryvdh'));
-    LoadOrganizationRepositories::dispatchSync($this->organization('algolia'));
-    LoadOrganizationRepositories::dispatchSync($this->organization('Astrotomic'));
-    LoadOrganizationRepositories::dispatchSync($this->organization('EventSaucePHP'));
+        LoadUserRepositories::dispatchSync($this->user('barryvdh'));
+        LoadOrganizationRepositories::dispatchSync($this->organization('algolia'));
+        LoadOrganizationRepositories::dispatchSync($this->organization('Astrotomic'));
+        LoadOrganizationRepositories::dispatchSync($this->organization('EventSaucePHP'));
 
-    $user = $this->user('Gummibeer');
-    $user->contributions()->sync(
-        Repository::all()
-    );
+        $user = $this->user('Gummibeer');
+        $user->contributions()->sync(
+            Repository::all()
+        );
 
-    expect($user->vendors->pluck('name')->all())->toBe([
+        expect($user->vendors->pluck('name')->all())->toBe([
             'algolia',
             'Astrotomic',
             'barryvdh',
             'EventSaucePHP',
         ]);
-}
+    }
 );
