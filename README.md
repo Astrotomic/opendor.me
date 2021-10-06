@@ -21,6 +21,8 @@ The following tools are required in order to start the installation.
 3. Run `make setup` to setup local environment
 4. Run `make start` to start the application
 
+**Note:** You can create your own `phpunit.xml` to customize your PhpUnit configuration.
+
 ### Github Setup
 
 To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://localhost:8080` for the homepage url and `http://localhost:8000/auth/github/callback` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
@@ -37,6 +39,7 @@ Command | Description
 `make composer-install` | Install composer dependencies
 `make run <command>` | Run the desire command inside container
 `make migrate` | Run the migration
-`make npm-dev` | Build the dependecies
-`make npm-install` | Install npm dependecies
-`make stop` | Stop the running conatiners
+`make test` | Run the tests
+`make npm-dev` | Build the dependencies
+`make npm-install` | Install npm dependencies
+`make stop` | Stop the running containers
