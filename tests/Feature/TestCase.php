@@ -5,22 +5,25 @@ namespace Tests\Feature;
 use App\Models\Organization;
 use App\Models\User;
 use GuzzleHttp\Promise\PromiseInterface;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Spatie\Enum\Laravel\Faker\FakerEnumProvider;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use RefreshDatabase;
+    use LazilyRefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
+
+        FakerEnumProvider::register();
 
         Http::fake([
             'api.github.com/*' => function (Request $request): PromiseInterface {
