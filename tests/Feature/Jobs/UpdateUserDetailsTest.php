@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\BlockReason;
 use App\Jobs\UpdateUserDetails;
+use Illuminate\Contracts\Bus\Dispatcher;
 
 it('updates user details from github')
     ->tap(fn() => $this->user = $this->user('Gummibeer'))
