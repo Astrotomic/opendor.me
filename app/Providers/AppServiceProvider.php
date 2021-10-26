@@ -17,15 +17,11 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Kevinrob\GuzzleCache\CacheMiddleware;
-use Kevinrob\GuzzleCache\Storage\LaravelCacheStorage;
-use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 use League\Flysystem\Filesystem;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -44,16 +40,6 @@ class AppServiceProvider extends ServiceProvider
             $numeral->setLanguageManager(new LanguageManager());
 
             return $numeral;
-        });
-
-        $this->app->singleton(CacheMiddleware::class, function (): CacheMiddleware {
-            return new CacheMiddleware(
-                new PrivateCacheStrategy(
-                    new LaravelCacheStorage(
-                        Cache::store()
-                    )
-                )
-            );
         });
 
         $this->app->singleton(GithubSponsorRepository::class);
@@ -90,7 +76,6 @@ class AppServiceProvider extends ServiceProvider
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withOptions(['http_errors' => true])
-                ->withMiddleware(app(CacheMiddleware::class))
                 ->withMiddleware(function (callable $handler): Closure {
                     return function (RequestInterface $request, array $options) use ($handler): PromiseInterface {
                         $promise = $handler($request, $options);

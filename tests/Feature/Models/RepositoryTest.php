@@ -4,7 +4,7 @@ use App\Enums\Language;
 use App\Enums\License;
 use App\Models\Repository;
 
-beforeEach(function() {
+beforeEach(function () {
     $this->validData = [
         'id' => 123457,
         'full_name' => 'Gummibeer/php-library',
@@ -18,11 +18,11 @@ beforeEach(function() {
         'fork' => false,
         'language' => 'PHP',
         'license' => [
-            'key' => "mit",
-            "name" => "MIT License",
-            "spdx_id" => "MIT",
-            "url" => "https://api.github.com/licenses/mit",
-            "node_id" => "MDc6TGljZW5zZTEz"
+            'key' => 'mit',
+            'name' => 'MIT License',
+            'spdx_id' => 'MIT',
+            'url' => 'https://api.github.com/licenses/mit',
+            'node_id' => 'MDc6TGljZW5zZTEz',
         ],
         'owner' => [
             'id' => 123456,
@@ -32,7 +32,7 @@ beforeEach(function() {
     ];
 });
 
-it('links the repository to the owner', function() {
+it('links the repository to the owner', function () {
     Repository::fromGithub($this->validData);
 
     expect(Repository::findOrFail(123457))
@@ -45,8 +45,8 @@ it('links the repository to the owner', function() {
 });
 
 it('the fromGithub method returns early if the data is invalid')
-    ->expect(fn($overrides) => Repository::fromGithub(array_merge($this->validData, $overrides)))->toBeNull()
-    ->expect(fn() => Repository::exists())->toBeFalse()
+    ->expect(fn ($overrides) => Repository::fromGithub(array_merge($this->validData, $overrides)))->toBeNull()
+    ->expect(fn () => Repository::exists())->toBeFalse()
     ->with([
         [['private' => true]],
         [['archived' => true]],
@@ -59,5 +59,5 @@ it('the fromGithub method returns early if the data is invalid')
     ]);
 
 it('throws an InvalidArgumentException if the owner type is not User or Organization')
-    ->tap(fn() => Repository::fromGithub(array_merge($this->validData, ['owner' => ['type' => 'Foobar']])))
+    ->tap(fn () => Repository::fromGithub(array_merge($this->validData, ['owner' => ['type' => 'Foobar']])))
     ->throws(InvalidArgumentException::class, 'Unknown repository owner type [Foobar]');

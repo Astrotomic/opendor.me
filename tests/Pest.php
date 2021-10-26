@@ -12,7 +12,6 @@
 */
 
 use Astrotomic\PhpunitAssertions\Laravel\ModelAssertions;
-use Illuminate\Support\Facades\DB;
 use Tests\Utils\OrganizationAssertions;
 use Tests\Utils\UserAssertions;
 
@@ -29,22 +28,25 @@ uses(Tests\Feature\TestCase::class)->in('Feature');
 |
 */
 
-expect()->extend('toBeUser', function() {
+expect()->extend('toBeUser', function () {
     UserAssertions::assertUser($this->value);
+
     return $this;
 });
 
-expect()->extend('toBeOrganization', function() {
+expect()->extend('toBeOrganization', function () {
     OrganizationAssertions::assertOrganization($this->value);
+
     return $this;
 });
 
-expect()->extend('toBeModel', function($comparison) {
+expect()->extend('toBeModel', function ($comparison) {
     if ($comparison instanceof Closure) {
         $comparison = Closure::bind($comparison, test())();
     }
 
     ModelAssertions::assertSame($this->value, $comparison);
+
     return $this;
 });
 
