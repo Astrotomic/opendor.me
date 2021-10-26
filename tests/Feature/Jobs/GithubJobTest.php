@@ -7,14 +7,14 @@ use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Carbon;
 use Symfony\Component\HttpFoundation\Response;
-use function Tests\GithubJob\job;
 
 it('deletes the job if the user is blocked', function () {
     $user = $this->user('Gummibeer');
     $user->block_reason = BlockReason::INAPPROPRIATE();
     $user->update();
 
-    $job = githubJob(function () {}, $user);
+    $job = githubJob(function () {
+    }, $user);
     app(Dispatcher::class)->dispatchNow($job);
 
     expect($job->job->isDeleted())->toBeTrue();
@@ -71,12 +71,12 @@ it('releases the job if a Github rate limit is hit', function () {
     expect(app(Dispatcher::class)->dispatchNow($job))->toBeFalse();
     expect($job->job->isReleased())->toBeTrue();
 
-    $spy->shouldHaveReceived('info', fn($message) => $message === 'Hit GitHub rate-limit for [/users/repos] delay 59 minutes and 59 seconds from now');
+    $spy->shouldHaveReceived('info', fn ($message) => $message === 'Hit GitHub rate-limit for [/users/repos] delay 59 minutes and 59 seconds from now');
 });
 
 function githubJob(Closure $run, User $entity): GithubJob
 {
-    return new class($run, $entity) extends GithubJob {
+    return new class ($run, $entity) extends GithubJob {
         public function __construct(private Closure $run, protected User $user)
         {
             parent::__construct();
