@@ -1,9 +1,9 @@
 {
     "name": "astrotomic/opendor.me",
-    "type": "project",
     "description": "",
-    "keywords": [],
     "license": "CC-BY-NC-SA-3.0",
+    "type": "project",
+    "keywords": [],
     "require": {
         "php": "^8.0",
         "ext-intl": "*",
@@ -38,9 +38,6 @@
         "spatie/once": "^3.0",
         "stillat/numeral.php": "^2.0"
     },
-    "conflict": {
-        "tightenco/tlint": "5.0.16"
-    },
     "require-dev": {
         "astrotomic/phpunit-assertions": "^0.3.0",
         "backpack/generators": "^3.1",
@@ -63,8 +60,31 @@
         "tightenco/tlint": "^6.0",
         "wulfheart/pretty_routes": "^0.1.2"
     },
+    "conflict": {
+        "tightenco/tlint": "5.0.16"
+    },
     "suggest": {
         "enlightn/enlightnpro": "^1.16"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.laravel-enlightn.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "config": {
         "optimize-autoloader": true,
@@ -80,26 +100,6 @@
             "dont-discover": []
         }
     },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://satis.laravel-enlightn.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "scripts": {
         "post-update-cmd": [
             "@php artisan horizon:publish --ansi --no-interaction"
