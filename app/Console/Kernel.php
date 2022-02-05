@@ -34,14 +34,14 @@ class Kernel extends ConsoleKernel
         $schedule->command(GithubUserContributions::class)->dailyAt('13:00')->onOneServer();
 
         // laravel/horizon
-        $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer()->environments('gorgeous-moon');
+        $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer();
         $schedule->command(PruneBatchesCommand::class, [
             '--hours' => CarbonInterval::days(2)->totalHours,
             '--unfinished' => CarbonInterval::week()->totalHours,
-        ])->dailyAt('00:00')->onOneServer()->environments('gorgeous-moon');
+        ])->dailyAt('00:00')->onOneServer();
 
         // laravel/scout
-        $schedule->command(ReImportCommand::class)->everyThreeHours()->onOneServer()->environments('gorgeous-moon');
+        $schedule->command(ReImportCommand::class)->everyThreeHours()->onOneServer();
 
         // spatie/laravel-schedule-monitor
         $schedule->command(CleanLogCommand::class)->dailyAt('00:00')->onOneServer();
