@@ -50,10 +50,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
                 return false;
             }
 
-            if (
-                $exception->hasResponse()
-                && in_array($exception->getResponse()->getStatusCode(), [Response::HTTP_NOT_FOUND, Response::HTTP_FORBIDDEN])
-            ) {
+            if (in_array($exception->getResponse()->getStatusCode(), [Response::HTTP_NOT_FOUND, Response::HTTP_FORBIDDEN])) {
                 $this->entity()->update([
                     'block_reason' => BlockReason::DELETED(),
                     'blocked_at' => now(),

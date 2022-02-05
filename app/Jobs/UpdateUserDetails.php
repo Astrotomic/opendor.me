@@ -23,16 +23,6 @@ class UpdateUserDetails extends GithubJob
             'location' => $data['location'],
         ]);
 
-        if (! $this->user->hasGithubToken()) {
-            return;
-        }
-
-        $emails = $this->user->github()->get('/user/emails')->collect()
-            ->filter->verified
-            ->pluck('email')
-            ->unique()
-            ->toArray();
-
-        $this->user->update(['emails' => $emails]);
+        // TODO: Remove emails property on User model
     }
 }

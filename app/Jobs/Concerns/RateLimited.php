@@ -13,8 +13,7 @@ trait RateLimited
     public function rateLimit(ClientException $exception): bool
     {
         if (
-            $exception->hasResponse()
-            && $exception->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN
+            $exception->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN
             && $exception->getResponse()->hasHeader('X-RateLimit-Reset')
         ) {
             $reset = Carbon::createFromTimestampUTC(
