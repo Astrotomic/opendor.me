@@ -9,6 +9,7 @@ use App\Enums\Language;
 use App\Enums\License;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use BadMethodCallException;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Http\Client\PendingRequest;
@@ -50,6 +51,7 @@ use Throwable;
  */
 class Repository extends Model
 {
+    use HasFactory;
     use CrudTrait;
     use Blockable;
 
