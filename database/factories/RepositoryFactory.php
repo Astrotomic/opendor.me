@@ -21,7 +21,7 @@ class RepositoryFactory extends Factory
     {
         return [
             'id' => $this->faker->unique->randomNumber(8),
-            'name' => $this->faker->userName . '/' . $this->faker->unique->slug(3),
+            'name' => $this->faker->userName.'/'.$this->faker->unique->slug(3),
             'license' => $this->faker->randomEnum(License::class),
             'language' => $this->faker->randomEnum(Language::class),
             'stargazers_count' => $this->faker->numberBetween(0, 25_100),

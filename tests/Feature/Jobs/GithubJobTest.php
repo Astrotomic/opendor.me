@@ -76,7 +76,7 @@ it('releases the job if a Github rate limit is hit', function () {
 
 function githubJob(Closure $run, User $entity): GithubJob
 {
-    return new class ($run, $entity) extends GithubJob {
+    return new class($run, $entity) extends GithubJob {
         public function __construct(private Closure $run, protected User $user)
         {
             parent::__construct();
