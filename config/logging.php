@@ -44,6 +44,7 @@ return [
 
         'sentry' => [
             'driver' => 'sentry',
+            'level' => \Psr\Log\LogLevel::ERROR,
         ],
 
         'loggly' => [
