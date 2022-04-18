@@ -255,6 +255,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             ->distinct('owner_type', 'owner_id')
             ->get()
             ->pluck('owner')
+            ->filter()
             ->sortBy(fn (User | Organization $owner): string => Str::lower($owner->name))
             ->unique('id'));
     }
