@@ -8,11 +8,11 @@ use Illuminate\View\Component;
 class App extends Component
 {
     public string $title;
-    public string $pageTitle;
 
-    public function __construct(string $pageTitle, ?string $title = null)
-    {
-        $this->pageTitle = $pageTitle;
+    public function __construct(
+        public string $pageTitle,
+        ?string $title = null
+    ) {
         $this->title = $title ?? $pageTitle;
     }
 

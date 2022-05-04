@@ -21,8 +21,11 @@ abstract class Job implements ShouldQueue
     use SerializesModels;
 
     public bool $deleteWhenMissingModels = true;
+
     public ?int $timeout = null;
+
     public ?int $tries = null;
+
     public ?int $maxExceptions = null;
 
     public static function dispatchBatch(): Batch

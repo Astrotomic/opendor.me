@@ -178,49 +178,49 @@ return [
     */
 
     'defaults' => [
-//        'low-priority' => [
-//            'connection' => 'redis',
-//            'queue' => [
-//                'low',
-//            ],
-//            'balance' => 'auto',
-//            'maxProcesses' => 2,
-//            'memory' => 128,
-//            'tries' => 1,
-//            'nice' => 0,
-//        ],
-//        'medium-priority' => [
-//            'connection' => 'redis',
-//            'queue' => [
-//                'default',
-//                'medium',
-//            ],
-//            'balance' => 'auto',
-//            'maxProcesses' => 4,
-//            'memory' => 128,
-//            'tries' => 1,
-//            'nice' => 0,
-//        ],
-//        'high-priority' => [
-//            'connection' => 'redis',
-//            'queue' => [
-//                'high',
-//            ],
-//            'balance' => 'auto',
-//            'maxProcesses' => 6,
-//            'memory' => 128,
-//            'tries' => 1,
-//            'nice' => 0,
-//        ],
-//        'notifications' => [
-//            'connection' => 'redis',
-//            'queue' => 'notification',
-//            'balance' => 'auto',
-//            'maxProcesses' => 2,
-//            'memory' => 128,
-//            'tries' => 1,
-//            'nice' => 0,
-//        ],
+        //        'low-priority' => [
+        //            'connection' => 'redis',
+        //            'queue' => [
+        //                'low',
+        //            ],
+        //            'balance' => 'auto',
+        //            'maxProcesses' => 2,
+        //            'memory' => 128,
+        //            'tries' => 1,
+        //            'nice' => 0,
+        //        ],
+        //        'medium-priority' => [
+        //            'connection' => 'redis',
+        //            'queue' => [
+        //                'default',
+        //                'medium',
+        //            ],
+        //            'balance' => 'auto',
+        //            'maxProcesses' => 4,
+        //            'memory' => 128,
+        //            'tries' => 1,
+        //            'nice' => 0,
+        //        ],
+        //        'high-priority' => [
+        //            'connection' => 'redis',
+        //            'queue' => [
+        //                'high',
+        //            ],
+        //            'balance' => 'auto',
+        //            'maxProcesses' => 6,
+        //            'memory' => 128,
+        //            'tries' => 1,
+        //            'nice' => 0,
+        //        ],
+        //        'notifications' => [
+        //            'connection' => 'redis',
+        //            'queue' => 'notification',
+        //            'balance' => 'auto',
+        //            'maxProcesses' => 2,
+        //            'memory' => 128,
+        //            'tries' => 1,
+        //            'nice' => 0,
+        //        ],
         'scout' => [
             'connection' => 'redis',
             'queue' => 'scout',

@@ -19,6 +19,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     use RateLimited;
 
     public ?int $tries = 12;
+
     public ?int $maxExceptions = 1;
 
     public function __construct()
@@ -79,7 +80,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     }
 
     /**
-     * @return int|int[]
+     * @return int|array<int>
      */
     public function backoff(): int | array
     {

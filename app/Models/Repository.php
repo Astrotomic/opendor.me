@@ -28,8 +28,8 @@ use Throwable;
  * @property string $owner_type
  * @property int $owner_id
  * @property string|null $description
- * @property License $license
- * @property Language $language
+ * @property \App\Enums\License $license
+ * @property \App\Enums\Language $language
  * @property \Carbon\Carbon|null $blocked_at
  * @property \App\Enums\BlockReason|null $block_reason
  * @property \Carbon\Carbon|null $created_at
@@ -41,7 +41,7 @@ use Throwable;
  * @property-read string $repository_name
  * @property-read string $vendor_name
  * @property-read bool $is_blocked
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $contributors
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $contributors
  * @property-read \App\Models\User|\App\Models\Organization $owner
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()

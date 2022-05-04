@@ -31,8 +31,6 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
                 Str::start(config('horizon.notifications.slack.channel'), '#')
             );
         }
-
-        // Horizon::night();
     }
 
     protected function gate(): void

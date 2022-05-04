@@ -4,7 +4,7 @@ namespace App\Http\Policies;
 
 use Mazedlx\FeaturePolicy\Policies\Policy;
 
-class PermissionsPolicy extends Policy
+class PermissionsPolicy extends Policy implements \Stringable
 {
     public function configure(): void
     {

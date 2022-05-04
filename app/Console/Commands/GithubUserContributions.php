@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 class GithubUserContributions extends Command
 {
     protected $signature = 'github:user:contributions {name?}';
+
     protected $description = 'Load user contributions.';
 
     public function handle(): void

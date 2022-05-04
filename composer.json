@@ -39,6 +39,7 @@
         "stillat/numeral.php": "^2.0"
     },
     "require-dev": {
+        "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
         "astrotomic/phpunit-assertions": "^0.3.0",
         "backpack/generators": "^3.1",
         "barryvdh/laravel-debugbar": "^3.5",
@@ -48,6 +49,7 @@
         "fakerphp/faker": "^1.9.1",
         "friendsofphp/php-cs-fixer": "^3.0",
         "gajus/dindent": "^2.0",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.10",
         "laracasts/generators": "^2.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 class GithubRepositoryDetails extends Command
 {
     protected $signature = 'github:repository:details {name?}';
+
     protected $description = 'Load repository details.';
 
     public function handle(): void

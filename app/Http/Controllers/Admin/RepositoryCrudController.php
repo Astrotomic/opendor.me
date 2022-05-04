@@ -16,8 +16,6 @@ use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- * Class RepositoryCrudController.
- *
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
 class RepositoryCrudController extends CrudController

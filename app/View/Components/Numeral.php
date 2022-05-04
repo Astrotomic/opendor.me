@@ -8,9 +8,9 @@ use Illuminate\View\Component;
 
 class Numeral extends Component
 {
-    public function __construct(public string $format = '4a')
-    {
-    }
+    public function __construct(
+        public string $format = '4a'
+    ) {}
 
     public function render(): View
     {

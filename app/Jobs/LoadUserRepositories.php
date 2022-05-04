@@ -9,8 +9,9 @@ use Illuminate\Support\Collection;
 
 class LoadUserRepositories extends GithubJob
 {
-    public function __construct(protected User $user)
-    {
+    public function __construct(
+        protected User $user
+    ) {
         parent::__construct();
         $this->timeout = CarbonInterval::minutes(15)->totalSeconds;
     }

@@ -40,8 +40,8 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $display_name
  * @property-read bool $is_blocked
  * @property-read \Illuminate\Support\Collection $languages
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $members
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $members
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $repositories
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newQuery()

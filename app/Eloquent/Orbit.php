@@ -12,9 +12,11 @@ abstract class Orbit extends Model
     use HasSlug;
 
     public $incrementing = false;
+
     public $timestamps = false;
 
     protected $keyType = 'string';
+
     protected $primaryKey = 'slug';
 
     abstract public static function schema(Blueprint $table): void;

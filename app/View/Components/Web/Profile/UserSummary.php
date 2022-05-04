@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class UserSummary extends Component
 {
     public Collection $organizations;
+
     public Collection $languages;
 
     public function __construct(

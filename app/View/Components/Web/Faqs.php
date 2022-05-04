@@ -10,9 +10,9 @@ use Illuminate\View\Component;
 
 class Faqs extends Component
 {
-    public function __construct(protected ?int $limit = null)
-    {
-    }
+    public function __construct(
+        protected ?int $limit = null
+    ) {}
 
     public function render(): View
     {
