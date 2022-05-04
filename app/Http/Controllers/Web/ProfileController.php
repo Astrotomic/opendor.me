@@ -11,13 +11,10 @@ class ProfileController
 {
     public function __invoke(User | Organization $profile): View
     {
-        if ($profile instanceof User) {
-            return $this->user($profile);
-        }
-
-        if ($profile instanceof Organization) {
-            return $this->organization($profile);
-        }
+        return match ($profile::class) {
+            User::class => $this->user($profile),
+            Organization::class => $this->organization($profile),
+        };
     }
 
     protected function user(User $user): View
