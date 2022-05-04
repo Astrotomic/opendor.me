@@ -127,12 +127,9 @@
             "vendor/bin/php-cs-fixer fix --using-cache=no"
         ],
         "ide": [
-            "@php artisan ide-helper:eloquent --ansi --no-interaction --quiet",
             "@php artisan ide-helper:generate --ansi --no-interaction --quiet",
             "@php artisan ide-helper:meta --ansi --no-interaction --quiet",
-            "@php artisan ide-helper:models --write --dir=app/Models --ansi --no-interaction --quiet",
-            "find ./app/Models/ -type f -exec sed -i -e 's/@mixin \\\\Eloquent/@mixin \\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder/g' {} \\;",
-            "find ./app/Models/ -type f -exec sed -i -e 's/\\\\Illuminate\\\\Support\\\\Carbon/\\\\Carbon\\\\Carbon/g' {} \\;",
+            "@php artisan ide-helper:models --write --dir=app/Models --reset --ansi --no-interaction --quiet",
             "@composer fix --quiet"
         ],
         "lint": [
