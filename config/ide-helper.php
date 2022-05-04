@@ -185,9 +185,9 @@ return [
     */
     'custom_db_types' => [
         'postgresql' => [
-           'jsonb' => 'json',
-           'point' => 'string',
-      ],
+            'jsonb' => 'json',
+            'point' => 'string',
+        ],
     ],
 
     /*

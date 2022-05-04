@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 class GithubUserDetails extends Command
 {
     protected $signature = 'github:user:details {name?}';
+
     protected $description = 'Load user details.';
 
     public function handle(): void

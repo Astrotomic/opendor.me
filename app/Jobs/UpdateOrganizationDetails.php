@@ -6,8 +6,9 @@ use App\Models\Organization;
 
 class UpdateOrganizationDetails extends GithubJob
 {
-    public function __construct(protected Organization $organization)
-    {
+    public function __construct(
+        protected Organization $organization
+    ) {
         parent::__construct();
     }
 

@@ -13,19 +13,18 @@ use Illuminate\View\Component;
 class Html extends Component
 {
     public string $title;
+
     public string $lang;
-    public ?string $description;
 
     public function __construct(
         ?string $title = null,
-        ?string $description = null
+        public ?string $description = null
     ) {
         $this->title = $title
             ? Str::finish($title, ' | '.config('app.name'))
             : config('app.name');
 
         $this->lang = str_replace('_', '-', app()->getLocale());
-        $this->description = $description;
     }
 
     public function render(): View

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 class GithubOrganizationRepositories extends Command
 {
     protected $signature = 'github:organization:repositories {name?}';
+
     protected $description = 'Load all repositories for organizations.';
 
     public function handle(): void

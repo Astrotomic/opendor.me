@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class GithubLanguages extends Command
 {
     protected $signature = 'github:languages';
+
     protected $description = 'Load all languages from GitHub.';
 
     public function handle(): void

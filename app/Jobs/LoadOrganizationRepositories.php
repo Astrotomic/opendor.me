@@ -9,8 +9,9 @@ use Illuminate\Support\Collection;
 
 class LoadOrganizationRepositories extends GithubJob
 {
-    public function __construct(protected Organization $organization)
-    {
+    public function __construct(
+        protected Organization $organization
+    ) {
         parent::__construct();
         $this->timeout = CarbonInterval::minutes(15)->totalSeconds;
     }

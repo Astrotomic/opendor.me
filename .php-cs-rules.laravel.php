@@ -5,6 +5,7 @@
  */
 
 return [
+    'array_indentation' => true,
     'array_syntax' => ['syntax' => 'short'],
     'binary_operator_spaces' => [
         'default' => 'single_space',
@@ -19,12 +20,18 @@ return [
     'cast_spaces' => true,
     'class_attributes_separation' => [
         'elements' => [
+            'const' => 'one',
             'method' => 'one',
+            'property' => 'one',
+            'trait_import' => 'none',
         ],
     ],
     'class_definition' => true,
     'concat_space' => [
         'spacing' => 'none'
+    ],
+    'constant_case' => [
+        'case' => 'lower',
     ],
     'declare_equal_normalize' => true,
     'elseif' => true,
@@ -33,6 +40,7 @@ return [
     'fully_qualified_strict_types' => true, // added by Shift
     'function_declaration' => true,
     'function_typehint_space' => true,
+    'general_phpdoc_tag_rename' => true,
     'heredoc_to_nowdoc' => true,
     'include' => true,
     'increment_style' => ['style' => 'post'],
@@ -40,14 +48,16 @@ return [
     'linebreak_after_opening_tag' => true,
     'line_ending' => true,
     'lowercase_cast' => true,
-    'constant_case' => [
-        'case' => 'lower',
-    ],
     'lowercase_keywords' => true,
     'lowercase_static_reference' => true, // added from Symfony
     'magic_method_casing' => true, // added from Symfony
     'magic_constant_casing' => true,
-    'method_argument_space' => true,
+    'method_argument_space' => [
+        'on_multiline' => 'ignore',
+    ],
+    'multiline_whitespace_before_semicolons' => [
+        'strategy' => 'no_multi_line'
+    ],
     'native_function_casing' => true,
     'no_alias_functions' => true,
     'no_extra_blank_lines' => [
@@ -69,9 +79,6 @@ return [
         'use' => 'echo'
     ],
     'no_multiline_whitespace_around_double_arrow' => true,
-    'multiline_whitespace_before_semicolons' => [
-        'strategy' => 'no_multi_line'
-    ],
     'no_short_bool_cast' => true,
     'no_singleline_whitespace_before_semicolons' => true,
     'no_spaces_after_function_name' => true,
@@ -89,8 +96,9 @@ return [
     'normalize_index_brace' => true,
     'not_operator_with_successor_space' => true,
     'object_operator_without_whitespace' => true,
-    'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+    'ordered_imports' => ['sort_algorithm' => 'alpha'],
     'phpdoc_indent' => true,
+    'phpdoc_inline_tag_normalizer' => true,
     'phpdoc_no_access' => true,
     'phpdoc_no_package' => true,
     'phpdoc_no_useless_inheritdoc' => true,
@@ -98,6 +106,7 @@ return [
     'phpdoc_single_line_var_spacing' => true,
     'phpdoc_summary' => true,
     'phpdoc_to_comment' => true,
+    'phpdoc_tag_type' => true,
     'phpdoc_trim' => true,
     'phpdoc_types' => true,
     'phpdoc_var_without_name' => true,

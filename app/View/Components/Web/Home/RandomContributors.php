@@ -9,9 +9,9 @@ use Illuminate\View\Component;
 
 class RandomContributors extends Component
 {
-    public function __construct(public int $limit = 6)
-    {
-    }
+    public function __construct(
+        public int $limit = 6
+    ) {}
 
     public function render(): View
     {

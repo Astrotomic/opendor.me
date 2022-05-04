@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 class GithubUserRepositories extends Command
 {
     protected $signature = 'github:user:repositories {name?}';
+
     protected $description = 'Load all repositories for users.';
 
     public function handle(): void

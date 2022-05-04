@@ -43,9 +43,9 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
- * @property string[] $emails
+ * @property array<string> $emails
  * @property string|null $remember_token
- * @property string[]|null $referrer
+ * @property array<string>|null $referrer
  * @property \Carbon\Carbon|null $registered_at
  * @property string $randomness
  * @property-read bool $is_blocked
@@ -59,9 +59,9 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string|null $twitter_url
  * @property-read string $display_name
  * @property-read \Illuminate\Support\Collection $vendors
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $contributions
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Organization[] $organizations
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Repository[] $repositories
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $contributions
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Organization> $organizations
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $repositories
  *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()

@@ -8,8 +8,9 @@ use App\Models\Repository;
 
 class UpdateRepositoryDetails extends GithubJob
 {
-    public function __construct(protected Repository $repository)
-    {
+    public function __construct(
+        protected Repository $repository
+    ) {
         parent::__construct();
     }
 

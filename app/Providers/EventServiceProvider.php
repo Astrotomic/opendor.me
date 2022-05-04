@@ -19,7 +19,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SetRegisteredAt::class,
             DispatchUserContributionSync::class,
-//            SendEmailVerificationNotification::class,
         ],
     ];
 

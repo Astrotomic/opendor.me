@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 class GithubOrganizationDetails extends Command
 {
     protected $signature = 'github:organization:details {name?}';
+
     protected $description = 'Load organization details.';
 
     public function handle(): void

@@ -8,17 +8,13 @@ use Illuminate\View\Component;
 class Web extends Component
 {
     public ?string $title;
-    public ?string $pageTitle;
-    public ?string $description;
 
     public function __construct(
-        ?string $pageTitle = null,
+        public ?string $pageTitle = null,
         ?string $title = null,
-        ?string $description = null
+        public ?string $description = null
     ) {
-        $this->pageTitle = $pageTitle;
         $this->title = $title ?? $pageTitle;
-        $this->description = $description;
     }
 
     public function render(): View
