@@ -9,19 +9,14 @@ use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Sluggable\SlugOptions;
 
 /**
- * App\Models\FAQ.
- *
  * @property string $slug
  * @property int $priority
  * @property string $question
+ * @property int $is_draft
  * @property string|null $content
- * @property bool $is_draft
  *
- * @method static \Illuminate\Database\Eloquent\Builder|FAQ newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|FAQ newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|FAQ ordered(string $direction = 'asc')
- * @method static \Illuminate\Database\Eloquent\Builder|FAQ query()
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FAQ ordered(string $direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\FAQ query()
  */
 class FAQ extends Orbit implements Sortable
 {

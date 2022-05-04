@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
+use App\Eloquent\QueryBuilders\UserQueryBuilder;
 use App\Enums\Language;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Astrotomic\CachableAttributes\CachesAttributes;
@@ -27,8 +28,6 @@ use Spatie\Sitemap\Contracts\Sitemapable as SitemapableContract;
 use Spatie\Sitemap\Tags\Url;
 
 /**
- * App\Models\User.
- *
  * @property int $id
  * @property string $name
  * @property string|null $full_name
@@ -37,40 +36,34 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $github_access_token
  * @property \Carbon\Carbon|null $blocked_at
  * @property \App\Enums\BlockReason|null $block_reason
+ * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property string|null $description
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
- * @property array<string> $emails
- * @property string|null $remember_token
- * @property array<string>|null $referrer
+ * @property array $emails
+ * @property array|null $referrer
  * @property \Carbon\Carbon|null $registered_at
  * @property string $randomness
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $contributions
+ * @property-read string $avatar_url
+ * @property-read string $display_name
+ * @property-read string $github_url
  * @property-read bool $is_blocked
  * @property-read bool $is_registered
+ * @property-read bool $is_superadmin
  * @property-read \Illuminate\Support\Collection $languages
  * @property-read \App\Enums\Language|null $primary_language
- * @property-read string $avatar_url
- * @property-read string $github_url
  * @property-read string|null $profile_url
- * @property-read bool $is_superadmin
  * @property-read string|null $twitter_url
- * @property-read string $display_name
  * @property-read \Illuminate\Support\Collection $vendors
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $contributions
  * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Organization> $organizations
  * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $repositories
  *
- * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereHasGithubAccessToken()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereIsRegistered()
- * @method static \Illuminate\Database\Eloquent\Builder|User byEmail(string $email)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail(string $email)
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static \App\Eloquent\QueryBuilders\UserQueryBuilder|\App\Models\User query()
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
 {
@@ -134,43 +127,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->belongsToMany(Repository::class)
             ->using(RepositoryUserPivot::class)
             ->as('repository_user');
-    }
-
-    public function scopeWhereHasGithubAccessToken(Builder $query): void
-    {
-        $query->whereNotNull('github_access_token');
-    }
-
-    public function scopeWhereIsRegistered(Builder $query): void
-    {
-        $query
-            ->whereHasGithubAccessToken()
-            ->whereNotNull('email_verified_at')
-            ->whereNotNull('registered_at');
-    }
-
-    public function scopeWhereEmail(Builder $query, string $email): void
-    {
-        $query->where('email', 'ILIKE', $email);
-    }
-
-    public function scopeByEmail(Builder $query, string $email): void
-    {
-        $email = Str::of($email);
-
-        $query
-            ->whereRaw("emails @> '".json_encode($email)."'")
-            ->orWhere('email', $email)
-            ->when($email->endsWith('@users.noreply.github.com'), static function (Builder $query) use ($email): void {
-                $parts = $email
-                    ->beforeLast('@users.noreply.github.com')
-                    ->explode('+', 2);
-
-                $query->orWhere(array_filter([
-                    'id' => is_numeric($parts[0]) ? $parts[0] : null,
-                    'name' => $parts[1] ?? $parts[0],
-                ]));
-            });
     }
 
     public function getAvatarUrlAttribute(): string
@@ -318,6 +274,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function shouldBeSearchable(): bool
     {
         return $this->isRegistered() && $this->contributions()->exists();
+    }
+
+    public function newEloquentBuilder($query): UserQueryBuilder
+    {
+        return new UserQueryBuilder($query);
     }
 
     protected function makeAllSearchableUsing(Builder $query): Builder
