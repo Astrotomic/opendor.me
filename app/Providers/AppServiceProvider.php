@@ -101,8 +101,6 @@ class AppServiceProvider extends ServiceProvider
 
                             $user->forceFill([
                                 'github_access_token' => null,
-                                'email' => "{$user->id}+{$user->name}@users.noreply.github.com",
-                                'email_verified_at' => null,
                                 'full_name' => null,
                                 'description' => null,
                                 'twitter' => null,
