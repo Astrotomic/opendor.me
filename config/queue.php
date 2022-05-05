@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\CarbonInterval;
+
 return [
 
     /*
