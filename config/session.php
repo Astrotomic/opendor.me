@@ -1,6 +1,6 @@
 <?php
 
-use Carbon\CarbonInterval;
+use Illuminate\Support\Str;
 
 return [
 
@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'redis'),
+    'driver' => env('SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'lifetime' => CarbonInterval::hours(2)->totalMinutes,
+    'lifetime' => env('SESSION_LIFETIME', 120),
 
     'expire_on_close' => false,
 
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'connection' => 'session',
+    'connection' => env('SESSION_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -100,7 +100,7 @@ return [
     |
     */
 
-    'store' => env('SESSION_STORE', null),
+    'store' => env('SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +128,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        'opendor_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
     ),
 
     /*
@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,11 +164,11 @@ return [
     |
     | By setting this option to true, session cookies will only be sent back
     | to the server if the browser has a HTTPS connection. This will keep
-    | the cookie from being sent to you if it can not be done securely.
+    | the cookie from being sent to you when it can't be done securely.
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', true),
+    'secure' => env('SESSION_SECURE_COOKIE'),
 
     /*
     |--------------------------------------------------------------------------

@@ -9,15 +9,13 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    protected $model = User::class;
-
     public function definition(): array
     {
         return [
-            'id' => $this->faker->unique->randomNumber(8),
-            'name' => $this->faker->unique->userName,
-            'full_name' => $this->faker->unique->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'id' => $this->faker->unique()->randomNumber(8),
+            'name' => $this->faker->unique()->userName,
+            'full_name' => $this->faker->unique()->name,
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => null,
             'remember_token' => Str::random(10),
             'registered_at' => null,

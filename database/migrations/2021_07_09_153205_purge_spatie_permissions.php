@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class PurgeSpatiePermissions extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -13,4 +13,4 @@ class PurgeSpatiePermissions extends Migration
         Schema::dropIfExists('roles');
         Schema::dropIfExists('permissions');
     }
-}
+};
