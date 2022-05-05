@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Web;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController
 {
@@ -19,10 +18,11 @@ class ProfileController
 
     protected function user(User $user): View
     {
-        abort_unless(
-            auth()->user()?->is_superadmin || $user->isRegistered(),
-            Response::HTTP_NOT_FOUND
-        );
+        if (! $user->isRegistered()) {
+            return view('web.profile.missing', [
+                'user' => $user,
+            ]);
+        }
 
         return view('web.profile.user', [
             'user' => $user,
