@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRegisteredAtToUsersTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -29,4 +29,4 @@ class AddRegisteredAtToUsersTable extends Migration
             $table->dropColumn('registered_at');
         });
     }
-}
+};

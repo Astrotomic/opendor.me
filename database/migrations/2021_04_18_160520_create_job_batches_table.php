@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobBatchesTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -26,4 +26,4 @@ class CreateJobBatchesTable extends Migration
     {
         Schema::dropIfExists('job_batches');
     }
-}
+};
