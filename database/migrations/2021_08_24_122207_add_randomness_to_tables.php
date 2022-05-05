@@ -8,8 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class AddRandomnessToTables extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         foreach ([User::class, Organization::class, Repository::class] as $model) {
@@ -30,4 +29,4 @@ class AddRandomnessToTables extends Migration
             $table->dropColumn('randomness');
         });
     }
-}
+};

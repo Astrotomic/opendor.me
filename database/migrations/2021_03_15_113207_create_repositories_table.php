@@ -5,8 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRepositoriesTable extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         Schema::create(Repository::table(), static function (Blueprint $table): void {
@@ -26,4 +25,4 @@ class CreateRepositoriesTable extends Migration
     {
         Schema::dropIfExists(Repository::table());
     }
-}
+};

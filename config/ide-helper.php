@@ -7,12 +7,22 @@ return [
     | Filename & Format
     |--------------------------------------------------------------------------
     |
-    | The default filename (without extension) and the format (php or json)
+    | The default filename
     |
     */
 
-    'filename'  => '_ide_helper',
-    'format'    => 'php',
+    'filename'  => '_ide_helper.php',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Models filename
+    |--------------------------------------------------------------------------
+    |
+    | The default filename for the models helper file
+    |
+    */
+
+    'models_filename' => '_ide_helper_models.php',
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +31,7 @@ return [
     |
     | PhpStorm also supports the directory `.phpstorm.meta.php/` with arbitrary
     | files in it, should you need additional files for your project; e.g.
-    | `.phpstorm.meta.php/laravel_ide_helper.php'.
+    | `.phpstorm.meta.php/laravel_ide_Helper.php'.
     |
     */
     'meta_filename' => '.phpstorm.meta.php',
@@ -45,6 +55,8 @@ return [
     | Set to true to generate factory generators for better factory()
     | method auto-completion.
     |
+    | Deprecated for Laravel 8 or latest.
+    |
     */
 
     'include_factory_builders' => false,
@@ -59,6 +71,17 @@ return [
     */
 
     'write_model_magic_where' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Write Model External Eloquent Builder methods
+    |--------------------------------------------------------------------------
+    |
+    | Set to false to disable write external eloquent builder methods
+    |
+    */
+
+    'write_model_external_builder_methods' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -99,7 +122,7 @@ return [
     'include_helpers' => false,
 
     'helper_files' => [
-        base_path('/vendor/laravel/framework/src/Illuminate/Support/helpers.php'),
+        base_path('vendor/laravel/framework/src/Illuminate/Support/helpers.php'),
     ],
 
     /*
@@ -130,6 +153,21 @@ return [
 
     'ignored_models' => [
 
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Models hooks
+    |--------------------------------------------------------------------------
+    |
+    | Define which hook classes you want to run for models to add custom information
+    |
+    | Hooks should implement Barryvdh\LaravelIdeHelper\Contracts\ModelHookInterface.
+    |
+    */
+
+    'model_hooks' => [
+        // App\Support\IdeHelper\MyModelHook::class
     ],
 
     /*
@@ -174,7 +212,7 @@ return [
     | The value of the array is an array of type mappings. Key is the name of the custom type,
     | (for example, "jsonb" from Postgres 9.4) and the value is the name of the corresponding Doctrine2 type (in
     | our case it is 'json_array'. Doctrine types are listed here:
-    | http://doctrine-dbal.readthedocs.org/en/latest/reference/types.html
+    | https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/types.html#types
     |
     | So to support jsonb in your models when working with Postgres, just add the following entry to the array below:
     |
@@ -239,5 +277,41 @@ return [
     |
     */
     'include_class_docblocks' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Force FQN usage
+    |--------------------------------------------------------------------------
+    |
+    | Use the fully qualified (class) name in docBlock,
+    | event if class exists in a given file
+    | or there is an import (use className) of a given class
+    |
+    */
+    'force_fqn' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Additional relation types
+    |--------------------------------------------------------------------------
+    |
+    | Sometimes it's needed to create custom relation types. The key of the array
+    | is the Relationship Method name. The value of the array is the canonical class
+    | name of the Relationship, e.g. `'relationName' => RelationShipClass::class`.
+    |
+    */
+    'additional_relation_types' => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Run artisan commands after migrations to generate model helpers
+    |--------------------------------------------------------------------------
+    |
+    | The specified commands should run after migrations are finished running.
+    |
+    */
+    'post_migrate' => [
+        // 'ide-helper:models --nowrite',
+    ],
 
 ];

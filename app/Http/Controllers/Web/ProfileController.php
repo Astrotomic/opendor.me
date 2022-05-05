@@ -5,27 +5,24 @@ namespace App\Http\Controllers\Web;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Symfony\Component\HttpFoundation\Response;
 
 class ProfileController
 {
     public function __invoke(User | Organization $profile): View
     {
-        if ($profile instanceof User) {
-            return $this->user($profile);
-        }
-
-        if ($profile instanceof Organization) {
-            return $this->organization($profile);
-        }
+        return match ($profile::class) {
+            User::class => $this->user($profile),
+            Organization::class => $this->organization($profile),
+        };
     }
 
     protected function user(User $user): View
     {
-        abort_unless(
-            auth()->user()?->is_superadmin || $user->isRegistered(),
-            Response::HTTP_NOT_FOUND
-        );
+        if (! $user->isRegistered()) {
+            return view('web.profile.missing', [
+                'user' => $user,
+            ]);
+        }
 
         return view('web.profile.user', [
             'user' => $user,

@@ -18,8 +18,6 @@ use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 
 /**
- * App\Models\Organization.
- *
  * @property int $id
  * @property string $name
  * @property \Carbon\Carbon|null $blocked_at
@@ -33,20 +31,17 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $twitter
  * @property string|null $website
  * @property string $randomness
- * @property-read string $profile_url
  * @property-read string $avatar_url
- * @property-read string $github_url
- * @property-read string|null $twitter_url
  * @property-read string $display_name
+ * @property-read string $github_url
  * @property-read bool $is_blocked
  * @property-read \Illuminate\Support\Collection $languages
+ * @property-read string $profile_url
+ * @property-read string|null $twitter_url
  * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $members
  * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $repositories
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Organization newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Organization newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Organization query()
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Organization query()
  */
 class Organization extends Model implements Sitemapable
 {

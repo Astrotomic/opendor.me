@@ -8,6 +8,7 @@ use App\Console\Commands\GithubOrganizationRepositories;
 use App\Console\Commands\GithubRepositoryDetails;
 use App\Console\Commands\GithubUserContributions;
 use App\Console\Commands\GithubUserDetails;
+use App\Console\Commands\GithubUserOrganizations;
 use App\Console\Commands\GithubUserRepositories;
 use Carbon\CarbonInterval;
 use Illuminate\Console\Scheduling\Schedule;
@@ -30,8 +31,10 @@ class Kernel extends ConsoleKernel
         $schedule->command(GithubUserDetails::class)->dailyAt('06:00')->onOneServer();
         $schedule->command(GithubOrganizationDetails::class)->dailyAt('08:00')->onOneServer();
         $schedule->command(GithubRepositoryDetails::class)->dailyAt('10:00')->onOneServer();
-        // github:repository:contributors
+        // github:user:contributions
         $schedule->command(GithubUserContributions::class)->dailyAt('13:00')->onOneServer();
+        // github:user:organizations
+        $schedule->command(GithubUserOrganizations::class)->weekly()->onOneServer();
 
         // laravel/horizon
         $schedule->command(SnapshotCommand::class)->everyFiveMinutes()->onOneServer();

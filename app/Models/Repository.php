@@ -21,8 +21,6 @@ use InvalidArgumentException;
 use Throwable;
 
 /**
- * App\Models\Repository.
- *
  * @property int $id
  * @property string $name
  * @property string $owner_type
@@ -37,17 +35,15 @@ use Throwable;
  * @property int $stargazers_count
  * @property string|null $website
  * @property string $randomness
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $contributors
  * @property-read string $github_url
+ * @property-read bool $is_blocked
  * @property-read string $repository_name
  * @property-read string $vendor_name
- * @property-read bool $is_blocked
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $contributors
- * @property-read \App\Models\User|\App\Models\Organization $owner
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $owner
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Repository newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Repository newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Repository query()
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @method static \Database\Factories\RepositoryFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Repository query()
  */
 class Repository extends Model
 {
