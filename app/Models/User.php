@@ -10,10 +10,8 @@ use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContra
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -31,8 +29,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property int $id
  * @property string $name
  * @property string|null $full_name
- * @property string $email
- * @property \Carbon\Carbon|null $email_verified_at
  * @property string|null $github_access_token
  * @property \Carbon\Carbon|null $blocked_at
  * @property \App\Enums\BlockReason|null $block_reason
@@ -43,13 +39,13 @@ use Spatie\Sitemap\Tags\Url;
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
- * @property array $emails
  * @property array|null $referrer
  * @property \Carbon\Carbon|null $registered_at
  * @property string $randomness
  * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $contributions
  * @property-read string $avatar_url
  * @property-read string $display_name
+ * @property-read string $email
  * @property-read string $github_url
  * @property-read bool $is_blocked
  * @property-read bool $is_registered
@@ -65,12 +61,11 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \App\Eloquent\QueryBuilders\UserQueryBuilder|\App\Models\User query()
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, MustVerifyEmailContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, SitemapableContract
 {
     use CrudTrait;
     use Authenticatable;
     use Authorizable;
-    use MustVerifyEmail;
     use RoutesNotifications;
     use Blockable;
     use Searchable;
@@ -80,19 +75,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     protected $casts = [
         'id' => 'int',
-        'email_verified_at' => 'datetime',
         'registered_at' => 'datetime',
-        'emails' => 'array',
         'referrer' => 'array',
     ];
 
     protected $hidden = [
         'github_access_token',
         'remember_token',
-        'email',
-        'email_verified_at',
         'registered_at',
-        'emails',
         'referrer',
     ];
 
@@ -105,10 +95,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return static::query()->withBlocked()->firstOrCreate(
             ['id' => $data['id']],
-            [
-                'name' => $data['login'],
-                'email' => "{$data['id']}+{$data['login']}@users.noreply.github.com",
-            ]
+            ['name' => $data['login']]
         );
     }
 
@@ -127,6 +114,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->belongsToMany(Repository::class)
             ->using(RepositoryUserPivot::class)
             ->as('repository_user');
+    }
+
+    public function getEmailAttribute(): string
+    {
+        return "{$this->id}+{$this->name}@users.noreply.github.com";
     }
 
     public function getAvatarUrlAttribute(): string
@@ -228,7 +220,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function isRegistered(): bool
     {
-        return $this->hasGithubToken() && $this->hasVerifiedEmail();
+        return $this->hasGithubToken() && $this->registered_at !== null;
     }
 
     public function github(): PendingRequest

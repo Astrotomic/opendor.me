@@ -22,7 +22,6 @@ class GithubController
         $githubUser = $this->socialite()->user();
 
         $data = [
-            'email' => $githubUser->getEmail(),
             'name' => $githubUser->getNickname(),
             'full_name' => $githubUser->getName(),
             'github_access_token' => $githubUser->token,
@@ -31,10 +30,6 @@ class GithubController
         $user = User::updateOrCreate(['id' => $githubUser->getId()], $data);
 
         abort_if($user->isBlocked(), Response::HTTP_FORBIDDEN);
-
-        if (! $user->hasVerifiedEmail()) {
-            $user->markEmailAsVerified();
-        }
 
         if ($request->session()->has('referrer')) {
             $user

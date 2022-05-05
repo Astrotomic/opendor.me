@@ -4,7 +4,6 @@ use App\Enums\BlockReason;
 use App\Jobs\LoadOrganizationRepositories;
 use App\Jobs\LoadUserRepositories;
 use App\Models\Repository;
-use App\Models\User;
 
 it('creates user from Github')
     ->expect(fn () => $this->user('Gummibeer'))
@@ -30,22 +29,6 @@ it('finds blocked user from Github')
     ->name->toBe('Gummibeer')
     ->block_reason->toBe(BlockReason::SPAM())
     ->isBlocked()->toBeTrue();
-
-it('finds users by email')
-    ->requiresPostgreSQL()
-    ->with([
-        ['dev@gummibeer.de'],
-        ['6187884+Gummibeer@users.noreply.github.com'],
-        ['Gummibeer@users.noreply.github.com'],
-        ['6187884@users.noreply.github.com'],
-    ])
-    ->tap(fn () => $this->user('Gummibeer')->update([
-        'email' => 'dev@gummibeer.de',
-        'email_verified_at' => now(),
-    ]))
-    ->expect(fn ($email) => User::byEmail($email)->first())
-    ->toBeUser()
-    ->name->toBe('Gummibeer');
 
 it(
     'returns ordered vendors alphabetically regardless of case',

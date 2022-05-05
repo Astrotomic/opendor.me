@@ -62,11 +62,7 @@ class UserCrudController extends CrudController
         $this->crud->column('id');
         $this->crud->column('name');
         $this->crud->column('full_name');
-        $this->crud->column('email')
-            ->type('email');
         $this->crud->column('registered_at')
-            ->type('datetime');
-        $this->crud->column('email_verified_at')
             ->type('datetime');
         $this->crud->column('description');
         $this->crud->column('location');
