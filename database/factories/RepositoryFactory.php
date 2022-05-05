@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enums\Language;
 use App\Enums\License;
-use App\Models\Repository;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
