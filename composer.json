@@ -35,7 +35,8 @@
         "spatie/laravel-sitemap": "^6.0",
         "spatie/laravel-sluggable": "^3.0",
         "spatie/once": "^3.0",
-        "stillat/numeral.php": "^2.0"
+        "stillat/numeral.php": "^2.0",
+        "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
         "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
