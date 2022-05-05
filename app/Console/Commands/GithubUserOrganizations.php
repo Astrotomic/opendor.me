@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SyncUserContributions;
 use App\Jobs\SyncUserOrganizations;
 use App\Models\User;
 use Illuminate\Console\Command;
