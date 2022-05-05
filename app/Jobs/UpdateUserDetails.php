@@ -23,7 +23,5 @@ class UpdateUserDetails extends GithubJob
             'website' => $data['blog'],
             'location' => $data['location'],
         ]);
-
-        // TODO: Remove emails property on User model
     }
 }

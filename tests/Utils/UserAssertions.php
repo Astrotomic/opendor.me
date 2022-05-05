@@ -3,10 +3,8 @@
 namespace Tests\Utils;
 
 use App\Models\User;
-use Astrotomic\PhpunitAssertions\EmailAssertions;
 use Astrotomic\PhpunitAssertions\NullableTypeAssertions;
 use Astrotomic\PhpunitAssertions\UrlAssertions;
-use Illuminate\Support\Str;
 use PHPUnit\Framework\Assert as PHPUnit;
 
 trait UserAssertions
@@ -20,11 +18,9 @@ trait UserAssertions
         PHPUnit::assertIsInt($actual->id);
         PHPUnit::assertIsString($actual->name);
 
-        self::assertEmail($actual);
         self::assertGithubUrl($actual);
         self::assertAvatarUrl($actual);
         self::assertTwitter($actual);
-        self::assertEmails($actual);
 
         NullableTypeAssertions::assertIsNullableString($actual->github_access_token);
         NullableTypeAssertions::assertIsNullableString($actual->full_name);
@@ -32,18 +28,6 @@ trait UserAssertions
         NullableTypeAssertions::assertIsNullableString($actual->location);
 
         BlockableAssertions::assertBlockable($actual);
-    }
-
-    public static function assertEmail(User $actual): void
-    {
-        EmailAssertions::assertValidLoose($actual->email);
-        PHPUnit::assertIsBool($actual->hasVerifiedEmail());
-        if (Str::endsWith($actual->email, '@users.noreply.github.com')) {
-            EmailAssertions::assertLocalPart($actual->id.'+'.$actual->name, $actual->email);
-            PHPUnit::assertFalse($actual->hasVerifiedEmail());
-        } else {
-            PHPUnit::assertTrue($actual->hasVerifiedEmail());
-        }
     }
 
     public static function assertGithubUrl(User $actual): void
@@ -73,14 +57,6 @@ trait UserAssertions
             UrlAssertions::assertPath('/'.$actual->twitter, $actual->twitter_url);
         } else {
             PHPUnit::assertNull($actual->twitter_url);
-        }
-    }
-
-    public static function assertEmails(User $actual): void
-    {
-        NullableTypeAssertions::assertIsNullableArray($actual->emails);
-        foreach ($actual->emails ?? [] as $email) {
-            EmailAssertions::assertValidLoose($email);
         }
     }
 }
