@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
 use League\Flysystem\Filesystem;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Spatie\Dropbox\Client as Dropbox;
+use Spatie\Dropbox\Client as DropboxClient;
 use Spatie\FlysystemDropbox\DropboxAdapter;
 use Stillat\Numeral\Languages\LanguageManager;
 use Stillat\Numeral\Numeral;
@@ -131,11 +131,15 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Storage::extend('dropbox', static function (Container $app, array $config): FilesystemContract {
-            $client = new Dropbox($config['access_token']);
+            $client = new DropboxClient($config['access_token']);
             $adapter = new DropboxAdapter($client);
-            $filesystem = new Filesystem($adapter, ['case_sensitive' => false]);
+            $config = array_merge($config, ['case_sensitive' => false]);
 
-            return new FilesystemAdapter($filesystem);
+            return new FilesystemAdapter(
+                new Filesystem($adapter, $config),
+                $adapter,
+                $config
+            );
         });
 
         URL::macro('horizon', function (string $uri): string {

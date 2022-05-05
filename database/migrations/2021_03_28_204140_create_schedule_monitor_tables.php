@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScheduleMonitorTables extends Migration
-{
+return new class () extends Migration {
     public function up(): void
     {
         Schema::create('monitored_scheduled_tasks', static function (Blueprint $table): void {
@@ -52,4 +51,4 @@ class CreateScheduleMonitorTables extends Migration
         Schema::dropIfExists('monitored_scheduled_task_log_items');
         Schema::dropIfExists('monitored_scheduled_tasks');
     }
-}
+};
