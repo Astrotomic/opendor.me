@@ -28,4 +28,15 @@ class EventServiceProvider extends ServiceProvider
         Organization::observe(OrganizationObserver::class);
         Repository::observe(RepositoryObserver::class);
     }
+
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     *
+     * @return bool
+     */
+    public function shouldDiscoverEvents()
+    {
+        return false;
+    }
 }
+
