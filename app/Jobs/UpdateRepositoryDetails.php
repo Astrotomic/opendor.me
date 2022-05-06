@@ -16,7 +16,7 @@ class UpdateRepositoryDetails extends GithubJob
 
     public function run(): void
     {
-        $data = $this->repository->github()->get("/repos/{$this->repository->name}")->json();
+        $data = $this->repository->github()->get("/repositories/{$this->repository->id}")->json();
 
         $this->repository->fill([
             'description' => $data['description'],

@@ -14,7 +14,7 @@ class UpdateOrganizationDetails extends GithubJob
 
     public function run(): void
     {
-        $data = $this->organization->github()->get("/orgs/{$this->organization->name}")->json();
+        $data = $this->organization->github()->get("/organizations/{$this->organization->id}")->json();
 
         $this->organization->update([
             'full_name' => $data['name'] ?? null,
