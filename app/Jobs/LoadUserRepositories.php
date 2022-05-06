@@ -19,7 +19,7 @@ class LoadUserRepositories extends GithubJob
     public function run(): void
     {
         $this->paginated(function (int $page, int $perPage): Collection {
-            $response = $this->user->github()->get("/users/{$this->user->name}/repos", [
+            $response = $this->user->github()->get("/user/{$this->user->id}/repos", [
                 'type' => 'public',
                 'per_page' => $perPage,
                 'page' => $page,

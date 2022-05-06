@@ -19,7 +19,7 @@ class LoadOrganizationRepositories extends GithubJob
     public function run(): void
     {
         $this->paginated(function (int $page, int $perPage): Collection {
-            $response = $this->organization->github()->get("/orgs/{$this->organization->name}/repos", [
+            $response = $this->organization->github()->get("/organizations/{$this->organization->id}/repos", [
                 'type' => 'public',
                 'per_page' => $perPage,
                 'page' => $page,
