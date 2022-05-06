@@ -2,8 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Enums\Language;
-use App\Enums\License;
+use App\Enums\BlockReason;
 use App\Models\Repository;
 
 class UpdateRepositoryDetails extends GithubJob
@@ -18,20 +17,12 @@ class UpdateRepositoryDetails extends GithubJob
     {
         $data = $this->repository->github()->get("/repositories/{$this->repository->id}")->json();
 
-        $this->repository->fill([
-            'description' => $data['description'],
-            'stargazers_count' => $data['stargazers_count'],
-            'website' => $data['homepage'],
-        ]);
+        $repository = Repository::fromGithub($data);
 
-        if ($this->repository->language->equals(Language::NOASSERTION())) {
-            $this->repository->language = $data['language'] ?? Language::NOASSERTION();
+        if ($repository === null) {
+            $this->repository->update([
+                'block_reason' => BlockReason::REVIEW(),
+            ]);
         }
-
-        if ($this->repository->license->equals(License::NOASSERTION())) {
-            $this->repository->license = $data['license']['spdx_id'] ?? License::NOASSERTION();
-        }
-
-        $this->repository->save();
     }
 }
