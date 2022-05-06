@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Backpack\CrudPanel;
 use App\Models\User;
 use App\Repositories\GithubSponsorRepository;
 use Astrotomic\OpenGraph\Type;
@@ -150,6 +149,21 @@ class AppServiceProvider extends ServiceProvider
                 $this->to(Str::start(
                     trim($uri, '/'),
                     Str::finish(config('horizon.path'), '/')
+                )),
+                fn () => $this->forceRootUrl(config('app.url'))
+            );
+        });
+
+        URL::macro('filament', function (string $uri): string {
+            /** @var \Illuminate\Routing\UrlGenerator $this */
+            if (config('filament.domain') !== null) {
+                $this->forceRootUrl(config('filament.domain'));
+            }
+
+            return tap(
+                $this->to(Str::start(
+                    trim($uri, '/'),
+                    Str::finish(config('filament.path'), '/')
                 )),
                 fn () => $this->forceRootUrl(config('app.url'))
             );

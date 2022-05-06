@@ -8,7 +8,9 @@ use App\Eloquent\QueryBuilders\UserQueryBuilder;
 use App\Enums\Language;
 use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
 use Astrotomic\CachableAttributes\CachesAttributes;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -61,9 +63,8 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \App\Eloquent\QueryBuilders\UserQueryBuilder|\App\Models\User query()
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, SitemapableContract, FilamentUser, HasAvatar, HasName
 {
-    use CrudTrait;
     use Authenticatable;
     use Authorizable;
     use RoutesNotifications;
@@ -276,5 +277,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected function makeAllSearchableUsing(Builder $query): Builder
     {
         return $query->whereIsRegistered()->has('contributions');
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->is_superadmin;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar_url;
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->display_name;
     }
 }
