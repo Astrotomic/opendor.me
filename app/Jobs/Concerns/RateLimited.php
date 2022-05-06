@@ -16,7 +16,7 @@ trait RateLimited
             $exception->hasResponse()
             && $exception->getResponse()->getStatusCode() === Response::HTTP_FORBIDDEN
             && $exception->getResponse()->hasHeader('X-RateLimit-Reset')
-            && !$exception->getResponse()->hasHeader('x-github-sso')
+            && ! $exception->getResponse()->hasHeader('x-github-sso')
         ) {
             $reset = Carbon::createFromTimestampUTC(
                 Arr::first($exception->getResponse()->getHeader('X-RateLimit-Reset'))

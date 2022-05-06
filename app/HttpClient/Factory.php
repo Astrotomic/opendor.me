@@ -2,7 +2,9 @@
 
 namespace App\HttpClient;
 
-class Factory extends \Illuminate\Http\Client\Factory
+use Illuminate\Http\Client\Factory as HttpFactory;
+
+class Factory extends HttpFactory
 {
     public function github(): GithubPendingRequest
     {

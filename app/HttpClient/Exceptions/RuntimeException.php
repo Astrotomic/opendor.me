@@ -2,6 +2,8 @@
 
 namespace App\HttpClient\Exceptions;
 
-abstract class RuntimeException extends \RuntimeException
+use RuntimeException as BaseRuntimeException;
+
+abstract class RuntimeException extends BaseRuntimeException
 {
 }

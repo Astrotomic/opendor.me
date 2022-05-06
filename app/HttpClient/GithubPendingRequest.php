@@ -13,7 +13,6 @@ use GuzzleHttp\Exception\ServerException;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Conditionable;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 

@@ -9,6 +9,19 @@ use Throwable;
 
 class RateLimitExceededException extends RuntimeException
 {
+    public function __construct(
+        public int $limit,
+        public int $remaining,
+        public int $used,
+        public string $resource,
+        public DateTimeInterface $reset,
+        Throwable $previous = null
+    ) {
+        parent::__construct(
+            previous: $previous,
+        );
+    }
+
     public static function fromClientException(ClientException $exception): static
     {
         return new static(
@@ -21,18 +34,5 @@ class RateLimitExceededException extends RuntimeException
            ),
            previous: $exception,
        );
-    }
-
-    public function __construct(
-        public int $limit,
-        public int $remaining,
-        public int $used,
-        public string $resource,
-        public DateTimeInterface $reset,
-        Throwable $previous = null
-    ) {
-        parent::__construct(
-            previous: $previous,
-        );
     }
 }

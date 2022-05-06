@@ -7,18 +7,18 @@ use Throwable;
 
 class NotFoundException extends RuntimeException
 {
-    public static function fromClientException(ClientException $exception): static
-    {
-        return new static(
-           previous: $exception,
-       );
-    }
-
     public function __construct(
         Throwable $previous = null
     ) {
         parent::__construct(
             previous: $previous,
         );
+    }
+
+    public static function fromClientException(ClientException $exception): static
+    {
+        return new static(
+           previous: $exception,
+       );
     }
 }

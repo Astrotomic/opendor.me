@@ -8,6 +8,15 @@ use Throwable;
 
 class UnauthorizedException extends RuntimeException
 {
+    public function __construct(
+        public string $token,
+        Throwable $previous = null
+    ) {
+        parent::__construct(
+            previous: $previous,
+        );
+    }
+
     public static function fromClientException(ClientException $exception): static
     {
         return new static(
@@ -16,14 +25,5 @@ class UnauthorizedException extends RuntimeException
                 ->trim(),
            previous: $exception,
        );
-    }
-
-    public function __construct(
-        public string $token,
-        Throwable $previous = null
-    ) {
-        parent::__construct(
-            previous: $previous,
-        );
     }
 }
