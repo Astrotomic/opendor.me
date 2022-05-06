@@ -15,7 +15,7 @@ class SyncUserOrganizations extends GithubJob
 
     public function run(): void
     {
-        $organizations = $this->user->github()->get("/users/{$this->user->name}/orgs")->collect();
+        $organizations = $this->user->github()->get("/user/{$this->user->id}/orgs")->collect();
 
         $this->user->organizations()->sync(
             $organizations
