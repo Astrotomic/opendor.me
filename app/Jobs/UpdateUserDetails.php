@@ -14,7 +14,7 @@ class UpdateUserDetails extends GithubJob
 
     public function run(): void
     {
-        $data = $this->user->github()->get("/users/{$this->user->name}")->json();
+        $data = $this->user->github()->get("/user/{$this->user->id}")->json();
 
         $this->user->update([
             'full_name' => $data['name'],
