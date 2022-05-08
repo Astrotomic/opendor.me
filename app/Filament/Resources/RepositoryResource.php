@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resource;
-use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
 use App\Filament\Resources\RepositoryResource\Pages\EditRepository;
+use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
 use App\Models\Repository;
 use Filament\Resources\Form;
 use Filament\Resources\Table;

@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resource;
-use App\Filament\Resources\OrganizationResource\Pages\ListOrganizations;
 use App\Filament\Resources\OrganizationResource\Pages\EditOrganization;
+use App\Filament\Resources\OrganizationResource\Pages\ListOrganizations;
 use App\Models\Organization;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
