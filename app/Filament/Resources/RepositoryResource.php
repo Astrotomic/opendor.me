@@ -3,7 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resource;
-use App\Filament\Resources\RepositoryResource\Pages;
+use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
+use App\Filament\Resources\RepositoryResource\Pages\EditRepository;
 use App\Models\Repository;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -43,16 +44,14 @@ class RepositoryResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRepositories::route('/'),
-            'edit' => Pages\EditRepository::route('/{record}/edit'),
+            'index' => ListRepositories::route('/'),
+            'edit' => EditRepository::route('/{record}/edit'),
         ];
     }
 

@@ -68,9 +68,7 @@ class UserResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            RepositoriesRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array

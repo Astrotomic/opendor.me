@@ -3,7 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resource;
-use App\Filament\Resources\OrganizationResource\Pages;
+use App\Filament\Resources\OrganizationResource\Pages\ListOrganizations;
+use App\Filament\Resources\OrganizationResource\Pages\EditOrganization;
 use App\Models\Organization;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -46,16 +47,14 @@ class OrganizationResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOrganizations::route('/'),
-            'edit' => Pages\EditOrganization::route('/{record}/edit'),
+            'index' => ListOrganizations::route('/'),
+            'edit' => EditOrganization::route('/{record}/edit'),
         ];
     }
 
