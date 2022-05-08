@@ -14,8 +14,8 @@
         "astrotomic/laravel-github-sponsors": "^0.4.0",
         "astrotomic/laravel-imgix": "^1.0.0",
         "astrotomic/php-open-graph": "^0.5.2",
-        "backpack/crud": "^5.0",
         "blade-ui-kit/blade-ui-kit": "^0.3",
+        "filament/filament": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.11",
         "laravel/horizon": "^5.9",
@@ -38,8 +38,7 @@
     },
     "require-dev": {
         "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
-        "astrotomic/phpunit-assertions": "^0.3.0",
-        "backpack/generators": "^3.1",
+        "astrotomic/phpunit-assertions": "^0.7.0",
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.12",
         "egulias/email-validator": "^3.1",
@@ -105,7 +104,7 @@
     "scripts": {
         "post-update-cmd": [
             "@php artisan horizon:publish --ansi --no-interaction",
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --no-interaction --force"
         ],
         "post-autoload-dump": [
             "@composer validate --strict --ansi --no-interaction --quiet",
