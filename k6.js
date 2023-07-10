@@ -48,8 +48,15 @@ export default function () {
         'https://opendor.me/faqs',
         'https://opendor.me/faqs',
         'https://opendor.me/sponsors',
+        'https://opendor.me/sponsors',
         'https://opendor.me/@Gummibeer',
         'https://opendor.me/@Gummibeer',
+        'https://opendor.me/@Gummibeer',
+        'https://opendor.me/@Gummibeer',
+        'https://opendor.me/@Astrotomic',
+        'https://opendor.me/@Astrotomic',
+        'https://opendor.me/@Astrotomic',
+        'https://opendor.me/@Astrotomic',
     ].random();
 
     let res = http.get(url);
