@@ -4,8 +4,8 @@ use App\Http\Resources\RepositoryResource;
 use App\Models\Repository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::get('ping', static function (): JsonResponse {
     return response()->json([

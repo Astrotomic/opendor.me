@@ -10,7 +10,7 @@ use PHPUnit\Framework\Assert as PHPUnit;
 trait UserAssertions
 {
     /**
-     * @param \App\Models\User|mixed $actual
+     * @param  \App\Models\User|mixed  $actual
      */
     public static function assertUser($actual): void
     {

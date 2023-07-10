@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Route::bind('profile', function (string $name): User | Organization {
+        Route::bind('profile', function (string $name): User|Organization {
             $user = User::where('name', $name)->first();
             if ($user) {
                 return $user;

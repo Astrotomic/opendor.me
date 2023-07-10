@@ -10,7 +10,7 @@ use PHPUnit\Framework\Assert as PHPUnit;
 trait OrganizationAssertions
 {
     /**
-     * @param \App\Models\Organization|mixed $actual
+     * @param  \App\Models\Organization|mixed  $actual
      */
     public static function assertOrganization($actual): void
     {

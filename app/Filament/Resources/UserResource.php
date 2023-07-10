@@ -84,9 +84,7 @@ class UserResource extends Resource
     }
 
     /**
-     * @param \App\Models\User $record
-     *
-     * @return array
+     * @param  \App\Models\User  $record
      */
     public static function getGlobalSearchResultDetails(Model $record): array
     {

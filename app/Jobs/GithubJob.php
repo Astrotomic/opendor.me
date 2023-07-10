@@ -82,7 +82,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
     /**
      * @return int|array<int>
      */
-    public function backoff(): int | array
+    public function backoff(): int|array
     {
         return [
             CarbonInterval::minute()->totalSeconds,
@@ -96,10 +96,6 @@ abstract class GithubJob extends Job implements ShouldBeUnique
 
     abstract protected function run(): void;
 
-    /**
-     * @param \Closure $callback
-     * @param int $perPage
-     */
     protected function paginated(Closure $callback, int $perPage = 100): void
     {
         $page = 1;
@@ -110,7 +106,7 @@ abstract class GithubJob extends Job implements ShouldBeUnique
         } while ($response->count() >= $perPage);
     }
 
-    protected function entity(): User | Organization | Repository
+    protected function entity(): User|Organization|Repository
     {
         return $this->user ?? $this->organization ?? $this->repository;
     }

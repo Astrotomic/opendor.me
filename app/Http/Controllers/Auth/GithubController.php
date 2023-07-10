@@ -10,8 +10,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
-use Laravel\Socialite\Two\GithubProvider;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\GithubProvider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 

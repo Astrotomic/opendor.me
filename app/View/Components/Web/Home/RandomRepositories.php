@@ -11,7 +11,8 @@ class RandomRepositories extends Component
 {
     public function __construct(
         protected int $limit = 3
-    ) {}
+    ) {
+    }
 
     public function render(): View
     {

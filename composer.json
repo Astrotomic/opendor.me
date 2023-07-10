@@ -37,16 +37,14 @@
         "stillat/numeral.php": "^2.0.2"
     },
     "require-dev": {
-        "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
         "astrotomic/phpunit-assertions": "^0.7.0",
         "barryvdh/laravel-debugbar": "^3.8.1",
         "barryvdh/laravel-ide-helper": "^2.13",
         "egulias/email-validator": "^3.2.6",
         "fakerphp/faker": "^1.23.0",
-        "friendsofphp/php-cs-fixer": "^3.21.1",
         "gajus/dindent": "^2.0.2",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.15",
         "laracasts/generators": "^2.0.2",
+        "laravel/pint": "^1.10.3",
         "mockery/mockery": "^1.6.2",
         "nunomaduro/collision": "^6.4",
         "pestphp/pest": "^1.23",
@@ -110,7 +108,6 @@
         "post-autoload-dump": [
             "@composer validate --strict --ansi --no-interaction --quiet",
             "@composer normalize --ansi --no-interaction --quiet",
-            "@composer thanks --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi --no-interaction"
         ],
@@ -122,7 +119,7 @@
         ],
         "enlightn": "@php artisan enlightn --details --ci",
         "fix": [
-            "vendor/bin/php-cs-fixer fix --using-cache=no"
+            "@php vendor/bin/pint"
         ],
         "ide": [
             "@php artisan ide-helper:generate --ansi --no-interaction --quiet",
@@ -131,9 +128,9 @@
             "@composer fix --quiet"
         ],
         "lint": [
-            "vendor/bin/phpmnd ./app",
-            "vendor/bin/php-cs-fixer fix --using-cache=no --dry-run",
-            "vendor/bin/tlint lint ./app --no-interaction -v"
+            "@php vendor/bin/phpmnd ./app",
+            "@php vendor/bin/pint --test",
+            "@php vendor/bin/tlint lint ./app --no-interaction -v"
         ],
         "normalize": "echo 'composer global require ergebnis/composer-normalize'",
         "route:list": "@php artisan route:list --except-path=nova,horizon,_debugbar",

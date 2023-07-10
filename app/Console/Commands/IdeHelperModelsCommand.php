@@ -50,12 +50,10 @@ class IdeHelperModelsCommand extends ModelsCommand
      * @see \App\Console\Commands\IdeHelperModelsCommand::customizePhpDoc()
      * @see \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::createPhpDocs()
      *
-     * @param class-string<\Illuminate\Database\Eloquent\Model> $class
+     * @param  class-string<\Illuminate\Database\Eloquent\Model>  $class
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @throws \ReflectionException
-     *
-     * @return string
      */
     protected function createPhpDocs($class): string
     {

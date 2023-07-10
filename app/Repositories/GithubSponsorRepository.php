@@ -21,7 +21,7 @@ class GithubSponsorRepository extends Repository
                 ->merge(GithubSponsors::user('Gummibeer')->sponsors(['databaseId', 'login']))
                 ->merge(GithubSponsors::user('SarahSibert')->sponsors(['databaseId', 'login']))
                 ->unique('databaseId')
-                ->map(static function (array $sponsor): User | Organization | null {
+                ->map(static function (array $sponsor): User|Organization|null {
                     $sponsor['id'] = $sponsor['databaseId'];
 
                     if ($sponsor['__typename'] === 'User') {
@@ -35,7 +35,7 @@ class GithubSponsorRepository extends Repository
                     return null;
                 })
                 ->filter()
-                ->sortBy(fn (User | Organization $sponsor): string => Str::lower($sponsor->name))
+                ->sortBy(fn (User|Organization $sponsor): string => Str::lower($sponsor->name))
                 ->values()
         );
     }

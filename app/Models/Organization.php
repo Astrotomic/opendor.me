@@ -128,10 +128,10 @@ class Organization extends Model implements Sitemapable
     public function github(): PendingRequest
     {
         return $this->members()
-                ->whereIsRegistered()
-                ->inRandomOrder()
-                ->first()
-                ?->github() ?? Http::github();
+            ->whereIsRegistered()
+            ->inRandomOrder()
+            ->first()
+            ?->github() ?? Http::github();
     }
 
     public function toSitemapTag(): Url
