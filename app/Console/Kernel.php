@@ -18,7 +18,6 @@ use Laravel\Horizon\Console\SnapshotCommand;
 use Spatie\Backup\Commands\BackupCommand;
 use Spatie\Backup\Commands\CleanupCommand;
 use Spatie\Backup\Commands\MonitorCommand;
-use Spatie\ScheduleMonitor\Commands\CleanLogCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -45,9 +44,6 @@ class Kernel extends ConsoleKernel
 
         // laravel/scout
         $schedule->command(ReImportCommand::class)->everyThreeHours()->onOneServer();
-
-        // spatie/laravel-schedule-monitor
-        $schedule->command(CleanLogCommand::class)->dailyAt('00:00')->onOneServer();
 
         // spatie/laravel-backup
         $schedule->command(BackupCommand::class)->twiceDaily(1, 13);
