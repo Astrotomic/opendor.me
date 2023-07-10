@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Enums\Language;
-use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -45,7 +44,6 @@ use Spatie\Sitemap\Tags\Url;
  */
 class Organization extends Model implements Sitemapable
 {
-    use CrudTrait;
     use Blockable;
     use Searchable;
 
@@ -130,10 +128,10 @@ class Organization extends Model implements Sitemapable
     public function github(): PendingRequest
     {
         return $this->members()
-                ->whereIsRegistered()
-                ->inRandomOrder()
-                ->first()
-                ?->github() ?? Http::github();
+            ->whereIsRegistered()
+            ->inRandomOrder()
+            ->first()
+            ?->github() ?? Http::github();
     }
 
     public function toSitemapTag(): Url

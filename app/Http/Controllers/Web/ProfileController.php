@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 
 class ProfileController
 {
-    public function __invoke(User | Organization $profile): View
+    public function __invoke(User|Organization $profile): View
     {
         return match ($profile::class) {
             User::class => $this->user($profile),

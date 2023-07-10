@@ -11,7 +11,8 @@ class GithubSponsors extends Component
 {
     public function __construct(
         protected GithubSponsorRepository $githubSponsorRepository
-    ) {}
+    ) {
+    }
 
     public function render(): View
     {

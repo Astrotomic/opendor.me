@@ -32,11 +32,11 @@
                 role="menuitem"
             >View Profile</a>
         </li>
-        @canany(['viewBackpack', 'viewHorizon'])
+        @canany(['viewFilament', 'viewHorizon'])
         <li class="py-1" role="none">
-            @can('viewBackpack')
+            @can('viewFilament')
             <a
-                href="{{ backpack_url('/') }}"
+                href="{{ url()->filament('/') }}"
                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
             >Backoffice</a>

@@ -14,9 +14,9 @@ abstract class Pivot extends Model
     public function getTable(): string
     {
         return $this->table ?? Str::of(static::class)
-                ->classBasename()
-                ->replaceLast('Pivot', '')
-                ->singular()
-                ->snake();
+            ->classBasename()
+            ->replaceLast('Pivot', '')
+            ->singular()
+            ->snake();
     }
 }

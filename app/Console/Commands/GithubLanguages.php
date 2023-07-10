@@ -65,8 +65,8 @@ class GithubLanguages extends Command
             ->filter()
             ->keyBy(
                 fn (string $color, string $enum): string => Str::of($enum)
-                ->slug()
-                ->prepend('lang-')
+                    ->slug()
+                    ->prepend('lang-')
             );
         $this->line(storage_path('tailwind.colors.json'));
         File::put(

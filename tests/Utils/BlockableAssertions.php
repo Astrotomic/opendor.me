@@ -11,7 +11,7 @@ use Spatie\Enum\Phpunit\EnumAssertions;
 trait BlockableAssertions
 {
     /**
-     * @param \App\Eloquent\Concerns\Blockable|mixed $actual
+     * @param  \App\Eloquent\Concerns\Blockable|mixed  $actual
      */
     public static function assertBlockable($actual): void
     {

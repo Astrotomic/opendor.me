@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withBlocked()
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder onlyBlocked()
+ *
  * @mixin \Illuminate\Database\Eloquent\Model
  */
 trait Blockable
