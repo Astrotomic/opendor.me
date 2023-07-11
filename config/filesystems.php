@@ -58,7 +58,9 @@ return [
 
         'backups' => [
             'driver' => 'dropbox',
-            'access_token' => env('BACKUP_DROPBOX_ACCESS_TOKEN'),
+            'app_key' => env('BACKUP_DROPBOX_APP_KEY'),
+            'app_secret' => env('BACKUP_DROPBOX_APP_SECRET'),
+            'refresh_token' => env('BACKUP_DROPBOX_REFRESH_TOKEN'),
             'throw' => true,
         ],
 
