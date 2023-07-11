@@ -128,7 +128,17 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Storage::extend('dropbox', static function (Container $app, array $config): FilesystemContract {
-            $client = new DropboxClient($config['access_token']);
+            $accessToken = Http::baseUrl('https://api.dropboxapi.com')
+                ->timeout(5)
+                ->retry(3, 50)
+                ->withBasicAuth($config['app_key'], $config['app_secret'])
+                ->post('/oauth2/token?'.Arr::query([
+                    'grant_type' => 'refresh_token',
+                    'refresh_token' => $config['refresh_token'],
+                ]))
+                ->json('access_token');
+
+            $client = new DropboxClient($accessToken);
             $adapter = new DropboxAdapter($client);
             $config = array_merge($config, ['case_sensitive' => false]);
 
