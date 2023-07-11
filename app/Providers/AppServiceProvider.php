@@ -149,33 +149,6 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-
-        Storage::extend('dropbox', function ($app, $config): FilesystemContract {
-            $accessToken = Http::baseUrl('https://api.dropboxapi.com')
-                ->timeout(5)
-                ->retry(3, 50)
-                ->withBasicAuth($config['app_key'], $config['app_secret'])
-                ->post('/oauth2/token?'.Arr::query([
-                    'grant_type' => 'refresh_token',
-                    'refresh_token' => $config['refresh_token'],
-                ]))
-                ->json('access_token');
-
-            $adapter = new DropboxAdapter(
-                new DropboxClient($accessToken)
-            );
-
-            $config = [
-                'case_sensitive' => false,
-            ];
-
-            return new FilesystemAdapter(
-                new Filesystem($adapter, $config),
-                $adapter,
-                $config
-            );
-        });
-
         URL::macro('horizon', function (string $uri): string {
             /** @var \Illuminate\Routing\UrlGenerator $this */
             if (config('horizon.domain') !== null) {
