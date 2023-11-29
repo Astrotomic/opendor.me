@@ -112,12 +112,12 @@ return [
     */
 
     'trim' => [
-        'recent' => CarbonInterval::day()->totalMinutes,
-        'pending' => CarbonInterval::day()->totalMinutes,
-        'completed' => CarbonInterval::day()->totalMinutes,
-        'recent_failed' => CarbonInterval::day()->totalMinutes,
-        'failed' => CarbonInterval::week()->totalMinutes,
-        'monitored' => CarbonInterval::week()->totalMinutes,
+        'recent' => CarbonInterval::hour()->totalMinutes,
+        'pending' => CarbonInterval::hour()->totalMinutes,
+        'completed' => CarbonInterval::hour()->totalMinutes,
+        'recent_failed' => CarbonInterval::hours(6)->totalMinutes,
+        'failed' => CarbonInterval::day()->totalMinutes,
+        'monitored' => CarbonInterval::hours(6)->totalMinutes,
     ],
 
     /*
@@ -133,8 +133,8 @@ return [
 
     'metrics' => [
         'trim_snapshots' => [
-            'job' => CarbonInterval::day()->totalMinutes / 5,
-            'queue' => CarbonInterval::day()->totalMinutes / 5,
+            'job' => CarbonInterval::hours(3)->totalMinutes / 5,
+            'queue' => CarbonInterval::hours(3)->totalMinutes / 5,
         ],
     ],
 
