@@ -5,6 +5,11 @@
         "enum": "1C_ENTERPRISE"
     },
     {
+        "color": "#38761D",
+        "name": "2-Dimensional Array",
+        "enum": "2_DIMENSIONAL_ARRAY"
+    },
+    {
         "color": "#004289",
         "name": "4D",
         "enum": "4D"
@@ -28,6 +33,11 @@
         "color": "#02f88c",
         "name": "Ada",
         "enum": "ADA"
+    },
+    {
+        "color": "#800000",
+        "name": "Adblock Filter List",
+        "enum": "ADBLOCK_FILTER_LIST"
     },
     {
         "color": "#fa0f00",
@@ -78,6 +88,11 @@
         "color": "#C7D7DC",
         "name": "AngelScript",
         "enum": "ANGELSCRIPT"
+    },
+    {
+        "color": "#ff269e",
+        "name": "Antlers",
+        "enum": "ANTLERS"
     },
     {
         "color": "#9DC3FF",
@@ -225,6 +240,11 @@
         "enum": "BEFUNGE"
     },
     {
+        "color": "#15A13C",
+        "name": "Berry",
+        "enum": "BERRY"
+    },
+    {
         "color": "#778899",
         "name": "BibTeX",
         "enum": "BIBTEX"
@@ -233,6 +253,11 @@
         "color": "#519aba",
         "name": "Bicep",
         "enum": "BICEP"
+    },
+    {
+        "color": "#5562ac",
+        "name": "Bikeshed",
+        "enum": "BIKESHED"
     },
     {
         "color": "#6A463F",
@@ -265,6 +290,11 @@
         "enum": "BLUESPEC"
     },
     {
+        "color": "#12223c",
+        "name": "Bluespec BH",
+        "enum": "BLUESPEC_BH"
+    },
+    {
         "color": "#d4bec1",
         "name": "Boo",
         "enum": "BOO"
@@ -275,9 +305,19 @@
         "enum": "BOOGIE"
     },
     {
+        "color": "#2b7067",
+        "name": "BQN",
+        "enum": "BQN"
+    },
+    {
         "color": "#2F2530",
         "name": "Brainfuck",
         "enum": "BRAINFUCK"
+    },
+    {
+        "color": "#66AABB",
+        "name": "BrighterScript",
+        "enum": "BRIGHTERSCRIPT"
     },
     {
         "color": "#662D91",
@@ -310,9 +350,34 @@
         "enum": "CABAL_CONFIG"
     },
     {
+        "color": "#22b638",
+        "name": "Caddyfile",
+        "enum": "CADDYFILE"
+    },
+    {
+        "color": "#00ef8b",
+        "name": "Cadence",
+        "enum": "CADENCE"
+    },
+    {
+        "color": "#ff4a48",
+        "name": "Cairo",
+        "enum": "CAIRO"
+    },
+    {
+        "color": "#3be133",
+        "name": "CameLIGO",
+        "enum": "CAMELIGO"
+    },
+    {
         "color": "#c42727",
         "name": "Cap'n Proto",
         "enum": "CAPN_PROTO"
+    },
+    {
+        "color": "#0092d1",
+        "name": "CAP CDS",
+        "enum": "CAP_CDS"
     },
     {
         "color": null,
@@ -340,6 +405,11 @@
         "enum": "CHUCK"
     },
     {
+        "color": "#707575",
+        "name": "Circom",
+        "enum": "CIRCOM"
+    },
+    {
         "color": "#ccccff",
         "name": "Cirru",
         "enum": "CIRRU"
@@ -348,6 +418,11 @@
         "color": "#db901e",
         "name": "Clarion",
         "enum": "CLARION"
+    },
+    {
+        "color": "#5546ff",
+        "name": "Clarity",
+        "enum": "CLARITY"
     },
     {
         "color": "#6a40fd",
@@ -445,6 +520,11 @@
         "enum": "COQ"
     },
     {
+        "color": "#ead7ac",
+        "name": "crontab",
+        "enum": "CRONTAB"
+    },
+    {
         "color": "#000100",
         "name": "Crystal",
         "enum": "CRYSTAL"
@@ -490,6 +570,11 @@
         "enum": "CUE"
     },
     {
+        "color": "#531242",
+        "name": "Curry",
+        "enum": "CURRY"
+    },
+    {
         "color": "#00007a",
         "name": "CWeb",
         "enum": "CWEB"
@@ -498,6 +583,11 @@
         "color": null,
         "name": "Cycript",
         "enum": "CYCRIPT"
+    },
+    {
+        "color": "#34c0eb",
+        "name": "Cypher",
+        "enum": "CYPHER"
     },
     {
         "color": "#fedf5b",
@@ -520,6 +610,11 @@
         "enum": "D"
     },
     {
+        "color": "#526ee8",
+        "name": "D2",
+        "enum": "D2"
+    },
+    {
         "color": "#FFEC25",
         "name": "Dafny",
         "enum": "DAFNY"
@@ -538,6 +633,16 @@
         "color": "#003a52",
         "name": "DataWeave",
         "enum": "DATAWEAVE"
+    },
+    {
+        "color": "#D70751",
+        "name": "Debian Package Control File",
+        "enum": "DEBIAN_PACKAGE_CONTROL_FILE"
+    },
+    {
+        "color": "#FBEE96",
+        "name": "DenizenScript",
+        "enum": "DENIZENSCRIPT"
     },
     {
         "color": "#dfafff",
@@ -570,6 +675,11 @@
         "enum": "DOGESCRIPT"
     },
     {
+        "color": "#e5d559",
+        "name": "Dotenv",
+        "enum": "DOTENV"
+    },
+    {
         "color": null,
         "name": "DTrace",
         "enum": "DTRACE"
@@ -588,6 +698,11 @@
         "color": null,
         "name": "Eagle",
         "enum": "EAGLE"
+    },
+    {
+        "color": "#2af0ff",
+        "name": "Earthly",
+        "enum": "EARTHLY"
     },
     {
         "color": "#069406",
@@ -615,6 +730,21 @@
         "enum": "ECLIPSE"
     },
     {
+        "color": "#eb8131",
+        "name": "Ecmarkup",
+        "enum": "ECMARKUP"
+    },
+    {
+        "color": "#0dffe0",
+        "name": "Edge",
+        "enum": "EDGE"
+    },
+    {
+        "color": "#31A7FF",
+        "name": "EdgeQL",
+        "enum": "EDGEQL"
+    },
+    {
         "color": "#fff1f2",
         "name": "EditorConfig",
         "enum": "EDITORCONFIG"
@@ -640,6 +770,16 @@
         "enum": "ELM"
     },
     {
+        "color": "#55BB55",
+        "name": "Elvish",
+        "enum": "ELVISH"
+    },
+    {
+        "color": "#55BB55",
+        "name": "Elvish Transcript",
+        "enum": "ELVISH_TRANSCRIPT"
+    },
+    {
         "color": "#c065db",
         "name": "Emacs Lisp",
         "enum": "EMACS_LISP"
@@ -658,6 +798,11 @@
         "color": "#B83998",
         "name": "Erlang",
         "enum": "ERLANG"
+    },
+    {
+        "color": "#FF790B",
+        "name": "Euphoria",
+        "enum": "EUPHORIA"
     },
     {
         "color": "#572e30",
@@ -705,6 +850,11 @@
         "enum": "FILTERSCRIPT"
     },
     {
+        "color": "#2f632f",
+        "name": "FIRRTL",
+        "enum": "FIRRTL"
+    },
+    {
         "color": "#4aae47",
         "name": "fish",
         "enum": "FISH"
@@ -735,7 +885,7 @@
         "enum": "FORTRAN_FREE_FORM"
     },
     {
-        "color": "#867db1",
+        "color": "#141AC9",
         "name": "FreeBasic",
         "enum": "FREEBASIC"
     },
@@ -805,6 +955,21 @@
         "enum": "GEMFILELOCK"
     },
     {
+        "color": "#ff6900",
+        "name": "Gemini",
+        "enum": "GEMINI"
+    },
+    {
+        "color": "#63408e",
+        "name": "Genero 4gl",
+        "enum": "GENERO_4GL"
+    },
+    {
+        "color": "#d8df39",
+        "name": "Genero per",
+        "enum": "GENERO_PER"
+    },
+    {
         "color": "#fb855d",
         "name": "Genie",
         "enum": "GENIE"
@@ -845,6 +1010,26 @@
         "enum": "GIT_CONFIG"
     },
     {
+        "color": "#F44D27",
+        "name": "Git Revision List",
+        "enum": "GIT_REVISION_LIST"
+    },
+    {
+        "color": "#ffaff3",
+        "name": "Gleam",
+        "enum": "GLEAM"
+    },
+    {
+        "color": "#F5835F",
+        "name": "Glimmer JS",
+        "enum": "GLIMMER_JS"
+    },
+    {
+        "color": "#3178c6",
+        "name": "Glimmer TS",
+        "enum": "GLIMMER_TS"
+    },
+    {
         "color": "#5686a5",
         "name": "GLSL",
         "enum": "GLSL"
@@ -865,6 +1050,11 @@
         "enum": "GO"
     },
     {
+        "color": "#355570",
+        "name": "Godot Resource",
+        "enum": "GODOT_RESOURCE"
+    },
+    {
         "color": "#88562A",
         "name": "Golo",
         "enum": "GOLO"
@@ -875,6 +1065,21 @@
         "enum": "GOSU"
     },
     {
+        "color": "#00ADD8",
+        "name": "Go Checksums",
+        "enum": "GO_CHECKSUMS"
+    },
+    {
+        "color": "#00ADD8",
+        "name": "Go Module",
+        "enum": "GO_MODULE"
+    },
+    {
+        "color": "#00ADD8",
+        "name": "Go Workspace",
+        "enum": "GO_WORKSPACE"
+    },
+    {
         "color": "#615f8b",
         "name": "Grace",
         "enum": "GRACE"
@@ -883,6 +1088,11 @@
         "color": "#02303a",
         "name": "Gradle",
         "enum": "GRADLE"
+    },
+    {
+        "color": "#02303a",
+        "name": "Gradle Kotlin DSL",
+        "enum": "GRADLE_KOTLIN_DSL"
     },
     {
         "color": "#ff0000",
@@ -908,6 +1118,11 @@
         "color": "#4298b8",
         "name": "Groovy Server Pages",
         "enum": "GROOVY_SERVER_PAGES"
+    },
+    {
+        "color": "#FF6800",
+        "name": "GSC",
+        "enum": "GSC"
     },
     {
         "color": "#D08CF2",
@@ -950,7 +1165,7 @@
         "enum": "HAXE"
     },
     {
-        "color": null,
+        "color": "#844FBA",
         "name": "HCL",
         "enum": "HCL"
     },
@@ -965,9 +1180,24 @@
         "enum": "HLSL"
     },
     {
+        "color": "#9ff8ee",
+        "name": "HOCON",
+        "enum": "HOCON"
+    },
+    {
         "color": "#ffefaf",
         "name": "HolyC",
         "enum": "HOLYC"
+    },
+    {
+        "color": "#00b171",
+        "name": "hoon",
+        "enum": "HOON"
+    },
+    {
+        "color": "#308888",
+        "name": "Hosts File",
+        "enum": "HOSTS_FILE"
     },
     {
         "color": "#e34c26",
@@ -1045,6 +1275,11 @@
         "enum": "IMAGEJ_MACRO"
     },
     {
+        "color": "#16cec6",
+        "name": "Imba",
+        "enum": "IMBA"
+    },
+    {
         "color": null,
         "name": "Inform 7",
         "enum": "INFORM_7"
@@ -1053,6 +1288,11 @@
         "color": "#d1dbe0",
         "name": "INI",
         "enum": "INI"
+    },
+    {
+        "color": null,
+        "name": "Ink",
+        "enum": "INK"
     },
     {
         "color": "#264b99",
@@ -1085,6 +1325,16 @@
         "enum": "J"
     },
     {
+        "color": "#0886a5",
+        "name": "Janet",
+        "enum": "JANET"
+    },
+    {
+        "color": "#b07219",
+        "name": "JAR Manifest",
+        "enum": "JAR_MANIFEST"
+    },
+    {
         "color": "#d03600",
         "name": "Jasmin",
         "enum": "JASMIN"
@@ -1113,6 +1363,21 @@
         "color": "#2A6277",
         "name": "Java Server Pages",
         "enum": "JAVA_SERVER_PAGES"
+    },
+    {
+        "color": "#d90e09",
+        "name": "JCL",
+        "enum": "JCL"
+    },
+    {
+        "color": "#15c213",
+        "name": "Jest Snapshot",
+        "enum": "JEST_SNAPSHOT"
+    },
+    {
+        "color": "#21D789",
+        "name": "JetBrains MPS",
+        "enum": "JETBRAINS_MPS"
     },
     {
         "color": "#DBCA00",
@@ -1180,9 +1445,19 @@
         "enum": "JULIA"
     },
     {
+        "color": "#a270ba",
+        "name": "Julia REPL",
+        "enum": "JULIA_REPL"
+    },
+    {
         "color": "#DA5B0B",
         "name": "Jupyter Notebook",
         "enum": "JUPYTER_NOTEBOOK"
+    },
+    {
+        "color": "#384d54",
+        "name": "Just",
+        "enum": "JUST"
     },
     {
         "color": "#773b37",
@@ -1193,6 +1468,11 @@
         "color": "#6f8042",
         "name": "KakouneScript",
         "enum": "KAKOUNESCRIPT"
+    },
+    {
+        "color": "#41adf0",
+        "name": "KerboScript",
+        "enum": "KERBOSCRIPT"
     },
     {
         "color": "#2f4aab",
@@ -1220,6 +1500,11 @@
         "enum": "KRL"
     },
     {
+        "color": "#1da6e0",
+        "name": "kvlang",
+        "enum": "KVLANG"
+    },
+    {
         "color": "#fede06",
         "name": "LabVIEW",
         "enum": "LABVIEW"
@@ -1245,6 +1530,11 @@
         "enum": "LEAN"
     },
     {
+        "color": null,
+        "name": "Lean 4",
+        "enum": "LEAN_4"
+    },
+    {
         "color": "#1d365d",
         "name": "Less",
         "enum": "LESS"
@@ -1258,6 +1548,11 @@
         "color": "#4C3023",
         "name": "LFE",
         "enum": "LFE"
+    },
+    {
+        "color": "#0e74ff",
+        "name": "LigoLANG",
+        "enum": "LIGOLANG"
     },
     {
         "color": "#9ccc7c",
@@ -1335,6 +1630,11 @@
         "enum": "LUA"
     },
     {
+        "color": "#00A2FF",
+        "name": "Luau",
+        "enum": "LUAU"
+    },
+    {
         "color": null,
         "name": "M",
         "enum": "M"
@@ -1405,9 +1705,19 @@
         "enum": "MCFUNCTION"
     },
     {
+        "color": "#fcb32c",
+        "name": "MDX",
+        "enum": "MDX"
+    },
+    {
         "color": "#ff2b2b",
         "name": "Mercury",
         "enum": "MERCURY"
+    },
+    {
+        "color": "#ff3670",
+        "name": "Mermaid",
+        "enum": "MERMAID"
     },
     {
         "color": "#007800",
@@ -1423,6 +1733,16 @@
         "color": null,
         "name": "MiniD",
         "enum": "MINID"
+    },
+    {
+        "color": "#ff1111",
+        "name": "MiniYAML",
+        "enum": "MINIYAML"
+    },
+    {
+        "color": "#02b046",
+        "name": "Mint",
+        "enum": "MINT"
     },
     {
         "color": "#c7a938",
@@ -1460,9 +1780,19 @@
         "enum": "MODULE_MANAGEMENT_SYSTEM"
     },
     {
+        "color": "#ff4c1f",
+        "name": "Mojo",
+        "enum": "MOJO"
+    },
+    {
         "color": null,
         "name": "Monkey",
         "enum": "MONKEY"
+    },
+    {
+        "color": "#8D6747",
+        "name": "Monkey C",
+        "enum": "MONKEY_C"
     },
     {
         "color": null,
@@ -1475,9 +1805,19 @@
         "enum": "MOONSCRIPT"
     },
     {
+        "color": "#fbb03b",
+        "name": "Motoko",
+        "enum": "MOTOKO"
+    },
+    {
         "color": "#005daa",
         "name": "Motorola 68K Assembly",
         "enum": "MOTOROLA_68K_ASSEMBLY"
+    },
+    {
+        "color": "#4a137a",
+        "name": "Move",
+        "enum": "MOVE"
     },
     {
         "color": "#62A8D6",
@@ -1518,6 +1858,11 @@
         "color": "#2d004d",
         "name": "nanorc",
         "enum": "NANORC"
+    },
+    {
+        "color": "#1d2c4e",
+        "name": "Nasal",
+        "enum": "NASAL"
     },
     {
         "color": null,
@@ -1590,6 +1935,11 @@
         "enum": "NIX"
     },
     {
+        "color": "#00356B",
+        "name": "NMODL",
+        "enum": "NMODL"
+    },
+    {
         "color": "#cb3837",
         "name": "NPM Config",
         "enum": "NPM_CONFIG"
@@ -1615,9 +1965,39 @@
         "enum": "NUNJUCKS"
     },
     {
+        "color": "#4E9906",
+        "name": "Nushell",
+        "enum": "NUSHELL"
+    },
+    {
         "color": "#111522",
         "name": "NWScript",
         "enum": "NWSCRIPT"
+    },
+    {
+        "color": "#85ea2d",
+        "name": "OASv2-json",
+        "enum": "OASV2_JSON"
+    },
+    {
+        "color": "#85ea2d",
+        "name": "OASv2-yaml",
+        "enum": "OASV2_YAML"
+    },
+    {
+        "color": "#85ea2d",
+        "name": "OASv3-json",
+        "enum": "OASV3_JSON"
+    },
+    {
+        "color": "#85ea2d",
+        "name": "OASv3-yaml",
+        "enum": "OASV3_YAML"
+    },
+    {
+        "color": null,
+        "name": "Oberon",
+        "enum": "OBERON"
     },
     {
         "color": "#438eff",
@@ -1640,7 +2020,7 @@
         "enum": "OBJECTSCRIPT"
     },
     {
-        "color": "#3be133",
+        "color": "#ef7a08",
         "name": "OCaml",
         "enum": "OCAML"
     },
@@ -1668,6 +2048,16 @@
         "color": "#f7ede0",
         "name": "Opal",
         "enum": "OPAL"
+    },
+    {
+        "color": "#85ea2d",
+        "name": "OpenAPI Specification v2",
+        "enum": "OPENAPI_SPECIFICATION_V2"
+    },
+    {
+        "color": "#85ea2d",
+        "name": "OpenAPI Specification v3",
+        "enum": "OPENAPI_SPECIFICATION_V3"
     },
     {
         "color": "#ed2e2d",
@@ -1700,6 +2090,11 @@
         "enum": "OPEN_POLICY_AGENT"
     },
     {
+        "color": "#476732",
+        "name": "Option List",
+        "enum": "OPTION_LIST"
+    },
+    {
         "color": "#77aa99",
         "name": "Org",
         "enum": "ORG"
@@ -1723,6 +2118,11 @@
         "color": "#7055b5",
         "name": "P4",
         "enum": "P4"
+    },
+    {
+        "color": "#F7A8B8",
+        "name": "Pact",
+        "enum": "PACT"
     },
     {
         "color": "#cc0000",
@@ -1758,6 +2158,11 @@
         "color": "#dbb284",
         "name": "Pawn",
         "enum": "PAWN"
+    },
+    {
+        "color": "#0d00ff",
+        "name": "PDDL",
+        "enum": "PDDL"
     },
     {
         "color": "#234d6b",
@@ -1800,6 +2205,21 @@
         "enum": "PIKE"
     },
     {
+        "color": "#FFD343",
+        "name": "Pip Requirements",
+        "enum": "PIP_REQUIREMENTS"
+    },
+    {
+        "color": "#6b9543",
+        "name": "Pkl",
+        "enum": "PKL"
+    },
+    {
+        "color": "#fbbd16",
+        "name": "PlantUML",
+        "enum": "PLANTUML"
+    },
+    {
         "color": "#336790",
         "name": "PLpgSQL",
         "enum": "PLPGSQL"
@@ -1815,9 +2235,19 @@
         "enum": "POGOSCRIPT"
     },
     {
+        "color": "#ae81ff",
+        "name": "Polar",
+        "enum": "POLAR"
+    },
+    {
         "color": null,
         "name": "Pony",
         "enum": "PONY"
+    },
+    {
+        "color": "#f8bd00",
+        "name": "Portugol",
+        "enum": "PORTUGOL"
     },
     {
         "color": "#dc3a0c",
@@ -1845,6 +2275,11 @@
         "enum": "POWERSHELL"
     },
     {
+        "color": "#c8506d",
+        "name": "Praat",
+        "enum": "PRAAT"
+    },
+    {
         "color": "#0c344b",
         "name": "Prisma",
         "enum": "PRISMA"
@@ -1855,9 +2290,19 @@
         "enum": "PROCESSING"
     },
     {
+        "color": "#3B2F63",
+        "name": "Procfile",
+        "enum": "PROCFILE"
+    },
+    {
         "color": "#74283c",
         "name": "Prolog",
         "enum": "PROLOG"
+    },
+    {
+        "color": "#de0000",
+        "name": "Promela",
+        "enum": "PROMELA"
     },
     {
         "color": "#7fa2a7",
@@ -1883,6 +2328,11 @@
         "color": "#1D222D",
         "name": "PureScript",
         "enum": "PURESCRIPT"
+    },
+    {
+        "color": "#ee1e10",
+        "name": "Pyret",
+        "enum": "PYRET"
     },
     {
         "color": "#3572A5",
@@ -1961,6 +2411,11 @@
     },
     {
         "color": "#701516",
+        "name": "RBS",
+        "enum": "RBS"
+    },
+    {
+        "color": "#701516",
         "name": "RDoc",
         "enum": "RDOC"
     },
@@ -1973,6 +2428,11 @@
         "color": "#ff5847",
         "name": "Reason",
         "enum": "REASON"
+    },
+    {
+        "color": "#ff5847",
+        "name": "ReasonLIGO",
+        "enum": "REASONLIGO"
     },
     {
         "color": "#358a5b",
@@ -2025,6 +2485,11 @@
         "enum": "REXX"
     },
     {
+        "color": "#FFDAB3",
+        "name": "Rez",
+        "enum": "REZ"
+    },
+    {
         "color": "#2D54CB",
         "name": "Ring",
         "enum": "RING"
@@ -2045,6 +2510,11 @@
         "enum": "ROBOTFRAMEWORK"
     },
     {
+        "color": "#7c38f5",
+        "name": "Roc",
+        "enum": "ROC"
+    },
+    {
         "color": "#ecdebe",
         "name": "Roff",
         "enum": "ROFF"
@@ -2055,14 +2525,29 @@
         "enum": "ROFF_MANPAGE"
     },
     {
+        "color": "#a62c00",
+        "name": "RON",
+        "enum": "RON"
+    },
+    {
         "color": "#cc0088",
         "name": "Rouge",
         "enum": "ROUGE"
     },
     {
+        "color": "#DE3941",
+        "name": "RouterOS Script",
+        "enum": "ROUTEROS_SCRIPT"
+    },
+    {
         "color": null,
         "name": "RPC",
         "enum": "RPC"
+    },
+    {
+        "color": "#2BDE21",
+        "name": "RPGLE",
+        "enum": "RPGLE"
     },
     {
         "color": "#701516",
@@ -2110,6 +2595,11 @@
         "enum": "SCAML"
     },
     {
+        "color": "#fdc700",
+        "name": "Scenic",
+        "enum": "SCENIC"
+    },
+    {
         "color": "#1e4aec",
         "name": "Scheme",
         "enum": "SCHEME"
@@ -2145,6 +2635,11 @@
         "enum": "SHELL"
     },
     {
+        "color": "#cecfcb",
+        "name": "ShellCheck Config",
+        "enum": "SHELLCHECK_CONFIG"
+    },
+    {
         "color": null,
         "name": "ShellSession",
         "enum": "SHELLSESSION"
@@ -2158,6 +2653,11 @@
         "color": null,
         "name": "Sieve",
         "enum": "SIEVE"
+    },
+    {
+        "color": "#C9BFED",
+        "name": "Simple File Verification",
+        "enum": "SIMPLE_FILE_VERIFICATION"
     },
     {
         "color": "#64E6AD",
@@ -2180,6 +2680,11 @@
         "enum": "SLIM"
     },
     {
+        "color": "#2379F4",
+        "name": "Slint",
+        "enum": "SLINT"
+    },
+    {
         "color": null,
         "name": "Smali",
         "enum": "SMALI"
@@ -2195,6 +2700,11 @@
         "enum": "SMARTY"
     },
     {
+        "color": "#c44536",
+        "name": "Smithy",
+        "enum": "SMITHY"
+    },
+    {
         "color": "#c94949",
         "name": "SmPL",
         "enum": "SMPL"
@@ -2203,6 +2713,11 @@
         "color": null,
         "name": "SMT",
         "enum": "SMT"
+    },
+    {
+        "color": "#419179",
+        "name": "Snakemake",
+        "enum": "SNAKEMAKE"
     },
     {
         "color": "#AA6746",
@@ -2265,6 +2780,11 @@
         "enum": "STATA"
     },
     {
+        "color": "#373b5e",
+        "name": "STL",
+        "enum": "STL"
+    },
+    {
         "color": "#3fb34f",
         "name": "StringTemplate",
         "enum": "STRINGTEMPLATE"
@@ -2300,6 +2820,16 @@
         "enum": "SVG"
     },
     {
+        "color": "#00F58C",
+        "name": "Sway",
+        "enum": "SWAY"
+    },
+    {
+        "color": "#198ce7",
+        "name": "Sweave",
+        "enum": "SWEAVE"
+    },
+    {
         "color": "#F05138",
         "name": "Swift",
         "enum": "SWIFT"
@@ -2315,6 +2845,11 @@
         "enum": "SYSTEMVERILOG"
     },
     {
+        "color": "#333333",
+        "name": "Talon",
+        "enum": "TALON"
+    },
+    {
         "color": "#e4cc98",
         "name": "Tcl",
         "enum": "TCL"
@@ -2325,14 +2860,29 @@
         "enum": "TCSH"
     },
     {
+        "color": "#66D0DD",
+        "name": "templ",
+        "enum": "TEMPL"
+    },
+    {
         "color": "#00004c",
         "name": "Terra",
         "enum": "TERRA"
     },
     {
+        "color": "#7b42bb",
+        "name": "Terraform Template",
+        "enum": "TERRAFORM_TEMPLATE"
+    },
+    {
         "color": "#3D6117",
         "name": "TeX",
         "enum": "TEX"
+    },
+    {
+        "color": "#c8506d",
+        "name": "TextGrid",
+        "enum": "TEXTGRID"
     },
     {
         "color": "#ffe7ac",
@@ -2360,6 +2910,16 @@
         "enum": "TLA"
     },
     {
+        "color": "#C40023",
+        "name": "TL-Verilog",
+        "enum": "TL_VERILOG"
+    },
+    {
+        "color": "#c2c9fb",
+        "name": "Toit",
+        "enum": "TOIT"
+    },
+    {
         "color": "#9c4221",
         "name": "TOML",
         "enum": "TOML"
@@ -2375,7 +2935,7 @@
         "enum": "TSV"
     },
     {
-        "color": "#2b7489",
+        "color": "#3178c6",
         "name": "TSX",
         "enum": "TSX"
     },
@@ -2395,9 +2955,14 @@
         "enum": "TXL"
     },
     {
-        "color": "#2b7489",
+        "color": "#3178c6",
         "name": "TypeScript",
         "enum": "TYPESCRIPT"
+    },
+    {
+        "color": "#239dad",
+        "name": "Typst",
+        "enum": "TYPST"
     },
     {
         "color": "#4e3617",
@@ -2435,7 +3000,7 @@
         "enum": "V"
     },
     {
-        "color": "#fbe5cd",
+        "color": "#a56de2",
         "name": "Vala",
         "enum": "VALA"
     },
@@ -2460,6 +3025,11 @@
         "enum": "VCL"
     },
     {
+        "color": "#507cff",
+        "name": "Velocity Template Language",
+        "enum": "VELOCITY_TEMPLATE_LANGUAGE"
+    },
+    {
         "color": "#b2b7f8",
         "name": "Verilog",
         "enum": "VERILOG"
@@ -2481,13 +3051,18 @@
     },
     {
         "color": "#199f4b",
-        "name": "Vim script",
+        "name": "Vim Script",
         "enum": "VIM_SCRIPT"
     },
     {
         "color": "#199f4b",
         "name": "Vim Snippet",
         "enum": "VIM_SNIPPET"
+    },
+    {
+        "color": "#2c6353",
+        "name": "Visual Basic 6.0",
+        "enum": "VISUAL_BASIC_60"
     },
     {
         "color": "#945db7",
@@ -2505,14 +3080,24 @@
         "enum": "VUE"
     },
     {
+        "color": "#2980b9",
+        "name": "Vyper",
+        "enum": "VYPER"
+    },
+    {
         "color": "#42f1f4",
-        "name": "wdl",
+        "name": "WDL",
         "enum": "WDL"
     },
     {
         "color": "#04133b",
         "name": "WebAssembly",
         "enum": "WEBASSEMBLY"
+    },
+    {
+        "color": "#6250e7",
+        "name": "WebAssembly Interface Type",
+        "enum": "WEBASSEMBLY_INTERFACE_TYPE"
     },
     {
         "color": null,
@@ -2523,6 +3108,16 @@
         "color": "#5b70bd",
         "name": "Web Ontology Language",
         "enum": "WEB_ONTOLOGY_LANGUAGE"
+    },
+    {
+        "color": "#1a5e9a",
+        "name": "WGSL",
+        "enum": "WGSL"
+    },
+    {
+        "color": "#d5c397",
+        "name": "Whiley",
+        "enum": "WHILEY"
     },
     {
         "color": "#fc5757",
@@ -2540,6 +3135,11 @@
         "enum": "WISP"
     },
     {
+        "color": "#ff0000",
+        "name": "Witcher Script",
+        "enum": "WITCHER_SCRIPT"
+    },
+    {
         "color": "#a23738",
         "name": "Wollok",
         "enum": "WOLLOK"
@@ -2548,6 +3148,11 @@
         "color": "#f7e43f",
         "name": "World of Warcraft Addon Data",
         "enum": "WORLD_OF_WARCRAFT_ADDON_DATA"
+    },
+    {
+        "color": "#383838",
+        "name": "Wren",
+        "enum": "WREN"
     },
     {
         "color": "#4B6BEF",
@@ -2628,6 +3233,11 @@
         "color": "#32AB90",
         "name": "YASnippet",
         "enum": "YASNIPPET"
+    },
+    {
+        "color": "#794932",
+        "name": "Yul",
+        "enum": "YUL"
     },
     {
         "color": "#0d665e",

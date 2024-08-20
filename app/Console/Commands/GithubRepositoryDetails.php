@@ -23,16 +23,20 @@ class GithubRepositoryDetails extends Command
             )
             ->with('owner');
 
-        $this->withProgressBar($query, static function (Repository $repository): void {
-            if ($repository->owner instanceof User && $repository->owner->github_access_token === null) {
-                return;
-            }
+        $this->progress(
+            items: $query,
+            callback: static function (Repository $repository): void {
+                if ($repository->owner instanceof User && $repository->owner->github_access_token === null) {
+                    return;
+                }
 
-            if ($repository->owner instanceof Organization && $repository->owner->members()->whereIsRegistered()->doesntExist()) {
-                return;
-            }
+                if ($repository->owner instanceof Organization && $repository->owner->members()->whereIsRegistered()->doesntExist()) {
+                    return;
+                }
 
-            UpdateRepositoryDetails::dispatch($repository);
-        });
+                UpdateRepositoryDetails::dispatch($repository);
+            },
+            default: fn () => $this->argument('name') ? Repository::fromName($this->argument('name')) : null
+        );
     }
 }

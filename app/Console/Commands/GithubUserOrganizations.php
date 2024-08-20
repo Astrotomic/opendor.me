@@ -21,8 +21,9 @@ class GithubUserOrganizations extends Command
                 fn (Builder $query, string $name) => $query->where('name', $name)
             );
 
-        $this->withProgressBar($query, static function (User $user): void {
-            SyncUserOrganizations::dispatch($user);
-        });
+        $this->progress(
+            items: $query,
+            callback: fn (User $user) => SyncUserOrganizations::dispatch($user)
+        );
     }
 }

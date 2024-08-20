@@ -21,8 +21,9 @@ class GithubOrganizationRepositories extends Command
                 fn (Builder $query, string $name) => $query->where('name', $name)
             );
 
-        $this->withProgressBar($query, static function (Organization $organization): void {
-            LoadOrganizationRepositories::dispatch($organization);
-        });
+        $this->progress(
+            items: $query,
+            callback: fn (Organization $organization) => LoadOrganizationRepositories::dispatch($organization)
+        );
     }
 }
