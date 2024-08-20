@@ -21,8 +21,9 @@ class GithubUserContributions extends Command
                 fn (Builder $query, string $name) => $query->where('name', $name)
             );
 
-        $this->withProgressBar($query, static function (User $user): void {
-            SyncUserContributions::dispatch($user);
-        });
+        $this->progress(
+            items: $query,
+            callback: fn (User $user) => SyncUserContributions::dispatch($user)
+        );
     }
 }

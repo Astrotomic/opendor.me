@@ -10,13 +10,19 @@ use Illuminate\Support\LazyCollection;
 
 abstract class Command extends IlluminateCommand
 {
-    /**
-     * @param  int|iterable|Builder  $totalSteps
-     */
-    public function withProgressBar($totalSteps, Closure $callback): void
+    public function progress(int|iterable|Builder $items, Closure $callback, ?Closure $default = null): void
     {
-        if ($totalSteps instanceof Builder) {
-            $query = $totalSteps;
+        if ($items instanceof Builder) {
+            $query = $items;
+
+            if ($query->doesntExist()) {
+                if ($default) {
+                    $this->comment('Executing default...');
+                    $default();
+                }
+
+                return;
+            }
 
             $this->output->progressStart($query->count());
             $query->eachById(function (Model $value) use ($callback): void {
@@ -28,9 +34,18 @@ abstract class Command extends IlluminateCommand
             return;
         }
 
-        if (is_iterable($totalSteps)) {
-            $this->output->progressStart(count($totalSteps));
-            LazyCollection::make($totalSteps)->each(function (mixed $value) use ($callback): void {
+        if (is_iterable($items)) {
+            if (empty($items)) {
+                if ($default) {
+                    $this->comment('Executing default...');
+                    $default();
+                }
+
+                return;
+            }
+
+            $this->output->progressStart(count($items));
+            LazyCollection::make($items)->each(function (mixed $value) use ($callback): void {
                 $callback($value);
                 $this->output->progressAdvance();
             });
@@ -39,9 +54,18 @@ abstract class Command extends IlluminateCommand
             return;
         }
 
-        $this->output->progressStart($totalSteps);
+        if ($items === 0) {
+            if ($default) {
+                $this->comment('Executing default...');
+                $default();
+            }
 
-        LazyCollection::range(1, $totalSteps)->each(function (int $value) use ($callback): void {
+            return;
+        }
+
+        $this->output->progressStart($items);
+
+        LazyCollection::range(1, $items)->each(function (int $value) use ($callback): void {
             $callback($value);
             $this->output->progressAdvance();
         });

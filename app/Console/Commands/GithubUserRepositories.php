@@ -21,8 +21,9 @@ class GithubUserRepositories extends Command
                 fn (Builder $query, string $name) => $query->where('name', $name)
             );
 
-        $this->withProgressBar($query, static function (User $use): void {
-            LoadUserRepositories::dispatch($use);
-        });
+        $this->progress(
+            items: $query,
+            callback: fn (User $use) => LoadUserRepositories::dispatch($use)
+        );
     }
 }

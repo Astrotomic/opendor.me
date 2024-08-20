@@ -21,8 +21,9 @@ class GithubOrganizationDetails extends Command
                 fn (Builder $query, string $name) => $query->where('name', $name)
             );
 
-        $this->withProgressBar($query, static function (Organization $organization): void {
-            UpdateOrganizationDetails::dispatch($organization);
-        });
+        $this->progress(
+            items: $query,
+            callback: fn (Organization $organization) => UpdateOrganizationDetails::dispatch($organization)
+        );
     }
 }
