@@ -63,14 +63,14 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \App\Eloquent\QueryBuilders\UserQueryBuilder|\App\Models\User query()
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, SitemapableContract, FilamentUser, HasAvatar, HasName
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, HasAvatar, HasName, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
-    use RoutesNotifications;
     use Blockable;
-    use Searchable;
     use CachesAttributes;
+    use RoutesNotifications;
+    use Searchable;
 
     public $incrementing = false;
 

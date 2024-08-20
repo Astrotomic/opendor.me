@@ -13,8 +13,7 @@ it('deletes the job if the user is blocked', function () {
     $user->block_reason = BlockReason::INAPPROPRIATE();
     $user->update();
 
-    $job = githubJob(function () {
-    }, $user);
+    $job = githubJob(function () {}, $user);
     app(Dispatcher::class)->dispatchNow($job);
 
     expect($job->job->isDeleted())->toBeTrue();

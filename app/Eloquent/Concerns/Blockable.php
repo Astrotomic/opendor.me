@@ -19,7 +19,7 @@ trait Blockable
 {
     public static function bootBlockable(): void
     {
-        static::addGlobalScope(new BlockableScope());
+        static::addGlobalScope(new BlockableScope);
 
         static::saving(static function (Model $model): void {
             if ($model->block_reason !== null) {

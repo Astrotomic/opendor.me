@@ -35,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Numeral::class, static function (): Numeral {
-            $numeral = new Numeral();
-            $numeral->setLanguageManager(new LanguageManager());
+            $numeral = new Numeral;
+            $numeral->setLanguageManager(new LanguageManager);
 
             return $numeral;
         });

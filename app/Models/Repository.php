@@ -46,8 +46,8 @@ use Throwable;
  */
 class Repository extends Model
 {
-    use HasFactory;
     use Blockable;
+    use HasFactory;
 
     public $incrementing = false;
 

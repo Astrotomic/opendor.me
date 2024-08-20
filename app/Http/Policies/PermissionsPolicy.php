@@ -6,9 +6,7 @@ use Mazedlx\FeaturePolicy\Policies\Policy;
 
 class PermissionsPolicy extends Policy implements \Stringable
 {
-    public function configure(): void
-    {
-    }
+    public function configure(): void {}
 
     public function __toString()
     {

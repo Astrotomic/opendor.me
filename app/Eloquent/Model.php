@@ -10,8 +10,8 @@ use Illuminate\Support\Str;
 
 abstract class Model extends IlluminateModel
 {
-    use HasFactory;
     use CachesAttributes;
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -24,7 +24,7 @@ abstract class Model extends IlluminateModel
 
     public static function table(): string
     {
-        return (new static())->getTable();
+        return (new static)->getTable();
     }
 
     public function delete()

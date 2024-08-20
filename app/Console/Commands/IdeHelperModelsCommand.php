@@ -152,7 +152,7 @@ class IdeHelperModelsCommand extends ModelsCommand
             );
         }
 
-        $serializer = new DocBlockSerializer();
+        $serializer = new DocBlockSerializer;
         $docComment = $serializer->getDocComment($phpdoc);
 
         if ($this->write_mixin) {
