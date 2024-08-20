@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
                 return $organization;
             }
 
-            throw (new ModelNotFoundException())->setModel(
+            throw (new ModelNotFoundException)->setModel(
                 User::class.'|'.Organization::class,
                 $name
             );

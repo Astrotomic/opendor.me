@@ -5,7 +5,7 @@ use App\Models\User;
 use Carbon\CarbonInterval;
 
 it('has the expected configuration')
-    ->expect(fn () => new LoadUserRepositories(new User()))
+    ->expect(fn () => new LoadUserRepositories(new User))
     ->timeout->toEqual(CarbonInterval::minutes(15)->totalSeconds)
     ->queue->toEqual('github');
 

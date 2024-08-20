@@ -23,6 +23,6 @@ class FallbackController
             }
         }
 
-        throw new NotFoundHttpException();
+        throw new NotFoundHttpException;
     }
 }

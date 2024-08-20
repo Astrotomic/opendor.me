@@ -34,7 +34,7 @@ class SyncUserContributions extends GithubJob
                 ],
             ])->json('data.viewer.contributionsCollection');
 
-            foreach (data_get($response, 'commitContributionsByRepository.*.repository.nameWithOwner') as $name) {
+            foreach (data_get($response, 'commitContributionsByRepository.*.repository.nameWithOwner', []) as $name) {
                 $repository = Repository::fromName($name);
 
                 if ($repository === null) {

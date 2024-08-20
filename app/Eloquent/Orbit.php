@@ -8,8 +8,8 @@ use Spatie\Sluggable\HasSlug;
 
 abstract class Orbit extends Model
 {
-    use Orbital;
     use HasSlug;
+    use Orbital;
 
     public $incrementing = false;
 
