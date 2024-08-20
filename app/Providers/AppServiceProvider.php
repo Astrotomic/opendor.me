@@ -75,6 +75,7 @@ class AppServiceProvider extends ServiceProvider
                 ->accept('application/vnd.github.v3+json')
                 ->withUserAgent(config('app.name').' '.config('app.url'))
                 ->withOptions(['http_errors' => true])
+                ->throw()
                 ->withMiddleware(function (callable $handler): Closure {
                     return function (RequestInterface $request, array $options) use ($handler): PromiseInterface {
                         $promise = $handler($request, $options);
