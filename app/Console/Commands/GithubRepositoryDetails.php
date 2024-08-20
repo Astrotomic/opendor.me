@@ -6,7 +6,6 @@ use App\Jobs\UpdateRepositoryDetails;
 use App\Models\Organization;
 use App\Models\Repository;
 use App\Models\User;
-use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 
 class GithubRepositoryDetails extends Command
@@ -17,21 +16,23 @@ class GithubRepositoryDetails extends Command
 
     public function handle(): void
     {
-        Repository::query()
+        $query = Repository::query()
             ->when(
                 $this->argument('name'),
                 fn (Builder $query, string $name) => $query->where('name', $name)
             )
-            ->with('owner')
-            ->get()
-            ->reject(function (Repository $repository): bool {
-                return $repository->owner instanceof User && $repository->owner->github_access_token === null;
-            })
-            ->reject(function (Repository $repository): bool {
-                return $repository->owner instanceof Organization && $repository->owner->members()->whereIsRegistered()->doesntExist();
-            })
-            ->each(static function (Repository $repository): void {
-                UpdateRepositoryDetails::dispatch($repository);
-            });
+            ->with('owner');
+
+        $this->withProgressBar($query, static function (Repository $repository): void {
+            if ($repository->owner instanceof User && $repository->owner->github_access_token === null) {
+                return;
+            }
+
+            if ($repository->owner instanceof Organization && $repository->owner->members()->whereIsRegistered()->doesntExist()) {
+                return;
+            }
+
+            UpdateRepositoryDetails::dispatch($repository);
+        });
     }
 }

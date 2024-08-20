@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Jobs\SyncUserContributions;
 use App\Models\User;
-use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 
 class GithubUserContributions extends Command
@@ -15,14 +14,15 @@ class GithubUserContributions extends Command
 
     public function handle(): void
     {
-        User::query()
+        $query = User::query()
             ->whereIsRegistered()
             ->when(
                 $this->argument('name'),
                 fn (Builder $query, string $name) => $query->where('name', $name)
-            )
-            ->each(static function (User $user): void {
-                SyncUserContributions::dispatch($user);
-            });
+            );
+
+        $this->withProgressBar($query, static function (User $user): void {
+            SyncUserContributions::dispatch($user);
+        });
     }
 }

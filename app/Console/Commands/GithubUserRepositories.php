@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Jobs\LoadUserRepositories;
 use App\Models\User;
-use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 
 class GithubUserRepositories extends Command
@@ -15,14 +14,15 @@ class GithubUserRepositories extends Command
 
     public function handle(): void
     {
-        User::query()
+        $query = User::query()
             ->whereIsRegistered()
             ->when(
                 $this->argument('name'),
                 fn (Builder $query, string $name) => $query->where('name', $name)
-            )
-            ->each(static function (User $use): void {
-                LoadUserRepositories::dispatch($use);
-            });
+            );
+
+        $this->withProgressBar($query, static function (User $use): void {
+            LoadUserRepositories::dispatch($use);
+        });
     }
 }
