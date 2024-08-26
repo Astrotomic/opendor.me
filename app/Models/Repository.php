@@ -112,7 +112,7 @@ class Repository extends Model
         }
 
         try {
-            return $owner->repositories()->withBlocked()->firstOrCreate([
+            $repository = self::query()->withBlocked()->firstOrCreate([
                 'id' => $data['id'],
             ], [
                 'name' => $data['full_name'],
@@ -123,6 +123,10 @@ class Repository extends Model
                 'stargazers_count' => $data['stargazers_count'],
                 'website' => $data['homepage'],
             ]);
+            $repository->owner()->associate($owner);
+            $repository->save();
+
+            return $repository;
         } catch (Throwable $ex) {
             if (
                 $ex instanceof BadMethodCallException
