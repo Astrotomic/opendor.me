@@ -115,11 +115,13 @@ class Repository extends Model
             $repository = self::query()->withBlocked()->firstOrNew([
                 'id' => $data['id'],
             ], [
+                'block_reason' => $blockReason ?? null,
+            ]);
+            $repository->fill([
                 'name' => $data['full_name'],
                 'description' => $data['description'],
                 'language' => $data['language'] ?? Language::NOASSERTION(),
                 'license' => $data['license']['spdx_id'],
-                'block_reason' => $blockReason ?? null,
                 'stargazers_count' => $data['stargazers_count'],
                 'website' => $data['homepage'],
             ]);
