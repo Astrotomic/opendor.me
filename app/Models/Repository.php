@@ -112,7 +112,7 @@ class Repository extends Model
         }
 
         try {
-            $repository = self::query()->withBlocked()->firstOrCreate([
+            $repository = self::query()->withBlocked()->firstOrNew([
                 'id' => $data['id'],
             ], [
                 'name' => $data['full_name'],
