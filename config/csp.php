@@ -24,8 +24,6 @@ return [
     /*
      * All violations against the policy will be reported to this url.
      * A great service you could use for this is https://report-uri.com/
-     *
-     * 
      */
     'report_uri' => env('CSP_REPORT_URI', ''),
 

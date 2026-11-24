@@ -9,7 +9,9 @@ use Spatie\Sluggable\HasSlug;
 abstract class Orbit extends Model
 {
     use HasSlug;
-    use Orbital;
+    use Orbital {
+        bootOrbital as protected bootOrbit;
+    }
 
     public $incrementing = false;
 
@@ -20,6 +22,11 @@ abstract class Orbit extends Model
     protected $primaryKey = 'slug';
 
     abstract public static function schema(Blueprint $table): void;
+
+    public static function bootOrbital(): void
+    {
+        static::whenBooted(static fn () => static::bootOrbit());
+    }
 
     public static function getOrbitalName(): string
     {
