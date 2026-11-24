@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\BlockReason;
-use App\Jobs\Concerns\RateLimited;
 use App\Jobs\GithubJob;
 use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
@@ -77,17 +76,7 @@ it('releases the job if a Github rate limit is hit', function () {
 it('releases a rate-limited job with a non-negative integer delay', function (int $offset, int $expected) {
     $this->freezeSecond();
 
-    $job = new class
-    {
-        use RateLimited;
-
-        public ?int $delay = null;
-
-        public function release(int $delay): void
-        {
-            $this->delay = $delay;
-        }
-    };
+    $job = githubJob(function () {}, $this->user('Gummibeer'))->withFakeQueueInteractions();
 
     $exception = new ClientException(
         'rate limited',
@@ -97,8 +86,8 @@ it('releases a rate-limited job with a non-negative integer delay', function (in
         ])
     );
 
-    expect($job->rateLimit($exception))->toBeTrue()
-        ->and($job->delay)->toBe($expected);
+    expect($job->rateLimit($exception))->toBeTrue();
+    $job->assertReleased($expected);
 })->with([
     'future reset' => [3600, 3600],
     'current reset' => [0, 0],
