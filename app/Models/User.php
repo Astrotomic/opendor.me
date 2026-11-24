@@ -6,8 +6,6 @@ use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\QueryBuilders\UserQueryBuilder;
 use App\Enums\Language;
-use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
-use Astrotomic\CachableAttributes\CachesAttributes;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -63,12 +61,11 @@ use Spatie\Sitemap\Tags\Url;
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \App\Eloquent\QueryBuilders\UserQueryBuilder|\App\Models\User query()
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, HasAvatar, HasName, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, FilamentUser, HasAvatar, HasName, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
     use Blockable;
-    use CachesAttributes;
     use RoutesNotifications;
     use Searchable;
 

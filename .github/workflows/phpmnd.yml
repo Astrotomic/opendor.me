@@ -4,15 +4,16 @@ on:
 jobs:
   phpmnd:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
-          extensions: dom, curl, mbstring, zip, pcntl, intl
+          php-version: 8.3
+          extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
           coverage: none
-      - run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
-      - run: composer config "http-basic.satis.laravel-enlightn.com" "${{ secrets.ENLIGHTN_USERNAME }}" "${{ secrets.ENLIGHTN_PASSWORD }}"
-      - run: composer install --no-interaction --ignore-platform-reqs --no-scripts
+      # Temporary test-only exception for known Laravel 10 advisories. Audits still report them.
+      - name: Configure Laravel 10 CI advisory exceptions
+        run: composer config --global --merge --json policy.advisories.ignore-id "$(jq -c '.config.policy.advisories["ignore-id"]' .github/composer/laravel-10-ci.json)"
+      - run: composer install --no-interaction --prefer-dist
       - run: vendor/bin/phpmnd ./app --no-interaction

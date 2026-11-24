@@ -20,4 +20,3 @@ auth.json
 .npmrc
 /.coverage/
 yarn.lock
-composer.lock

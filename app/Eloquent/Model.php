@@ -2,18 +2,19 @@
 
 namespace App\Eloquent;
 
-use Astrotomic\CachableAttributes\CachesAttributes;
 use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as IlluminateModel;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 abstract class Model extends IlluminateModel
 {
-    use CachesAttributes;
     use HasFactory;
 
     protected $guarded = [];
+
+    protected array $relationshipCounts = [];
 
     public function __construct(array $attributes = [])
     {
@@ -44,8 +45,18 @@ abstract class Model extends IlluminateModel
             $method = Str::before($key, '_count');
 
             if (method_exists($this, $method)) {
-                return $this->remember(
-                    $key,
+                if (! $this->exists) {
+                    return $this->relationshipCounts[$key] ??= $this->$method()->count();
+                }
+
+                return Cache::remember(
+                    implode('.', [
+                        'model_attribute_cache',
+                        $this->getConnectionName() ?? 'connection',
+                        $this->getTable(),
+                        $this->getKey(),
+                        $key,
+                    ]),
                     CarbonInterval::minutes(1)->totalSeconds,
                     fn () => $this->$method()->count()
                 );

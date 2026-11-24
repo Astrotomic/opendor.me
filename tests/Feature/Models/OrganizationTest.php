@@ -18,8 +18,8 @@ it('finds organization from Github')
     ->name->toBe('Astrotomic');
 
 it('finds blocked organization from Github')
-    ->tap(fn () => $this->organization = $this->organization('Astrotomic'))
-    ->tap(fn () => $this->organization->update([
+    ->defer(fn () => $this->organization = $this->organization('Astrotomic'))
+    ->defer(fn () => $this->organization->update([
         'block_reason' => BlockReason::SPAM(),
         'blocked_at' => now(),
     ]))
