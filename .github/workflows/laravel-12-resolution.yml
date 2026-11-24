@@ -1,4 +1,4 @@
-name: Laravel 12 temporary resolution
+name: Laravel 12 temporary verification
 
 on:
   push:
@@ -44,14 +44,6 @@ jobs:
           php-version: 8.3
           extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql
           coverage: xdebug
-      - name: Resolve minimal dependency updates
-        run: composer update laravel/framework nesbot/carbon ryangjchandler/orbit spatie/laravel-backup spatie/laravel-sitemap nunomaduro/collision pestphp/pest pestphp/pest-plugin-laravel danharrin/livewire-rate-limiting --with-all-dependencies --minimal-changes --no-interaction --prefer-dist --no-scripts
-      - name: Emit generated lockfile
-        run: |
-          echo "LOCKFILE_BEGIN"
-          base64 -w 1000 composer.lock
-          echo "LOCKFILE_END"
-          git hash-object composer.lock
       - run: composer install --no-interaction --prefer-dist
       - run: composer validate --strict && composer check-platform-reqs
       - run: composer audit --locked
