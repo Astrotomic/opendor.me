@@ -13,17 +13,17 @@
         "astrotomic/laravel-github-sponsors": "^1.2",
         "astrotomic/laravel-imgix": "^1.1.0",
         "astrotomic/php-open-graph": "^0.5.2",
-        "blade-ui-kit/blade-ui-kit": "^0.4.0",
-        "filament/filament": "^2.17.50",
+        "blade-ui-kit/blade-ui-kit": "^0.7.0",
+        "filament/filament": "^3.3",
         "guzzlehttp/guzzle": "^7.7",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^11.0",
         "laravel/horizon": "^5.17",
         "laravel/socialite": "^5.6.3",
         "mallardduck/blade-boxicons": "^2.4",
         "mazedlx/laravel-feature-policy": "^2.0",
         "nesbot/carbon": "^2.68.1",
         "ryangjchandler/orbit": "^1.2.0",
-        "sentry/sentry-laravel": "^3.2",
+        "sentry/sentry-laravel": "^4.3",
         "spatie/eloquent-sortable": "^4.0.2",
         "spatie/flysystem-dropbox": "^2.0.6",
         "spatie/laravel-backup": "^8.1.11",
@@ -32,26 +32,23 @@
         "spatie/laravel-schedule-monitor": "^3.3",
         "spatie/laravel-sitemap": "^7.0",
         "spatie/laravel-sluggable": "^3.5",
-        "spatie/once": "^3.1",
         "stillat/numeral.php": "^2.0.2"
     },
     "require-dev": {
         "astrotomic/phpunit-assertions": "^0.15.0",
         "barryvdh/laravel-debugbar": "^3.8.1",
-        "barryvdh/laravel-ide-helper": "^2.13",
-        "egulias/email-validator": "^3.2.6",
+        "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.23.0",
         "gajus/dindent": "^2.0.2",
-        "laracasts/generators": "^2.0.2",
         "laravel/pint": "^1.10.3",
         "mockery/mockery": "^1.6.2",
-        "nunomaduro/collision": "^7.0",
+        "nunomaduro/collision": "^8.5",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "povils/phpmnd": "^3.1",
         "spatie/laravel-ignition": "^2.0",
         "spatie/ray": "^1.37.2",
-        "tightenco/tlint": "^6.3"
+        "tightenco/tlint": "^9.0"
     },
     "conflict": {
         "tightenco/tlint": "5.0.16"
@@ -94,7 +91,8 @@
         "post-autoload-dump": [
             "@composer validate --strict --ansi --no-interaction --quiet",
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi --no-interaction"
+            "@php artisan package:discover --ansi --no-interaction",
+            "@php artisan filament:upgrade"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

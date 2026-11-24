@@ -13,12 +13,12 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Tables\Columns\BooleanColumn;
+use Filament\Forms\Form;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -55,8 +55,8 @@ class UserResource extends Resource
                 TextColumn::make('id')->sortable()->searchable(),
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('full_name')->sortable()->searchable(),
-                BooleanColumn::make('is_registered')->label('Registered'),
-                BooleanColumn::make('is_blocked')->label('Blocked'),
+                IconColumn::make('is_registered')->boolean()->label('Registered'),
+                IconColumn::make('is_blocked')->boolean()->label('Blocked'),
                 TextColumn::make('contributions_count')->counts('contributions')->sortable(),
             ])
             ->filters([

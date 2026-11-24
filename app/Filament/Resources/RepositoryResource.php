@@ -6,17 +6,17 @@ use App\Filament\Resource;
 use App\Filament\Resources\RepositoryResource\Pages\EditRepository;
 use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
 use App\Models\Repository;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Tables\Columns\BooleanColumn;
+use Filament\Forms\Form;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 
 class RepositoryResource extends Resource
 {
     protected static ?string $model = Repository::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-archive';
+    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
 
     public static function form(Form $form): Form
     {
@@ -34,7 +34,7 @@ class RepositoryResource extends Resource
                 TextColumn::make('license')->sortable()->searchable(),
                 TextColumn::make('language')->sortable()->searchable(),
                 TextColumn::make('stargazers_count')->sortable()->label('Stars'),
-                BooleanColumn::make('is_blocked')->label('Blocked'),
+                IconColumn::make('is_blocked')->boolean()->label('Blocked'),
                 TextColumn::make('contributors_count')->counts('contributors')->sortable(),
             ])
             ->filters([

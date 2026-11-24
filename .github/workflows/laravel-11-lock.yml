@@ -1,0 +1,35 @@
+name: Laravel 11 lockfile (temporary)
+
+on:
+  push:
+    branches:
+      - upgrade/laravel-11
+
+permissions:
+  contents: read
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
+          coverage: none
+      - run: composer update --with-all-dependencies --no-interaction --prefer-dist --no-scripts
+      - name: Export generated lockfile
+        run: |
+          sha256sum composer.lock
+          base64 -w 4000 composer.lock | sed 's/^/LOCKFILE_CHUNK:/'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: laravel-11-lock
+          path: composer.lock
+      - run: cp .env.example .env
+      - run: composer install --no-interaction --prefer-dist
+      - run: php artisan key:generate
+      - run: vendor/bin/pest
+      - run: vendor/bin/pint --test

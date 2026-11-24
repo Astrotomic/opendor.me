@@ -103,6 +103,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', 'opendor_cache_'),
+    'prefix' => env('CACHE_PREFIX', 'opendor_cache_').':',
 
 ];

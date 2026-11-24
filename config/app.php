@@ -203,6 +203,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         EventServiceProvider::class,
+        App\Providers\Filament\AdminPanelProvider::class,
         HorizonServiceProvider::class,
         RouteServiceProvider::class,
 
