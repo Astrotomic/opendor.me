@@ -20,4 +20,8 @@ it('allows superadmins to access the admin panel', function () {
     $user = $this->user();
 
     expect($user->canAccessPanel(Filament::getPanel('admin')))->toBeTrue();
+
+    $this->actingAs($user)
+        ->get(route('filament.admin.pages.dashboard'))
+        ->assertOk();
 });

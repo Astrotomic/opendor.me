@@ -1,4 +1,4 @@
-name: Laravel 11 lockfile (temporary)
+name: Laravel 11 SQLite verification (temporary)
 
 on:
   push:
@@ -9,9 +9,9 @@ permissions:
   contents: read
 
 jobs:
-  resolve:
+  sqlite:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
@@ -19,19 +19,7 @@ jobs:
           php-version: 8.3
           extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
           coverage: none
-      - run: composer update --with-all-dependencies --minimal-changes --no-interaction --prefer-dist --no-scripts --no-blocking
-      - name: Export generated lockfile
-        run: |
-          sha256sum composer.lock
-          base64 -w 4000 composer.lock | sed 's/^/LOCKFILE_CHUNK:/'
-      - uses: actions/upload-artifact@v4
-        with:
-          name: laravel-11-lock
-          path: composer.lock
-      - run: composer audit --locked
-        continue-on-error: true
-      - run: cp .env.example .env
       - run: composer install --no-interaction --prefer-dist
+      - run: cp .env.example .env
       - run: php artisan key:generate
       - run: vendor/bin/pest
-      - run: vendor/bin/pint --test
