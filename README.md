@@ -43,11 +43,3 @@ Command | Description
 `make npm-dev` | Build the dependencies
 `make npm-install` | Install npm dependencies
 `make stop` | Stop the running containers
-
-## Laravel 10 upgrade
-
-The application targets PHP 8.3. Laravel 10 is an intermediate compatibility milestone and is no longer security-supported; do not deploy this upgrade in isolation without reviewing Composer's security audit and completing the subsequent supported-framework upgrade.
-
-CI temporarily permits only the explicitly listed Laravel 10 advisories during dependency resolution, using runner-local configuration; the project and production Composer configuration remain unchanged. CI reports the audit separately. Remove the exception once the framework is supported. Commit the resolved `composer.lock` before merging. Run `composer install`, `composer check-platform-reqs`, `composer audit` and `composer test` against PostgreSQL/Redis and SQLite.
-
-Before deployment, back up PostgreSQL and retain the previous release and lockfile. Coordinate the scheduler and Horizon worker shutdown, install from the lockfile, publish Horizon assets, clear and rebuild application caches, and restart workers. Verify OAuth, GitHub synchronization and rate limits, Scout reimport with a non-production index prefix, Filament authorization, Sentry/Loggly and Dropbox backups before resuming scheduled jobs.
