@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources\Enums;
 
+use App\Enums\Language;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LanguageResource extends JsonResource
 {
-    /** @var \App\Enums\Language */
+    /** @var Language */
     public $resource;
 
     public function toArray($request): array

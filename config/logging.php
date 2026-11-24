@@ -4,6 +4,7 @@ use Monolog\Handler\LogglyHandler;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+use Psr\Log\LogLevel;
 
 return [
 
@@ -57,7 +58,7 @@ return [
 
         'sentry' => [
             'driver' => 'sentry',
-            'level' => \Psr\Log\LogLevel::ERROR,
+            'level' => LogLevel::ERROR,
         ],
 
         'loggly' => [

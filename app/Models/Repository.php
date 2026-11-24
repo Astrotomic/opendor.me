@@ -8,6 +8,8 @@ use App\Enums\BlockReason;
 use App\Enums\Language;
 use App\Enums\License;
 use BadMethodCallException;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -25,16 +27,16 @@ use Throwable;
  * @property string $owner_type
  * @property int $owner_id
  * @property string|null $description
- * @property \App\Enums\License $license
- * @property \App\Enums\Language $language
- * @property \Carbon\Carbon|null $blocked_at
- * @property \App\Enums\BlockReason|null $block_reason
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property License $license
+ * @property Language $language
+ * @property Carbon|null $blocked_at
+ * @property BlockReason|null $block_reason
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property int $stargazers_count
  * @property string|null $website
  * @property string $randomness
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $contributors
+ * @property-read Collection|array<User> $contributors
  * @property-read string $github_url
  * @property-read bool $is_blocked
  * @property-read string $repository_name

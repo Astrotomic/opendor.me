@@ -4,6 +4,7 @@ use App\Enums\BlockReason;
 use App\Jobs\GithubJob;
 use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Carbon;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,8 @@ it('blocks the user and marks them as deleted if a certain status code is return
     $job = githubJob(function () use ($status) {
         throw new ClientException(
             'this test should throw',
-            new \GuzzleHttp\Psr7\Request('get', ''),
-            new \GuzzleHttp\Psr7\Response($status)
+            new Request('get', ''),
+            new GuzzleHttp\Psr7\Response($status)
         );
     }, $user);
 
@@ -44,8 +45,8 @@ it('throws a client exception if the status code is not handled', function (int 
     $job = githubJob(function () use ($status) {
         throw new ClientException(
             'this test should throw',
-            new \GuzzleHttp\Psr7\Request('get', ''),
-            new \GuzzleHttp\Psr7\Response($status)
+            new Request('get', ''),
+            new GuzzleHttp\Psr7\Response($status)
         );
     }, $this->user('Gummibeer'));
 
@@ -62,8 +63,8 @@ it('releases the job if a Github rate limit is hit', function () {
     $job = githubJob(function () {
         throw new ClientException(
             'this test should throw',
-            new \GuzzleHttp\Psr7\Request('get', '/users/repos'),
-            new \GuzzleHttp\Psr7\Response(Response::HTTP_FORBIDDEN, ['X-RateLimit-Reset' => now()->addHour()->getTimestamp()])
+            new Request('get', '/users/repos'),
+            new GuzzleHttp\Psr7\Response(Response::HTTP_FORBIDDEN, ['X-RateLimit-Reset' => now()->addHour()->getTimestamp()])
         );
     }, $this->user('Gummibeer'));
 

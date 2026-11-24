@@ -4,12 +4,13 @@ namespace App\Http\Resources;
 
 use App\Http\Resources\Enums\LanguageResource;
 use App\Http\Resources\Enums\LicenseResource;
+use App\Models\Repository;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
 class RepositoryResource extends JsonResource
 {
-    /** @var \App\Models\Repository */
+    /** @var Repository */
     public $resource;
 
     public function toArray($request): array

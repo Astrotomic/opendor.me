@@ -2,6 +2,7 @@
 
 namespace App\Eloquent\Casts;
 
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Enum\Laravel\Casts\EnumCast as SpatieEnumCast;
 
 class EnumCast extends SpatieEnumCast
@@ -18,7 +19,7 @@ class EnumCast extends SpatieEnumCast
     /**
      * Prepare the given value for storage.
      *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  Model  $model
      * @param  mixed  $value
      * @return mixed
      */

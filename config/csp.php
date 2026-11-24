@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Policies\ContentSecurityPolicy;
+use Spatie\Csp\Nonce\RandomString;
 
 return [
 
@@ -32,5 +33,5 @@ return [
     /*
      * The class responsible for generating the nonces used in inline tags and headers.
      */
-    'nonce_generator' => Spatie\Csp\Nonce\RandomString::class,
+    'nonce_generator' => RandomString::class,
 ];
