@@ -42,7 +42,8 @@ jobs:
         run: |
           cp composer.json composer.json.ci-backup
           trap 'mv composer.json.ci-backup composer.json' EXIT
-          composer config --json policy.advisories.ignore-id "$(jq -c '.config.policy.advisories["ignore-id"]' .github/composer/laravel-10-ci.json)"
+          jq --slurpfile exceptions .github/composer/laravel-10-ci.json '.config.policy.advisories["ignore-id"] = ($exceptions[0].config.policy.advisories["ignore-id"] | keys)' composer.json.ci-backup > composer.json
+          composer config policy.advisories.ignore-id
           composer install --no-interaction --prefer-dist
       - run: composer check-platform-reqs
       - run: cp .env.example .env && php artisan key:generate
