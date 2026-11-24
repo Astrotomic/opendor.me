@@ -10,9 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table(User::table(), static function (Blueprint $table): void {
-            $table->dropColumn('email');
-            $table->dropColumn('emails');
-            $table->dropColumn('email_verified_at');
+            $table->dropColumn(['email', 'emails', 'email_verified_at']);
         });
     }
 
