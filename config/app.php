@@ -2,6 +2,7 @@
 
 use App\Providers\AppServiceProvider;
 use App\Providers\EventServiceProvider;
+use App\Providers\Filament\AdminPanelProvider;
 use App\Providers\HorizonServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\AuthServiceProvider;
@@ -203,7 +204,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         EventServiceProvider::class,
-        App\Providers\Filament\AdminPanelProvider::class,
+        AdminPanelProvider::class,
         HorizonServiceProvider::class,
         RouteServiceProvider::class,
 
