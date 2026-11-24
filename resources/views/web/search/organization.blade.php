@@ -1,6 +1,6 @@
 @once
 @push('javascript')
-<script nonce="{{ csp_nonce() }}">
+<script @cspNonce>
     const search = algolia.instantsearch({
         indexName: '{{ (new \App\Models\Organization)->searchableAs() }}',
         searchClient: algolia.searchClient,

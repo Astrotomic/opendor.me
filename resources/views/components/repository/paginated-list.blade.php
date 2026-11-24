@@ -88,7 +88,7 @@
 
 @once
 @push('javascript')
-<script nonce="{{ csp_nonce() }}">
+<script @cspNonce>
 window.components.paginatedRepositoryList = function () {
     return {
         repositories: [],
