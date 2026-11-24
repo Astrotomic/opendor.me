@@ -12,7 +12,6 @@
         "algolia/scout-extended": "^3.0",
         "astrotomic/laravel-github-sponsors": "^1.2",
         "astrotomic/php-open-graph": "^0.5.2",
-        "blade-ui-kit/blade-ui-kit": "^0.7.0",
         "filament/filament": "^3.3",
         "guzzlehttp/guzzle": "^7.7",
         "laravel/framework": "^12.0",
