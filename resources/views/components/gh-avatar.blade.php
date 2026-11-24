@@ -1,10 +1,8 @@
 @props(['model'])
 
-<x-avatar
-    :search="$model->name"
-    provider="github"
-    :src="$model->avatar_url"
-    :alt="$model->name"
+<img
+    src="{{ $model->avatar_url }}"
+    alt="{{ $model->name }}"
     loading="lazy"
     width="192"
     height="192"
