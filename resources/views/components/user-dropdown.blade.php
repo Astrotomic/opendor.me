@@ -51,7 +51,7 @@
         </li>
         @endcanany
         <li class="py-1" role="none">
-            <x-logout :action="route('auth.signout')" class="block py-2 px-4 w-full text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
+            <x-logout class="block py-2 px-4 w-full text-sm text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                 Logout
             </x-logout>
         </li>

@@ -119,7 +119,7 @@
                                 </a>
                             </div>
 
-                            <x-logout :action="route('auth.signout')" class="block flex-shrink-0 p-3 -mr-2 text-gray-400 rounded hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500">
+                            <x-logout class="block flex-shrink-0 p-3 -mr-2 text-gray-400 rounded hover:text-gray-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-purple-500">
                                 <x-bx-log-out class="w-4 h-4"/>
                                 <span class="sr-only">Logout</span>
                             </x-logout>
