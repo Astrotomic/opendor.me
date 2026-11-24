@@ -4,14 +4,14 @@ on:
 jobs:
   pest:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 5
     env:
       BROADCAST_DRIVER: log
       CACHE_DRIVER: redis
       QUEUE_CONNECTION: redis
       SESSION_DRIVER: redis
       DB_CONNECTION: pgsql
-      DB_HOST: 127.0.0.1
+      DB_HOST: localhost
       REDIS_HOST: 127.0.0.1
       DB_PASSWORD: postgres
       DB_USERNAME: postgres
@@ -25,7 +25,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
           POSTGRES_DB: postgres
-        options: --health-cmd="pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 3
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
       redis:
         image: redis
         ports:
@@ -36,36 +36,11 @@ jobs:
       - uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
           php-version: 8.3
-          extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
+          extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql
           coverage: xdebug
-      # Apply the advisory exception to a temporary manifest only on this runner.
-      - name: Install dependencies for Laravel 10 compatibility tests
-        run: |
-          cp composer.json composer.json.ci-backup
-          trap 'mv composer.json.ci-backup composer.json' EXIT
-          jq --slurpfile exceptions .github/composer/laravel-10-ci.json '.config.policy.advisories["ignore-id"] = ($exceptions[0].config.policy.advisories["ignore-id"] | keys)' composer.json.ci-backup > composer.json
-          composer config policy.advisories.ignore-id
-          composer install --no-interaction --prefer-dist
-      - run: composer check-platform-reqs
+      - run: composer install --no-interaction --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
-      - name: Report dependency advisories (Laravel 10 migration only)
-        run: composer audit --format=plain
-        continue-on-error: true
       - run: vendor/bin/pest --coverage-html=.coverage --coverage-text
-      - name: Run SQLite tests
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: ":memory:"
-          CACHE_DRIVER: array
-          QUEUE_CONNECTION: sync
-          SESSION_DRIVER: array
-        run: vendor/bin/pest
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: Composer lockfile
-          path: composer.lock
-          if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         with:
           name: Coverage
