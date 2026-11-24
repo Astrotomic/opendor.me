@@ -19,7 +19,7 @@ jobs:
           php-version: 8.3
           extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
           coverage: none
-      - run: composer update --with-all-dependencies --no-interaction --prefer-dist --no-scripts
+      - run: composer update --with-all-dependencies --minimal-changes --no-interaction --prefer-dist --no-scripts --no-blocking
       - name: Export generated lockfile
         run: |
           sha256sum composer.lock
@@ -28,6 +28,8 @@ jobs:
         with:
           name: laravel-11-lock
           path: composer.lock
+      - run: composer audit --locked
+        continue-on-error: true
       - run: cp .env.example .env
       - run: composer install --no-interaction --prefer-dist
       - run: php artisan key:generate
