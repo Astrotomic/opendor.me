@@ -40,14 +40,14 @@
                         <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
                         <rect x="118" width="404" height="784" fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
                     </svg>
-                    <x-imgix
-                        source="unsplash"
-                        path="photo-1573497491208-6b1acb260507"
+                    <img
+                        src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&amp;fit=crop&amp;rot=357&amp;w=768&amp;h=512"
+                        srcset="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&amp;fit=crop&amp;rot=357&amp;w=768&amp;h=512&amp;dpr=2 2x"
+                        loading="lazy"
                         class="relative z-10 w-full rounded-lg shadow-lg"
                         alt="Two people during interview process"
                         width="768"
                         height="512"
-                        :params="['fit' => 'crop', 'rot' => 357]"
                     />
                 </div>
             </div>
