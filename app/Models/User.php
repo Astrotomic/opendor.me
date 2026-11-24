@@ -5,9 +5,9 @@ namespace App\Models;
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
 use App\Eloquent\QueryBuilders\UserQueryBuilder;
+use App\Enums\BlockReason;
 use App\Enums\Language;
-use Astrotomic\CachableAttributes\CachableAttributes as CachableAttributesContract;
-use Astrotomic\CachableAttributes\CachesAttributes;
+use Carbon\Carbon;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -32,19 +32,19 @@ use Spatie\Sitemap\Tags\Url;
  * @property string $name
  * @property string|null $full_name
  * @property string|null $github_access_token
- * @property \Carbon\Carbon|null $blocked_at
- * @property \App\Enums\BlockReason|null $block_reason
+ * @property Carbon|null $blocked_at
+ * @property BlockReason|null $block_reason
  * @property string|null $remember_token
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $description
  * @property string|null $location
  * @property string|null $twitter
  * @property string|null $website
  * @property array|null $referrer
- * @property \Carbon\Carbon|null $registered_at
+ * @property Carbon|null $registered_at
  * @property string $randomness
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $contributions
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<Repository> $contributions
  * @property-read string $avatar_url
  * @property-read string $display_name
  * @property-read string $email
@@ -52,23 +52,22 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $is_blocked
  * @property-read bool $is_registered
  * @property-read bool $is_superadmin
- * @property-read \Illuminate\Support\Collection $languages
- * @property-read \App\Enums\Language|null $primary_language
+ * @property-read Collection $languages
+ * @property-read Language|null $primary_language
  * @property-read string|null $profile_url
  * @property-read string|null $twitter_url
- * @property-read \Illuminate\Support\Collection $vendors
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Organization> $organizations
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $repositories
+ * @property-read Collection $vendors
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<Organization> $organizations
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<Repository> $repositories
  *
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \App\Eloquent\QueryBuilders\UserQueryBuilder|\App\Models\User query()
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CachableAttributesContract, FilamentUser, HasAvatar, HasName, SitemapableContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, FilamentUser, HasAvatar, HasName, SitemapableContract
 {
     use Authenticatable;
     use Authorizable;
     use Blockable;
-    use CachesAttributes;
     use RoutesNotifications;
     use Searchable;
 

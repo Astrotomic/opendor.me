@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Eloquent\Concerns\Blockable;
 use App\Eloquent\Model;
+use App\Enums\BlockReason;
 use App\Enums\Language;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -19,10 +21,10 @@ use Spatie\Sitemap\Tags\Url;
 /**
  * @property int $id
  * @property string $name
- * @property \Carbon\Carbon|null $blocked_at
- * @property \App\Enums\BlockReason|null $block_reason
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
+ * @property Carbon|null $blocked_at
+ * @property BlockReason|null $block_reason
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $full_name
  * @property bool|null $is_verified
  * @property string|null $description
@@ -34,11 +36,11 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $display_name
  * @property-read string $github_url
  * @property-read bool $is_blocked
- * @property-read \Illuminate\Support\Collection $languages
+ * @property-read Collection $languages
  * @property-read string $profile_url
  * @property-read string|null $twitter_url
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\User> $members
- * @property-read \Illuminate\Database\Eloquent\Collection|array<\App\Models\Repository> $repositories
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<User> $members
+ * @property-read \Illuminate\Database\Eloquent\Collection|array<Repository> $repositories
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Organization query()
  */

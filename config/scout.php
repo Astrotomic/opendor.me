@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 
 return [
 
@@ -31,7 +32,7 @@ return [
     */
 
     'prefix' => (string) Str::of(env('SCOUT_PREFIX', ''))
-        ->whenNotEmpty(fn (\Illuminate\Support\Stringable $prefix) => $prefix->finish('_')),
+        ->whenNotEmpty(fn (Stringable $prefix) => $prefix->finish('_')),
 
     /*
     |--------------------------------------------------------------------------

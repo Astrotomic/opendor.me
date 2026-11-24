@@ -61,7 +61,7 @@ class RepositoryResource extends Resource
     }
 
     /**
-     * @param  \App\Models\Repository  $record
+     * @param  Repository  $record
      */
     public static function getGlobalSearchResultDetails(Model $record): array
     {

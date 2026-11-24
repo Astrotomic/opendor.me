@@ -12,8 +12,6 @@ class AuthServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->registerPolicies();
-
         Gate::before(static function (User $user): ?bool {
             return $user->is_superadmin ? true : null;
         });

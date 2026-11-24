@@ -64,7 +64,7 @@ class OrganizationResource extends Resource
     }
 
     /**
-     * @param  \App\Models\Organization  $record
+     * @param  Organization  $record
      */
     public static function getGlobalSearchResultDetails(Model $record): array
     {

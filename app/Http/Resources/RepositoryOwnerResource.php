@@ -2,11 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Organization;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RepositoryOwnerResource extends JsonResource
 {
-    /** @var \App\Models\User|\App\Models\Organization */
+    /** @var User|Organization */
     public $resource;
 
     public function toArray($request): array

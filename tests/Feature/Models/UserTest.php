@@ -19,8 +19,8 @@ it('finds user from Github')
     ->name->toBe('Gummibeer');
 
 it('finds blocked user from Github')
-    ->tap(fn () => $this->user = $this->user('Gummibeer'))
-    ->tap(fn () => $this->user->update([
+    ->defer(fn () => $this->user = $this->user('Gummibeer'))
+    ->defer(fn () => $this->user->update([
         'block_reason' => BlockReason::SPAM(),
         'blocked_at' => now(),
     ]))

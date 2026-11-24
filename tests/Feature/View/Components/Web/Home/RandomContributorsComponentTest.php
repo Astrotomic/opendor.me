@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 beforeEach(function () {
     Builder::macro('takeRandom', function (int $limit): Collection {
-        /** @var \Illuminate\Database\Eloquent\Builder $this */
+        /** @var Builder $this */
 
         return $this
             ->limit($limit)

@@ -12,10 +12,11 @@
  */
 
 use Astrotomic\PhpunitAssertions\Laravel\ModelAssertions;
+use Tests\Feature\TestCase;
 use Tests\Utils\OrganizationAssertions;
 use Tests\Utils\UserAssertions;
 
-uses(Tests\Feature\TestCase::class)->in('Feature');
+uses(TestCase::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

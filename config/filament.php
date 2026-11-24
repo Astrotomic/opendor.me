@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Middleware\AuthenticateFilament;
+use Filament\AvatarProviders\UiAvatarsProvider;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Http\Middleware\MirrorConfigToSubpackages;
 use Filament\Pages;
 use Filament\Resources;
+use Filament\Tables\Actions\LinkAction;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -202,7 +204,7 @@ return [
         ],
         'tables' => [
             'actions' => [
-                'type' => \Filament\Tables\Actions\LinkAction::class,
+                'type' => LinkAction::class,
             ],
         ],
     ],
@@ -228,7 +230,7 @@ return [
     |
     */
 
-    'default_avatar_provider' => \Filament\AvatarProviders\UiAvatarsProvider::class,
+    'default_avatar_provider' => UiAvatarsProvider::class,
 
     /*
     |--------------------------------------------------------------------------

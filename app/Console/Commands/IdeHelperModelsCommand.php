@@ -8,6 +8,8 @@ use Barryvdh\Reflection\DocBlock\Context;
 use Barryvdh\Reflection\DocBlock\Serializer as DocBlockSerializer;
 use Barryvdh\Reflection\DocBlock\Tag;
 use Carbon\Carbon;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon as IlluminateCarbon;
 use Illuminate\Support\Str;
 use ReflectionClass;
@@ -47,12 +49,12 @@ class IdeHelperModelsCommand extends ModelsCommand
 
     /**
      * @see `START customization` and `END customization` comment
-     * @see \App\Console\Commands\IdeHelperModelsCommand::customizePhpDoc()
-     * @see \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::createPhpDocs()
+     * @see IdeHelperModelsCommand::customizePhpDoc()
+     * @see ModelsCommand::createPhpDocs()
      *
-     * @param  class-string<\Illuminate\Database\Eloquent\Model>  $class
+     * @param  class-string<Model>  $class
      *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      * @throws \ReflectionException
      */
     protected function createPhpDocs($class): string

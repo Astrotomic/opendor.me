@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -14,5 +15,6 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         User::disableSearchSyncing();
+        Organization::disableSearchSyncing();
     }
 }

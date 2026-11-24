@@ -13,8 +13,10 @@ use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::currentPathResolver(fn (): string => url(request()->path()));
 
         PendingRequest::macro('when', function ($condition, Closure $callback): PendingRequest {
-            /** @var \Illuminate\Http\Client\PendingRequest $this */
+            /** @var PendingRequest $this */
             $condition = value($condition);
 
             if ($condition) {
@@ -69,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Http::macro('github', function (): PendingRequest {
-            /** @var \Illuminate\Http\Client\Factory $this */
+            /** @var Factory $this */
             return $this
                 ->baseUrl('https://api.github.com')
                 ->accept('application/vnd.github.v3+json')
@@ -151,7 +153,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         URL::macro('horizon', function (string $uri): string {
-            /** @var \Illuminate\Routing\UrlGenerator $this */
+            /** @var UrlGenerator $this */
             if (config('horizon.domain') !== null) {
                 $this->forceRootUrl(config('horizon.domain'));
             }
@@ -166,7 +168,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         URL::macro('filament', function (string $uri): string {
-            /** @var \Illuminate\Routing\UrlGenerator $this */
+            /** @var UrlGenerator $this */
             if (config('filament.domain') !== null) {
                 $this->forceRootUrl(config('filament.domain'));
             }
@@ -181,7 +183,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Builder::macro('takeRandom', function (int $limit): Collection {
-            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            /** @var Builder $this */
 
             return $this
                 ->limit($limit * 3)

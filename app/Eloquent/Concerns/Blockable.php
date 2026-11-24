@@ -4,16 +4,17 @@ namespace App\Eloquent\Concerns;
 
 use App\Eloquent\Scopes\BlockableScope;
 use App\Enums\BlockReason;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property \Carbon\Carbon|null $blocked_at
- * @property \App\Enums\BlockReason|null $block_reason
+ * @property Carbon|null $blocked_at
+ * @property BlockReason|null $block_reason
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder withBlocked()
  * @method static static|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder onlyBlocked()
  *
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 trait Blockable
 {

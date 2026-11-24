@@ -1,13 +1,17 @@
 <?php
 
+use Orbit\Drivers\Json;
+use Orbit\Drivers\Markdown;
+use Orbit\Drivers\Yaml;
+
 return [
 
     'default' => 'md',
 
     'drivers' => [
-        'md' => \Orbit\Drivers\Markdown::class,
-        'json' => \Orbit\Drivers\Json::class,
-        'yaml' => \Orbit\Drivers\Yaml::class,
+        'md' => Markdown::class,
+        'json' => Json::class,
+        'yaml' => Yaml::class,
     ],
 
     'paths' => [

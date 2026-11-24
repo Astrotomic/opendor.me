@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources\Enums;
 
+use App\Enums\License;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LicenseResource extends JsonResource
 {
-    /** @var \App\Enums\License */
+    /** @var License */
     public $resource;
 
     public function toArray($request): array

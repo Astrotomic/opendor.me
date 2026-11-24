@@ -12,6 +12,10 @@ return new class extends Migration
 {
     public function up(): void
     {
+        if (DB::getDriverName() !== 'pgsql') {
+            return;
+        }
+
         foreach ([User::class, Organization::class, Repository::class] as $model) {
             DB::statement(sprintf('ALTER TABLE %s ADD COLUMN randomness point NOT NULL DEFAULT point(random(), random())', $model::table()));
             DB::statement(sprintf('CREATE INDEX %s_randomness on %s using spgist(randomness)', $model::table(), $model::table()));
@@ -20,6 +24,10 @@ return new class extends Migration
 
     public function down(): void
     {
+        if (DB::getDriverName() !== 'pgsql') {
+            return;
+        }
+
         Schema::table(User::table(), static function (Blueprint $table): void {
             $table->dropColumn('randomness');
         });

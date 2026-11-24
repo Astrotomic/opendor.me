@@ -59,5 +59,5 @@ it('the fromGithub method returns early if the data is invalid')
     ]);
 
 it('throws an InvalidArgumentException if the owner type is not User or Organization')
-    ->tap(fn () => Repository::fromGithub(array_merge($this->validData, ['owner' => ['type' => 'Foobar']])))
+    ->defer(fn () => Repository::fromGithub(array_merge($this->validData, ['owner' => ['type' => 'Foobar']])))
     ->throws(InvalidArgumentException::class, 'Unknown repository owner type [Foobar]');
