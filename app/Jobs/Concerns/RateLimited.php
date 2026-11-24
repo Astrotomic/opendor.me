@@ -24,7 +24,7 @@ trait RateLimited
 
             Log::info("Hit GitHub rate-limit for [{$exception->getRequest()->getUri()}] delay {$delay->diffForHumans(['parts' => 3, 'join' => true])}");
 
-            $this->release($delay->diffInSeconds());
+            $this->release(max(0, $reset->getTimestamp() - now()->getTimestamp()));
 
             return true;
         }

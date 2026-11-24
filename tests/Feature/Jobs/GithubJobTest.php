@@ -1,12 +1,12 @@
 <?php
 
 use App\Enums\BlockReason;
+use App\Jobs\Concerns\RateLimited;
 use App\Jobs\GithubJob;
 use App\Models\User;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Illuminate\Support\Carbon;
 use Symfony\Component\HttpFoundation\Response;
 
 it('deletes the job if the user is blocked', function () {
@@ -56,7 +56,7 @@ it('throws a client exception if the status code is not handled', function (int 
     ->with([500, 502, 400]);
 
 it('releases the job if a Github rate limit is hit', function () {
-    Carbon::setTestNow(now());
+    $this->freezeSecond();
 
     $spy = Log::spy();
 
@@ -71,8 +71,39 @@ it('releases the job if a Github rate limit is hit', function () {
     expect(app(Dispatcher::class)->dispatchNow($job))->toBeFalse();
     expect($job->job->isReleased())->toBeTrue();
 
-    $spy->shouldHaveReceived('info', fn ($message) => $message === 'Hit GitHub rate-limit for [/users/repos] delay 59 minutes and 59 seconds from now');
+    $spy->shouldHaveReceived('info', fn ($message) => $message === 'Hit GitHub rate-limit for [/users/repos] delay 1 hour from now');
 });
+
+it('releases a rate-limited job with a non-negative integer delay', function (int $offset, int $expected) {
+    $this->freezeSecond();
+
+    $job = new class
+    {
+        use RateLimited;
+
+        public ?int $delay = null;
+
+        public function release(int $delay): void
+        {
+            $this->delay = $delay;
+        }
+    };
+
+    $exception = new ClientException(
+        'rate limited',
+        new Request('get', '/users/repos'),
+        new GuzzleHttp\Psr7\Response(Response::HTTP_FORBIDDEN, [
+            'X-RateLimit-Reset' => now()->getTimestamp() + $offset,
+        ])
+    );
+
+    expect($job->rateLimit($exception))->toBeTrue()
+        ->and($job->delay)->toBe($expected);
+})->with([
+    'future reset' => [3600, 3600],
+    'current reset' => [0, 0],
+    'expired reset' => [-60, 0],
+]);
 
 function githubJob(Closure $run, User $entity): GithubJob
 {
