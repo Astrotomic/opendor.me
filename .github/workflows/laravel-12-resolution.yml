@@ -59,7 +59,8 @@ jobs:
       - run: cp .env.example .env && php artisan key:generate
       - run: php artisan about && php artisan route:list && php artisan schedule:list
       - run: vendor/bin/pest --coverage-html=.coverage --coverage-text
-      - run: DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_DRIVER=array QUEUE_CONNECTION=sync SESSION_DRIVER=array vendor/bin/pest
+      - run: |
+          DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_DRIVER=array QUEUE_CONNECTION=sync SESSION_DRIVER=array vendor/bin/pest
       - run: composer lint
       - uses: actions/upload-artifact@v4
         with:
