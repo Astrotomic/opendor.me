@@ -12,8 +12,11 @@ jobs:
           php-version: 8.3
           extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
           coverage: none
-      # Temporary test-only exception for known Laravel 10 advisories. Audits still report them.
-      - name: Configure Laravel 10 CI advisory exceptions
-        run: composer config --global --merge --json policy.advisories.ignore-id "$(jq -c '.config.policy.advisories["ignore-id"]' .github/composer/laravel-10-ci.json)"
-      - run: composer install --no-interaction --prefer-dist
+      # Apply the advisory exception to a temporary manifest only on this runner.
+      - name: Install dependencies for Laravel 10 compatibility tests
+        run: |
+          cp composer.json composer.json.ci-backup
+          trap 'mv composer.json.ci-backup composer.json' EXIT
+          composer config --json policy.advisories.ignore-id "$(jq -c '.config.policy.advisories["ignore-id"]' .github/composer/laravel-10-ci.json)"
+          composer install --no-interaction --prefer-dist
       - run: vendor/bin/tlint lint ./app --no-interaction -v

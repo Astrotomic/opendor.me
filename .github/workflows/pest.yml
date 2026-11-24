@@ -37,17 +37,27 @@ jobs:
           php-version: 8.3
           extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis, pdo_pgsql, pdo_sqlite
           coverage: xdebug
-      # Temporary test-only exception for known Laravel 10 advisories. Audits still report them.
-      - name: Configure Laravel 10 CI advisory exceptions
-        run: composer config --global --merge --json policy.advisories.ignore-id "$(jq -c '.config.policy.advisories["ignore-id"]' .github/composer/laravel-10-ci.json)"
-      - run: composer install --no-interaction --prefer-dist
+      # Apply the advisory exception to a temporary manifest only on this runner.
+      - name: Install dependencies for Laravel 10 compatibility tests
+        run: |
+          cp composer.json composer.json.ci-backup
+          trap 'mv composer.json.ci-backup composer.json' EXIT
+          composer config --json policy.advisories.ignore-id "$(jq -c '.config.policy.advisories["ignore-id"]' .github/composer/laravel-10-ci.json)"
+          composer install --no-interaction --prefer-dist
       - run: composer check-platform-reqs
       - run: cp .env.example .env && php artisan key:generate
       - name: Report dependency advisories (Laravel 10 migration only)
         run: composer audit --format=plain
         continue-on-error: true
       - run: vendor/bin/pest --coverage-html=.coverage --coverage-text
-      - run: DB_CONNECTION=sqlite DB_DATABASE=:memory: CACHE_DRIVER=array QUEUE_CONNECTION=sync SESSION_DRIVER=array vendor/bin/pest
+      - name: Run SQLite tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
+          CACHE_DRIVER: array
+          QUEUE_CONNECTION: sync
+          SESSION_DRIVER: array
+        run: vendor/bin/pest
       - uses: actions/upload-artifact@v4
         if: always()
         with:
