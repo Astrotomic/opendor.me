@@ -10,6 +10,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table(User::table(), static function (Blueprint $table): void {
+            $table->dropUnique(['email']);
+        });
+
+        Schema::table(User::table(), static function (Blueprint $table): void {
             $table->dropColumn(['email', 'emails', 'email_verified_at']);
         });
     }

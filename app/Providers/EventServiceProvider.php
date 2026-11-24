@@ -29,6 +29,11 @@ class EventServiceProvider extends ServiceProvider
         Repository::observe(RepositoryObserver::class);
     }
 
+    protected function configureEmailVerification(): void
+    {
+        // Registration uses GitHub OAuth rather than email verification.
+    }
+
     /**
      * Determine if events and listeners should be automatically discovered.
      *

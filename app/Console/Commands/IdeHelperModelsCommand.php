@@ -71,11 +71,9 @@ class IdeHelperModelsCommand extends ModelsCommand
 
         if ($this->reset) {
             $phpdoc = new DocBlock('', new Context($namespace));
-            if ($this->keep_text) {
-                $phpdoc->setText(
-                    (new DocBlock($reflection, new Context($namespace)))->getText()
-                );
-            }
+            $phpdoc->setText(
+                (new DocBlock($reflection, new Context($namespace)))->getText()
+            );
         } else {
             $phpdoc = new DocBlock($reflection, new Context($namespace));
         }

@@ -7,18 +7,18 @@ use App\Models\Repository;
 use App\Models\RepositoryUserPivot;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Card;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class StatsOverview extends BaseWidget
 {
-    protected function getCards(): array
+    protected function getStats(): array
     {
         return [
-            Card::make('Indexed Users', User::query()->count()),
-            Card::make('Registered Users', User::query()->whereIsRegistered()->count()),
-            Card::make('Contributions', RepositoryUserPivot::query()->count()),
-            Card::make('Organizations', Organization::query()->count()),
-            Card::make('Repositories', Repository::query()->count()),
+            Stat::make('Indexed Users', User::query()->count()),
+            Stat::make('Registered Users', User::query()->whereIsRegistered()->count()),
+            Stat::make('Contributions', RepositoryUserPivot::query()->count()),
+            Stat::make('Organizations', Organization::query()->count()),
+            Stat::make('Repositories', Repository::query()->count()),
         ];
     }
 }
