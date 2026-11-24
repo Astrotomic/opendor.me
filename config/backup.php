@@ -19,7 +19,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_ENV'),
+        'name' => env('APP_ENV', 'production'),
 
         'source' => [
 
@@ -116,7 +116,15 @@ return [
          */
         'database_dump_file_extension' => '',
 
+        'database_dump_filename_base' => 'database',
+
+        'database_dump_file_timestamp_format' => null,
+
         'destination' => [
+
+            'compression_method' => ZipArchive::CM_DEFAULT,
+
+            'compression_level' => 9,
 
             /*
              * The filename prefix used for the backup zip file.
@@ -150,6 +158,10 @@ return [
          * available on your system.
          */
         'encryption' => 'default',
+
+        'tries' => 1,
+
+        'retry_delay' => 0,
     ],
 
     /*
@@ -180,7 +192,7 @@ return [
             'to' => 'your@example.com',
 
             'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+                'address' => env('MAIL_FROM_ADDRESS') ?: 'hello@example.com',
                 'name' => env('MAIL_FROM_NAME', 'Example'),
             ],
         ],
@@ -228,6 +240,10 @@ return [
     ],
 
     'cleanup' => [
+
+        'tries' => 1,
+
+        'retry_delay' => 0,
         /*
          * The strategy that will be used to cleanup old backups. The default strategy
          * will keep all backups for a certain amount of days. After that period only
