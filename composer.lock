@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f86689b03ccaab798b400b31588e26fe",
+    "content-hash": "1357f60f88a018987a4e8232ff948757",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -226,30 +226,30 @@
         },
         {
             "name": "astrotomic/laravel-github-sponsors",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Astrotomic/laravel-github-sponsors.git",
-                "reference": "87cec4d482650e47e51e33e13015a83647b04313"
+                "reference": "9408611c1b3f878d03ab019a4865763a438b3a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Astrotomic/laravel-github-sponsors/zipball/87cec4d482650e47e51e33e13015a83647b04313",
-                "reference": "87cec4d482650e47e51e33e13015a83647b04313",
+                "url": "https://api.github.com/repos/Astrotomic/laravel-github-sponsors/zipball/9408611c1b3f878d03ab019a4865763a438b3a44",
+                "reference": "9408611c1b3f878d03ab019a4865763a438b3a44",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.0.1",
-                "illuminate/http": "^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
-                "illuminate/support": "^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0",
-                "php": "^8.0"
+                "guzzlehttp/guzzle": "^7.0.1 || ^8.0",
+                "illuminate/http": "^12.0 || ^13.0",
+                "illuminate/support": "^12.0 || ^13.0",
+                "php": "^8.2"
             },
             "require-dev": {
                 "laravel/pint": "^1.0",
-                "orchestra/testbench": "^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0",
-                "pestphp/pest": "^1.18 || ^2.3 || ^3.0 || ^4.0",
-                "pestphp/pest-plugin-laravel": "^1.4 || ^2.0 || ^3.0 || ^4.0"
+                "orchestra/testbench": "^10.0 || ^11.0",
+                "pestphp/pest": "^3.0 || ^4.0",
+                "pestphp/pest-plugin-laravel": "^3.0 || ^4.0"
             },
             "type": "library",
             "extra": {
@@ -282,7 +282,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Astrotomic/laravel-github-sponsors/issues",
-                "source": "https://github.com/Astrotomic/laravel-github-sponsors/tree/1.2.0"
+                "source": "https://github.com/Astrotomic/laravel-github-sponsors/tree/1.3.0"
             },
             "funding": [
                 {
@@ -294,8 +294,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-13T21:26:44+00:00",
-            "published-time": "2026-08-13T21:27:40+00:00"
+            "time": "2026-11-25T21:35:24+00:00",
+            "published-time": "2026-11-25T21:36:05+00:00"
         },
         {
             "name": "astrotomic/php-conditional-proxy",

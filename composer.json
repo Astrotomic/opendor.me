@@ -10,7 +10,7 @@
         "ext-json": "*",
         "ext-redis": "*",
         "algolia/scout-extended": "^5.0",
-        "astrotomic/laravel-github-sponsors": "^1.2",
+        "astrotomic/laravel-github-sponsors": "^1.3",
         "astrotomic/php-open-graph": "^1.0",
         "filament/filament": "^5.12",
         "guzzlehttp/guzzle": "^7.17",
