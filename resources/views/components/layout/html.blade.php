@@ -28,27 +28,18 @@
 
     {{ $opengraph }}
 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
-
     <script @cspNonce>
+        window.components = {};
         window.ALGOLIA_ID = '{{ config('scout.algolia.id') }}';
         window.ALGOLIA_KEY = '{{ config('scout.algolia.search_key') }}';
     </script>
 
-    <script @cspNonce>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('{{ asset('serviceworker.js') }}')
-                .then(function (registration) {
-                    registration.update();
-                });
-        }
-    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('head')
 </head>
 <body {{ $attributes->merge(['class' => 'antialiased']) }}>
 {{ $slot }}
-<script src="{{ mix('js/app.js') }}"></script>
 @stack('javascript')
 </body>
 </html>

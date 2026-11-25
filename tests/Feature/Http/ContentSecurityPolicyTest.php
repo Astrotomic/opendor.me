@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 
 it('preserves the content security policy and its script nonce', function () {
-    config(['csp.enabled' => true, 'app.mix_url' => null, 'services.umami.enabled' => false]);
+    config(['csp.enabled' => true, 'app.asset_url' => null, 'services.umami.enabled' => false]);
 
     $response = app(AddCspHeaders::class)->handle(Request::create('/'), fn () => response(Blade::render('<script @cspNonce></script>')));
 

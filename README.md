@@ -40,6 +40,7 @@ Command | Description
 `make run <command>` | Run the desire command inside container
 `make migrate` | Run the migration
 `make test` | Run the tests
-`make npm-dev` | Build the dependencies
+`make npm-dev` | Start the Vite development server with hot reloading
+`make npm-build` | Build production assets
 `make npm-install` | Install npm dependencies
 `make stop` | Stop the running containers
