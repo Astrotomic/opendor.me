@@ -1,0 +1,161 @@
+name: Temporary Composer dependency resolution
+on:
+  pull_request:
+    branches: [main]
+permissions: {}
+jobs:
+  resolve:
+    if: github.head_ref == 'chore/composer-dependency-upgrade'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: intl, redis, zip, gd, mbstring, bcmath, dom, curl
+          tools: composer:v2
+          coverage: none
+      - name: Resolve dependencies
+        run: |
+          cat > composer.json <<'MANIFEST'
+          {
+              "name": "astrotomic/opendor.me",
+              "description": "",
+              "license": "CC-BY-NC-SA-3.0",
+              "type": "project",
+              "keywords": [],
+              "require": {
+                  "php": "~8.5.0",
+                  "ext-intl": "*",
+                  "ext-json": "*",
+                  "ext-redis": "*",
+                  "algolia/scout-extended": "^4.0",
+                  "astrotomic/laravel-github-sponsors": "^1.2",
+                  "astrotomic/php-open-graph": "^0.5.2",
+                  "filament/filament": "^3.3",
+                  "guzzlehttp/guzzle": "^7.7",
+                  "laravel/framework": "^13.0",
+                  "laravel/horizon": "^5.17",
+                  "laravel/socialite": "^5.6.3",
+                  "mallardduck/blade-boxicons": "^2.4",
+                  "mazedlx/laravel-feature-policy": "^2.0",
+                  "nesbot/carbon": "^3.8.4",
+                  "ryangjchandler/orbit": "^1.4",
+                  "sentry/sentry-laravel": "^4.3",
+                  "spatie/eloquent-sortable": "^5.0",
+                  "spatie/flysystem-dropbox": "^2.0.6",
+                  "spatie/laravel-backup": "^10.0",
+                  "spatie/laravel-csp": "^3.0",
+                  "spatie/laravel-enum": "^3.0.2",
+                  "spatie/laravel-schedule-monitor": "^4.0",
+                  "spatie/laravel-sitemap": "^7.4",
+                  "spatie/laravel-sluggable": "^3.5",
+                  "stillat/numeral.php": "^2.0.2"
+              },
+              "require-dev": {
+                  "astrotomic/phpunit-assertions": "^0.15.0",
+                  "barryvdh/laravel-ide-helper": "^3.0",
+                  "fakerphp/faker": "^1.23.0",
+                  "fruitcake/laravel-debugbar": "^4.0",
+                  "gajus/dindent": "^2.0.2",
+                  "laravel/pint": "^1.10.3",
+                  "mockery/mockery": "^1.6.2",
+                  "nunomaduro/collision": "^8.6",
+                  "pestphp/pest": "^4.0",
+                  "pestphp/pest-plugin-laravel": "^4.1",
+                  "povils/phpmnd": "^3.1",
+                  "spatie/laravel-ignition": "^2.0",
+                  "spatie/ray": "^1.37.2",
+                  "tightenco/tlint": "^9.0"
+              },
+              "conflict": {
+                  "tightenco/tlint": "5.0.16"
+              },
+              "autoload": {
+                  "psr-4": {
+                      "App\\": "app/",
+                      "Database\\Factories\\": "database/factories/",
+                      "Database\\Seeders\\": "database/seeders/"
+                  }
+              },
+              "autoload-dev": {
+                  "psr-4": {
+                      "Tests\\": "tests/"
+                  }
+              },
+              "config": {
+                  "allow-plugins": {
+                      "pestphp/pest-plugin": true,
+                      "php-http/discovery": true
+                  },
+                  "optimize-autoloader": true,
+                  "preferred-install": "dist",
+                  "sort-packages": true
+              },
+              "extra": {
+                  "composer-normalize": {
+                      "indent-size": 4,
+                      "indent-style": "space"
+                  },
+                  "laravel": {
+                      "dont-discover": []
+                  }
+              },
+              "scripts": {
+                  "post-update-cmd": [
+                      "@php artisan horizon:publish --ansi --no-interaction",
+                      "@php artisan vendor:publish --tag=laravel-assets --ansi --no-interaction --force"
+                  ],
+                  "post-autoload-dump": [
+                      "@composer validate --strict --ansi --no-interaction --quiet",
+                      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+                      "@php artisan package:discover --ansi --no-interaction",
+                      "@php artisan filament:upgrade"
+                  ],
+                  "post-root-package-install": [
+                      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+                  ],
+                  "post-create-project-cmd": [
+                      "@php artisan key:generate --ansi"
+                  ],
+                  "fix": [
+                      "@php vendor/bin/pint"
+                  ],
+                  "ide": [
+                      "@php artisan ide-helper:generate --ansi --no-interaction --quiet",
+                      "@php artisan ide-helper:meta --ansi --no-interaction --quiet",
+                      "@php artisan ide-helper:models --write --dir=app/Models --reset --ansi --no-interaction --quiet",
+                      "@composer fix --quiet"
+                  ],
+                  "lint": [
+                      "@php vendor/bin/phpmnd ./app",
+                      "@php vendor/bin/pint --test",
+                      "@php vendor/bin/tlint lint ./app --no-interaction -v"
+                  ],
+                  "normalize": "echo 'composer global require ergebnis/composer-normalize'",
+                  "route:list": "@php artisan route:list --except-path=nova,horizon,_debugbar",
+                  "test": "@php vendor/bin/pest",
+                  "test-coverage": "@php vendor/bin/pest --coverage-html=.coverage",
+                  "thanks": "echo 'composer global require symfony/thanks'"
+              }
+          }
+          MANIFEST
+          composer update --no-install --no-scripts --no-interaction --prefer-dist
+          composer bump --no-interaction
+          composer outdated --direct --major-only --locked --format=json --no-interaction || true
+          composer validate --strict
+      - name: Resolution output
+        run: |
+          echo 'COMPOSER_JSON_BEGIN'
+          base64 -w 0 composer.json | fold -w 4096
+          echo
+          echo 'COMPOSER_JSON_END'
+          echo 'COMPOSER_LOCK_BEGIN'
+          gzip -c composer.lock | base64 -w 0 | fold -w 4096
+          echo
+          echo 'COMPOSER_LOCK_END'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: composer-resolution
+          path: |
+            composer.json
+            composer.lock
