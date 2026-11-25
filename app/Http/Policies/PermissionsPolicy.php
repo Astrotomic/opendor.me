@@ -8,11 +8,8 @@ class PermissionsPolicy extends Policy implements \Stringable
 {
     public function configure(): void {}
 
-    public function __toString()
+    public function __toString(): string
     {
-        return collect(parent::__toString())
-            ->add('interest-cohort=()')
-            ->filter()
-            ->implode(';');
+        return implode(', ', array_filter([parent::__toString(), 'interest-cohort=()']));
     }
 }

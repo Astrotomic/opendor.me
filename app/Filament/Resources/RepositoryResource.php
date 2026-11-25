@@ -6,7 +6,7 @@ use App\Filament\Resource;
 use App\Filament\Resources\RepositoryResource\Pages\EditRepository;
 use App\Filament\Resources\RepositoryResource\Pages\ListRepositories;
 use App\Models\Repository;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -16,11 +16,11 @@ class RepositoryResource extends Resource
 {
     protected static ?string $model = Repository::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-archive-box';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             //
         ]);
     }

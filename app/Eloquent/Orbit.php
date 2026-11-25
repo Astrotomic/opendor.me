@@ -4,14 +4,13 @@ namespace App\Eloquent;
 
 use Illuminate\Database\Schema\Blueprint;
 use Orbit\Concerns\Orbital;
+use Orbit\Contracts\Orbit as OrbitContract;
 use Spatie\Sluggable\HasSlug;
 
-abstract class Orbit extends Model
+abstract class Orbit extends Model implements OrbitContract
 {
     use HasSlug;
-    use Orbital {
-        bootOrbital as protected bootOrbit;
-    }
+    use Orbital;
 
     public $incrementing = false;
 
@@ -21,15 +20,10 @@ abstract class Orbit extends Model
 
     protected $primaryKey = 'slug';
 
-    abstract public static function schema(Blueprint $table): void;
+    abstract public function schema(Blueprint $table): void;
 
-    public static function bootOrbital(): void
+    public function getOrbitSource(): string
     {
-        static::whenBooted(static fn () => static::bootOrbit());
-    }
-
-    public static function getOrbitalName(): string
-    {
-        return static::table();
+        return $this->getTable();
     }
 }
