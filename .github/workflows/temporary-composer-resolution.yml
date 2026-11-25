@@ -31,41 +31,41 @@ jobs:
                   "algolia/scout-extended": "^4.0",
                   "astrotomic/laravel-github-sponsors": "^1.2",
                   "astrotomic/php-open-graph": "^0.5.2",
-                  "filament/filament": "^3.3",
-                  "guzzlehttp/guzzle": "^7.7",
-                  "laravel/framework": "^13.0",
-                  "laravel/horizon": "^5.17",
-                  "laravel/socialite": "^5.6.3",
-                  "mallardduck/blade-boxicons": "^2.4",
-                  "mazedlx/laravel-feature-policy": "^2.0",
-                  "nesbot/carbon": "^3.8.4",
-                  "ryangjchandler/orbit": "^1.4",
-                  "sentry/sentry-laravel": "^4.3",
-                  "spatie/eloquent-sortable": "^5.0",
+                  "filament/filament": "^3.3.58",
+                  "guzzlehttp/guzzle": "^7.17",
+                  "laravel/framework": "^13.44.1",
+                  "laravel/horizon": "^5.52",
+                  "laravel/socialite": "^5.33.0",
+                  "mallardduck/blade-boxicons": "^2.5",
+                  "mazedlx/laravel-feature-policy": "^2.4",
+                  "nesbot/carbon": "^3.15.1",
+                  "ryangjchandler/orbit": "^1.4.3",
+                  "sentry/sentry-laravel": "^4.31",
+                  "spatie/eloquent-sortable": "^5.0.1",
                   "spatie/flysystem-dropbox": "^2.0.6",
-                  "spatie/laravel-backup": "^10.0",
-                  "spatie/laravel-csp": "^3.0",
-                  "spatie/laravel-enum": "^3.0.2",
-                  "spatie/laravel-schedule-monitor": "^4.0",
+                  "spatie/laravel-backup": "^10.5",
+                  "spatie/laravel-csp": "^3.32",
+                  "spatie/laravel-enum": "^3.3.0",
+                  "spatie/laravel-schedule-monitor": "^4.3.3",
                   "spatie/laravel-sitemap": "^7.4",
-                  "spatie/laravel-sluggable": "^3.5",
+                  "spatie/laravel-sluggable": "^3.8.1",
                   "stillat/numeral.php": "^2.0.2"
               },
               "require-dev": {
                   "astrotomic/phpunit-assertions": "^0.15.0",
-                  "barryvdh/laravel-ide-helper": "^3.0",
-                  "fakerphp/faker": "^1.23.0",
-                  "fruitcake/laravel-debugbar": "^4.0",
+                  "barryvdh/laravel-ide-helper": "^3.8",
+                  "fakerphp/faker": "^1.24.1",
+                  "fruitcake/laravel-debugbar": "^4.4.5",
                   "gajus/dindent": "^2.0.2",
-                  "laravel/pint": "^1.10.3",
-                  "mockery/mockery": "^1.6.2",
-                  "nunomaduro/collision": "^8.6",
-                  "pestphp/pest": "^4.0",
+                  "laravel/pint": "^1.32.3",
+                  "mockery/mockery": "^1.6.15",
+                  "nunomaduro/collision": "^8.9.6",
+                  "pestphp/pest": "^4.7.8",
                   "pestphp/pest-plugin-laravel": "^4.1",
-                  "povils/phpmnd": "^3.1",
-                  "spatie/laravel-ignition": "^2.0",
-                  "spatie/ray": "^1.37.2",
-                  "tightenco/tlint": "^9.0"
+                  "povils/phpmnd": "^3.6.2",
+                  "spatie/laravel-ignition": "^2.13",
+                  "spatie/ray": "^1.48.1",
+                  "tightenco/tlint": "^9.7"
               },
               "conflict": {
                   "tightenco/tlint": "5.0.16"
@@ -139,7 +139,42 @@ jobs:
               }
           }
           MANIFEST
-          composer update --no-install --no-scripts --no-interaction --prefer-dist
+          cp composer.json base.json
+          cat > groups.json <<'GROUPS'
+          [{"algolia/scout-extended":"^5.0"},{"astrotomic/php-open-graph":"^1.0"},{"astrotomic/phpunit-assertions":"^0.16"},{"filament/filament":"^5.0"},{"guzzlehttp/guzzle":"^8.0"},{"mazedlx/laravel-feature-policy":"^3.0"},{"pestphp/pest":"^5.0","pestphp/pest-plugin-laravel":"^5.0"},{"ryangjchandler/orbit":"^2.0"},{"spatie/flysystem-dropbox":"^3.0"},{"spatie/laravel-sitemap":"^8.0"},{"spatie/laravel-sluggable":"^6.0"}]
+          GROUPS
+          cat > apply.php <<'PHP'
+          <?php
+          $m=json_decode(file_get_contents($argv[1]), true);
+          $groups=json_decode(file_get_contents('groups.json'), true);
+          foreach (($argv[2] === 'all' ? $groups : [$groups[(int)$argv[2]]]) as $group) {
+              foreach ($group as $package => $constraint) {
+                  $section = isset($m['require'][$package]) ? 'require' : 'require-dev';
+                  $m[$section][$package] = $constraint;
+              }
+          }
+          file_put_contents('composer.json', json_encode($m, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)."\n");
+          PHP
+          php apply.php base.json all
+          if composer update --no-install --no-scripts --no-interaction --prefer-dist; then
+            echo "ALL MAJOR UPGRADES RESOLVED"
+          else
+            cp base.json composer.json
+            rm -f composer.lock
+            composer update --no-install --no-scripts --no-interaction --prefer-dist
+            for i in $(seq 0 10); do
+              cp composer.json accepted.json
+              cp composer.lock accepted.lock
+              php apply.php accepted.json "$i"
+              if composer update --no-install --no-scripts --no-interaction --prefer-dist; then
+                echo "ACCEPTED GROUP $i"
+              else
+                echo "BLOCKED GROUP $i"
+                cp accepted.json composer.json
+                cp accepted.lock composer.lock
+              fi
+            done
+          fi
           composer bump --no-interaction
           composer outdated --direct --major-only --locked --format=json --no-interaction || true
           composer validate --strict
