@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Eloquent\Orbit;
 use Illuminate\Database\Schema\Blueprint;
+use Orbit\Drivers\Yaml;
 use Spatie\Sluggable\SlugOptions;
 
 /**
@@ -16,9 +17,12 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Sponsor extends Orbit
 {
-    public static $driver = 'yaml';
+    public function getOrbitDriver(): string
+    {
+        return Yaml::class;
+    }
 
-    public static function schema(Blueprint $table): void
+    public function schema(Blueprint $table): void
     {
         $table->string('slug')->primary();
         $table->string('name');

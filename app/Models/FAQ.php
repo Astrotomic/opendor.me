@@ -33,7 +33,7 @@ class FAQ extends Orbit implements Sortable
         'priority' => 'int',
     ];
 
-    public static function schema(Blueprint $table): void
+    public function schema(Blueprint $table): void
     {
         $table->string('slug')->primary();
         $table->integer('priority')->unsigned();
