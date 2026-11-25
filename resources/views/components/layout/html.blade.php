@@ -34,15 +34,6 @@
         window.ALGOLIA_KEY = '{{ config('scout.algolia.search_key') }}';
     </script>
 
-    <script @cspNonce>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('{{ url('serviceworker.js') }}')
-                .then(function (registration) {
-                    registration.update();
-                });
-        }
-    </script>
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('head')
