@@ -1,6 +1,9 @@
 on:
   push:
 
+permissions:
+  contents: read
+
 jobs:
   vite:
     runs-on: ubuntu-latest
