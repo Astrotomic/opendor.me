@@ -2,62 +2,52 @@
 
 namespace App\Http\Policies;
 
-use Illuminate\Http\Request;
 use Spatie\Csp\Directive;
 use Spatie\Csp\Keyword;
-use Spatie\Csp\Policies\Policy;
-use Symfony\Component\HttpFoundation\Response;
+use Spatie\Csp\Policy;
+use Spatie\Csp\Preset;
 
-class ContentSecurityPolicy extends Policy
+class ContentSecurityPolicy implements Preset
 {
-    public function configure(): void
+    public function configure(Policy $policy): void
     {
-        $this
-            ->addDirective(Directive::DEFAULT, Keyword::NONE)
-            ->addDirective(Directive::BASE, Keyword::SELF)
-            ->addDirective(Directive::CHILD, Keyword::NONE)
-            ->addDirective(Directive::CONNECT, Keyword::SELF)
-            ->addDirective(Directive::CONNECT, 'https://*.algolia.net')
-            ->addDirective(Directive::CONNECT, 'https://*.algolianet.com')
-            ->addDirective(Directive::FORM_ACTION, Keyword::SELF)
-            ->addDirective(Directive::FRAME, Keyword::NONE)
-            ->addDirective(Directive::FRAME_ANCESTORS, Keyword::NONE)
-            ->addDirective(Directive::MANIFEST, Keyword::SELF)
-            ->addDirective(Directive::MEDIA, Keyword::NONE)
-            ->addDirective(Directive::OBJECT, Keyword::NONE)
-            ->addDirective(Directive::WORKER, Keyword::SELF)
-            ->addDirective(Directive::IMG, Keyword::SELF)
-            ->addDirective(Directive::IMG, 'data:')
-            ->addDirective(Directive::IMG, 'https://avatars.githubusercontent.com')
-            ->addDirective(Directive::IMG, 'https://images.unsplash.com')
-            ->addDirective(Directive::SCRIPT, Keyword::SELF)
-            ->addDirective(Directive::SCRIPT, Keyword::UNSAFE_EVAL)
-            ->addDirective(Directive::STYLE, Keyword::SELF)
-            ->addDirective(Directive::STYLE, Keyword::UNSAFE_INLINE)
-            ->addDirective(Directive::FONT, Keyword::SELF)
-            ->addNonceForDirective(Directive::SCRIPT);
+        $policy
+            ->add(Directive::DEFAULT, Keyword::NONE)
+            ->add(Directive::BASE, Keyword::SELF)
+            ->add(Directive::CHILD, Keyword::NONE)
+            ->add(Directive::CONNECT, Keyword::SELF)
+            ->add(Directive::CONNECT, 'https://*.algolia.net')
+            ->add(Directive::CONNECT, 'https://*.algolianet.com')
+            ->add(Directive::FORM_ACTION, Keyword::SELF)
+            ->add(Directive::FRAME, Keyword::NONE)
+            ->add(Directive::FRAME_ANCESTORS, Keyword::NONE)
+            ->add(Directive::MANIFEST, Keyword::SELF)
+            ->add(Directive::MEDIA, Keyword::NONE)
+            ->add(Directive::OBJECT, Keyword::NONE)
+            ->add(Directive::WORKER, Keyword::SELF)
+            ->add(Directive::IMG, Keyword::SELF)
+            ->add(Directive::IMG, 'data:')
+            ->add(Directive::IMG, 'https://avatars.githubusercontent.com')
+            ->add(Directive::IMG, 'https://images.unsplash.com')
+            ->add(Directive::SCRIPT, Keyword::SELF)
+            ->add(Directive::SCRIPT, Keyword::UNSAFE_EVAL)
+            ->add(Directive::STYLE, Keyword::SELF)
+            ->add(Directive::STYLE, Keyword::UNSAFE_INLINE)
+            ->add(Directive::FONT, Keyword::SELF)
+            ->addNonce(Directive::SCRIPT);
 
         if (config('app.mix_url')) {
-            $this
-                ->addDirective(Directive::SCRIPT, config('app.mix_url'))
-                ->addDirective(Directive::STYLE, config('app.mix_url'))
-                ->addDirective(Directive::FONT, config('app.mix_url'))
-                ->addDirective(Directive::IMG, config('app.mix_url'));
+            $policy
+                ->add(Directive::SCRIPT, config('app.mix_url'))
+                ->add(Directive::STYLE, config('app.mix_url'))
+                ->add(Directive::FONT, config('app.mix_url'))
+                ->add(Directive::IMG, config('app.mix_url'));
         }
 
         if (config('services.umami.enabled')) {
-            $this
-                ->addDirective(Directive::CONNECT, sprintf('https://%s/api/collect', config('services.umami.api_url')))
-                ->addDirective(Directive::SCRIPT, sprintf('https://%s/umami.js', config('services.umami.api_url')));
+            $policy
+                ->add(Directive::CONNECT, sprintf('https://%s/api/collect', config('services.umami.api_url')))
+                ->add(Directive::SCRIPT, sprintf('https://%s/umami.js', config('services.umami.api_url')));
         }
-    }
-
-    public function shouldBeApplied(Request $request, Response $response): bool
-    {
-        if (app()->environment('local') && config('debugbar.enabled')) {
-            return false;
-        }
-
-        return config('csp.enabled') && empty($response->exception);
     }
 }

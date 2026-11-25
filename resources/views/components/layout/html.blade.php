@@ -30,12 +30,12 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
-    <script nonce="{{ csp_nonce() }}">
+    <script @cspNonce>
         window.ALGOLIA_ID = '{{ config('scout.algolia.id') }}';
         window.ALGOLIA_KEY = '{{ config('scout.algolia.search_key') }}';
     </script>
 
-    <script nonce="{{ csp_nonce() }}">
+    <script @cspNonce>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('{{ asset('serviceworker.js') }}')
                 .then(function (registration) {

@@ -47,7 +47,7 @@
 
 @once
 @push('javascript')
-<script nonce="{{ csp_nonce() }}">
+<script @cspNonce>
     window.components.homeUserAutocomplete = function () {
         return {
             isFocused: false,

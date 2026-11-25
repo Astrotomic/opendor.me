@@ -6,22 +6,24 @@ use Spatie\Csp\Nonce\RandomString;
 return [
 
     /*
-     * A policy will determine which CSP headers will be set. A valid CSP policy is
-     * any class that extends `Spatie\Csp\Policies\Policy`
+     * A policy will determine which CSP headers will be set. A valid CSP preset is
+     * any class that implements `Spatie\Csp\Preset`
      */
-    'policy' => ContentSecurityPolicy::class,
+    'presets' => [ContentSecurityPolicy::class],
+
+    'directives' => [],
 
     /*
      * This policy which will be put in report only mode. This is great for testing out
      * a new policy or changes to existing csp policy without breaking anything.
      */
-    'report_only_policy' => '',
+    'report_only_presets' => [],
+
+    'report_only_directives' => [],
 
     /*
      * All violations against the policy will be reported to this url.
      * A great service you could use for this is https://report-uri.com/
-     *
-     * You can override this setting by calling `reportTo` on your policy.
      */
     'report_uri' => env('CSP_REPORT_URI', ''),
 
