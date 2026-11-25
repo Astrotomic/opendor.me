@@ -10,3 +10,6 @@
 !safari-pinned-tab.svg
 !site.webmanifest
 !maskable-icon-*.png
+!images/
+!images/**
+!serviceworker.js

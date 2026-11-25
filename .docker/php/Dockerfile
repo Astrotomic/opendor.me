@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
-# Install node 14 LTS
-RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash
+# Install Node.js 24 LTS
+RUN curl -sL https://deb.nodesource.com/setup_24.x  | bash
 RUN apt-get update && apt-get install -y nodejs
 
 # Clear cache

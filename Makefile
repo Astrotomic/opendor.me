@@ -9,7 +9,7 @@ build: ## Build container images
 	touch ./storage/nginx/access.log
 	docker-compose build
 
-setup: build start composer-install key-generate migrate npm-install npm-dev  ## Setup project for development
+setup: build start composer-install key-generate migrate npm-install npm-build  ## Setup project for development
 
 start: ## Start application silently
 	docker-compose up -d
@@ -46,11 +46,11 @@ horizon: ## Run Horizon
 npm-install: ## Install npm
 	$(DC) 'npm install'
 
-npm-dev: ## Run development build
-	$(DC) 'npm run development'
+npm-dev: ## Start the Vite development server
+	$(DC) 'npm run dev -- --host 0.0.0.0'
 
-npm-prod: ## Run production build
-	$(DC) 'npm run production'
+npm-build: ## Run production build
+	$(DC) 'npm run build'
 
 cleanup-docker: ## Remove old docker images
 	docker rmi $$(docker images --filter "dangling=true" -q --no-trunc)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Policies;
 
+use Illuminate\Support\Facades\Vite;
 use Spatie\Csp\Directive;
 use Spatie\Csp\Keyword;
 use Spatie\Csp\Policy;
@@ -36,12 +37,24 @@ class ContentSecurityPolicy implements Preset
             ->add(Directive::FONT, Keyword::SELF)
             ->addNonce(Directive::SCRIPT);
 
-        if (config('app.mix_url')) {
+        if (config('app.asset_url')) {
             $policy
-                ->add(Directive::SCRIPT, config('app.mix_url'))
-                ->add(Directive::STYLE, config('app.mix_url'))
-                ->add(Directive::FONT, config('app.mix_url'))
-                ->add(Directive::IMG, config('app.mix_url'));
+                ->add(Directive::SCRIPT, config('app.asset_url'))
+                ->add(Directive::STYLE, config('app.asset_url'))
+                ->add(Directive::FONT, config('app.asset_url'))
+                ->add(Directive::IMG, config('app.asset_url'));
+        }
+
+        if (app()->environment('local') && Vite::isRunningHot()) {
+            $url = rtrim(file_get_contents(Vite::hotFile()));
+
+            $policy
+                ->add(Directive::SCRIPT, $url)
+                ->add(Directive::STYLE, $url)
+                ->add(Directive::FONT, $url)
+                ->add(Directive::IMG, $url)
+                ->add(Directive::CONNECT, $url)
+                ->add(Directive::CONNECT, 'ws'.substr($url, 4));
         }
 
         if (config('services.umami.enabled')) {

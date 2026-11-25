@@ -1,6 +1,7 @@
 @once
 @push('javascript')
 <script @cspNonce>
+document.addEventListener('DOMContentLoaded', () => {
     const search = algolia.instantsearch({
         indexName: '{{ (new \App\Models\User)->searchableAs() }}',
         searchClient: algolia.searchClient,
@@ -150,6 +151,7 @@
     ]);
 
     search.start();
+});
 </script>
 @endpush
 @endonce
