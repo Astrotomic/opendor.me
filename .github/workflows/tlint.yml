@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.4
+          php-version: 8.5
           extensions: dom, curl, mbstring, zip, pcntl, posix, intl, redis
           coverage: none
       - run: composer install --no-interaction --prefer-dist
